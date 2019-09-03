@@ -17,4 +17,9 @@ prm-search > md-content.md-primoExplore-theme .main {
 
 */
 
+/* Hide sign-in link */
+
+.alert-bar {
+	display:none;
+	}
 
