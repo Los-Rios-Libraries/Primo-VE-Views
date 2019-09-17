@@ -23,3 +23,8 @@ prm-search > md-content.md-primoExplore-theme .main {
 	display:none;
 	}
 
+/* Hide expand my results */
+
+.md-checkbox[aria-label="Expand My Results"] {
+	display:none;
+	}
