@@ -23,16 +23,11 @@ prm-search > md-content.md-primoExplore-theme .main {
 	}
 
 /* Hide expand my results */
-.md-checkbox[aria-label="Expand My Results"] {
+md-checkbox[aria-label="Expand My Results"] {
 	display:none;
 	}
 
 /* Hide facet Open access */
-[translate="facets.facet.tlevel.open_access"] {
-	display:none;
-	}
-	
-/* Remove extra space resulting from hiding open access facet */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
 	}
