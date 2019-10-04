@@ -56,7 +56,6 @@ div.top-nav-bar * {
 
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
-  color: white;
   background-color: #8A0028; }
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
