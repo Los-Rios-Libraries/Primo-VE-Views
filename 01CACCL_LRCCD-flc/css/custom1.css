@@ -83,3 +83,6 @@ div.top-nav-bar * {
 .fulltext_linktorsrc_topic,
 .fulltext_topic {
   color: #743182; }
+		
+		/* change appearance of search query terms in search results */
+mark {box-shadow:none; font-weight:bold;}
