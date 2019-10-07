@@ -71,20 +71,7 @@ div.top-nav-bar * {
 .__xs .sidebar, .available-facets .section-content .md-chips .md-chip .md-button:before, .multiselect-submit .multiselect-submit-inner, prm-full-view-cont prm-recomendation-item .media-on-hover .pin-button, prm-full-view-cont .recommendations-title:after, prm-full-view-cont .recommendations-title prm-icon, prm-databases-categorize .sticking-wrapper, md-virtual-repeat-container#prm-simple-search .md-autocomplete-suggestions md-divider, md-dialog md-toolbar:not(.md-menu-toolbar), md-card .card-content-block {
   background-color: #ffffff; }
 
-/* Available Online link to dark college color on results and detail page*/
-.prm-positive, .status-available, [class*="available"],
-[class*="FT"],
-.not_restricted,
-.ext_not_restricted,
-.fulltext,
-.fulltext_linktorsrc,
-.fulltext_newspaper,
-.fulltext_linktorsrc_newspaper,
-.fulltext_linktorsrc_topic,
-.fulltext_topic {
-  color: #133D8D; }
-		
-		/* change appearance of search query terms in search results */
+/* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
 /* create space between items on brief results page */
