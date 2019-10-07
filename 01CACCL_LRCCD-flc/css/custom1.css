@@ -91,3 +91,5 @@ mark {box-shadow:none; font-weight:bold;}
 .list-item-wrapper {margin-bottom:6px;}
 .list-item-wrapper:hover, .list-item-wrapper:focus {border-bottom-style:none;}
 		
+/* hide citation features in brief record; will still show in full record */
+prm-citation-trails-indication-container {display:none;}
