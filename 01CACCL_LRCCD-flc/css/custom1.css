@@ -83,3 +83,8 @@ prm-citation-trails-indication-container {display:none;}
 
 /* hide 856 links in full record */
 div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
+
+/* booking/request area */
+/* hide request heading and make request button more button-like in appearance */
+prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
+prm-service-button .button-as-link.md-button { border: 1px solid #743182; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #743182;color: #fff;}
