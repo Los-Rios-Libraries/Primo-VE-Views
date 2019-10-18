@@ -46,6 +46,9 @@ prm-topbar {
 #mainMenu {
 	font-size: 20px;
 }
+/* remove tooltips from links menu */
+.multi-row-tooltip {display:none;}
+
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
     color: #8A0028 !important;

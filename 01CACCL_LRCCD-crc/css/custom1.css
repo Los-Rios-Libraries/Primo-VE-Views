@@ -50,6 +50,9 @@ prm-topbar {
 div.top-nav-bar * {
     color: #133D8D !important;
 }
+/* remove tooltips from links menu */
+.multi-row-tooltip {display:none;}
+
 /* Change background color to white for top bar*/
 .prm-background, prm-spinner.prm-hue1.overlay-cover.light-on-dark:after, prm-topbar .top-nav-bar, prm-search-bar.prm-hue1, prm-atoz-search-bar.prm-hue1, prm-browse-search-bar.prm-hue1, prm-tags-search-bar.prm-hue1, prm-newspapers-search-bar.prm-hue1, prm-collection-gallery-header .prm-hue1.collection-header-inner, prm-tree-nav prm-spinner .prm-hue1.diamond {
     background-color: #ffffff; }
