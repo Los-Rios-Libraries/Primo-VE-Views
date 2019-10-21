@@ -41,12 +41,12 @@ div[data-facet-value="tlevel-open_access"] {
 
 /* Increase height of top menu bar*/
 prm-topbar {
-	height: 100px;
+	height: 90px;
 	position: relative;
 }
 /* Increase font size for Links Menu*/
 #mainMenu {
-	font-size: 20px;
+	font-size: 1.2em;
 }
 /* remove tooltips from links menu */
 .multi-row-tooltip {display:none;}
