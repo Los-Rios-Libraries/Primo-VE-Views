@@ -46,6 +46,9 @@ prm-topbar {
 #mainMenu {
 	font-size: 1.2em;
 }
+/* hide Browse on Links Menu so that we can have it active, will link elsewhere. note for mobile this must be the last menu item */
+div[data-main-menu-item="BrowseSearch"], .main-menu-button:last-child {display:none;}
+
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
     color: #133D8D !important;
