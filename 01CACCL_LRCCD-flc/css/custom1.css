@@ -1,5 +1,3 @@
-
-
 /*Uncomment the follwoing lines to move facets to the left*/
 
 /*
@@ -35,6 +33,11 @@ div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
 	}
 
+/* hide Browse on Links Menu so that we can have it active, will link elsewhere. note for mobile this must be the last menu item */
+div[data-main-menu-item="BrowseSearch"], .main-menu-button:last-child {
+	display:none;
+	}
+	
 /* Branding and Design*/
 
 /* Increase height of top menu bar*/
@@ -46,8 +49,7 @@ prm-topbar {
 #mainMenu {
 	font-size: 1.2em;
 }
-/* hide Browse on Links Menu so that we can have it active, will link elsewhere. note for mobile this must be the last menu item */
-div[data-main-menu-item="BrowseSearch"], .main-menu-button:last-child {display:none;}
+
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
     color: #743182 !important;
@@ -71,8 +73,10 @@ div.top-nav-bar * {
 	}
 }
 
-/* remove tooltips from links menu */
-.multi-row-tooltip {display:none;}
+/* remove tooltips from links menu in main and mobile views */
+.multi-row-tooltip, .custom-links-container .md-subhead {
+	display:none;
+	}
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
  .md-button.button-confirm, .service-form-static-panel button.button-confirm prm-icon + span, .service-form-static-panel button.button-confirm prm-icon svg path {
