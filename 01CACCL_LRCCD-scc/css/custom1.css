@@ -115,3 +115,18 @@ div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
 prm-service-button .button-as-link.md-button { border: 1px solid #8A0028; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #8A0028;color: #fff;}
+
+/* ensure that footer isn't in middle of page */
+md-content.md-primoExplore-theme {min-height: 400px;}
+/* footer styles */
+#footer {background:#B97879;  border-top:1px solid #ccc; color:#fff;}
+#footer a, #footer a:visited {color:#fff; text-decoration: underline;}
+#footer ul {padding-left: 0; list-style-type: none;}
+.lr-footer {padding:20px 20%;}
+#subfooter {background:#000;}
+#lr-libraries-logo {margin-bottom:20px;}
+
+@media screen and (max-width:960px) {
+	
+	.lr-footer {padding: 20px;}
+}
