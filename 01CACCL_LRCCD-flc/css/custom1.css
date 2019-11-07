@@ -118,12 +118,13 @@ prm-service-button .button-as-link.md-button { border: 1px solid #743182; border
 
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
+
 /* footer styles */
-#footer {background:#B97879;  border-top:1px solid #ccc; color:#fff;}
+#footer {background:#0084AC;  border-top:1px solid #ccc; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
-#subfooter {background:#000;}
+#subfooter {background:#204963;}
 #lr-libraries-logo {margin-bottom:20px;}
 
 @media screen and (max-width:960px) {
