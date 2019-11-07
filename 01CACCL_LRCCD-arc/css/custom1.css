@@ -120,7 +120,7 @@ prm-service-button .button-as-link.md-button { border: 1px solid #003057; border
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
 /* footer styles */
-#footer {background:#B97879;  border-top:1px solid #ccc; color:#fff;}
+#footer {background:#014c8d;  border-top:1px solid #ccc; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
