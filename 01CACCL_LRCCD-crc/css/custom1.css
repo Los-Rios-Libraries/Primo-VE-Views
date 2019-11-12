@@ -53,7 +53,7 @@ prm-topbar {
 
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
-    color: #133D8D !important;
+    color: #11357f !important;
 }
 
 /* Change background color to white for top bar*/
@@ -63,7 +63,7 @@ div.top-nav-bar * {
 
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
-  background-color: #133D8D; 
+  background-color: #11357f; 
   }
   
 /* Frame search input for mobile viewers */
@@ -81,7 +81,7 @@ div.top-nav-bar * {
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
  .md-button.button-confirm, .service-form-static-panel button.button-confirm prm-icon + span, .service-form-static-panel button.button-confirm prm-icon svg path {
-    color: #F58025; }
+    color: #fc8339; }
     .md-button.button-confirm:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:hover:not([disabled]), .md-button.button-confirm:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:focus:not([disabled]), .md-button.button-confirm.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.hovered:not([disabled]), .md-button.button-confirm.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.md-focused:not([disabled]), .md-button.button-confirm._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path._md-focused:not([disabled]) {
        color: #b44f00;
       background-color: rgba(245, 128, 37, 0.1); }
@@ -115,19 +115,19 @@ div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
-prm-service-button .button-as-link.md-button { border: 1px solid #133D8D; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #133D8D;color: #fff;}
+prm-service-button .button-as-link.md-button { border: 1px solid #11357f; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #11357f;color: #fff;}
 
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
+
 /* footer styles */
-#footer {background:#B97879;  border-top:1px solid #ccc; color:#fff;}
+#footer {background:#11357f;  border-top:1px solid #fc8339; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
-#subfooter {background:#000;}
+#subfooter {background:#12254D;}
 #lr-libraries-logo {margin-bottom:20px;}
 
 @media screen and (max-width:960px) {
-	
 	.lr-footer {padding: 20px;}
 }
