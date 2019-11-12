@@ -1,28 +1,49 @@
 (function () {
 
 	'use strict';
-	var getViewCode = function () { // allow all views to refer to templates in their own view
+	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		var separator = ':';
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
-		if (location.href.indexOf('%3A') > -1) {
+		if (str.indexOf('%3A') > -1) {
 			separator = '%3A';
 		}
-		var arr = location.href.split('01CACCL_LRCCD' + separator);
+		var arr = str.split('01CACCL_LRCCD' + separator);
 		var arr2 = arr[1].split('&');
 		return arr2[0];
 
-	};
-	// we should eventually be putting this in templates rather than hard-coding, once we understand how to do that
-	var custPackagePath = '/discovery/custom/01CACCL_LRCCD-' + getViewCode();
-
+	}(location.href);
+	var libraries = [
+			{name: 'American River',
+			abbr: 'arc',
+			path: 'student-resources/library',
+			phone: '(916) 484-8455' },
+			{name: 'Cosumnes River',
+			abbr: 'crc',
+			path: 'student-resources/library',
+			phone: '(916) 691-7266' },
+			{name: 'Folsom Lake',
+			abbr: 'flc',
+			path: 'student-resources/library',
+			phone: '(916) 608-6613'},
+			{name: 'Sacramento City',
+			abbr: 'scc',
+			path: 'library',
+			phone: '(916) 558-2301' }
+		];
+	var custPackagePath = '/discovery/custom/01CACCL_LRCCD-' + viewCode;
 	var app = angular.module('viewCustom', ['angularLoad']);
+	app.controller('exploreFooterAfterController', [ function() {
+		var vm = this;
+		vm.browseURL = '/discovery/browse?vid=01CACCL_LRCCD:' + viewCode + '#banner'; // need to include element ID, otherwise page does not scroll up
+		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
+		vm.libraries = libraries;
+		}]);
 
-	app.component("prmExploreFooterAfter", { // insert template into footer area
-
+	app.component('prmExploreFooterAfter', { // insert template into footer area
 		bindings: {
 			parentCtrl: '<'
 		},
-
+		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
 	(function () {

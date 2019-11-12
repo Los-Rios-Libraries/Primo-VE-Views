@@ -5,7 +5,7 @@
 			<h2>More Resources</h2>
 			<div class="lr-dbs">
 				<ul>
-					<li><a href="/discovery/browse?vid=01CACCL_LRCCD:scc">Browse by Call Number or Subject</a></li>
+					<li><a href="{{$ctrl.browseURL}}">Browse by Call Number or Subject</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=eds" target="_blank">EBSCO Discovery</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://scholar.google.com/" target="_blank">Google Scholar</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://infotrac.galegroup.com/itweb?db=GVRL" target="_blank">Gale eBooks</a></li>
@@ -37,27 +37,12 @@
 	</div>
 	<!-- subfooter; see js file for content -->
 	<div id="subfooter" class="lr-footer">
-
-		<div layout="row" flex="" layout-align="center" id="lr-libraries-logo"><img src="/discovery/custom/01CACCL_LRCCD-scc/img/Los Rios Libraries_Logo_Horizontal_BW.png" alt="Los Rios Libraries"></div>
+		<div layout="row" layout-align="center" layout-align-xs="start" flex="" id="lr-libraries-logo"><img src="{{$ctrl.LRLogoSrc}}" alt="Los Rios Libraries"></div>
 		<div layout="row" layout-xs="column">
-
-			<div layout="column" layout-align="center" flex="">
-				<div><a href="https://www.arc.losrios.edu/student-resources/library">American River College</a></div>
-				<div>(916) 484-8455</div>
-			</div>
-			<div layout="column" layout-align="center" flex="">
-				<div><a href="https://www.crc.losrios.edu/student-resources/library">Cosumnes River College</a></div>
-				<div>(916) 691-7266</div>
-			</div>
-			<div layout="column" layout-align="center" flex="">
-				<div><a href="https://www.flc.losrios.edu/student-resources/library">Folsom Lake College</a></div>
-				<div>(916) 608-6613</div>
-			</div>
-			<div layout="column" layout-align="center" flex="">
-				<div><a href="https://www.scc.losrios.edu/library/">Sacramento City College</a></div>
-				<div>(916) 558-2301</div>
+			<div layout="column" layout-align="center" flex="" ng-repeat="lib in $ctrl.libraries">
+				<div><a href="https://www.{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
+				<div>{{lib.phone}}</div>
 			</div>
 		</div>
-
 	</div>
 </footer>
