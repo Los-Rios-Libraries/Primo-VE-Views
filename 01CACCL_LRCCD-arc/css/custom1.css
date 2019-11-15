@@ -49,14 +49,7 @@ div.top-nav-bar * {
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #003057; 
   }
-  
-/* Frame search input for mobile viewers */
-@media only screen and (max-width: 600px) {
-.prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
-  border: 1px solid #ccc;
-  box-shadow: 0px 0px 4px #ccc;
-	}
-}
+
   
 /* remove tooltips from links menu in main and mobile views */
 .multi-row-tooltip, .custom-links-container .md-subhead {
@@ -117,4 +110,12 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 @media screen and (max-width:960px) {
 	
 	.lr-footer {padding: 20px;}
+}
+
+@media only screen and (max-width: 600px) {
+	/* Frame search input for mobile viewers */
+.prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
+  border: 1px solid #ccc;
+  box-shadow: 0px 0px 4px #ccc;
+	}
 }
