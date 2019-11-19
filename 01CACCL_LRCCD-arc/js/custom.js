@@ -30,6 +30,13 @@
 			path: 'library',
 			phone: '(916) 558-2301' }
 		];
+	var currentLib = (function () { // returns object of library currently in view. All view codes must include lower-case library acronym
+		for (var i = 0; i < libraries.length; i++) {
+			if (viewCode.indexOf(libraries[i].abbr) > -1) {
+				return libraries[i];
+			}
+		}
+	}());
 	var custPackagePath = '/discovery/custom/01CACCL_LRCCD-' + viewCode;
 	var app = angular.module('viewCustom', ['angularLoad']);
 	// logo
