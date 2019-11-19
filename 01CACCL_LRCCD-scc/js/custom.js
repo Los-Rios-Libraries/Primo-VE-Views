@@ -32,6 +32,21 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_LRCCD-' + viewCode;
 	var app = angular.module('viewCustom', ['angularLoad']);
+	
+	// logo
+	app.component('prmSearchBarAfter', {
+		bindings: {parentCtrl: '<'},
+		controller: 'prmSearchBarAfterController',
+		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-click="$ctrl.navigateToHomePage()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
+		
+		});
+	app.controller('prmSearchBarAfterController', ['$window', function($window) {
+		this.navigateToHomePage = function() {
+			$window.location.href = '/discovery/search?vid=01CACCL_LRCCD:' + viewCode;
+			return true;
+		};
+		
+	}]);
 	app.controller('exploreFooterAfterController', [ function() {
 		var vm = this;
 		vm.browseURL = '/discovery/browse?vid=01CACCL_LRCCD:' + viewCode + '#banner'; // need to include element ID, otherwise page does not scroll up
