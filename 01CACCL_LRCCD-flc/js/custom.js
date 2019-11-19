@@ -67,6 +67,30 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+	// insert chat widget
+	app.component('prmExploreMainAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-libchat parent-ctrl="$ctrl.parentCtrl"></lr-libchat>'
+	});
+	app.component('lrLibchat', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'lrLibchatController',
+		template: '<div id="libchat_{{$ctrl.libchatHash}}" ng-if="$ctrl.libchatHash"></div>'
+	});
+	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
+		var vm = this;
+		vm.libchatHash = currentLib.libchatHash;
+		vm.$onInit = setTimeout(function () {
+			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + currentLib.libchatHash).then(function () {
+
+			});
+		}, 2000);
+
+	}]);
 	(function () {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 
