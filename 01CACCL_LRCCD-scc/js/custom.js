@@ -7,9 +7,17 @@
 		if (str.indexOf('%3A') > -1) {
 			separator = '%3A';
 		}
-		var arr = str.split('01CACCL_LRCCD' + separator);
-		var arr2 = arr[1].split('&');
-		return arr2[0];
+		var environment = 'LRCCD'; 
+		if (str.indexOf('01CACCL_CC') > -1) { // this allows us to use the sandbox
+			environment = 'CC';
+		}
+		var arr=str.split('01CACCL_'+ environment + separator);
+		var arr2=arr[1].split('&');
+
+		return {
+			env: environment,
+			view: arr2[0]
+		};
 
 	}(location.href);
 	var libraries = [
@@ -32,12 +40,12 @@
 		];
 	var currentLib = (function() { // returns object of library currently in view. All view codes must include lower-case library acronym
 		for (var i = 0; i < libraries.length; i++) {
-			if (viewCode.indexOf(libraries[i].abbr) > -1) {
+			if (viewCode.view.indexOf(libraries[i].abbr) > -1) {
 				return libraries[i];
 			}
 		}
 	}());
-	var custPackagePath = '/discovery/custom/01CACCL_LRCCD-' + viewCode;
+	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
 	
 	// logo
@@ -49,14 +57,14 @@
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
 		this.navigateToHomePage = function() {
-			$window.location.href = '/discovery/search?vid=01CACCL_LRCCD:' + viewCode;
+			$window.location.href = '/discovery/search?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
 			return true;
 		};
 		
 	}]);
 	app.controller('exploreFooterAfterController', [ function() {
 		var vm = this;
-		vm.browseURL = '/discovery/browse?vid=01CACCL_LRCCD:' + viewCode + '#banner'; // need to include element ID, otherwise page does not scroll up
+		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view + '#banner'; // need to include element ID, otherwise page does not scroll up
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
 		}]);
