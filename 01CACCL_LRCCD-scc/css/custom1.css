@@ -107,6 +107,10 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 #subfooter {background:#999; color:#fff;}
 #subfooter a {color:#fff;}
 #lr-libraries-logo {margin-bottom:20px;}
+
+/* chat widget */
+.s-lch-widget-float {right:80px !important;}
+.s-lch-widget-float-btn {background: #fff !important;}
 @media screen and (max-width:1580px) {
 	.search-wrapper {margin-left:25%;}
 }
