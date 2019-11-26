@@ -106,6 +106,7 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #subfooter {background:#000;}
+.lr-centers p {margin-top:15px;}
 #lr-libraries-logo {margin-bottom:20px;}
 /* chat widget */
 .s-lch-widget-float {right:80px !important;}
