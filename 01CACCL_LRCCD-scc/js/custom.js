@@ -92,9 +92,9 @@
 	});
 	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
 		var vm = this;
-		vm.libchatHash = currentLib.libchatHash;
+		vm.libchatHash = 'c5c1abe3b80e070681d3fa045fc19bf4';
 		vm.$onInit = setTimeout(function () {
-			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + currentLib.libchatHash).then(function () {
+			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + vm.libchatHash).then(function () {
 
 			});
 		}, 2000);

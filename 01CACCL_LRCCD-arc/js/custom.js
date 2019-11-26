@@ -90,13 +90,16 @@
 		template: '<div id="libchat_{{$ctrl.libchatHash}}" ng-if="$ctrl.libchatHash"></div>'
 	});
 	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
+		/*
+		// uncomment when you have the needed hash value
 		var vm = this;
-		vm.libchatHash = currentLib.libchatHash;
+		vm.libchatHash = ''; // put hash value here
 		vm.$onInit = setTimeout(function () {
-			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + currentLib.libchatHash).then(function () {
+			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + vm.libchatHash).then(function () {
 
 			});
 		}, 2000);
+		*/
 
 	}]);
 	(function () {
