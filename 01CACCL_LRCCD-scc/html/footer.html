@@ -39,9 +39,12 @@
 	<div id="subfooter" class="lr-footer">
 		<div layout="row" layout-align="center" layout-align-xs="start" flex="" id="lr-libraries-logo"><img src="{{$ctrl.LRLogoSrc}}" alt="Los Rios Libraries"></div>
 		<div layout="row" layout-xs="column">
-			<div layout="column"  flex="" ng-repeat="lib in $ctrl.libraries">
+			<div class="lr-ft-college-column" layout="column"  flex="" ng-repeat="lib in $ctrl.libraries">
+				<div class="lr-ft-college">
 				<div><a href="https://www.{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
-				<div>{{lib.phone}}</div>
+				<div>{{lib.phone}}</div>	
+				</div>
+				
 				<div class="lr-centers">
 					<p ng-if="lib.center">
 						<a ng-if="lib.cpath" href="https://www.{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>

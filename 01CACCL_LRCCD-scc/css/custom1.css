@@ -106,6 +106,7 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 .lr-footer {padding:20px 20%;}
 #subfooter {background:#999; color:#fff;}
 #subfooter a {color:#fff;}
+.lr-ft-college {min-height:50%;}
 .lr-centers p {margin-top:15px;}
 #lr-libraries-logo {margin-bottom:20px;}
 
@@ -127,4 +128,6 @@ md-content.md-primoExplore-theme {min-height: 400px;}
   border: 1px solid #ccc;
   box-shadow: 0px 0px 4px #ccc;
 	}
+	.lr-ft-college-column {margin-bottom:2em;}
+	.lr-ft-college {min-height: auto;}
 }
