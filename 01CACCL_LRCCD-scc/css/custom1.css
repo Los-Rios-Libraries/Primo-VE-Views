@@ -100,11 +100,11 @@ prm-service-button .button-as-link.md-button { border: 1px solid #8A0028; border
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
 /* footer styles */
-#footer {background:#FDE373;  border-top:1px solid #999;}
+#footer {background:#fde373;  border-top:1px solid #999;}
 #footer a {color:#3a3a3a; text-decoration: underline;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
-#subfooter {background:#999; color:#fff;}
+#subfooter {background:#4d4d4d; color:#fff;}
 #subfooter a {color:#fff;}
 .lr-ft-college {min-height:50%;}
 .lr-centers p {margin-top:15px;}
