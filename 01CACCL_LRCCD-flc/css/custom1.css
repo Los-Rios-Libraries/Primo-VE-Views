@@ -49,7 +49,12 @@ div.top-nav-bar * {
   background-color: #743182; 
   }
  /* custom OneSearch logo */
-#lr-onesearch {position:absolute; z-index:9999; top:20px; width:25%; text-align: center;}
+.search-wrapper {margin-left:25%}
+.search-wrapper .flex-lg-10 {display:none}
+.search-wrapper .flex-lg-65 {max-width:80%}
+#lr-onesearch {width:25%;text-align:right;top:23px;position:absolute;z-index:99999}
+/* adjust for advanced search */
+.advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch button {background:#999; padding-top:10px; right:2px;}
 
 /* remove tooltips from links menu in main and mobile views */
 .multi-row-tooltip, .custom-links-container .md-subhead {
@@ -111,13 +116,11 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 .s-lch-widget-float {right:80px !important;}
 .s-lch-widget-float-btn {background: #fff !important;}
 #fines-card {margin:auto;}
-@media screen and (max-width:1580px) {
-	.search-wrapper {margin-left:25%;}
-}
+
 @media screen and (max-width:960px) {
-	
+	.search-wrapper {margin-left: 0;}
+	.search-wrapper .flex-lg-65 {max-width:100%}
 	.lr-footer {padding: 20px;}
-	.search-wrapper {margin-left:0;}
 }
 
   
