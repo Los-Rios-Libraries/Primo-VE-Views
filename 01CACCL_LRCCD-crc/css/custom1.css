@@ -49,6 +49,10 @@ div.top-nav-bar * {
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #11357f; 
   }
+
+	/* lighten card background */
+md-card.default-card {background:#fafafa;}
+
  /* custom OneSearch logo */
 .search-wrapper {margin-left:25%}
 .search-wrapper .flex-lg-10 {display:none}
