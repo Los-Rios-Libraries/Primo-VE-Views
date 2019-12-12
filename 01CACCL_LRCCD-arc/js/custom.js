@@ -136,6 +136,13 @@
 		*/
 
 	}]);
+	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
+	app.component('prmFinesAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		templateUrl: custPackagePath + '/html/fines.html'
+	});
 	(function () {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 

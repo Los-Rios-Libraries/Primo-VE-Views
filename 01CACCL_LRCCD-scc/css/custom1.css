@@ -116,6 +116,9 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 @media screen and (max-width:1580px) {
 	.search-wrapper {margin-left:25%;}
 }
+
+#fines-card {margin:auto;}
+
 @media screen and (max-width:960px) {
 	
 	.lr-footer {padding: 20px;}
