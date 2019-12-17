@@ -110,6 +110,9 @@ prm-citation-trails-indication-container {display:none;}
 div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
 /* hide coverage statement in ViewIt */
 prm-alma-viewit-items h4 {display:none;}
+/* but show for journals */
+#searchWithinJournal + .full-view-section prm-alma-viewit-items h4 {display:block;}
+
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
