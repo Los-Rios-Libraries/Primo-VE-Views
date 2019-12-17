@@ -129,6 +129,9 @@ md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 md-content.md-primoExplore-theme {min-height: 400px;}
 
 /* footer styles */
+/* mitigate problem where footer shows before rest of content loads. It still happens, but with the following two lines it may not be quite as bad */
+prm-explore-footer {display:none;}
+div + prm-explore-footer {display:block;}
 #footer {background:#11357f;  border-top:4px solid #fc8339; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer a:hover, #footer a:focus {text-decoration: none;}
