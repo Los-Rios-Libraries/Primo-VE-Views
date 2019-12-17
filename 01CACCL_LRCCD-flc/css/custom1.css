@@ -130,6 +130,7 @@ md-content.md-primoExplore-theme {min-height: 400px;}
 /* footer styles */
 #footer {background:#0084AC;  border-top:1px solid #204963; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
+#footer a:hover, #footer a:focus {text-decoration: none;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #subfooter {background:#204963;}
