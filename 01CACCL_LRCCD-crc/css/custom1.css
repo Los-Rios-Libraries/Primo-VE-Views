@@ -120,6 +120,8 @@ prm-alma-viewit-items h4 {display:none;}
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
 prm-service-button .button-as-link.md-button { border: 1px solid #11357f; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #11357f;color: #fff;}
+/* hide terms of use selection icon */
+md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 
 #public-note {color:#3a3a3a; font-style: normal;}
 
