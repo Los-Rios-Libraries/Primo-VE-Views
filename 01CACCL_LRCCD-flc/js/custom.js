@@ -1,6 +1,7 @@
 (function () {
 
 	'use strict';
+	var colAbbr = 'flc'; // set separately for each college
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		var separator = ':';
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -141,6 +142,20 @@
 		},
 		templateUrl: custPackagePath + '/html/fines.html'
 	});
+	// set cookie for things like films on demand workaround
+	setTimeout(function() {
+		var el = document.createElement('iframe');
+		el.style.position = 'absolute';
+		el.style.left = '-99999px';
+		el.setAttribute('src', 'https://www.library.losrios.edu/alma/utilities/cookie-setter.php?college=' + colAbbr);
+		// append the iframe in order to set the cookie, then remove it from the DOM
+		document.getElementsByTagName('body')[0].appendChild(el);
+		setTimeout(function(){
+			el.parentNode.removeChild(el);	
+		}, 2000);
+		
+		
+	}, 10000);
 	(function () {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 
