@@ -51,6 +51,10 @@ div.top-nav-bar * {
 		
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
+/* other card adjustments */
+md-card-content a {text-decoration: underline;}
+md-card-content a:hover, md-card-content a:focus {text-decoration: none;}
+md-card-title h2, .md-headline {font-weight:500;}
 
  /* custom OneSearch logo */
 .search-wrapper {margin-left:25%}
