@@ -72,13 +72,6 @@
 			]
 			}
 		];
-	//var currentLib = (function() { // returns object of library currently in view. All view codes must include lower-case library acronym
-	//	for (var i = 0; i < libraries.length; i++) {
-	//		if (viewCode.view.indexOf(libraries[i].abbr) > -1) {
-	//			return libraries[i];
-	//		}
-	//	}
-	//}());
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
 	
