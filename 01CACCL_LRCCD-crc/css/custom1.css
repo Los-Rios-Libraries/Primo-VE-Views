@@ -146,7 +146,8 @@ div + prm-explore-footer {display:block;}
 /* chat widget */
 .s-lch-widget-float {right:80px !important;}
 .s-lch-widget-float-btn {background: #fff !important;}
-#fines-card {margin:auto;}
+
+.lr-single-column-card {margin:auto;}
 
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
