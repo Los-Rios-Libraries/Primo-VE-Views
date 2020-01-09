@@ -128,6 +128,8 @@ md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
+/* adjust above rule for browse page */
+prm-browse-search md-content.md-primoExplore-theme {min-height: initial;}
 /* footer styles */
 /* mitigate problem where footer shows before rest of content loads. It still happens, but with the following two lines it may not be quite as bad */
 prm-explore-footer {display:none;}
