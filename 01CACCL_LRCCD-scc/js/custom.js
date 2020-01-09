@@ -103,6 +103,12 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
+		bindings: {
+			parentCtrl: '<'
+		},
+		templateUrl: custPackagePath + '/html/browse.html'
+	});
 	// insert chat widget
 	app.component('prmExploreMainAfter', {
 		bindings: {
