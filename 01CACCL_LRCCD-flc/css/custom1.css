@@ -1,4 +1,6 @@
 ::selection {background:#999; color:#fff;}
+/* hide underlining on phone links on desktop/laptop */
+a[href^="tel:"] {text-decoration: none !important; color:inherit;}
 /* Hide sign-in link */
 .alert-bar {
 	display:none;
@@ -151,6 +153,8 @@ div + prm-explore-footer {display:block;}
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
 	.search-wrapper .flex-lg-65 {max-width:100%}
+	a[href^="tel:"] {text-decoration: underline !important;}
+	a[href^="tel:"]:hover, a[href^="tel:"]:focus {background:transparent; box-shadow: none; text-decoration: none;}
 	.lr-footer {padding: 20px;}
 }
 
