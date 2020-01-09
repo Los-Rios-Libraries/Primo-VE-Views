@@ -142,6 +142,7 @@ div + prm-explore-footer {display:block;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #subfooter {background:#12254D;}
+#subfooter a {color:#fff; background: transparent; box-shadow: none;}
 .lr-ft-college {min-height:50%;}
 .lr-centers p {margin-top:15px;}
 #lr-libraries-logo {margin-bottom:20px;}
