@@ -25,7 +25,7 @@
 			name: 'American River',
 			abbr: 'arc',
 			path: 'student-resources/library',
-			phone: '(916) 484-8455',
+			phone: '484-8455',
 			center: 'Natomas Center',
 			centerurl: 'https://libguides.arc.losrios.edu/c.php?g=366843&amp;p=6570176'
 		},
@@ -34,7 +34,7 @@
 			name: 'Cosumnes River',
 			abbr: 'crc',
 			path: 'student-resources/library',
-			phone: '(916) 691-7266',
+			phone: '691-7266',
 			center: 'Elk Grove Center',
 			cpath: 'about/elk-grove-center-library-services'
 			},
@@ -43,7 +43,7 @@
 			name: 'Folsom Lake',
 			abbr: 'flc',
 			path: 'student-resources/library',
-			phone: '(916) 608-6613',
+			phone: '608-6613',
 			centers: [
 				{
 					center: 'El Dorado Center',
@@ -59,7 +59,7 @@
 			name: 'Sacramento City',
 			abbr: 'scc',
 			path: 'library',
-			phone: '(916) 558-2301',
+			phone: '558-2301',
 			centers: [
 				{
 					center: 'Davis Center',
