@@ -71,6 +71,8 @@ md-card-title h2, .md-headline {font-weight:500;}
 .multi-row-tooltip, .custom-links-container .md-subhead {
 	display:none;
 	}
+/* show links menu on openUrl page */
+prm-main-menu.isServicePage {display:unset;}
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
  .md-button.button-confirm, .service-form-static-panel button.button-confirm prm-icon + span, .service-form-static-panel button.button-confirm prm-icon svg path {
