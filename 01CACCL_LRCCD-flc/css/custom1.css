@@ -133,7 +133,7 @@ md-select-menu {max-height: unset;}
 /* ensure that footer isn't in middle of page */
 md-content.md-primoExplore-theme {min-height: 400px;}
 /* adjust above rule for browse page and other areas */
-prm-browse-search md-content.md-primoExplore-theme, prm-opac md-content.md-primoExplore-theme {min-height: initial;}
+prm-browse-search md-content.md-primoExplore-theme, prm-opac md-content.md-primoExplore-theme, alma-htgi-svc md-content.md-primoExplore-theme {min-height: initial;}
 
 /* footer styles */
 /* mitigate problem where footer shows before rest of content loads. It still happens, but with the following two lines it may not be quite as bad */
