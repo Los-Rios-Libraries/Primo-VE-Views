@@ -89,9 +89,13 @@
 		};
 		
 	}]);
-	app.controller('exploreFooterAfterController', [ function() {
+	app.controller('exploreFooterAfterController', ['$window', function($window) {
 		var vm = this;
-		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view + '#banner'; // need to include element ID, otherwise page does not scroll up
+		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
+		vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
+			$window.scrollTo(0,0);
+			return true;
+		};
 		vm.checkForContent = function() {
 			if (angular.element(document.getElementsByTagName('md-content')[0]).length) {
 				return true;

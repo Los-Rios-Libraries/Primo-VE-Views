@@ -96,13 +96,13 @@
 		vm.libraries = libraries;
 		}]);
 
-	app.component('prmExploreFooterAfter', { // insert template into footer area
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: 'exploreFooterAfterController',
-		templateUrl: custPackagePath + '/html/footer.html'
-	});
+	app.controller('exploreFooterAfterController', ['$window', function($window) {
+		var vm = this;
+		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
+		vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
+			$window.scrollTo(0,0);
+			return true;
+		};
 		vm.checkForContent = function() {
 			if (angular.element(document.getElementsByTagName('md-content')[0]).length) {
 				return true;
