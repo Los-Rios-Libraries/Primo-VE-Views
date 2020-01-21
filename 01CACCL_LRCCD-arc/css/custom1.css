@@ -141,9 +141,6 @@ prm-browse-search md-content.md-primoExplore-theme, prm-opac md-content.md-primo
 prm-browse-search md-content.md-primoExplore-theme, prm-opac md-content.md-primoExplore-theme {min-height: initial;}
 
 /* footer styles */
-/* mitigate problem where footer shows before rest of content loads. It still happens, but with the following two lines it may not be quite as bad */
-prm-explore-footer {display:none;}
-div + prm-explore-footer {display:block;}
 #footer {background:#014c8d;  border-top:1px solid #ccc; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer a:hover, #footer a:focus {text-decoration: none;}

@@ -92,6 +92,14 @@
 	app.controller('exploreFooterAfterController', [ function() {
 		var vm = this;
 		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view + '#banner'; // need to include element ID, otherwise page does not scroll up
+		vm.checkForContent = function() {
+			if (angular.element(document.getElementsByTagName('md-content')[0]).length) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		};
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
 		}]);

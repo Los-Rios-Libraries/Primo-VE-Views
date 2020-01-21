@@ -103,6 +103,17 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+		vm.checkForContent = function() {
+			if (angular.element(document.getElementsByTagName('md-content')[0]).length) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		};
+		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
+		vm.libraries = libraries;
+		}]);
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
