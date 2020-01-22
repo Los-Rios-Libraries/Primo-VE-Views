@@ -98,6 +98,8 @@ mark {box-shadow:none; font-weight:bold;}
 /* create space between items on brief results page */
 .list-item-wrapper {margin-bottom:6px;}
 .list-item-wrapper:hover, .list-item-wrapper:focus {border-bottom-style:none;}
+/* provide labels for call numbers */
+.availability-line-parenthesis:first-child::after, span[ng-if="$ctrl.location.callNumber"]:last-of-type::before, span[ng-if="$ctrl.currLoc.location.callNumber"]:last-of-type::before {content: 'Call number: ';}
 
 /* hide frbr/dedup line in brief results only */
 prm-search-result-frbr-line {display:none;}
