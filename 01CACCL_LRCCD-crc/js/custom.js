@@ -89,13 +89,6 @@
 		};
 		
 	}]);
-	app.controller('exploreFooterAfterController', [ function() {
-		var vm = this;
-		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view + '#banner'; // need to include element ID, otherwise page does not scroll up
-		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
-		vm.libraries = libraries;
-		}]);
-
 	app.controller('exploreFooterAfterController', ['$window', function($window) {
 		var vm = this;
 		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
@@ -114,6 +107,14 @@
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
 		}]);
+
+	app.component('prmExploreFooterAfter', { // insert template into footer area
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'exploreFooterAfterController',
+		templateUrl: custPackagePath + '/html/footer.html'
+	});
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
