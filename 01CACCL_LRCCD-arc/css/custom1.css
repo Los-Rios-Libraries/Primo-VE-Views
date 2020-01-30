@@ -100,6 +100,11 @@ mark {box-shadow:none; font-weight:bold;}
 .list-item-wrapper:hover, .list-item-wrapper:focus {border-bottom-style:none;}
 /* provide labels for call numbers */
 .availability-line-parenthesis:first-child::after, span[ng-if*="location.callNumber"]:last-of-type::before {content: 'Call number: ';}
+/* call numbers in full display */
+/* hide semicolon since we are putting call number on separate line */
+span[ng-if*="location.subLocation"] + span[ng-if*="location.callNumber"]{ color: transparent;}
+/* move call number to next line */
+span[ng-if*="location.subLocation"] + span[ng-if*="location.callNumber"]::after { display:block; content: '';}
 
 /* hide frbr/dedup line in brief results only */
 prm-search-result-frbr-line {display:none;}
