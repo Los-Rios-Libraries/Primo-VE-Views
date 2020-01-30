@@ -134,6 +134,10 @@ prm-service-button .button-as-link.md-button { border: 1px solid #743182; border
 
 /* hide terms of use selection icon */
 md-select[name="termsOfUse"] ._md-select-icon {display:none;}
+/* allow full Loan period label to show */
+label[translate="almaRequest.termsOfUse"] {overflow: visible !important;}
+/* hide lock icon in loan period */
+form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 /* fix problem where delivery locations at bottom of list can't be scrolled to */
 md-select-menu {max-height: unset;}
 
