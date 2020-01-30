@@ -141,7 +141,7 @@ label[translate="almaRequest.termsOfUse"] {overflow: visible !important;}
 /* hide lock icon in loan period */
 form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 /* fix problem where delivery locations at bottom of list can't be scrolled to */
-md-select-menu {max-height: unset;}
+md-select-menu._md-overflow {max-height: unset;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
 
