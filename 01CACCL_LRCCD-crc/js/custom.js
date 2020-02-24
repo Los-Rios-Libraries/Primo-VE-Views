@@ -101,12 +101,14 @@
 			$window.scrollTo(0,0);
 			return true;
 		};
-		vm.checkForContent = function() {
-			if (angular.element(document.getElementsByTagName('md-content')[0]).length) {
-				return true;
-			}
-			else {
-				return false;
+		vm.checkForContent = function () {
+			var content = angular.element(document.getElementsByTagName('md-content'));
+			if (content.length > 0) {
+				for (var i = 0; i < content.length; i++) {
+					if (content[i].offsetHeight > 300) {
+						return true;
+					}
+				}
 			}
 		};
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
