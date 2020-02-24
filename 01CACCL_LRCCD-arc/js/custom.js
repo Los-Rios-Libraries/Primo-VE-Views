@@ -21,6 +21,11 @@
 		};
 
 	}(location.href);
+	// use bitbucket directory for external files when in sandbox
+	var filePath = ''; 
+	if (viewCode.env === 'CC') {
+		filePath = colAbbr + '/bitbucket/lsp-related-tools-and-resources/';
+	}
 	var libraries = [
 		{
 			name: 'American River',
