@@ -120,6 +120,31 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+	// insert problem reporter
+	app.component('prmAlmaViewitAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
+	});
+	app.component('lrProblemReporter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'lrProblemReporterController',
+		template: '<md-button id="lr-problem-reporter" layout-margin ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
+	});
+	app.controller('lrProblemReporterController', [function () {
+		var vm = this;
+		var w = 600;
+		var h = 600;
+		var left = (screen.width - w) / 2;
+        var top = (screen.height - h) / 4;
+		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
+		vm.openReporter = function() {
+			window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+		};
+	}]);
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'

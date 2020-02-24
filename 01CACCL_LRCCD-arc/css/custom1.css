@@ -117,7 +117,8 @@ prm-citation-trails-indication-container {display:none;}
 
 /* create space between metadata fields in full record */
 #item-details .layout-row {margin-bottom: 10px;}
-
+/* position problem reporter button to the right */
+#lr-problem-reporter {position: absolute; right:0;}
 /* hide search within journal service */
 #searchWithinJournal {display:none;}
 
