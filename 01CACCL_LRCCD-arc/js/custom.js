@@ -169,7 +169,7 @@
 	});
 	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
 		var vm = this;
-		vm.libchatHash = 'libchat_39df8b17e49bd4efbb4461f1831118b9'; 
+		vm.libchatHash = '39df8b17e49bd4efbb4461f1831118b9'; 
 		vm.$onInit = setTimeout(function () {
 			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + vm.libchatHash).then(function () {
 
