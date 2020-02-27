@@ -168,16 +168,14 @@
 		template: '<div id="libchat_{{$ctrl.libchatHash}}" ng-if="$ctrl.libchatHash"></div>'
 	});
 	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
-		/*
-		// uncomment when you have the needed hash value
 		var vm = this;
-		vm.libchatHash = ''; // put hash value here
+		vm.libchatHash = 'libchat_39df8b17e49bd4efbb4461f1831118b9'; 
 		vm.$onInit = setTimeout(function () {
 			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + vm.libchatHash).then(function () {
 
 			});
 		}, 2000);
-		*/
+		
 
 	}]);
 	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
