@@ -2,6 +2,7 @@
 
 	'use strict';
 	var colAbbr = 'arc'; // set separately for each college
+	var libchatHash = '39df8b17e49bd4efbb4461f1831118b9'; // set separately for each college
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		var separator = ':';
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -153,31 +154,6 @@
 			window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 		};
 	}]);
-	// insert chat widget
-	app.component('prmExploreMainAfter', {
-		bindings: {
-			parentCtrl: '<'
-		},
-		template: '<lr-libchat parent-ctrl="$ctrl.parentCtrl"></lr-libchat>'
-	});
-	app.component('lrLibchat', {
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: 'lrLibchatController',
-		template: '<div id="libchat_{{$ctrl.libchatHash}}" ng-if="$ctrl.libchatHash"></div>'
-	});
-	app.controller('lrLibchatController', ['angularLoad', function (angularLoad) {
-		var vm = this;
-		vm.libchatHash = '39df8b17e49bd4efbb4461f1831118b9'; 
-		vm.$onInit = setTimeout(function () {
-			angularLoad.loadScript('https://v2.libanswers.com/load_chat.php?hash=' + vm.libchatHash).then(function () {
-
-			});
-		}, 2000);
-		
-
-	}]);
 	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
 	app.component('prmFinesAfter', {
 		bindings: {
@@ -235,4 +211,14 @@
 			});
 
 		}());
+	(function () { // load libchat
+		var div = document.createElement('div');
+		div.id = 'libchat_' + libchatHash;
+		document.getElementsByTagName('body')[0].appendChild(div);
+		var scr = document.createElement('script');
+		scr.src = 'https://v2.libanswers.com/load_chat.php?hash=' + libchatHash;
+		setTimeout(function () {
+			document.getElementsByTagName('body')[0].appendChild(scr);
+		}, 2000);
+	}());
 }());
