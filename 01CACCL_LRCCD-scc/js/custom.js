@@ -3,23 +3,20 @@
 	var colAbbr = 'scc'; // set separately for each college
 	var libchatHash = 'c5c1abe3b80e070681d3fa045fc19bf4'; // set separately for each college
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
-		var separator = ':';
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
 		if (str.indexOf('%3A') > -1) {
-			separator = '%3A';
+			str = str.replace(/%3A/g, ':');
 		}
 		var environment = 'LRCCD'; 
 		if (str.indexOf('01CACCL_CC') > -1) { // this allows us to use the sandbox
 			environment = 'CC';
 		}
-		var arr=str.split('01CACCL_'+ environment + separator);
+		var arr=str.split('01CACCL_'+ environment + ':');
 		var arr2=arr[1].split('&');
-
 		return {
 			env: environment,
 			view: arr2[0]
 		};
-
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
 	var filePath = ''; 
