@@ -102,10 +102,13 @@
 		vm.checkForContent = function () {
 			var content = angular.element(document.getElementsByTagName('md-content'));
 			if (content.length > 0) {
+				var h = 0;
 				for (var i = 0; i < content.length; i++) {
-					if (content[i].offsetHeight > 300) {
-						return true;
-					}
+					h += content[i].offsetHeight;
+				}
+				console.log(h);
+				if (h > 350) {
+					return true;
 				}
 			}
 		};
