@@ -192,19 +192,21 @@
 				winHeight = window.innerHeight || (document.documentElement || document.body).clientHeight;
 				// Point of the top of the document visible on screen
 				scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
-				// Height of footer
-				foot = Math.round(parseFloat(window.getComputedStyle(document.getElementById('footer')).height));
-				// check where we are in terms of scrolling and the footer
-				var stuckWin = document.querySelectorAll('.primo-scrollbar.is-stuck')[0];
-				// check for undefined to avoid TypeErrors
-				if (stuckWin) {
-					if (scrollTop + winHeight >= max - foot) {
-						stuckWin.style.maxHeight = 'calc(100% - ' + Math.abs(max - winHeight - scrollTop - foot - buffer) + 'px)';
-					} else {
-						stuckWin.style.maxHeight = 'calc(100% - 2em)';
+				var footer = document.getElementById('footer');
+				if (footer) {
+					// Height of footer
+					foot = Math.round(parseFloat(window.getComputedStyle(document.getElementById('footer')).height));
+					// check where we are in terms of scrolling and the footer
+					var stuckWin = document.querySelectorAll('.primo-scrollbar.is-stuck')[0];
+					// check for undefined to avoid TypeErrors
+					if (stuckWin) {
+						if (scrollTop + winHeight >= max - foot) {
+							stuckWin.style.maxHeight = 'calc(100% - ' + Math.abs(max - winHeight - scrollTop - foot - buffer) + 'px)';
+						} else {
+							stuckWin.style.maxHeight = 'calc(100% - 2em)';
+						}
 					}
 				}
-
 			});
 
 		}());
