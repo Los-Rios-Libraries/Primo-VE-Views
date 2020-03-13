@@ -3,15 +3,17 @@
 a[href^="tel:"] {text-decoration: none !important; color:inherit;}
 /* used for nested spans in labels. spans cannot contain block-level elements as children */
 .lr-linebreak {display:block; line-height:1.5em;}
+
 /* Hide sign-in link */
 .alert-bar {
 	display:none;
 	}
-	
-/* but show it for item requests */
+
+/* but show it for item requests 
 prm-request-services .alert-bar {
 	display:flex;
 }
+*/
 
 /* Hide expand my results */
 md-checkbox[aria-label="Expand My Results"] {
@@ -21,6 +23,16 @@ md-checkbox[aria-label="Expand My Results"] {
 /* Hide facet Open access */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
+	}
+
+/* Hide request services for closure */
+prm-request-services {
+	display:none;
+	}
+	
+/* Hide sign-in link for item requests for closure */
+prm-request-services .alert-bar {
+	display:none;
 	}
 
 /* hide Browse on Links Menu so that we can have it active, will link elsewhere. note for mobile this must be the last menu item */
