@@ -66,7 +66,8 @@ div.top-nav-bar * {
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #11357f; 
   }
-
+/* announcement below search bar, if used */
+#top-announce {text-align:center; font-size:1.3rem;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */
