@@ -111,7 +111,7 @@
 					h += content[i].offsetHeight;
 				}
 				console.log(h);
-				if ((h > 200) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
+				if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
 					return true;
 				}
 			}
