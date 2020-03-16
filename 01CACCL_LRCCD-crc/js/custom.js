@@ -1,9 +1,10 @@
 (function () {
-
 	'use strict';
-	var colAbbr = 'crc'; // set separately for each college
-	var libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f'; // set separately for each college
+	/* college-specific variables */
+	var colAbbr = 'crc';
+	var libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	var c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
+	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
 		if (str.indexOf('%3A') > -1) {
