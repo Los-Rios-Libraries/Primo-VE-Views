@@ -145,7 +145,7 @@
 		controller: 'lrProblemReporterController',
 		template: '<md-button id="lr-problem-reporter" layout-margin ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
 	});
-	app.controller('lrProblemReporterController', [function () {
+	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		var vm = this;
 		var w = 600;
 		var h = 600;
