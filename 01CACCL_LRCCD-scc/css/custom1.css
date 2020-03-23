@@ -174,6 +174,7 @@ md-select-menu._md-overflow {max-height: unset;}
 #footer a:hover, #footer a:focus {text-decoration: none;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
+#top-footer p:first-of-type {margin-top:15px;}
 #subfooter {background:#4d4d4d; color:#fff;}
 #subfooter a {color:#fff; background: transparent; box-shadow: none;}
 .lr-ft-college {min-height:50%;}
