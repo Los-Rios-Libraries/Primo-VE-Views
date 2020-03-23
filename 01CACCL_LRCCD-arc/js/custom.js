@@ -196,7 +196,7 @@
 			parentCtrl: '<'
 		},
 		controller: 'lrProblemReporterController',
-		template: '<md-button id="lr-problem-reporter" layout-margin ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
+		template: '<md-button id="lr-problem-reporter" layout-margin ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
 	});
 	app.controller('lrProblemReporterController', [function () {
 		var vm = this;
@@ -207,6 +207,10 @@
 		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
 		vm.openReporter = function() {
 			window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+		vm.showProblemReporter = function() { // wait until links load to show the reporter
+			if (angular.element(document.querySelectorAll('prm-alma-viewit-items md-list-item')).length > 0) {
+				return true;
+			}
 		};
 	}]);
 	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
