@@ -69,11 +69,11 @@
 			centers: [
 				{
 					center: 'Davis Center',
-					cpath: 'daviscenter/student-services/'
+					cpath: 'student-resources/support-services/davis-center-services/davis-center-library-services'
 				},
 				{
 					center: 'West Sacramento Center',
-					cpath: 'westsaccenter/library-services/'
+					cpath: 'student-resources/support-services/west-sacramento-center-services/west-sacramento-center-library-services'
 				}
 			]
 			}

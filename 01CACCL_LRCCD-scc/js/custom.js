@@ -3,7 +3,7 @@
 	/* college-specific variables */
 	var colAbbr = 'scc'; 
 	var libchatHash = 'c5c1abe3b80e070681d3fa045fc19bf4'; 
-	var c19Page = 'https://www.scc.losrios.edu/library/covid-19-closure/';
+	var c19Page = 'https://www.scc.losrios.edu/student-resources/library/covid-19-faq';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -69,11 +69,11 @@
 			centers: [
 				{
 					center: 'Davis Center',
-					cpath: 'daviscenter/student-services/'
+					cpath: 'student-resources/support-services/davis-center-services/davis-center-library-services'
 				},
 				{
 					center: 'West Sacramento Center',
-					cpath: 'westsaccenter/library-services/'
+					cpath: 'student-resources/support-services/west-sacramento-center-services/west-sacramento-center-library-services'
 				}
 			]
 			}
