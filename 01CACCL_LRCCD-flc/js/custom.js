@@ -154,7 +154,25 @@
 		bindings: {
 			parentCtrl: '<'
 		},
+		controller: 'prmBrowseSearchAfterController',
 		templateUrl: custPackagePath + '/html/browse.html'
+	});
+	app.controller('prmBrowseSearchAfterController', function() { 
+		var vm = this;
+		vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
+			var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
+			if (searchScope.indexOf(box) > -1) {
+				return true;
+			}
+		};
+		vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
+			var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
+			var inProgress = vm.parentCtrl.browseSearchService._inProgress;
+			if ((results.length > 0  || inProgress === true)) {
+				return true;
+			}
+		};
+		
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
 		bindings: {

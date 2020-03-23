@@ -1,5 +1,5 @@
-<div layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card">
-	<md-card class="default-card">
+<div id="lr-browse-screen" layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card" ng-hide="$ctrl.hideOnResults()">
+	<md-card class="default-card" ng-if="$ctrl.showExplanation('callnumber');">
 		<md-card-title>
 			<md-card-title-text>
 				<span class="md-headline">Browse by Call Number</span>
@@ -21,15 +21,14 @@
 			<p>Find the letters and titles of the main LC classes in the <a href="https://www.loc.gov/catdir/cpso/lcco/" target="_blank">Library of Congress Classification Outline</a>.</p>
 		</md-card-content>
 	</md-card>
-	<md-card class="default-card">
+	<md-card class="default-card" ng-if="$ctrl.showExplanation('subject');">
 		<md-card-title>
 			<md-card-title-text>
 				<span class="md-headline">Browse by Subject</span>
 			</md-card-title-text>
 		</md-card-title>
 		<md-card-content>
-			<p>Use the dropdown menu to select <em>Browse by Subject</em>. Enter an LC subject heading to find associated items held by the library.
-			</p>
+			<p>Enter an LC subject heading to find associated items held by the library.</p>
 			<p>Examples:</p>
 			<ul>
 				<li>
