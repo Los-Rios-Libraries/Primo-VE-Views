@@ -120,6 +120,8 @@
 		};
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
+		vm.c19Page = c19Page;
+		vm.askUs = 'https://www.library.losrios.edu/ask-us/?' + colAbbr;
 		}]);
 
 	app.component('prmExploreFooterAfter', { // insert template into footer area
@@ -151,7 +153,8 @@
         var top = (screen.height - h) / 4;
 		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
 		vm.openReporter = function() {
-			window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+			$window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+		};
 		vm.showProblemReporter = function() { // wait until links load to show the reporter
 			if (angular.element(document.querySelectorAll('prm-alma-viewit-items md-list-item')).length > 0) {
 				return true;
