@@ -84,14 +84,17 @@
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
 		controller: 'prmSearchBarAfterController',
-		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-click="$ctrl.navigateToHomePage()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
+		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
 		
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
-		this.navigateToHomePage = function() {
-			$window.location.href = '/discovery/search?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
+		var vm = this;
+		vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
+		vm.scrollUp = function() { // force page to scroll up
+			$window.scrollTo(0,0);
 			return true;
 		};
+
 		
 	}]);
 	app.controller('exploreFooterAfterController', ['$window', function($window) {
