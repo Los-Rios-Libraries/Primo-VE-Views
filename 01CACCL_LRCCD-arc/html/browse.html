@@ -1,4 +1,4 @@
-<div id="lr-browse-screen" layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card" ng-hide="$ctrl.hideOnResults()">
+<div id="lr-browse-screen" layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card" ng-if="$ctrl.showCards();" ng-hide="$ctrl.hideOnResults();">
 	<md-card class="default-card" ng-if="$ctrl.showExplanation('callnumber');">
 		<md-card-title>
 			<md-card-title-text>

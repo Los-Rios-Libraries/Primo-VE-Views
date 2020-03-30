@@ -170,6 +170,11 @@
 	});
 	app.controller('prmBrowseSearchAfterController', function() { 
 		var vm = this;
+		vm.showCards = function() { // avoid typeError by waiting for property to become available
+			if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
+				return true;
+			}
+		};
 		vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
 			var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
 			if (searchScope.indexOf(box) > -1) {
