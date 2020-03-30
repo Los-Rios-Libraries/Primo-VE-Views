@@ -12,7 +12,12 @@
 					<li><a href="https://www.library.losrios.edu/resources/databases/?category=news" target="_blank">Newspaper Databases</a></li>
 
 				</ul>
-
+				<p ng-if="$ctrl.askUs">
+					<md-icon md-svg-icon="action:ic_help_24px"></md-icon> Not sure where to start?
+					<a href="{{$ctrl.askUs}}">
+						Ask Us.
+					</a>
+				</p>
 			</div>
 		</div>
 		<div layout="column" flex="">

@@ -119,6 +119,7 @@
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
 		vm.c19Page = c19Page;
+		vm.askUs = 'https://www.library.losrios.edu/ask-us/?' + colAbbr;
 		}]);
 
 	app.component('prmExploreFooterAfter', { // insert template into footer area
