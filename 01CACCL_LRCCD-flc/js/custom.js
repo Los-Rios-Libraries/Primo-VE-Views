@@ -262,13 +262,25 @@
 		},
 		template: '<md-content layout-margin></p><md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>Please note: during the temporary library closures in response to the COVID-19 pandemic, item requests are unavailable. We apologize for this inconvenience and encourage you to explore online library resources.</p></md-content>'
 	});
-	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
-	app.component('prmFinesAfter', {
+	app.component('prmFinesAfter', { // show message explaining how to pay fines
 		bindings: {
 			parentCtrl: '<'
 		},
-		templateUrl: custPackagePath + '/html/fines.html'
+		templateUrl: custPackagePath + '/html/fines.html',
+		controller: function() { // only show if there are fines
+			var vm = this;
+			vm.c19Page = c19Page;
+			vm.hasFines = function() {
+				if (vm.parentCtrl.finesCounters > 0) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			};
+		}
 	});
+
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');

@@ -262,14 +262,25 @@
 
 		}]
 	});
-
-	/* should only show this if there are fines. If there are no fines, parent controller has property finesCounters: 0. create controller to check for this */
-	app.component('prmFinesAfter', {
+	app.component('prmFinesAfter', { // show message explaining how to pay fines
 		bindings: {
 			parentCtrl: '<'
 		},
-		templateUrl: custPackagePath + '/html/fines.html'
+		templateUrl: custPackagePath + '/html/fines.html',
+		controller: function() { // only show if there are fines
+			var vm = this;
+			vm.c19Page = c19Page;
+			vm.hasFines = function() {
+				if (vm.parentCtrl.finesCounters > 0) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			};
+		}
 	});
+
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
