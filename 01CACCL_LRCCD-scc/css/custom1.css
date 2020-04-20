@@ -68,7 +68,7 @@ div.top-nav-bar * {
   }
 
 /* announcement below search bar, if used */
-#top-announce {text-align:center; font-size:1.3rem;}
+#top-announce {text-align:center; font-size:1.3rem; /*scc*/ background:#fde373;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */
