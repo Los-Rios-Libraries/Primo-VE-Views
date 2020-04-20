@@ -271,7 +271,8 @@
 			var vm = this;
 			vm.c19Page = c19Page;
 			vm.hasFines = function() {
-				if (vm.parentCtrl.finesCounters > 0) {
+				// if there are no fines, this value is the number 0; if there are fines, it is a string		
+				if (typeof(vm.parentCtrl.finesCounters) === 'string') {
 					return true;
 				}
 				else {
@@ -280,7 +281,6 @@
 			};
 		}
 	});
-
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
