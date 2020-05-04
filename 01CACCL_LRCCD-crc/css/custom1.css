@@ -150,7 +150,7 @@ prm-alma-viewit-items h3 a:hover, prm-alma-viewit-items h3 a:focus, a[href*="int
 /* hide coverage statement in ViewIt */
 prm-alma-viewit-items h4 {display:none;}
 /* but show for journals */
-#searchWithinJournal + .full-view-section prm-alma-viewit-items h4 {display:block;}
+#searchWithinJournal + .full-view-section prm-alma-viewit-items h4, prm-journals-full-view prm-alma-viewit-items h4 {display:block;}
 
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
