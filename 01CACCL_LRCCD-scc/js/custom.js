@@ -152,8 +152,18 @@
 		var left = (screen.width - w) / 2;
         var top = (screen.height - h) / 4;
 		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
+		var newsBank = '';
+		var elecServices = vm.parentCtrl.item.delivery.electronicServices;
+		if (elecServices) {
+			for (var i = 0; i < elecServices.length; i++) {
+				if (elecServices[i].packageName.indexOf('Newsbank') > -1) {
+					newsBank = 'true';
+					break;
+				}
+			}
+		}
 		vm.openReporter = function() {
-			$window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+			$window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo&newsbank=' + newsBank, 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
 		};
 		vm.showProblemReporter = function() { // wait until links load to show the reporter
 			if (angular.element(document.querySelectorAll('prm-alma-viewit-items md-list-item')).length > 0) {
