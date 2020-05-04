@@ -323,6 +323,42 @@
 			};
 		}
 	});
+	app.component('prmSearchResultThumbnailContainerAfter', { // grab thumbnail images from films on demand, naxos, maybe others
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: ['$timeout', '$interval', function($timeout, $interval) {
+			var control = this.parentCtrl.item.pnx.control;
+			var replaceImages = function(url, recordid) {
+				var cancelProc = $timeout(function() {
+					$interval.cancel(wait);
+				}, 5000);
+				var wait = $interval(function() {
+					var images = document.querySelectorAll('#SEARCH_RESULT_RECORDID_' + recordid + ' prm-search-result-thumbnail-container img');
+					if (images.length > 0) {
+						$timeout.cancel(cancelProc);
+						if (images.length > 1) { // exl has been bad and put duplicate ids on the page in full display...
+							angular.element(images[1]).attr('src', url);
+						} else { // brief results
+							angular.element(images[0]).attr('src', url);
+						}
+					}
+				}, 100);
+			};
+			var sourceid = control.sourceid[0];
+			var url;
+			if (sourceid === 'infobase_s') { // this appears to be just films on demand
+				url = 'https://fod.infobase.com/image/' + control.sourcerecordid[0];
+				replaceImages(url, control.recordid[0]);
+			}
+			else if (sourceid === 'naxos_s') {
+				url = 'https://cdn.naxosmusiclibrary.com/sharedfiles/images/cds/others/' +  control.sourcerecordid[0] + '.gif';
+				replaceImages(url, control.recordid[0]);			
+			}
+
+		}]
+
+	});
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
