@@ -231,6 +231,33 @@
 			}
 		};
 	}]);
+	// fix pci link text
+	app.component('prmAlmaViewitItemsAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: ['$timeout', '$interval', function($timeout, $interval) {
+			var currentLinkText = this.parentCtrl.services[0].packageName;
+			var regex = new RegExp('View (video|record|full text|item) (in|at) ');
+			if (regex.test(currentLinkText) === true) {
+				var newLinkText = currentLinkText.replace(regex, '');
+				newLinkText = newLinkText.replace(/\(subscribers only\)/i, '');
+				//var linkText = document.querySelector('prm-alma-viewit-items a.item-title');
+				var cancelProc = $timeout(function() {
+					$interval.cancel(wait);
+					angular.element(document.querySelector('prm-alma-viewit-items a.item-title')).html(newLinkText);
+				}, 5000);
+				var wait = $interval(function() {
+					if (document.querySelector('prm-alma-viewit-items a.item-title')) {
+						$interval.cancel(wait);
+						$timeout.cancel(cancelProc);
+						angular.element(document.querySelector('prm-alma-viewit-items a.item-title')).html(newLinkText);
+					}
+				}, 20);				
+			}
+			
+		}]
+	});
 	app.component('prmFacetExactAfter', {
 		bindings: {
 			parentCtrl: '<'
