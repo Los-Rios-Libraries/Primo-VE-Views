@@ -202,7 +202,7 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		controller: ['$interval', '$timeout', function($interval, $timeout) {
+		controller: ['$interval', '$timeout', '$window', function($interval, $timeout, $window) {
 			// check for filters and remove as needed.
 			var vm = this;
 			if (vm.parentCtrl.facetGroup.name === 'tlevel') {
@@ -219,16 +219,19 @@
 							$timeout.cancel(stopCheck);
 							online.css('display', 'none');
 							physical.css('display', 'none');
-							var group = angular.element(document.querySelector('[data-facet-group="tlevel"]'));
-							var els = angular.element(document.querySelectorAll('[data-facet-value^="tlevel"]'));
-							var count = 0;
-							for (var i = 0; i < els.length; i++) {
-								if (els[i].offsetParent !== null) {
-									count++;
+							// now hide whole group if no limiters are visible, to heading
+							if ($window.innerHeight > 959) { // this doesn't work in mobile view because all filters are hidden by default
+								var group = angular.element(document.querySelector('[data-facet-group="tlevel"]'));
+								var els = angular.element(document.querySelectorAll('[data-facet-value^="tlevel"]'));
+								var count = 0;
+								for (var i = 0; i < els.length; i++) {
+									if (els[i].offsetParent !== null) {
+										count++;
+									}
 								}
-							}
-							if (count === 0) {
-								group.css('display', 'none');
+								if (count === 0) {
+									group.css('display', 'none');
+								}
 							}
 
 						}
