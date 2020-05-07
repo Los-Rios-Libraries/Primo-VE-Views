@@ -1,4 +1,5 @@
 ::selection {background:#999; color:#fff;}
+.lr-fadeout {opacity: 0; transition: opacity 0.3s linear;}
 /* hide underlining on phone links on desktop/laptop */
 a[href^="tel:"] {text-decoration: none !important; color:inherit;}
 /* used for nested spans in labels. spans cannot contain block-level elements as children */
