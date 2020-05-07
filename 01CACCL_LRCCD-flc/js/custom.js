@@ -276,10 +276,9 @@
 		controller: 'prmBackToLibrarySearchButtonAfterController',
 		templateUrl: custPackagePath + '/html/top-announcement.html'
 	});
-	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', function ($cookies) {
+	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function ($cookies, $timeout) {
 		var vm = this;
 		var cookieKey = 'lrHideOSAnnce';
-		vm.hide = false; // will be set to true if user clicks close button
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 		vm.hideCookie = $cookies.get(cookieKey) || '';
 		vm.lrShowAnnounce = function() {
@@ -288,10 +287,14 @@
 			}
 		};
 		vm.lrHideAnnounce = function() {
-			vm.hide = true; // dismiss announcement
 			var d = new Date();
 			d.setTime(d.getTime() + (14*24*60*60*1000)); // two weeks
 			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString()}); // set cookie to stop showing announcement
+			var el = angular.element(document.getElementById('top-announce'));
+			el.addClass('lr-fadeout'); // allows transition in css
+			$timeout(function() {
+				el.css('display', 'none');
+			}, 300);
 			return true;
 		};
 	}]);
