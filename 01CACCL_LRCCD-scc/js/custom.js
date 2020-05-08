@@ -348,7 +348,8 @@
 					}
 				}, 100);
 			};
-			var sourceid = control.sourceid[0];
+			var sourceidArr = control.sourceid || [''];
+			var sourceid = sourceidArr[0];
 			var url;
 			if (sourceid === 'infobase_s') { // this appears to be just films on demand
 				url = 'https://fod.infobase.com/image/' + control.sourcerecordid[0];
