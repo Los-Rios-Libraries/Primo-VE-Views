@@ -196,15 +196,19 @@
             if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
             	var availability = vm.parentCtrl.result.delivery.availability;
                 if (availability) {
-				    if ((availability[0] === 'fulltext') || (availability[0] === 'not_restricted')) { // only show when there is a full-text link
+					var regex = /(fulltext|not_restricted)/;
+					for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
+						if (regex.test(availability[i]) === true) { // only show when there is a full-text link
 					    return true;
-				    }
+						}
+					}
+				    
 			    }
             }
 			
 		};
 		
-		}]);
+	}]);
 
 	// fix pci link text
 	app.component('prmAlmaViewitItemsAfter', {
