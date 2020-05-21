@@ -218,7 +218,7 @@
 							online.css('display', 'none');
 							physical.css('display', 'none');
 							// now hide whole group if no limiters are visible, to heading
-							if ($window.innerHeight > 959) { // this doesn't work in mobile view because all filters are hidden by default
+							if ($window.innerWidth > 959) { // this doesn't work in mobile view because all filters are hidden by default
 								var group = angular.element(document.querySelector('[data-facet-group="tlevel"]'));
 								var els = angular.element(document.querySelectorAll('[data-facet-value^="tlevel"]'));
 								var count = 0;
