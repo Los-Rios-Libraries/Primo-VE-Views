@@ -217,7 +217,7 @@
 		},
 		controller: ['$timeout', '$interval', function($timeout, $interval) {
 			var currentLinkText = this.parentCtrl.services[0].packageName;
-			var regex = new RegExp('View (video|record|full text|item) (in|at) ');
+			var regex = new RegExp('View (video|record|full text|item|content) (in|at) ');
 			if (regex.test(currentLinkText) === true) {
 				var newLinkText = currentLinkText.replace(regex, '');
 				newLinkText = newLinkText.replace(/\(subscribers only\)/i, '');
