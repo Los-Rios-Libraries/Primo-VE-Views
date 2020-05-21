@@ -132,6 +132,9 @@ prm-citation-trails-indication-container {display:none;}
 
 /* create space between metadata fields in full record */
 #item-details .layout-row {margin-bottom: 10px;}
+/* problem reporter, brief results */
+.list-item:hover .lr-brief-problem-reporter, .list-item:focus .lr-brief-problem-reporter {opacity:1;}
+.lr-brief-problem-reporter { position: absolute;  right: 0;  bottom: 0;  font-size: .8em;  opacity: 0;  transition: opacity 0.1s linear;}
 /* position problem reporter button to the right */
 #lr-problem-reporter {position: absolute; right:0;}
 /* hide search within journal service */

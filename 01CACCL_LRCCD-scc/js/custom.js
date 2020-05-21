@@ -132,6 +132,19 @@
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
 	// insert problem reporter
+	// shared variables
+	var problemReportVar = function() {
+		var w = 600;
+		var h = 600;
+		var left = (screen.width - w) / 2;
+        var top = (screen.height - h) / 4;
+		return {
+			'page': 'https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/',
+			'window': 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left,
+			'icon': '<md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
+		};
+	};
+	// full record
 	app.component('prmAlmaViewitAfter', {
 		bindings: {
 			parentCtrl: '<'
@@ -143,14 +156,10 @@
 			parentCtrl: '<'
 		},
 		controller: 'lrProblemReporterController',
-		template: '<md-button id="lr-problem-reporter" layout-margin ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
+		template: '<md-button id="lr-problem-reporter" layout-margin ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()">' + problemReportVar().icon
 	});
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		var vm = this;
-		var w = 600;
-		var h = 600;
-		var left = (screen.width - w) / 2;
-        var top = (screen.height - h) / 4;
 		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
 		var newsBank = '';
 		var elecServices = vm.parentCtrl.item.delivery.electronicServices;
@@ -163,7 +172,7 @@
 			}
 		}
 		vm.openReporter = function() {
-			$window.open('https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo&newsbank=' + newsBank, 'Problem reporter', 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+			$window.open(problemReportVar().page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo&newsbank=' + newsBank, 'Problem reporter', problemReportVar().window);
 		};
 		vm.showProblemReporter = function() { // wait until links load to show the reporter
 			if (angular.element(document.querySelectorAll('prm-alma-viewit-items md-list-item')).length > 0) {
@@ -171,6 +180,33 @@
 			}
 		};
 	}]);
+	// brief results
+	app.component('prmSearchResultAvailabilityLineAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'prmSearchResultAvailabilityLineAfterController',
+		template: '<md-button class="lr-brief-problem-reporter" layout-margin ng-if="$ctrl.showReporter()" ng-click="$ctrl.openReporter()">' + problemReportVar().icon
+		});
+	app.controller('prmSearchResultAvailabilityLineAfterController', ['$window', function($window) {
+		var vm = this;
+		var itemID = vm.parentCtrl.result.pnx.control.recordid[0] || '';
+		vm.openReporter = function() {
+			$window.open(problemReportVar().page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', problemReportVar().window);
+		};
+		vm.showReporter = function() {
+            if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
+            	var availability = vm.parentCtrl.result.delivery.availability;
+                if (availability) {
+				    if ((availability[0] === 'fulltext') || (availability[0] === 'not_restricted')) { // only show when there is a full-text link
+					    return true;
+				    }
+			    }
+            }
+			
+		};
+		
+		}]);
 	// fix pci link text
 	app.component('prmAlmaViewitItemsAfter', {
 		bindings: {
