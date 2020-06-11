@@ -394,14 +394,18 @@
 			};
 			var sourceidArr = control.sourceid || [''];
 			var sourceid = sourceidArr[0];
+			var recordidArr = control.recordid || [''];
+			var recordid = recordidArr[0];
+			var sourcerecordidArr = control.sourcerecordid || [''];
+			var sourcerecordid = sourcerecordidArr[0];
 			var url;
-			if (sourceid === 'infobase_s') { // this appears to be just films on demand
-				url = 'https://fod.infobase.com/image/' + control.sourcerecordid[0];
-				replaceImages(url, control.recordid[0]);
+			if (recordid.indexOf('infobase_filmsondemand') > -1) { // use this instead of sourceid since there are multiple FoD collections
+				url = 'https://fod.infobase.com/image/' + sourcerecordid;
+				replaceImages(url, recordid);
 			}
-			else if (sourceid === 'naxos_s') {
-				url = 'https://cdn.naxosmusiclibrary.com/sharedfiles/images/cds/others/' +  control.sourcerecordid[0] + '.gif';
-				replaceImages(url, control.recordid[0]);			
+			else if (sourceid === 'CZN') {
+				url = 'https://cdn.naxosmusiclibrary.com/sharedfiles/images/cds/others/' +  sourcerecordid + '.gif';
+				replaceImages(url, recordid);			
 			}
 
 		}]
