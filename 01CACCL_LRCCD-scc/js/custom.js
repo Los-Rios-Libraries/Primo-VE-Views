@@ -231,7 +231,11 @@
 					if (document.querySelector('prm-alma-viewit-items a.item-title')) {
 						$interval.cancel(wait);
 						$timeout.cancel(cancelProc);
-						angular.element(document.querySelector('prm-alma-viewit-items a.item-title')).html(newLinkText);
+						var title = document.querySelector('prm-alma-viewit-items a.item-title');
+						angular.element(title).html(newLinkText);
+						if (angular.element(title).html() === 'collection') {
+							angular.element(title).html('Remote website');
+						}
 					}
 				}, 20);				
 			}
