@@ -70,7 +70,7 @@ div.top-nav-bar * {
   }
 		/* fixes for collection header */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
-	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;background-image: none !important;}
+	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
 	/* announcement below search bar, if used */
 #top-announce {text-align:center; font-size:1.3rem;}
 	/* lighten card background */
