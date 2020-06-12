@@ -70,6 +70,7 @@ div.top-nav-bar * {
 	/* fixes for collection header */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
 	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
+	prm-collection-gallery-header .collection-info {background:rgba(0,0,0,0.4);}
 /* announcement below search bar, if used */
 #top-announce {text-align:center; font-size:1.3rem;}
 	/* lighten card background */
