@@ -68,6 +68,9 @@ div.top-nav-bar * {
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #743182; 
   }
+		/* fixes for collection header */
+	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
+	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;background-image: none !important;}
 	/* announcement below search bar, if used */
 #top-announce {text-align:center; font-size:1.3rem;}
 	/* lighten card background */
