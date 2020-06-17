@@ -1,40 +1,63 @@
 <md-content>
     <div layout-xs="column" layout="row">
         <div flex-gt-xs="40" layout="column">
+            <md-card class="default-card">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">Start Your Research Here</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>
+                        Access ebooks, scholarly articles, magazines, and newspapers from Los Rios databases; find physical books and DVDs held by the Los Rios Libraries. 
+                    </p>
+                    <p>
+                        Sign in to:
+                    </p>
+                    <ul>
+                        <li>View the full text of articles and ebooks</li>
+                        <li>Request books from other Los Rios Libraries</li>
+                        <li>Renew books and videos</li>
+                        <li>Create favorites lists</li>
+                    </ul>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-gt-xs="60" layout="column">
+            <md-card class="default-card">
+                <md-card-title id="lr-onesearch-vid-headline">
+                    <md-card-title-text>
+                        <span class="md-headline">OneSearch in One Minute</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content id="lr-onesearch-vid-container">
+                    <iframe id="lr-onesearch-vid" flex="" src="https://www.youtube-nocookie.com/embed/QiKP51awiBw?cc_load_policy=1&amp;modestbranding=1&amp;rel=0" frameborder="0" allow="accelerometer;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </md-card-content>
+            </md-card>
+        </div>  
     </div>
+    <div layout="row">
         <md-card class="default-card">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">Start Your Research Here</span>
+                    <span class="md-headline">Antiracism: A collection of ebooks and videos</span>
                 </md-card-title-text>
             </md-card-title>
+            <div>
+              <a title="Explore the collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8155909560005325">
+                    <img hide-xs src="/discovery/custom/01CACCL_LRCCD-scc/img/collections/8155909560005325.jpg" alt="Collage of fists in the air with book jackets for books included in the collection">
+                    <img hide show-xs src="/discovery/custom/01CACCL_LRCCD-scc/img/collections/8155909560005325.xs.jpg" alt="Collage of fists in the air">
+                </a>  
+            </div>
             <md-card-content>
-                <p>
-                    Access ebooks, scholarly articles, magazines, and newspapers from Los Rios databases; find physical books and DVDs held by the Los Rios Libraries. 
-                </p>
-                <p>
-                    Sign in to:
-                </p>
-                <ul>
-                    <li>View the full text of articles and ebooks</li>
-					<li>Request books from other Los Rios Libraries</li>
-					<li>Renew books and videos</li>
-                    <li>Create favorites lists</li>
-                </ul>
-            </md-card-content>
-        </md-card>
-   
-    </div>
-    <div flex-gt-xs="60" layout="column">
-        <md-card class="default-card">
-            <md-card-title id="lr-onesearch-vid-headline">
-                <md-card-title-text>
-                    <span class="md-headline">OneSearch in One Minute</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content id="lr-onesearch-vid-container">
-                <iframe id="lr-onesearch-vid" flex="" src="https://www.youtube-nocookie.com/embed/QiKP51awiBw?cc_load_policy=1&amp;modestbranding=1&amp;rel=0" frameborder="0" allow="accelerometer;encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <p>Browse resources that explore what it means to be antiracist by reflecting on the actions, attitudes, and policies that actively oppose racism and lead to justice in our communities.</p>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button class="md-icon-button" aria-label="Launch" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8155909560005325">
+                        <md-icon md-svg-icon="action:ic_launch_24px"></md-icon>
+                    </md-button>
+                </md-card-actions>
             </md-card-content>
         </md-card>
     </div>
+    
 </md-content>
