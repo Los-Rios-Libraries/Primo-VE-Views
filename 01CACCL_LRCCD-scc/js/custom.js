@@ -389,6 +389,7 @@
 						} else { // brief results
 							angular.element(images[0]).attr('src', url);
 						}
+						$interval.cancel(wait);
 					}
 				}, 100);
 			};
