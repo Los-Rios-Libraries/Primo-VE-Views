@@ -1,0 +1,1 @@
+tar.exe -a -c -f 01CACCL_LRCCD-arc.zip 01CACCL_LRCCD-arc && tar.exe -a -c -f 01CACCL_LRCCD-crc.zip 01CACCL_LRCCD-crc && tar.exe -a -c -f 01CACCL_LRCCD-flc.zip 01CACCL_LRCCD-flc && tar.exe -a -c -f 01CACCL_LRCCD-scc.zip 01CACCL_LRCCD-scc
