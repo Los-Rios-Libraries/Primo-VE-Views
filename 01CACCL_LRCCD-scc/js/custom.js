@@ -131,6 +131,60 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+	// faq on home page. To implement, add matching directive to html in home page
+	app.component('lrHomepageFaq', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'lrHomepageFaqController',
+		template: '<div id="lr-faq-block" ng-init="$ctrl.getFaq();"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in $ctrl.faqList"><a href="{{f.url.public}}" target="_blank">{{f.question}}</a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button href="https://losrios.libanswers.com/{{$ctrl.col}}" target="_blank">More Library Answers <md-icon md-svg-icon="action:ic_launch_24px"></md-icon></md-button></p></div>'
+	});
+	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
+		var vm = this;
+		vm.col = colAbbr;
+		vm.faqList = '';
+		vm.faqExist = false;
+		vm.getFaq = function() {
+			var moveFaq = function() { // this will insert the output into the home page card
+				vm.faqExist = true;
+				var list = document.querySelector('lr-homepage-faq #lr-faq-list');
+				if (!(angular.element(list))) {
+					angular.element(document.querySelector('lr-homepage-faq')).append(angular.element(document.getElementById('lr-faq-list')));
+				}
+				
+			};
+			// local storage keys
+			var faq = 'lrFaqList' + colAbbr;
+			var timestamp = 'lrFaqTS' + colAbbr;
+			// get json from local storage if not more than 2 hours old
+			var local = $window.localStorage.getItem(faq);
+			var ts = $window.localStorage.getItem(timestamp); // timestamp
+			var old = false; // json assumed to be not old
+			if (ts !== null) { // check age of timestamp
+				var d = new Date();
+				var ageLimit = 4 * 60 * 60 * 1000; // four hours
+				if ((d - new Date(ts)) < ageLimit) { // get local storage object and insert it
+					vm.faqList = angular.fromJson(local);
+					moveFaq();
+				} else { // set flag to true
+					old = true;
+				}
+			} else { // no timestamp found; same as if it were old
+				old = true;
+			}
+			if (old === true) { // only runs if timestamp is old
+				$http.get('https://www.library.losrios.edu/' + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
+					.then(function(response) {
+						vm.faqList = response.data.faqs;
+						// set local storage for next time
+						$window.localStorage.setItem(faq, angular.toJson(vm.faqList));
+						var d = new Date();
+						$window.localStorage.setItem(timestamp, d.toString());
+						moveFaq();
+					});
+			}
+		};
+	}]);
 	// insert problem reporter
 	// shared variables
 	var problemReportVar = function() {
