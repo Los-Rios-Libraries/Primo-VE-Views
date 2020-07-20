@@ -158,6 +158,8 @@ prm-alma-viewit-items h3 a, a[href*="interlibrary-loan"] {text-decoration:underl
 prm-alma-viewit-items h3 a:hover, prm-alma-viewit-items h3 a:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none;}
 /* hide coverage statement in ViewIt */
 prm-alma-viewit-items h4 {display:none;}
+/* but don't hide label */
+prm-alma-viewit-items .spaced-rows h4 {display:unset;}
 /* but show for journals */
 #searchWithinJournal + .full-view-section prm-alma-viewit-items h4, prm-journals-full-view prm-alma-viewit-items h4 {display:block;}
 /* booking/request area */
