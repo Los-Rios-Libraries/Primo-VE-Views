@@ -178,7 +178,7 @@
 		vm.lrHideAnnounce = function() {
 			var d = new Date();
 			d.setTime(d.getTime() + (14*24*60*60*1000)); // two weeks
-			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString()}); // set cookie to stop showing announcement
+			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString(), 'secure': true}); // set cookie to stop showing announcement
 			var el = angular.element(document.getElementById('top-announce'));
 			el.addClass('lr-fadeout'); // allows transition in css
 			$timeout(function() {
