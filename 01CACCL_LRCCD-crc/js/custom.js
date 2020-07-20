@@ -417,7 +417,7 @@
 		var el = document.createElement('iframe');
 		el.style.position = 'absolute';
 		el.style.left = '-99999px';
-		el.setAttribute('src', 'https://www.library.losrios.edu/alma/utilities/cookie-setter.php?college=' + colAbbr);
+		el.setAttribute('src', 'https://www.library.losrios.edu/' + filePath + 'utilities/cookie-setter.php?college=' + colAbbr);
 		// append the iframe in order to set the cookie, then remove it from the DOM
 		document.getElementsByTagName('body')[0].appendChild(el);
 		setTimeout(function(){
