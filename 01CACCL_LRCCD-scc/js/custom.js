@@ -140,14 +140,7 @@
 		vm.faqList = '';
 		vm.faqExist = false;
 		vm.getFaq = function() {
-			var moveFaq = function() { // this will insert the output into the home page card
-				vm.faqExist = true;
-				var list = document.querySelector('lr-homepage-faq #lr-faq-list');
-				if (!(angular.element(list))) {
-					angular.element(document.querySelector('lr-homepage-faq')).append(angular.element(document.getElementById('lr-faq-list')));
-				}
-				
-			};
+
 			// local storage keys
 			var faq = 'lrFaqList' + colAbbr;
 			var timestamp = 'lrFaqTS' + colAbbr;
@@ -160,7 +153,7 @@
 				var ageLimit = 4 * 60 * 60 * 1000; // four hours
 				if ((d - new Date(ts)) < ageLimit) { // get local storage object and insert it
 					vm.faqList = angular.fromJson(local);
-					moveFaq();
+					vm.faqExist = true;
 				} else { // set flag to true
 					old = true;
 				}
@@ -175,7 +168,7 @@
 						$window.localStorage.setItem(faq, angular.toJson(vm.faqList));
 						var d = new Date();
 						$window.localStorage.setItem(timestamp, d.toString());
-						moveFaq();
+						vm.faqExist = true;
 					});
 			}
 		};
