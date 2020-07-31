@@ -22,6 +22,7 @@
 		};
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
+	var districtHost = 'https://www.library.losrios.edu/';
 	var filePath = ''; 
 	if (viewCode.env === 'CC') {
 		filePath = colAbbr + '/bitbucket/lsp-related-tools-and-resources/';
@@ -119,7 +120,7 @@
 		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
 		vm.libraries = libraries;
 		vm.c19Page = c19Page;
-		vm.askUs = 'https://www.library.losrios.edu/ask-us/?' + colAbbr;
+		vm.askUs = districtHost + 'ask-us/?' + colAbbr;
 		}]);
 
 	app.component('prmExploreFooterAfter', { // insert template into footer area
@@ -171,7 +172,7 @@
 				old = true;
 			}
 			if (old === true) { // only runs if timestamp is old
-				$http.get('https://www.library.losrios.edu/' + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
+				$http.get(districtHost + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
 					.then(function(response) {
 						vm.faqList = response.data.faqs;
 						// set local storage for next time
@@ -191,7 +192,7 @@
 		var left = (screen.width - w) / 2;
         var top = (screen.height - h) / 4;
 		return {
-			'page': 'https://www.library.losrios.edu/' + filePath + 'utilities/problem-reporter/',
+			'page': districtHost + filePath + 'utilities/problem-reporter/',
 			'window': 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left,
 			'icon': '<md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
 		};
@@ -465,13 +466,12 @@
 		}]
 
 	});
-
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
 		el.style.position = 'absolute';
 		el.style.left = '-99999px';
-		el.setAttribute('src', 'https://www.library.losrios.edu/' + filePath + 'utilities/cookie-setter.php?college=' + colAbbr);
+		el.setAttribute('src', districtHost + filePath + 'utilities/cookie-setter.php?college=' + colAbbr);
 		// append the iframe in order to set the cookie, then remove it from the DOM
 		document.getElementsByTagName('body')[0].appendChild(el);
 		setTimeout(function(){
