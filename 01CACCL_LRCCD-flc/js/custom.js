@@ -124,17 +124,11 @@
 		}]);
 
 	app.component('prmExploreFooterAfter', { // insert template into footer area
-		bindings: {
-			parentCtrl: '<'
-		},
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
-		bindings: {
-			parentCtrl: '<'
-		},
 		controller: 'lrHomepageFaqController',
 		template: '<div id="lr-faq-block" ng-init="$ctrl.getFaq();"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in $ctrl.faqList"><a href="{{f.url.public}}" target="_blank">{{f.question}}</a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button href="https://losrios.libanswers.com/{{$ctrl.col}}" target="_blank">More Library Answers <md-icon md-svg-icon="action:ic_launch_24px"></md-icon></md-button></p></div>'
 	});
@@ -370,9 +364,6 @@
 		
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
-		bindings: {
-			parentCtrl: '<'
-		},
 		controller: 'prmBackToLibrarySearchButtonAfterController',
 		templateUrl: custPackagePath + '/html/top-announcement.html'
 	});
@@ -400,9 +391,6 @@
 	}]);
 	// note on lack of requesting during COVID-19 closure
 	app.component('prmOpacAfter', { 
-		bindings: {
-			parentCtrl: '<'
-		},
 		template: '<md-content layout-margin><p><md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>Please note: during the temporary library closures in response to the COVID-19 pandemic, item requests are unavailable. We apologize for this inconvenience and encourage you to explore online library resources.</p></md-content>'
 	});
 	app.component('prmFinesAfter', { // show message explaining how to pay fines
