@@ -129,6 +129,140 @@
 		controller: 'exploreFooterAfterController',
 		templateUrl: custPackagePath + '/html/footer.html'
 	});
+	app.component('lrNewbooksDisplay', {
+		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
+		controller: 'lrNewbooksDisplayController'
+	});
+	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', function($http, $timeout,$interval) {
+		var vm = this;
+		var numToShow = 8;
+		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^kan_/;
+		vm.bookList = false; // when this becomes true, content block will show
+		var makeList = function(arr) { // the main function for displaying the books
+			if (arr.length < numToShow) { // if anyone keeps showing more and gets to the end of the array...
+				numToShow = arr.length;
+			}
+			if (!(vm.bookList)) { // this is on first page load or return to home page
+				// create first set of in titles to show
+				var newArr = [];
+				for (var i = 0; i < numToShow; i++) { // create the initial display
+					newArr.push(arr[i]);
+				}
+				vm.bookList = newArr;
+			} else {
+				// this is for when "show more" is selected - push more into array
+				for (var j = 0; j < numToShow; j++) { // why are we repeating this--seems like we could do this as a function...
+					vm.bookList.push(arr[j]);
+				}
+
+			}
+			newBooksArr.splice(0, numToShow); // hm... this means that if you go elsewhere in primo and return to the home page, the array is reduced in size from what it was. Maybe that's ok
+		};
+		var shuffleArr = function(array) { // randomizes the array. https://stackoverflow.com/a/2450976/1903000
+			var currentIndex = array.length,
+				temporaryValue, randomIndex;
+			// While there remain elements to shuffle...
+			while (0 !== currentIndex) {
+				// Pick a remaining element...
+				randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex -= 1;
+				// And swap it with the current element.
+				temporaryValue = array[currentIndex];
+				array[currentIndex] = array[randomIndex];
+				array[randomIndex] = temporaryValue;
+			}
+			return array;
+		};
+		vm.makeId = function(str) { // only add id attribute for titles iwth proper ISBN or Kanopy id
+			if (idRegex.test(str) === true) {
+				return 'lr_' + str;
+			}
+		};
+		vm.checkIdentifier = function(str) { // titles without proper ISBN or Kanopy ID are treated as no-cover
+			str = str.replace(/^lr_/, '');
+			if (idRegex.test(str) === false) {
+				return 'no-cover';
+			}
+		};
+
+		vm.imgSrc = function(str) { // determines source of images; syndetics uses isbn, kanopy has its own system
+			if (str.indexOf('kan_') === 0) {
+				var arr = str.split('kan_');
+				return 'https://www.kanopy.com/node/' + arr[1] + '/external-image';
+			} else if (idRegex.test(str) === true) {
+				return 'https://syndetics.com/index.php?client=primo&isbn=' + str + '/mc.jpg';
+			}
+		};
+		vm.checkImg = function(str) { // syndetics returns a 1x1 pixel image if it doesn't have a jacket based on isbn queried. so detect this and change classname when that happens to allow alternative styling
+			var checkInt = $interval(function() { // interval allows some time for jacket to load
+				var el = document.getElementById(str);
+				var img = el.querySelector('#' + str + ' img');
+				if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
+					if ((img.complete === true) && (img.height === 1)) { 
+						angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+					}
+				}
+			}, 1000);
+			$timeout(function() { // not good to let the interval run indefinitely
+				$interval.cancel(checkInt);
+			}, 4000);
+		};
+		
+		vm.truncateTitle = function(str) { // full title is supplied for title attribute, but we want it to be truncated when displayed on items that don't have jacket images
+			var arr = str.split(' ');
+			var output = '';
+			if (arr.length < 13) {
+				output = arr.join(' ');
+			} else {
+				var newArr = arr.slice(0, 12);
+				output = newArr.join(' ') + '...';
+			}
+			return output;
+		};
+		vm.itemFormat = function(str) {
+			return 'lr-format-' + str; // helps id book vs. video
+		};
+		vm.varyFlex = function(str) { // allows negative space, and kanopy images to be twice the width
+			if (str.indexOf('kan_') > -1) {
+				return ['flex-gt-sm-40', 'flex-100'];
+			}
+			else {
+				return ['flex-20', 'flex-xs-40'];
+			}
+		};
+		if (typeof(newBooksArr) !== 'undefined') {
+			// this will happen if user comes back to home page from elsewhere in Primo
+			makeList(newBooksArr);
+		} else {
+			// this will happen on initial page load
+			$http.get(districtHost + filePath + 'utilities/analytics/analytics-proxy.php?report=onesearch_new_online')
+				.then(function(response) {
+					var arr = response.data.QueryResult.ResultXml.rowset.Row; // table
+					console.log(arr);
+					// randomize the array
+					var shuffledArr = shuffleArr(arr);
+					window.newBooksArr = shuffledArr; // cache randomized array of new title objects as global variable
+					makeList(newBooksArr);
+				}, function(response) { // on error, hide the card and log error to console
+					vm.bookList = false;
+					console.log('http get error: ');
+					console.log(response);
+				});
+		}
+		vm.addBooks = function() {
+			makeList(newBooksArr);
+		};
+		vm.showButton = function() { // removes button if anyone gets all the way to the end of the array
+			if (newBooksArr.length > 0) {
+				return true;
+			}
+		};
+		// keep track of this array in console, for testing
+		console.log('newBooksArr: ');
+		if (typeof(newBooksArr) !== 'undefined') {
+			console.log(newBooksArr);
+		}
+	}]);
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
 		controller: 'lrHomepageFaqController',
