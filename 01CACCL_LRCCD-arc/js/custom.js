@@ -183,71 +183,6 @@
 			}
 		};
 	}]);
-	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: 'prmBrowseSearchAfterController',
-		templateUrl: custPackagePath + '/html/browse.html'
-	});
-	app.controller('prmBrowseSearchAfterController', function() { 
-		var vm = this;
-		vm.showCards = function() { // avoid typeError by waiting for property to become available
-			if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
-				return true;
-			}
-		};
-		vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
-			var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
-			if (searchScope.indexOf(box) > -1) {
-				return true;
-			}
-		};
-		vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
-			var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
-			var inProgress = vm.parentCtrl.browseSearchService._inProgress;
-			if ((results.length > 0  || inProgress === true)) {
-				return true;
-			}
-		};
-		
-	});
-	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: 'prmBackToLibrarySearchButtonAfterController',
-		templateUrl: custPackagePath + '/html/top-announcement.html'
-	});
-	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function ($cookies, $timeout) {
-		var vm = this;
-		var cookieKey = 'lrHideOSAnnce';
-		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
-		vm.hideCookie = $cookies.get(cookieKey) || '';
-		vm.lrShowAnnounce = function() {
-			if ((vm.refPage !=='') && (vm.hideCookie !== 'true')) {
-				return true;
-			}
-		};
-		vm.lrHideAnnounce = function() {
-			var d = new Date();
-			d.setTime(d.getTime() + (14*24*60*60*1000)); // two weeks
-			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString(), 'secure': true}); // set cookie to stop showing announcement
-			var el = angular.element(document.getElementById('top-announce'));
-			el.addClass('lr-fadeout'); // allows transition in css
-			$timeout(function() {
-				el.css('display', 'none');
-			}, 300);
-			return true;
-		};
-	}]);
-	// note on lack of requesting during COVID-19 closure
-	app.component('prmOpacAfter', { 
-		bindings: {
-			parentCtrl: '<'
-		},
-		template: '<md-content layout-margin><p><md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>Please note: during the temporary library closures in response to the COVID-19 pandemic, item requests are unavailable. We apologize for this inconvenience and encourage you to explore online library resources.</p></md-content>'
-	});
 	// insert problem reporter
 	// shared variables
 	var problemReportVar = function() {
@@ -328,7 +263,6 @@
 		};
 		
 	}]);
-
 	// fix pci link text
 	app.component('prmAlmaViewitItemsAfter', {
 		bindings: {
@@ -404,6 +338,71 @@
 
 		}]
 	});
+	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'prmBrowseSearchAfterController',
+		templateUrl: custPackagePath + '/html/browse.html'
+	});
+	app.controller('prmBrowseSearchAfterController', function() { 
+		var vm = this;
+		vm.showCards = function() { // avoid typeError by waiting for property to become available
+			if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
+				return true;
+			}
+		};
+		vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
+			var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
+			if (searchScope.indexOf(box) > -1) {
+				return true;
+			}
+		};
+		vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
+			var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
+			var inProgress = vm.parentCtrl.browseSearchService._inProgress;
+			if ((results.length > 0  || inProgress === true)) {
+				return true;
+			}
+		};
+		
+	});
+	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
+		bindings: {
+			parentCtrl: '<'
+		},
+		controller: 'prmBackToLibrarySearchButtonAfterController',
+		templateUrl: custPackagePath + '/html/top-announcement.html'
+	});
+	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function ($cookies, $timeout) {
+		var vm = this;
+		var cookieKey = 'lrHideOSAnnce';
+		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+		vm.hideCookie = $cookies.get(cookieKey) || '';
+		vm.lrShowAnnounce = function() {
+			if ((vm.refPage !=='') && (vm.hideCookie !== 'true')) {
+				return true;
+			}
+		};
+		vm.lrHideAnnounce = function() {
+			var d = new Date();
+			d.setTime(d.getTime() + (14*24*60*60*1000)); // two weeks
+			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString(), 'secure': true}); // set cookie to stop showing announcement
+			var el = angular.element(document.getElementById('top-announce'));
+			el.addClass('lr-fadeout'); // allows transition in css
+			$timeout(function() {
+				el.css('display', 'none');
+			}, 300);
+			return true;
+		};
+	}]);
+	// note on lack of requesting during COVID-19 closure
+	app.component('prmOpacAfter', { 
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<md-content layout-margin><p><md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>Please note: during the temporary library closures in response to the COVID-19 pandemic, item requests are unavailable. We apologize for this inconvenience and encourage you to explore online library resources.</p></md-content>'
+	});
 	app.component('prmFinesAfter', { // show message explaining how to pay fines
 		bindings: {
 			parentCtrl: '<'
@@ -465,7 +464,6 @@
 		}]
 
 	});
-
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
@@ -480,6 +478,7 @@
 		
 		
 	}, 10000);
+	
 	(function () {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 
