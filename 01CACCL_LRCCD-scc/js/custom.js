@@ -215,7 +215,17 @@
 				output = arr.join(' ');
 			} else {
 				var newArr = arr.slice(0, 12);
-				output = newArr.join(' ') + '...';
+				if ((newArr[11] === '/') || (/\.$/.test(newArr[11]))) {
+					newArr[11] = '.';
+				}
+				else if (/[;:,]/.test(newArr[11]) === true) {
+					newArr.pop();
+					newArr[10] = newArr[10] + '...';
+				}
+				else {
+					newArr[11] = newArr[11] + '...';
+				}
+				output = newArr.join(' ');
 			}
 			return output;
 		};
