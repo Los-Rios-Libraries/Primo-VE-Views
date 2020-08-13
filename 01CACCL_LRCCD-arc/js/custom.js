@@ -81,6 +81,7 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
+	
 	// logo
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
@@ -105,6 +106,7 @@
 			$window.scrollTo(0,0);
 			return true;
 		};
+
 		vm.checkForContent = function () {
 			var content = angular.element(document.getElementsByTagName('md-content'));
 			if (content.length > 0) {

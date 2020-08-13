@@ -81,6 +81,7 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
+	
 	// logo
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
@@ -105,6 +106,7 @@
 			$window.scrollTo(0,0);
 			return true;
 		};
+
 		vm.checkForContent = function () {
 			var content = angular.element(document.getElementsByTagName('md-content'));
 			if (content.length > 0) {
@@ -394,8 +396,7 @@
 			
 		};
 		
-		}]);
-
+	}]);
 	// fix pci link text
 	app.component('prmAlmaViewitItemsAfter', {
 		bindings: {
@@ -605,6 +606,7 @@
 		
 		
 	}, 10000);
+	
 	(function () {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 
