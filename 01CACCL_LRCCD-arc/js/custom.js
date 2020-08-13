@@ -4,6 +4,7 @@
 	var colAbbr = 'arc';
 	var libchatHash = '39df8b17e49bd4efbb4461f1831118b9';
 	var c19Page = 'https://libguides.arc.losrios.edu/c.php?g=1012164';
+	var topAnnounce = false; // set to true to use top announcement banner. Template is in html directory
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -505,27 +506,33 @@
 		controller: 'prmBackToLibrarySearchButtonAfterController',
 		templateUrl: custPackagePath + '/html/top-announcement.html'
 	});
-	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function ($cookies, $timeout) {
-		var vm = this;
-		var cookieKey = 'lrHideOSAnnce';
-		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
-		vm.hideCookie = $cookies.get(cookieKey) || '';
-		vm.lrShowAnnounce = function() {
-			if ((vm.refPage !=='') && (vm.hideCookie !== 'true')) {
+	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function($cookies, $timeout) {
+		if (topAnnounce !== false) {
+			var vm = this;
+			var cookieKey = 'lrHideOSAnnce';
+			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+			vm.hideCookie = $cookies.get(cookieKey) || '';
+			vm.lrShowAnnounce = function() {
+				if ((vm.refPage !== '') && (vm.hideCookie !== 'true')) {
+					return true;
+				}
+			};
+			vm.lrHideAnnounce = function() {
+				var d = new Date();
+				d.setTime(d.getTime() + (14 * 24 * 60 * 60 * 1000)); // two weeks
+				$cookies.put(cookieKey, 'true', {
+					'expires': d.toUTCString(),
+					'secure': true
+				}); // set cookie to stop showing announcement
+				var el = angular.element(document.getElementById('top-announce'));
+				el.addClass('lr-fadeout'); // allows transition in css
+				$timeout(function() {
+					el.css('display', 'none');
+				}, 300);
 				return true;
-			}
-		};
-		vm.lrHideAnnounce = function() {
-			var d = new Date();
-			d.setTime(d.getTime() + (14*24*60*60*1000)); // two weeks
-			$cookies.put(cookieKey, 'true',{'expires': d.toUTCString(), 'secure': true}); // set cookie to stop showing announcement
-			var el = angular.element(document.getElementById('top-announce'));
-			el.addClass('lr-fadeout'); // allows transition in css
-			$timeout(function() {
-				el.css('display', 'none');
-			}, 300);
-			return true;
-		};
+			};
+		}
+
 	}]);
 	// note on lack of requesting during COVID-19 closure
 	app.component('prmOpacAfter', { 
