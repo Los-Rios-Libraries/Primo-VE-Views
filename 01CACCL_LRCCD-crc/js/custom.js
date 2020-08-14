@@ -4,7 +4,6 @@
 	var colAbbr = 'crc';
 	var libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	var c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
-	var topAnnounce = false; // set to true to use top announcement banner. Template is in html directory
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -504,35 +503,32 @@
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
 		controller: 'prmBackToLibrarySearchButtonAfterController',
-		templateUrl: custPackagePath + '/html/top-announcement.html'
+		templateUrl: custPackagePath + '/html/top-announcement.html' // enter content into / uncomment this template to show the announcement
 	});
 	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function($cookies, $timeout) {
-		if (topAnnounce !== false) {
-			var vm = this;
-			var cookieKey = 'lrHideOSAnnce';
-			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
-			vm.hideCookie = $cookies.get(cookieKey) || '';
-			vm.lrShowAnnounce = function() {
-				if ((vm.refPage !== '') && (vm.hideCookie !== 'true')) {
-					return true;
-				}
-			};
-			vm.lrHideAnnounce = function() {
-				var d = new Date();
-				d.setTime(d.getTime() + (14 * 24 * 60 * 60 * 1000)); // two weeks
-				$cookies.put(cookieKey, 'true', {
-					'expires': d.toUTCString(),
-					'secure': true
-				}); // set cookie to stop showing announcement
-				var el = angular.element(document.getElementById('top-announce'));
-				el.addClass('lr-fadeout'); // allows transition in css
-				$timeout(function() {
-					el.css('display', 'none');
-				}, 300);
+		var vm = this;
+		var cookieKey = 'lrHideOSAnnce';
+		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+		vm.hideCookie = $cookies.get(cookieKey) || '';
+		vm.lrShowAnnounce = function() {
+			if ((vm.refPage !== '') && (vm.hideCookie !== 'true')) {
 				return true;
-			};
-		}
-
+			}
+		};
+		vm.lrHideAnnounce = function() {
+			var d = new Date();
+			d.setTime(d.getTime() + (14 * 24 * 60 * 60 * 1000)); // two weeks
+			$cookies.put(cookieKey, 'true', {
+				'expires': d.toUTCString(),
+				'secure': true
+			}); // set cookie to stop showing announcement
+			var el = angular.element(document.getElementById('top-announce'));
+			el.addClass('lr-fadeout'); // allows transition in css
+			$timeout(function() {
+				el.css('display', 'none');
+			}, 300);
+			return true;
+		};
 	}]);
 	// note on lack of requesting during COVID-19 closure
 	app.component('prmOpacAfter', { 
