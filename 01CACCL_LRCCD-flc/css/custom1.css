@@ -129,8 +129,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .no-cover .lr-newbook-title:hover, .no-cover .lr-newbook-title:focus {background: rgba(0,0,0,0.3);}
 .lr-play-vid {display:none;}
 .lr-format-VM .lr-play-vid {display:block;position:absolute; right:0; bottom:0; z-index:999; background: rgba(255,255,255,0.9);}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block;}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-title {position:absolute; bottom:10px; background:rgba(255,255,255,0.9);}
+.lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block; position:absolute; bottom:10px; background:rgba(255,255,255,0.9);}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
