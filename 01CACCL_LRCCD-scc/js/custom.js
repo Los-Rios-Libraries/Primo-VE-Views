@@ -209,24 +209,48 @@
 		};
 		
 		vm.truncateTitle = function(str) { // full title is supplied for title attribute, but we want it to be truncated when displayed on items that don't have jacket images
-			var arr = str.split(' ');
-			var output = '';
-			if (arr.length < 13) {
-				output = arr.join(' ');
+			var output = '<span class="lr-newbook-maintitle">';
+			// separate title from statement of responsibility
+			var arr = str.split('/');
+			// var totalLength = 0;
+			var mainTitle, subTitle, authors, subTitleSp, authorsSp;
+			if (arr.length > 1) {
+				authors = arr[1].trim();
+				authors = authors.replace(/\.$/, '');
+				authorsSp = '<span class="lr-newbook-author">' + authors + '</span>';
 			} else {
-				var newArr = arr.slice(0, 12);
-				if ((newArr[11] === '/') || (/\.$/.test(newArr[11]))) {
-					newArr[11] = '.';
-				}
-				else if (/[;:,]/.test(newArr[11]) === true) {
-					newArr.pop();
-					newArr[10] = newArr[10] + '...';
-				}
-				else {
-					newArr[11] = newArr[11] + '...';
-				}
-				output = newArr.join(' ');
+				authors = false;
 			}
+			// separate main title from subtitle
+			var wholeTitle = arr[0];
+			var arr2 = wholeTitle.split(':');
+			mainTitle = arr2[0].trim();
+			output += mainTitle + '</span> ';
+			if (arr2.length > 1) {
+				subTitle = arr2[1].trim();
+				subTitleSp = '<span class="lr-newbook-subtitle">' + subTitle + '</span> ';
+			} else {
+				subTitle = false;
+			}
+			// limit what we include; if title + subtitle is not too long, include that. If it is, check if statement of repsnsibilty is not too long.
+			var arr3 = mainTitle.trim().split(' ');
+			if (subTitle !== false) {
+				if (arr3.length + subTitle.trim().split(' ').length < 11) {
+					output += subTitleSp;
+					//		console.log(output);
+				} else if ((authors) && (authors.trim().split(' ').length < 4)) {
+					output += authorsSp;
+					//	console.log(output);
+				}
+
+			} else {
+				if (authors !== false) {
+					if (authors.trim().split(' ').length < 4) {
+						output += authorsSp;
+					}
+				}
+			}
+
 			return output;
 		};
 		vm.itemFormat = function(str) {

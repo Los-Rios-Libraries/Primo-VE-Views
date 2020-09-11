@@ -127,9 +127,14 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .no-cover img {display: none;}
 .no-cover .lr-newbook-title {display: block; padding:14px 8px 8px 14px; height: 100%;}
 .no-cover .lr-newbook-title:hover, .no-cover .lr-newbook-title:focus {background: rgba(0,0,0,0.3);}
+.no-cover .lr-newbook-maintitle {font-size:1.2em; font-stretch: condensed; line-height: 1em; display:block;}
+.no-cover .lr-newbook-subtitle {display:block; margin-top:8px;}
+.no-cover .lr-newbook-author {display: block;margin-top:8px;}
 .lr-play-vid {display:none;}
 .lr-format-VM .lr-play-vid {display:block;position:absolute; right:0; bottom:0; z-index:999; background: rgba(255,255,255,0.9);}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block; position:absolute; bottom:10px; background:rgba(255,255,255,0.9);}
+.lr-format-VM[id^="lr_kan"] .lr-newbook-subtitle::before {content: ": "; margin-left: -3px;}
+.lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "/ ";}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 

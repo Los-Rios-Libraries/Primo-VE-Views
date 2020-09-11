@@ -12,7 +12,7 @@
 						<a target="_blank" ng-attr-title="{{book.Column5}}" ng-href="https://na05.alma.exlibrisgroup.com/view/uresolver/01CACCL_LRCCD/openurl?u.ignore_date_coverage=true&amp;portfolio_pid={{book.Column4}}5325&amp;Force_direct=true">
 							<img ng-src="{{$ctrl.imgSrc(book.Column3);}}" alt="{{book.Column5}}" ng-init="$ctrl.checkImg('lr_' + book.Column3);">
 							<md-icon class="lr-play-vid" md-svg-icon="av:ic_play_circle_outline_24px"></md-icon>
-							<span class="lr-newbook-title">{{$ctrl.truncateTitle(book.Column5)}}</span>
+							<span class="lr-newbook-title" ng-bind-html="$ctrl.truncateTitle(book.Column5)"></span>
 						</a>
 					</li>
 				</ul>
