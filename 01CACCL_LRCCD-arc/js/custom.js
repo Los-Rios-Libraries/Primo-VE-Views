@@ -228,7 +228,12 @@
 			mainTitle = arr2[0].trim();
 			output += mainTitle + '</span> ';
 			if (arr2.length > 1) {
-				subTitle = arr2[1].trim();
+				if (arr2.length > 2) { // indicates there's a colon in the subtitle
+					subTitle = arr2[1].trim() + ': ' + arr2[2].trim();
+				}
+				else {
+					subTitle = arr2[1].trim();
+				}
 				subTitleSp = '<span class="lr-newbook-subtitle">' + subTitle + '</span> ';
 			} else {
 				subTitle = false;
