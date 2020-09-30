@@ -133,7 +133,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .lr-format-VM .lr-play-vid {display:block;position:absolute; right:0; bottom:0; z-index:999; background: rgba(255,255,255,0.9);}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block; position:absolute; bottom:10px; background:rgba(255,255,255,0.9);}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-subtitle::before {content: ": "; margin-left: -3px;}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "/ ";}
+.lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "- ";}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 

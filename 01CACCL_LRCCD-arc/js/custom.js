@@ -215,8 +215,9 @@
 			// var totalLength = 0;
 			var mainTitle, subTitle, authors, subTitleSp, authorsSp;
 			if (arr.length > 1) {
-				authors = arr[1].trim();
-				authors = authors.replace(/\.$/, '');
+				var authArr = arr[1].split(';');
+				authors = authArr[0].trim();
+				authors = authors.replace(/\.$/, '').replace(/[\[\]]/g, '');
 				authorsSp = '<span class="lr-newbook-author">' + authors + '</span>';
 			} else {
 				authors = false;
@@ -245,7 +246,7 @@
 
 			} else {
 				if (authors !== false) {
-					if (authors.trim().split(' ').length < 4) {
+					if (authors.trim().split(' ').length < 5) {
 						output += authorsSp;
 					}
 				}
