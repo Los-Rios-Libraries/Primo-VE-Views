@@ -556,9 +556,10 @@
 				return true;
 			}
 		};
-		vm.lrHideAnnounce = function() {
+		vm.lrHideAnnounce = function(num) {
 			var d = new Date();
-			d.setTime(d.getTime() + (14 * 24 * 60 * 60 * 1000)); // two weeks
+			var expDays = num || 14; // default cookie length is 14 days; if shorter or longer, include in function
+			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks
 			$cookies.put(cookieKey, 'true', {
 				'expires': d.toUTCString(),
 				'secure': true
