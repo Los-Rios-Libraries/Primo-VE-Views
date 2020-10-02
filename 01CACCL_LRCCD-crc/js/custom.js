@@ -540,7 +540,18 @@
 		var cookieKey = 'lrHideOSAnnce';
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 		vm.hideCookie = $cookies.get(cookieKey) || '';
-		vm.lrShowAnnounce = function() {
+		vm.lrShowAnnounce = function(str) { // n should be in form m-d-yyyy
+			var announceExp = str || '';
+			if (announceExp !== '') {
+				var arr = announceExp.split('-');
+				var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
+				var exp = new Date();
+				exp.setFullYear(arr[2], m, arr[1]);
+				var today = new Date();
+				if ((today - exp) > 0) {
+					return false;
+				}
+			}
 			if ((vm.refPage !== '') && (vm.hideCookie !== 'true')) {
 				return true;
 			}
