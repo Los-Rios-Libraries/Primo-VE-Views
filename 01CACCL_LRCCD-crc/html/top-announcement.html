@@ -1,10 +1,12 @@
+<!-- to stop cookie from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce('11-3-2020') This would mean the announcemnt would stop showing on November 4 2020 -->
 <!--<md-content id="top-announce" ng-if="$ctrl.lrShowAnnounce()">
 	<p layout-margin layout-align="center center">
-		<md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>
+		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
 		Library services continue online during COVID-19-related closures.
-		<a ng-href="{{$ctrl.refPage}}" target="_blank">Find out more.</a>
-		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce()" aria-label="close">Hide this announcement
-			<md-icon md-svg-icon="navigation:ic_close_24px" aria-hidden="true"></md-icon>
+		<a ng-href="{{$ctrl.refPage}}" target="_blank">Find out more.</a> -->
+		<!-- cookie will expire in 14 days by default; you can change by including a number of days in argument, e.g. $ctrl.lrHideAnnounce(21) -- this would mean cookie would expire 21 days after user clicks hide button -->
+<!--		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce()" aria-label="close">Hide this announcement
+			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
 		</md-button>
 	</p>
 </md-content>-->
