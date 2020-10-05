@@ -538,9 +538,14 @@
 	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function($cookies, $timeout) {
 		var vm = this;
 		var cookieKey = 'lrHideOSAnnce';
+		vm.fade = ''; // used for adding classes when dissmissing
+		vm.hide = false;
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 		vm.hideCookie = $cookies.get(cookieKey) || '';
 		vm.lrShowAnnounce = function(str) { // n should be in form m-d-yyyy
+			if (vm.hide === true) { // this happens after dismiss button is pressed
+				return false;
+			}
 			var announceExp = str || '';
 			if (announceExp !== '') {
 				var arr = announceExp.split('-');
@@ -564,10 +569,9 @@
 				'expires': d.toUTCString(),
 				'secure': true
 			}); // set cookie to stop showing announcement
-			var el = angular.element(document.getElementById('top-announce'));
-			el.addClass('lr-fadeout'); // allows transition in css
+			vm.fade = 'lr-fadeout'; // allows animation via class
 			$timeout(function() {
-				el.css('display', 'none');
+				vm.hide = true; // removes element so space stops showing
 			}, 300);
 			return true;
 		};

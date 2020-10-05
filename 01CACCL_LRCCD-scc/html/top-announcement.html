@@ -1,5 +1,5 @@
 <!-- to stop cookie from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce('11-3-2020') This would mean the announcemnt would stop showing on November 4 2020 -->
-<md-content id="top-announce" ng-if="$ctrl.lrShowAnnounce('11-3-2020')">
+<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce('11-3-2020')">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
 		Looking for info about the November 3 election?
