@@ -63,6 +63,13 @@ div.top-nav-bar * {
     background-color: #ffffff; 
 	}
 
+/* Hover shades for top bar and advanced search with college color*/
+.md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]),prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):hover:not([disabled])
+{
+    color: #003057;
+background-color: #E5E5E5;
+}
+
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #003057; 
@@ -85,6 +92,9 @@ md-card-title h2, .md-headline {font-weight:500;}
 .search-wrapper .flex-lg-10 {display:none}
 .search-wrapper .flex-lg-65 {max-width:80%}
 #lr-onesearch {width:25%;text-align:right;top:23px;position:absolute;z-index:99999}
+#lr-onesearch a:hover, #lr-onesearch a:focus {
+    background-color: rgb(6, 49, 90);
+} 
 /* adjust for advanced search */
 .advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch button {background:#999; padding-top:10px; right:2px;}
   
