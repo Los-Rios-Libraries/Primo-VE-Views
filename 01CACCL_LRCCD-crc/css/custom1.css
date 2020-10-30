@@ -92,7 +92,7 @@ md-card-title h2, .md-headline {font-weight:500;}
 .search-wrapper {margin-left:25%}
 .search-wrapper .flex-lg-10 {display:none}
 .search-wrapper .flex-lg-65 {max-width:80%}
-#lr-onesearch {width:25%;text-align:center;top:23px;position:absolute;z-index:99999}
+#lr-onesearch {width:25%;text-align:right;top:23px;position:absolute;z-index:99999}
 #lr-onesearch a:hover, #lr-onesearch a:focus {
     background-color: rgb(21, 54, 120);
 } 
