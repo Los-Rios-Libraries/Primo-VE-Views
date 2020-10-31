@@ -94,7 +94,7 @@ md-card-title h2, .md-headline {font-weight:500;}
 .search-wrapper .flex-lg-65 {max-width:80%}
 #lr-onesearch {width:25%;text-align:right;top:23px;padding-right:8px;position:absolute;z-index:99999}
 #lr-onesearch a:hover, #lr-onesearch a:focus {
-    background-color: rgb(116, 49, 130);
+    background-color: #562560;
 } 
 /* adjust for advanced search */
 .advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch button {background:#999; padding-top:10px; right:2px;}
