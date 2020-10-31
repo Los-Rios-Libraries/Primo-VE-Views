@@ -97,7 +97,7 @@ md-card-title h2, .md-headline {font-weight:500;}
     background-color: #562560;
 } 
 /* adjust for advanced search */
-.advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch button {background:#999; padding-top:10px; right:2px;}
+.advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch a {background:#999; padding-top:10px; right:2px;}
 
 /* remove tooltips from links menu in main and mobile views */
 .multi-row-tooltip, .custom-links-container .md-subhead {
