@@ -89,7 +89,7 @@
 	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', function($http, $timeout,$interval) {
 		var vm = this;
 		var numToShow = 8;
-		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^kan_/;
+		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^(kan|loc)_/;
 		vm.bookList = false; // when this becomes true, content block will show
 		var makeList = function(arr) { // the main function for displaying the books
 			if (arr.length < numToShow) { // if anyone keeps showing more and gets to the end of the array...
@@ -127,7 +127,13 @@
 			return array;
 		};
 		vm.makeId = function(str) { // only add id attribute for titles iwth proper ISBN or Kanopy id
-			if (idRegex.test(str) === true) {
+			if (str.indexOf('loc_') === 0) {
+				var mmsId = str.match(/\d{14}5325/);
+				if (mmsId !== null) {
+					return 'lr_loc_' + mmsId[0];
+				}				
+			}
+			else if (idRegex.test(str) === true) {
 				return 'lr_' + str;
 			}
 		};
@@ -139,26 +145,34 @@
 		};
 
 		vm.imgSrc = function(str) { // determines source of images; syndetics uses isbn, kanopy has its own system
+			var arr;
 			if (str.indexOf('kan_') === 0) {
-				var arr = str.split('kan_');
+				arr = str.split('kan_');
 				return 'https://www.kanopy.com/node/' + arr[1] + '/external-image';
-			} else if (idRegex.test(str) === true) {
+			} else if (str.indexOf('loc_') === 0) {
+				arr = str.split('loc_');
+				return arr[1];
+			}
+			else if (idRegex.test(str) === true) {
 				return 'https://syndetics.com/index.php?client=primo&isbn=' + str + '/mc.jpg';
 			}
 		};
 		vm.checkImg = function(str) { // syndetics returns a 1x1 pixel image if it doesn't have a jacket based on isbn queried. so detect this and change classname when that happens to allow alternative styling
-			var checkInt = $interval(function() { // interval allows some time for jacket to load
-				var el = document.getElementById(str);
-				var img = el.querySelector('#' + str + ' img');
-				if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
-					if ((img.complete === true) && (img.height === 1)) { 
-						angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+			if (/(kan|loc)_/.test(str) === false) {
+				var checkInt = $interval(function() { // interval allows some time for jacket to load
+					var el = document.getElementById(str);
+					var img = el.querySelector('#' + str + ' img');
+					if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
+						if ((img.complete === true) && (img.height === 1)) {
+							angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+						}
 					}
-				}
-			}, 1000);
-			$timeout(function() { // not good to let the interval run indefinitely
-				$interval.cancel(checkInt);
-			}, 4000);
+				}, 1000);
+				$timeout(function() { // not good to let the interval run indefinitely
+					$interval.cancel(checkInt);
+				}, 4000);
+			}
+			
 		};
 		
 		vm.truncateTitle = function(str) { // full title is supplied for title attribute, but we want it to be truncated when displayed on items that don't have jacket images
