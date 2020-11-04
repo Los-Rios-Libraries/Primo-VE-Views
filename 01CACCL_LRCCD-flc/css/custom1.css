@@ -122,29 +122,7 @@ prm-main-menu.isServicePage {display:unset;}
 #lr-onesearch-vid-headline {position:absolute; left:-999999px;}
 #lr-onesearch-vid-container {overflow: hidden; padding-top: 56.25% !important;position: relative;}
 #lr-onesearch-vid {border: 0; height: 100%;left: 0;position: absolute;top: 0; width: 100%;}
-/* new books on home page. as much as possible getting css from angularjs material */
-lr-newbooks-display ul {padding-left:0;}
-lr-newbooks-display li { min-width:110px; max-height:160px;  position: relative;  vertical-align:text-top; list-style-type:none; }
-lr-newbooks-display a {display:inline-block;}
-lr-newbooks-display img {display:inline-block; max-height:160px;}
-lr-newbooks-display img {border-radius:4px; box-shadow: 0 1px 1px rgba(0,0,0,.3),2px 1px 0 #fff,-3px 3px 10px -3px rgba(0,0,0,.3);}
-lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; overflow: hidden; line-height:initial;}
-.lr-newbook-title {display: none;} /* only shows if there's no cover */
-.no-cover a {width:120px; height:160px; vertical-align:bottom; border-radius: 4px; }
-.no-cover:nth-child(odd) a {background:#743182;background: linear-gradient(90deg,#000 0%, #743182 10%);} /* per-college */
-.no-cover:nth-child(even) a {font-family: "Helvetica Neue", Helvetica, sans-serif; font-size:80%; background:#0084AC; background: linear-gradient(90deg, #000 0%, #0084AC 10%);}/* per-college */
-.no-cover a { color:#fff; box-shadow:0 1px 1px rgba(0,0,0,.3),2px 1px 0 #fff,-3px 3px 10px -3px rgba(0,0,0,.3);}
-.no-cover img {display: none;}
-.no-cover .lr-newbook-title {display: block; padding:14px 8px 8px 14px; height: 100%;}
-.no-cover .lr-newbook-title:hover, .no-cover .lr-newbook-title:focus {background: rgba(0,0,0,0.3);}
-.no-cover .lr-newbook-maintitle {font-size:1.2em; font-stretch: condensed; line-height: 1em; display:block;}
-.no-cover .lr-newbook-subtitle {display:block; margin-top:8px;}
-.no-cover .lr-newbook-author {display: block;margin-top:8px;}
-.lr-play-vid {display:none;}
-.lr-format-VM .lr-play-vid {display:block;position:absolute; right:0; bottom:0; z-index:999; background: rgba(255,255,255,0.9);}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block; position:absolute; bottom:10px; background:rgba(255,255,255,0.9); padding-right:8px;}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-subtitle::before {content: ": "; margin-left: -3px;}
-.lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "- ";}
+
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
