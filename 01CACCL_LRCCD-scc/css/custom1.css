@@ -65,7 +65,7 @@ div.top-nav-bar * {
 	}
 
 /* Hover shades for top bar and advanced search with college color*/
-.md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]),prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):hover:not([disabled])
+.md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), .md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):focus:not([disabled]),prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):hover:not([disabled])
 {
     color: #8A0028;
 background-color: #E5E5E5;
