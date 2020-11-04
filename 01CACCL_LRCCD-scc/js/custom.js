@@ -81,54 +81,7 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
-	
-	// logo
-	app.component('prmSearchBarAfter', {
-		bindings: {parentCtrl: '<'},
-		controller: 'prmSearchBarAfterController',
-		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
-		
-		});
-	app.controller('prmSearchBarAfterController', ['$window', function($window) {
-		var vm = this;
-		vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
-		vm.scrollUp = function() { // force page to scroll up
-			$window.scrollTo(0,0);
-			return true;
-		};
-
-		
-	}]);
-	app.controller('exploreFooterAfterController', ['$window', function($window) {
-		var vm = this;
-		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
-		vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
-			$window.scrollTo(0,0);
-			return true;
-		};
-
-		vm.checkForContent = function () {
-			var content = angular.element(document.getElementsByTagName('md-content'));
-			if (content.length > 0) {
-				var h = 0;
-				for (var i = 0; i < content.length; i++) {
-					h += content[i].offsetHeight;
-				}
-				if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
-					return true;
-				}
-			}
-		};
-		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
-		vm.libraries = libraries;
-		vm.c19Page = c19Page;
-		vm.askUs = districtHost + 'ask-us/?' + colAbbr;
-		}]);
-
-	app.component('prmExploreFooterAfter', { // insert template into footer area
-		controller: 'exploreFooterAfterController',
-		templateUrl: custPackagePath + '/html/footer.html'
-	});
+	// ** START SCC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('lrNewbooksDisplay', {
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'
@@ -303,6 +256,53 @@
 			console.log(newBooksArr);
 		}
 	}]);
+	// ** END SCC-ONLY COMPONENT -- below this code is identical college-to-college**
+	// logo
+	app.component('prmSearchBarAfter', {
+		bindings: {parentCtrl: '<'},
+		controller: 'prmSearchBarAfterController',
+		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
+		
+		});
+	app.controller('prmSearchBarAfterController', ['$window', function($window) {
+		var vm = this;
+		vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
+		vm.scrollUp = function() { // force page to scroll up
+			$window.scrollTo(0,0);
+			return true;
+		};
+
+	}]);
+	app.controller('exploreFooterAfterController', ['$window', function($window) {
+		var vm = this;
+		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
+		vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
+			$window.scrollTo(0,0);
+			return true;
+		};
+
+		vm.checkForContent = function () {
+			var content = angular.element(document.getElementsByTagName('md-content'));
+			if (content.length > 0) {
+				var h = 0;
+				for (var i = 0; i < content.length; i++) {
+					h += content[i].offsetHeight;
+				}
+				if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
+					return true;
+				}
+			}
+		};
+		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
+		vm.libraries = libraries;
+		vm.c19Page = c19Page;
+		vm.askUs = districtHost + 'ask-us/?' + colAbbr;
+		}]);
+
+	app.component('prmExploreFooterAfter', { // insert template into footer area
+		controller: 'exploreFooterAfterController',
+		templateUrl: custPackagePath + '/html/footer.html'
+	});
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
 		controller: 'lrHomepageFaqController',
