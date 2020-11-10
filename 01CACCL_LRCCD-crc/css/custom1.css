@@ -56,7 +56,7 @@ prm-topbar {
 
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
-    color: #11357f !important;
+    color: #00263D !important;
 }
 
 /* Change background color to white for top bar*/
@@ -67,13 +67,13 @@ div.top-nav-bar * {
 /* Hover shades for top bar and advanced search with college color*/
 .md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), .md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):focus:not([disabled]),prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):hover:not([disabled])
 {
-    color: #11357f;
+    color: #00263D;
 background-color: #E5E5E5;
 }
 
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
-  background-color: #11357f; 
+  background-color: #00263D; 
   }
 		/* fixes for collection header */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
@@ -94,7 +94,7 @@ md-card-title h2, .md-headline {font-weight:500;}
 .search-wrapper .flex-lg-65 {max-width:80%}
 #lr-onesearch {width:25%;text-align:right;top:23px;padding-right:8px;position:absolute;z-index:99999}
 #lr-onesearch a:hover, #lr-onesearch a:focus {
-    background-color: #081e49;
+    background-color: #00263D;
 } 
 /* adjust for advanced search */
 .advanced-search-backdrop.visible + prm-search-bar-after #lr-onesearch a {background:#999; padding-top:10px; right:2px;}
@@ -108,7 +108,7 @@ prm-main-menu.isServicePage {display:unset;}
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
  .md-button.button-confirm, .service-form-static-panel button.button-confirm prm-icon + span, .service-form-static-panel button.button-confirm prm-icon svg path {
-    color: #fc8339; }
+    color: #F26E21; }
     .md-button.button-confirm:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:hover:not([disabled]), .md-button.button-confirm:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:focus:not([disabled]), .md-button.button-confirm.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.hovered:not([disabled]), .md-button.button-confirm.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.md-focused:not([disabled]), .md-button.button-confirm._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path._md-focused:not([disabled]) {
        color: #b44f00;
       background-color: rgba(245, 128, 37, 0.1); }
@@ -177,7 +177,7 @@ prm-alma-viewit-items .spaced-rows h4 {display:unset;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
-prm-service-button .button-as-link.md-button { border: 1px solid #11357f; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #11357f;color: #fff;}
+prm-service-button .button-as-link.md-button { border: 1px solid #00263D; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #00263D;color: #fff;}
 /* hide terms of use selection icon */
 md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 /* allow full Loan period label to show */
@@ -190,7 +190,7 @@ md-select-menu._md-overflow {max-height: unset;}
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
 
 /* footer styles */
-#footer {background:#11357f;  border-top:4px solid #fc8339; color:#fff;}
+#footer {background:#00263D;  border-top:4px solid #F26E21; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer a:hover, #footer a:focus {text-decoration: none;}
 #footer ul {padding-left: 0; list-style-type: none;}
