@@ -127,17 +127,20 @@
 			return array;
 		};
 		vm.makeId = function(str) { // only add id attribute for titles iwth proper ISBN or Kanopy id
-			if (str.indexOf('loc_') === 0) {
-				var mmsId = str.match(/\d{14}5325/);
-				if (mmsId !== null) {
-					return 'lr_loc_' + mmsId[0];
-				}				
-			}
-			else if (idRegex.test(str) === true) {
-				return 'lr_' + str;
+			str = str || '';
+			if (str !== '') {
+				if (str.indexOf('loc_') === 0) {
+					var mmsId = str.match(/\d{14}5325/);
+					if (mmsId !== null) {
+						return 'lr_loc_' + mmsId[0];
+					}
+				} else if (idRegex.test(str) === true) {
+					return 'lr_' + str;
+				} 
 			}
 		};
 		vm.checkIdentifier = function(str) { // titles without proper ISBN or Kanopy ID are treated as no-cover
+			str = str || '';
 			str = str.replace(/^lr_/, '');
 			if (idRegex.test(str) === false) {
 				return 'no-cover';
@@ -145,6 +148,7 @@
 		};
 
 		vm.imgSrc = function(str) { // determines source of images; syndetics uses isbn, kanopy has its own system
+			str = str || '';
 			var arr;
 			if (str.indexOf('kan_') === 0) {
 				arr = str.split('kan_');
@@ -158,21 +162,22 @@
 			}
 		};
 		vm.checkImg = function(str) { // syndetics returns a 1x1 pixel image if it doesn't have a jacket based on isbn queried. so detect this and change classname when that happens to allow alternative styling
-			if (/(kan|loc)_/.test(str) === false) {
-				var checkInt = $interval(function() { // interval allows some time for jacket to load
-					var el = document.getElementById(str);
-					var img = el.querySelector('#' + str + ' img');
-					if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
-						if ((img.complete === true) && (img.height === 1)) {
-							angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+			if (str !== 'lr_') { // check forwhen identifier is not found
+				if (/(kan|loc)_/.test(str) === false) {
+					var checkInt = $interval(function() { // interval allows some time for jacket to load
+						var el = document.getElementById(str);
+						var img = el.querySelector('#' + str + ' img');
+						if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
+							if ((img.complete === true) && (img.height === 1)) {
+								angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+							}
 						}
-					}
-				}, 1000);
-				$timeout(function() { // not good to let the interval run indefinitely
-					$interval.cancel(checkInt);
-				}, 4000);
-			}
-			
+					}, 1000);
+					$timeout(function() { // not good to let the interval run indefinitely
+						$interval.cancel(checkInt);
+					}, 4000);
+				}
+			}			
 		};
 		
 		vm.truncateTitle = function(str) { // full title is supplied for title attribute, but we want it to be truncated when displayed on items that don't have jacket images
@@ -230,6 +235,7 @@
 			return 'lr-format-' + str; // helps id book vs. video
 		};
 		vm.varyFlex = function(str) { // allows negative space, and kanopy images to be twice the width
+			str = str || '';
 			if (str.indexOf('kan_') > -1) {
 				return ['flex-gt-sm-40', 'flex-100'];
 			}
