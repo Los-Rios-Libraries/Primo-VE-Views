@@ -402,6 +402,28 @@
 			return true;
 		};
 	}]);
+	// collection discovery
+	app.component('prmCollectionSearchAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-collection-blurb parent-ctrl="$ctrl.parentCtrl"></lr-collection-blurb>'
+	});
+	app.component('lrCollectionBlurb', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		templateUrl: custPackagePath + '/html/collections/blurb.html',
+		controller: function() {
+			var vm = this;
+			var collectionID = vm.parentCtrl.$stateParams.collectionId;
+			vm.showBlurb = function(colID) {
+				if (colID === collectionID) {
+					return true;
+				}
+			};
+		}
+	});
 	// note on lack of requesting during COVID-19 closure
 	app.component('prmOpacAfter', { 
 		template: '<md-content layout-margin><p><md-icon md-svg-icon="action:ic_announcement_24px"></md-icon>Please note: during the temporary library closures in response to the COVID-19 pandemic, item requests are unavailable. We apologize for this inconvenience and encourage you to explore online library resources.</p></md-content>'
