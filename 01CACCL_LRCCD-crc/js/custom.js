@@ -425,48 +425,6 @@
 			};
 		}
 	});
-	app.component('prmSearchResultThumbnailContainerAfter', { // grab thumbnail images from films on demand, naxos, maybe others
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: ['$timeout', '$interval', function($timeout, $interval) {
-			var control = this.parentCtrl.item.pnx.control;
-			var replaceImages = function(url, recordid) {
-				var cancelProc = $timeout(function() {
-					$interval.cancel(wait);
-				}, 5000);
-				var wait = $interval(function() {
-					var images = document.querySelectorAll('#SEARCH_RESULT_RECORDID_' + recordid + ' prm-search-result-thumbnail-container img');
-					if (images.length > 0) {
-						$timeout.cancel(cancelProc);
-						if (images.length > 1) { // exl has been bad and put duplicate ids on the page in full display...
-							angular.element(images[1]).attr('src', url);
-						} else { // brief results
-							angular.element(images[0]).attr('src', url);
-						}
-						$interval.cancel(wait);
-					}
-				}, 100);
-			};
-			var sourceidArr = control.sourceid || [''];
-			var sourceid = sourceidArr[0];
-			var recordidArr = control.recordid || [''];
-			var recordid = recordidArr[0];
-			var sourcerecordidArr = control.sourcerecordid || [''];
-			var sourcerecordid = sourcerecordidArr[0];
-			var url;
-			if (recordid.indexOf('infobase_filmsondemand') > -1) { // use this instead of sourceid since there are multiple FoD collections
-				url = 'https://fod.infobase.com/image/' + sourcerecordid;
-				replaceImages(url, recordid);
-			}
-			else if (sourceid === 'CZN') {
-				url = 'https://cdn.naxosmusiclibrary.com/sharedfiles/images/cds/others/' +  sourcerecordid + '.gif';
-				replaceImages(url, recordid);			
-			}
-
-		}]
-
-	});
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
