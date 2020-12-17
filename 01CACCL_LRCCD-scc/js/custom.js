@@ -478,50 +478,6 @@
 			
 		}]
 	});
-	app.component('prmFacetExactAfter', {
-		bindings: {
-			parentCtrl: '<'
-		},
-		controller: ['$interval', '$timeout', '$window', function($interval, $timeout, $window) {
-			// check for filters and remove as needed.
-			var vm = this;
-			if (vm.parentCtrl.facetGroup.name === 'tlevel') {
-				var tab = vm.parentCtrl.configurationUtil.searchFieldsService._tab;
-				if ((tab === 'everything') || (tab === 'books_videos_in_library')) {
-					var checkLimiters = $interval(function() { // takes some time for them to appear so need to do an interval
-						var stopCheck = $timeout(function() {
-							$interval.cancel(checkLimiters);
-						}, 10000);
-						var physical = angular.element(document.querySelector('[data-facet-value="tlevel-available_p"]'));
-						var online = angular.element(document.querySelector('[data-facet-value="tlevel-online_resources"]'));
-						if ((physical.length > 0) || (online.length > 0)) {
-							$interval.cancel(checkLimiters);
-							$timeout.cancel(stopCheck);
-							online.css('display', 'none');
-							physical.css('display', 'none');
-							// now hide whole group if no limiters are visible, to heading
-							if ($window.innerWidth > 959) { // this doesn't work in mobile view because all filters are hidden by default
-								var group = angular.element(document.querySelector('[data-facet-group="tlevel"]'));
-								var els = angular.element(document.querySelectorAll('[data-facet-value^="tlevel"]'));
-								var count = 0;
-								for (var i = 0; i < els.length; i++) {
-									if (els[i].offsetParent !== null) {
-										count++;
-									}
-								}
-								if (count === 0) {
-									group.css('display', 'none');
-								}
-							}
-
-						}
-					}, 50);
-				}
-
-			}
-
-		}]
-	});
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
