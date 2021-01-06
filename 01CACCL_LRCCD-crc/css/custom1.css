@@ -35,8 +35,6 @@ prm-request-services {
 prm-request-services .alert-bar {
 	display:none;
 	}
-/* Hide textbooks top menu link for closure while keeping order consistent for analytics */
-#mainMenu div:nth-child(2), .main-menu-button:nth-child(2) { display: none;}
 /* hide Browse on Links Menu so that we can have it active, will link elsewhere. note for mobile this must be the last menu item */
 div[data-main-menu-item="BrowseSearch"], .main-menu-button:last-child {
 	display:none;
