@@ -8,6 +8,11 @@
 		<md-card-content>
 			<div>
 				<ul layout="row" layout-wrap>
+					<!-- Analytics report columns
+					Column1: Material type code
+					Column3: ISBN or other identifier
+					Column 4: MMS Id, truncated
+					Column 5: Title (Complete) -->
 					<li layout-margin ng-repeat="book in $ctrl.bookList" ng-class="[$ctrl.itemFormat(book.Column1), $ctrl.varyFlex(book.Column3), $ctrl.checkIdentifier(book.Column3)]" ng-attr-id="{{$ctrl.makeId(book.Column3)}}">
 						<a target="_blank" ng-attr-title="{{book.Column5}}" ng-href="/view/uresolver/01CACCL_LRCCD/openurl?u.ignore_date_coverage=true&amp;portfolio_pid={{book.Column4}}5325&amp;Force_direct=true">
 							<img ng-src="{{$ctrl.imgSrc(book.Column3);}}" alt="{{book.Column5}}" ng-init="$ctrl.checkImg('lr_' + book.Column3);" onerror="this.src='https://via.placeholder.com/140x160';">
