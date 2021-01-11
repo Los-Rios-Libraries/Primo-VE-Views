@@ -88,6 +88,7 @@
 	});
 	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', function($http, $timeout,$interval) {
 		var vm = this;
+		vm.colAbbr = colAbbr;
 		var numToShow = 8;
 		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^(kan|loc)_/;
 		vm.bookList = false; // when this becomes true, content block will show
