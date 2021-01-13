@@ -1,11 +1,20 @@
 <!-- to stop cookie from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce('11-3-2020') This would mean the announcemnt would stop showing on November 4 2020 -->
 <md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce('12-18-2020')">
+<!-- lrShowAnnounce takes an object as argument. expiration stops the banner from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce({expiration : '11-3-2020'}) This would mean the announcemnt would stop showing on November 4 2020
+cookieId, if used, must be the same string that is used in lrHideAnnounce
+-->
+<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
+cookieId: 'curbside'
+})">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
 		Do you need to return technology or library materials? Do it this week. 
 		<a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">Find out how.</a>
 		<!-- cookie will expire in 14 days by default; you can change by including a number of days in argument, e.g. $ctrl.lrHideAnnounce(21) -- this would mean cookie would expire 21 days after user clicks hide button -->
 		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce(5)">Hide this announcement
+		<!-- cookie will expire in 14 days by default; you can change by including a number (integer) of days as in argument, e.g. $ctrl.lrHideAnnounce({expiration: 21}) -- this would mean cookie would expire 21 days after user clicks hide button
+		Also remember to include cookieId if it is used in lrShowAnnounce
+		-->
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
 		</md-button>
 	</p>
