@@ -514,16 +514,14 @@
 	});
 	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function($cookies, $timeout) {
 		var vm = this;
-		var cookieKey = 'lrHideOSAnnce';
 		vm.fade = ''; // used for adding classes when dissmissing
 		vm.hide = false;
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
-		vm.hideCookie = $cookies.get(cookieKey) || '';
-		vm.lrShowAnnounce = function(str) { // n should be in form m-d-yyyy
+		vm.lrShowAnnounce = function(obj) { // n should be in form m-d-yyyy
 			if (vm.hide === true) { // this happens after dismiss button is pressed
 				return false;
 			}
-			var announceExp = str || '';
+			var announceExp = obj.expiration || '';
 			if (announceExp !== '') {
 				var arr = announceExp.split('-');
 				var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
@@ -534,13 +532,15 @@
 					return false;
 				}
 			}
-			if ((vm.refPage !== '') && (vm.hideCookie !== 'true')) {
+			var hideCookie = $cookies.get(obj.cookieId) || '';
+			if ((vm.refPage !== '') && (hideCookie !== 'true')) {
 				return true;
 			}
 		};
-		vm.lrHideAnnounce = function(num) {
+		vm.lrHideAnnounce = function(obj) {
+			var cookieKey = obj.cookieId || 'lrHideOSAnnce';
 			var d = new Date();
-			var expDays = num || 14; // default cookie length is 14 days; if shorter or longer, include in function
+			var expDays = obj.expiration || 14; // default cookie length is 14 days; if shorter or longer, include in function
 			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks
 			$cookies.put(cookieKey, 'true', {
 				'expires': d.toUTCString(),
