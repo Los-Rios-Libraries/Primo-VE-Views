@@ -321,18 +321,29 @@
 		vm.fade = ''; // used for adding classes when dissmissing
 		vm.hide = false;
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+		var getDate = function(str) {
+			var arr = str.split('-');
+			var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
+			var exp = new Date();
+			exp.setFullYear(arr[2], m, arr[1]);
+			return exp;
+		};
 		vm.lrShowAnnounce = function(obj) { // n should be in form m-d-yyyy
 			if (vm.hide === true) { // this happens after dismiss button is pressed
 				return false;
 			}
+			var announceStart = obj.startDate || '';
 			var announceExp = obj.expiration || '';
+			var today = new Date();
 			if (announceExp !== '') {
-				var arr = announceExp.split('-');
-				var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
-				var exp = new Date();
-				exp.setFullYear(arr[2], m, arr[1]);
-				var today = new Date();
+				exp = getDate(announceExp);
 				if ((today - exp) > 0) {
+					return false;
+				}
+			}
+			if (announceStart !== '') {
+				var start = getDate(announceStart);
+				if ((today - start) < 0){
 					return false;
 				}
 			}

@@ -1,4 +1,5 @@
 <!-- lrShowAnnounce takes an object as argument. expiration stops the banner from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce({expiration : '11-3-2020'}) This would mean the announcemnt would stop showing on November 4 2020
+startDate uses the same format and delays starting to show the announcement until that date.
 cookieId, if used, must be the same string that is used in lrHideAnnounce
 -->
 <md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
