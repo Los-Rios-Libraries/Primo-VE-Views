@@ -2,18 +2,23 @@
 startDate uses the same format and delays starting to show the announcement until that date.
 cookieId, if used, must be the same string that is used in lrHideAnnounce and should be college-specific
 -->
-<!--<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
+<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
+cookieId: 's-curbside',
+startDate: '1-16-2021',
+endDate: '2-21-2021'
 })">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Library services continue online during COVID-19-related closures.
-		<a ng-href="{{$ctrl.refPage}}" target="_blank">Find out more.</a> -->
+		Books are now available for checkout during limited hours. <a href="https://researchguides.flc.losrios.edu/library_closure/checkout" target="_blank">Learn more</a>. 
 		<!-- cookie will expire in 14 days by default; you can change by including a number (integer, so no quotation marks) of days as a value of daysToHide, e.g. $ctrl.lrHideAnnounce({daysToHide: 21}) -- this would mean cookie would expire 21 days after user clicks hide button
 		Also remember to include cookieId if it is used in lrShowAnnounce--must be the same string
 		-->
-		<!-- <md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce({
-		})" aria-label="close">Hide this announcement
+		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce({
+		daysToHide: 30,
+		cookieId: 's-curbside'
+		})">
+			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
 		</md-button>
 	</p>
-</md-content>-->
+</md-content>
