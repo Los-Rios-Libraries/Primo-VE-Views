@@ -529,10 +529,10 @@
 				return false;
 			}
 			var announceStart = obj.startDate || '';
-			var announceExp = obj.expiration || '';
+			var announceExp = obj.endDate || '';
 			var today = new Date();
 			if (announceExp !== '') {
-				exp = getDate(announceExp);
+				var exp = getDate(announceExp);
 				if ((today - exp) > 0) {
 					return false;
 				}
@@ -551,7 +551,7 @@
 		vm.lrHideAnnounce = function(obj) {
 			var cookieKey = obj.cookieId || 'lrHideOSAnnce';
 			var d = new Date();
-			var expDays = obj.expiration || 14; // default cookie length is 14 days; if shorter or longer, include in function
+			var expDays = obj.daysToHide || 14; // default cookie length is 14 days; if shorter or longer, include in function
 			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks
 			$cookies.put(cookieKey, 'true', {
 				'expires': d.toUTCString(),
