@@ -3,7 +3,9 @@ startDate uses the same format and delays starting to show the announcement unti
 cookieId, if used, must be the same string that is used in lrHideAnnounce
 -->
 <md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
-cookieId: 'curbside'
+cookieId: 'curbside',
+startDate: '1-13-2021',
+expiration: '2-21-2021'
 })">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
