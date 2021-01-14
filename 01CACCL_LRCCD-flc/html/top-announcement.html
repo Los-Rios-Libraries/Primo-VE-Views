@@ -3,7 +3,7 @@ startDate uses the same format and delays starting to show the announcement unti
 cookieId, if used, must be the same string that is used in lrHideAnnounce and should be college-specific
 -->
 <md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
-cookieId: 's-curbside',
+cookieId: 'f-curbside',
 startDate: '1-16-2021',
 endDate: '2-21-2021'
 })">
@@ -15,7 +15,7 @@ endDate: '2-21-2021'
 		-->
 		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce({
 		daysToHide: 30,
-		cookieId: 's-curbside'
+		cookieId: 'f-curbside'
 		})">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
