@@ -175,7 +175,7 @@ form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 md-select-menu._md-overflow {max-height: unset;}
 
 /* hide "other item" and digitization requests, which should not be showing but are, march 2 2021 */
-button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
+button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
 
