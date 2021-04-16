@@ -486,6 +486,7 @@
 		vm.fade = ''; // used for adding classes when dissmissing
 		vm.hide = false;
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+		vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
 		var getDate = function(str) {
 			var arr = str.split('-');
 			var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
@@ -512,13 +513,16 @@
 					return false;
 				}
 			}
-			var hideCookie = $cookies.get(obj.cookieId) || '';
-			if ((vm.refPage !== '') && (hideCookie !== 'true')) {
+			if (obj.cookieID) {
+				vm.cookieID = obj.cookieID + '_' + colAbbr;
+			}
+			var hideCookie = $cookies.get(vm.cookieID) || '';
+			if (hideCookie !== 'true') {
 				return true;
 			}
 		};
 		vm.lrHideAnnounce = function(obj) {
-			var cookieKey = obj.cookieId || 'lrHideOSAnnce';
+			var cookieKey = vm.cookieID;
 			var d = new Date();
 			var expDays = obj.daysToHide || 14; // default cookie length is 14 days; if shorter or longer, include in function
 			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks

@@ -1,6 +1,6 @@
-<!-- lrShowAnnounce takes an object as argument. endDate stops the banner from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce({expiration : '11-3-2020'}) This would mean the announcemnt would stop showing on November 4 2020
+<!-- lrShowAnnounce takes an object as argument. endDate stops the banner from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce({endDate : '11-3-2020'}) This would mean the announcemnt would stop showing on November 4 2020
 startDate uses the same format and delays starting to show the announcement until that date.
-cookieId, if used, must be the same string that is used in lrHideAnnounce and should be college-specific
+cookieID is optional but recommended when you change the announcement to ensure that settings from a previous announcement don't interfere
 -->
 <!--<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
 })">
@@ -9,7 +9,6 @@ cookieId, if used, must be the same string that is used in lrHideAnnounce and sh
 		Library services continue online during COVID-19-related closures.
 		<a ng-href="{{$ctrl.refPage}}" target="_blank">Find out more.</a> -->
 		<!-- cookie will expire in 14 days by default; you can change by including a number (integer, so no quotation marks) of days as a value of daysToHide, e.g. $ctrl.lrHideAnnounce({daysToHide: 21}) -- this would mean cookie would expire 21 days after user clicks hide button
-		Also remember to include cookieId if it is used in lrShowAnnounce--must be the same string
 		-->
 <!--		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce({
 			})" aria-label="close">Hide this announcement
