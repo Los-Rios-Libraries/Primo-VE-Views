@@ -487,6 +487,7 @@
 		vm.hide = false;
 		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 		vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
+		vm.daysToHide = 14; // default days that banner is hidden if user dismisses
 		var getDate = function(str) {
 			var arr = str.split('-');
 			var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
@@ -494,12 +495,15 @@
 			exp.setFullYear(arr[2], m, arr[1]);
 			return exp;
 		};
-		vm.lrShowAnnounce = function(obj) { // n should be in form m-d-yyyy
+		vm.lrShowAnnounce = function(obj) {
 			if (vm.hide === true) { // this happens after dismiss button is pressed
 				return false;
 			}
 			var announceStart = obj.startDate || '';
 			var announceExp = obj.endDate || '';
+			if (obj.daysToHide) {
+				vm.daysToHide = obj.daysToHide;
+			}
 			var today = new Date();
 			if (announceExp !== '') {
 				var exp = getDate(announceExp);
@@ -521,11 +525,10 @@
 				return true;
 			}
 		};
-		vm.lrHideAnnounce = function(obj) {
+		vm.lrHideAnnounce = function() {
 			var cookieKey = vm.cookieID;
 			var d = new Date();
-			var expDays = obj.daysToHide || 14; // default cookie length is 14 days; if shorter or longer, include in function
-			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks
+			d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
 			$cookies.put(cookieKey, 'true', {
 				'expires': d.toUTCString(),
 				'path' : '/',
