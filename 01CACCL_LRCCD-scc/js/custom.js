@@ -528,6 +528,7 @@
 			d.setTime(d.getTime() + (expDays * 24 * 60 * 60 * 1000)); // two weeks
 			$cookies.put(cookieKey, 'true', {
 				'expires': d.toUTCString(),
+				'path' : '/',
 				'secure': true
 			}); // set cookie to stop showing announcement
 			vm.fade = 'lr-fadeout'; // allows animation via class
