@@ -299,7 +299,7 @@
 			exp.setFullYear(arr[2], m, arr[1]);
 			return exp;
 		};
-		vm.lrShowAnnounce = function(obj) {
+		vm.showAnnounce = function(obj) {
 			if (vm.hide === true) { // this happens after dismiss button is pressed
 				return false;
 			}
@@ -329,7 +329,7 @@
 				return true;
 			}
 		};
-		vm.lrHideAnnounce = function() {
+		vm.hideAnnounce = function() {
 			var cookieKey = vm.cookieID;
 			var d = new Date();
 			d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks

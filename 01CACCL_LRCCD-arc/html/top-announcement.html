@@ -3,16 +3,16 @@ startDate uses the same format and delays starting to show the announcement unti
 cookieID is optional but recommended when you change the announcement to ensure that settings from a previous announcement don't interfere
 daysToHide is a number; if you leave it out, it will be hidden for 14 days.
 -->
-<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
 cookieID: 'a-curbside',
 startDate: '1-18-2021',
 endDate: '2-21-2021',
+<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 daysToHide: 30
 });">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
 		Books and DVDs are now available for checkout during limited hours. <a href="https://answers.library.losrios.edu/arc/faq/336283" target="_blank">Learn more</a>. 
-		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce();">
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
 		</md-button>

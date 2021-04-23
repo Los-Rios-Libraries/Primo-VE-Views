@@ -2,10 +2,10 @@
 startDate uses the same format and delays starting to show the announcement until that date.
 cookieID is optional but recommended when you change the announcement to ensure that settings from a previous announcement don't interfere
 -->
-<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.lrShowAnnounce({
 cookieID: 'f-curbside',
 startDate: '1-16-2021',
 endDate: '2-21-2021',
+<md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 daysToHide: 30
 })">
 	<p layout-margin layout-align="center center">
@@ -13,7 +13,7 @@ daysToHide: 30
 		Books are now available for checkout during limited hours. <a href="https://researchguides.flc.losrios.edu/library_closure/checkout" target="_blank">Learn more</a>. 
 		<!-- cookie will expire in 14 days by default; you can change by including a number (integer, so no quotation marks) of days as a value of daysToHide, e.g. $ctrl.lrHideAnnounce({daysToHide: 21}) -- this would mean cookie would expire 21 days after user clicks hide button
 		-->
-		<md-button class="md-raised" ng-click="$ctrl.lrHideAnnounce()">
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
 		</md-button>
