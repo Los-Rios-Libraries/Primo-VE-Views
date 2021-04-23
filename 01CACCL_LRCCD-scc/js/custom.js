@@ -532,13 +532,13 @@
 			var cookieKey = vm.cookieID;
 			var d = new Date();
 			d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
-			$cookies.put(cookieKey, 'true', {
-				'expires': d.toUTCString(),
-				'path' : '/',
-				'secure': true
-			}); // set cookie to stop showing announcement
 			vm.fade = 'lr-fadeout'; // allows animation via class
 			$timeout(function() {
+				$cookies.put(cookieKey, 'true', {
+					'expires': d.toUTCString(),
+					'path' : '/',
+					'secure': true
+				}); // set cookie to stop showing announcement
 				vm.hide = true; // removes element so space stops showing
 			}, 300);
 			return true;
