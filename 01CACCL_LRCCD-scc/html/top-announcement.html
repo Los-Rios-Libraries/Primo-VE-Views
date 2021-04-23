@@ -1,8 +1,4 @@
-<!-- lrShowAnnounce takes an object as argument. endDate stops the banner from showing past certain date, include string as argument in form 'm-d-yyyy', e.g. $ctrl.lrShowAnnounce({endDate : '11-3-2020'}) This would mean the announcemnt would stop showing on November 4 2020
-startDate uses the same format and delays starting to show the announcement until that date.
-cookieID is optional but recommended when you change the announcement to ensure that settings from a previous announcement don't interfere
-daysToHide is a number; if you leave it out, it will be hidden for 14 days.
--->
+<!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content id="top-announce" ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 endDate: '4-22-2020',
 cookieID: 'ebsco-problem',
