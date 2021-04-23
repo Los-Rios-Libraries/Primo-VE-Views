@@ -281,11 +281,14 @@
 		};
 		
 	});
-	app.component('prmBackToLibrarySearchButtonAfter', { // this allows dismissable announcement to show just under search bar area
-		controller: 'prmBackToLibrarySearchButtonAfterController',
+	app.component('prmBackToLibrarySearchButtonAfter', { 
+		template: '<lr-top-announcement></lr-top-announcement>',
+	});
+	app.component('lrTopAnnouncement', { // this allows dismissable announcement to show just under search bar area
+		controller: 'lrTopAnnouncementController',
 		templateUrl: custPackagePath + '/html/top-announcement.html' // enter content into / uncomment this template to show the announcement
 	});
-	app.controller('prmBackToLibrarySearchButtonAfterController', ['$cookies', '$timeout', function($cookies, $timeout) {
+	app.controller('lrTopAnnouncementController', ['$cookies', '$timeout', function($cookies, $timeout) {
 		var vm = this;
 		vm.fade = ''; // used for adding classes when dissmissing
 		vm.hide = false;
