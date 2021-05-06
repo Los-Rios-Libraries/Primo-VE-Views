@@ -121,12 +121,15 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .lr-newbook-title {display: none;} /* only shows if there's no cover */
 .no-cover a {width:120px; height:160px; vertical-align:bottom; border-radius: 4px; }
 .no-cover:nth-child(odd) a {background:#800a28;background: linear-gradient(90deg, #000 0%, #800a28 10%);} /* per-college */
-.no-cover:nth-child(even) a {font-family: "Helvetica Neue", Helvetica, sans-serif; font-size:80%; background:#4d4d4d; background: linear-gradient(90deg, #000 0%, #4d4d4d 10%);}/* per-college */
+.no-cover:nth-child(even) a { background:#4d4d4d; background: linear-gradient(90deg, #000 0%, #4d4d4d 10%);}/* per-college */
+.no-cover:nth-child(3n) a {font-family: "Helvetica Neue", Helvetica, sans-serif; font-size:80%;}
 .no-cover a { color:#fff; box-shadow:0 1px 1px rgba(0,0,0,.3),2px 1px 0 #fff,-3px 3px 10px -3px rgba(0,0,0,.3);}
 .no-cover img {display: none;}
 .no-cover .lr-newbook-title {display: block; padding:14px 8px 8px 14px; height: 100%; text-align: center;}
 .no-cover .lr-newbook-title:hover, .no-cover .lr-newbook-title:focus {background: rgba(0,0,0,0.3);}
 .no-cover .lr-newbook-maintitle {font-size:1.2em; font-stretch: condensed; line-height: 1em; display:block;}
+.no-cover:nth-child(3n) .lr-newbook-maintitle {text-transform:uppercase;}
+.no-cover:nth-child(5n) .lr-newbook-maintitle {font-family: Georgia, serif; font-size:1em;}
 .no-cover .lr-newbook-subtitle {display:block; margin-top:8px;}
 .no-cover .lr-newbook-author {display: block;margin-top:8px;}
 .lr-play-vid {display:none;}
