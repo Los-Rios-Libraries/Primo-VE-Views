@@ -68,7 +68,8 @@ background-color: #E5E5E5;
 	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
 	prm-collection-gallery-header .collection-info {background:rgba(0,0,0,0.4);}
 /* announcement below search bar, if used */
-lr-top-announcement md-content {text-align:center; font-size:1.3rem; /*arc*/ background:#F8E6E9 !important;}
+lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*arc*/ background:#F8E6E9 !important;}
+lr-top-announcement .md-button {color:#000;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */
