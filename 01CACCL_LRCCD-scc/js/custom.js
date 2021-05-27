@@ -3,7 +3,7 @@
 	/* college-specific variables */
 	var colAbbr = 'scc'; 
 	var libchatHash = 'c5c1abe3b80e070681d3fa045fc19bf4'; 
-	var c19Page = 'https://www.scc.losrios.edu/student-resources/library/covid-19-faq';
+	var c19Page = 'https://scc.losrios.edu/student-resources/library/covid-19-faq';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -22,7 +22,7 @@
 		};
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
-	var districtHost = 'https://www.library.losrios.edu/';
+	var districtHost = 'https://library.losrios.edu/';
 	var filePath = ''; 
 	if (viewCode.env === 'CC') {
 		filePath = colAbbr + '/bitbucket/lsp-related-tools-and-resources/';

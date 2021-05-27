@@ -22,7 +22,7 @@
 		};
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
-	var districtHost = 'https://www.library.losrios.edu/';
+	var districtHost = 'https://library.losrios.edu/';
 	var filePath = ''; 
 	if (viewCode.env === 'CC') {
 		filePath = colAbbr + '/bitbucket/lsp-related-tools-and-resources/';
