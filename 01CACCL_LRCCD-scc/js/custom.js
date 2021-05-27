@@ -86,11 +86,19 @@
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'
 	});
-	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', function($http, $timeout,$interval) {
+	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', '$attrs', function($http, $timeout,$interval,$attrs) {
 		var vm = this;
 		vm.colAbbr = colAbbr;
-		var numToShow = 8;
 		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^(kan|loc)_/;
+		console.log($attrs.model);
+		var params = JSON.parse($attrs.model); // set in model attribute of directive. see https://stackoverflow.com/a/23612752/1903000
+		var numToShow = params.numToShow || 8; // default is 8
+		vm.cardName = params.cardName || 'Add a heading';
+		if (!(params.reportName)) {
+			console.log('no Analytics report indicated');
+			return false;
+		}
+		var newBooksArr = {}; // using object allows this to be used more tha once
 		vm.bookList = false; // when this becomes true, content block will show
 		var makeList = function(arr) { // the main function for displaying the books
 			if (arr.length < numToShow) { // if anyone keeps showing more and gets to the end of the array...
@@ -110,7 +118,7 @@
 				}
 
 			}
-			newBooksArr.splice(0, numToShow); // hm... this means that if you go elsewhere in primo and return to the home page, the array is reduced in size from what it was. Maybe that's ok
+			newBooksArr[params.report].splice(0, numToShow); // hm... this means that if you go elsewhere in primo and return to the home page, the array is reduced in size from what it was. Maybe that's ok
 		};
 		var shuffleArr = function(array) { // randomizes the array. https://stackoverflow.com/a/2450976/1903000
 			var currentIndex = array.length,
@@ -244,19 +252,19 @@
 				return ['flex-20', 'flex-xs-40'];
 			}
 		};
-		if (typeof(newBooksArr) !== 'undefined') {
+		if (typeof(newBooksArr[params.report]) !== 'undefined') {
 			// this will happen if user comes back to home page from elsewhere in Primo
-			makeList(newBooksArr);
+			makeList(newBooksArr[params.report]);
 		} else {
 			// this will happen on initial page load
-			$http.get(districtHost + filePath + 'utilities/analytics/analytics-proxy.php?report=onesearch_new_online')
+			$http.get(districtHost + filePath + 'utilities/analytics/analytics-proxy.php?report=' + params.reportName)
 				.then(function(response) {
 					var arr = response.data.QueryResult.ResultXml.rowset.Row; // table
 					console.log(arr);
 					// randomize the array
 					var shuffledArr = shuffleArr(arr);
-					window.newBooksArr = shuffledArr; // cache randomized array of new title objects as global variable
-					makeList(newBooksArr);
+					newBooksArr[params.report] = shuffledArr; // cache randomized array of new title objects as object property value
+					makeList(newBooksArr[params.report]);
 				}, function(response) { // on error, hide the card and log error to console
 					vm.bookList = false;
 					console.log('http get error: ');
@@ -264,17 +272,17 @@
 				});
 		}
 		vm.addBooks = function() {
-			makeList(newBooksArr);
+			makeList(newBooksArr[params.report]);
 		};
 		vm.showButton = function() { // removes button if anyone gets all the way to the end of the array
-			if (newBooksArr.length > 0) {
+			if (newBooksArr[params.report].length > 0) {
 				return true;
 			}
 		};
 		// keep track of this array in console, for testing
 		console.log('newBooksArr: ');
 		if (typeof(newBooksArr) !== 'undefined') {
-			console.log(newBooksArr);
+			console.log(newBooksArr[params.report]);
 		}
 	}]);
 	// ** END SCC-ONLY COMPONENT -- below this code is identical college-to-college**
