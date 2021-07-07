@@ -9,7 +9,7 @@
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=all" target="_blank">EBSCO Search</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://scholar.google.com/" target="_blank">Google Scholar</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://infotrac.galegroup.com/itweb?db=GVRL" target="_blank">Gale eBooks</a></li>
-					<li><a href="https://www.library.losrios.edu/resources/databases/?category=news" target="_blank">Newspaper Databases</a></li>
+					<li><a href="https://library.losrios.edu/resources/databases/?category=news" target="_blank">Newspaper Databases</a></li>
 
 				</ul>
 				<p ng-if="$ctrl.askUs">
@@ -25,7 +25,7 @@
 			<ul>
 				<li><a href="https://researchguides.scc.losrios.edu" target="_blank">Research Guides</a></li>
 				<li><a href="https://lrccd.instructure.com/enroll/BKYX4R" target="_blank"><abbr title="Path to Information Literacy Online Tutorial">PILOT</abbr></a></li>
-				<li><a href="https://www.scc.losrios.edu/student-resources/library/research/research-instruction" target="_blank">Library Workshops</a></li>
+				<li><a href="https://scc.losrios.edu/student-resources/library/research/research-instruction" target="_blank">Library Workshops</a></li>
 				<li><a href="https://www.supersaas.com/schedule/SCC_Library/Research_Appointments?m=0" target="_blank">Research Appointments</a></li>
 			</ul>
 		</div>
@@ -40,7 +40,7 @@
 				<li>Online research help: Monday to Thursday, 8:00 am to 6:00 pm</li>
 				<li>Book pickup: Tuesdays and Saturdays, 11:00 am to 1:00 pm</li>
 			</ul>
-			<p><a href="https://www.scc.losrios.edu/student-resources/library/library-daily-hours" target="_blank">More about hours</a></p>
+			<p><a href="https://scc.losrios.edu/student-resources/library/library-daily-hours" target="_blank">More about hours</a></p>
 		</div>
 	</div>
 	<!-- subfooter; see js file for content -->
@@ -49,18 +49,18 @@
 		<div layout="row" layout-xs="column">
 			<div class="lr-ft-college-column" layout="column"  flex="" ng-repeat="lib in $ctrl.libraries">
 				<div class="lr-ft-college">
-				<div><a ng-href="https://www.{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
+				<div><a ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
 				<div><a ng-href="tel:+1-916-{{lib.phone}}">(916) {{lib.phone}}</a></div>	
 				</div>
 				
 				<div class="lr-centers">
 					<p ng-if="lib.center">
-						<a ng-if="lib.cpath" ng-href="https://www.{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>
+						<a ng-if="lib.cpath" ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>
 						<a ng-if="lib.centerurl" ng-href="{{lib.centerurl}}">{{lib.center}}</a> <!-- to cover arc -- should find better way of doing this -->
 					</p>
 					<ul ng-if="lib.centers">
 						<li ng-repeat="cent in lib.centers">
-							<a ng-href="https://www.{{lib.abbr}}.losrios.edu/{{cent.cpath}}">{{cent.center}}</a>
+							<a ng-href="https://{{lib.abbr}}.losrios.edu/{{cent.cpath}}">{{cent.center}}</a>
 						</li>
 					</ul>
 				</div>

@@ -9,7 +9,7 @@
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=all" target="_blank">EBSCO Search</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://scholar.google.com/" target="_blank">Google Scholar</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://infotrac.galegroup.com/itweb?db=GVRL" target="_blank">Gale eBooks</a></li>
-					<li><a href="https://www.library.losrios.edu/resources/databases/?category=news" target="_blank">Newspaper Databases</a></li>
+					<li><a href="https://library.losrios.edu/databases/?category=news" target="_blank">Newspaper Databases</a></li>
 
 				</ul>
 				<p ng-if="$ctrl.askUs">
@@ -25,7 +25,7 @@
 			<ul>
 <li>Research Help Desk: <a href="tel:916-484-8458">(916) 484-8458</a>
 				</li>
-				<li><a href="https://www.arc.losrios.edu/student-resources/library/contact-the-library">Ask A Librarian (email)</a></li>
+				<li><a href="https://arc.losrios.edu/student-resources/library/contact-the-library">Ask A Librarian (email)</a></li>
 				<li><a href="https://arc.losrios.libcal.com/appointments?lid=265&g=1123">Make an Appointment</a></li>
 				<li>For questions about your library account, renewals, overdue fines, etc. contact the Circulation Desk: <a href="tel:916-484-8455">(916) 484-8455</a></li>
 			</ul>
@@ -34,7 +34,7 @@
 			<h2>Library Hours</h2>
 			<p> Library Services continue online during COVID-19 related closures.</p>
 			<p>See our <a href="{{$ctrl.c19Page}}" target="_blank">Library Research &amp; Instruction During Campus Closure</a> guide for information.</p>
-			<p>You can also check our <a href="https://www.arc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">ARC Library hours</a> for updates.</p>
+			<p>You can also check our <a href="https://arc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">ARC Library hours</a> for updates.</p>
 		</div>
 	</div>
 	<!-- subfooter; see js file for content -->
@@ -43,18 +43,18 @@
 		<div layout="row" layout-xs="column">
 			<div class="lr-ft-college-column" layout="column"  flex="" ng-repeat="lib in $ctrl.libraries">
 				<div class="lr-ft-college">
-				<div><a ng-href="https://www.{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
+				<div><a ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
 				<div><a ng-href="tel:+1-916-{{lib.phone}}">(916) {{lib.phone}}</a></div>	
 				</div>
 				
 				<div class="lr-centers">
 					<p ng-if="lib.center">
-						<a ng-if="lib.cpath" ng-href="https://www.{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>
+						<a ng-if="lib.cpath" ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>
 						<a ng-if="lib.centerurl" ng-href="{{lib.centerurl}}">{{lib.center}}</a> <!-- to cover arc -- should find better way of doing this -->
 					</p>
 					<ul ng-if="lib.centers">
 						<li ng-repeat="cent in lib.centers">
-							<a ng-href="https://www.{{lib.abbr}}.losrios.edu/{{cent.cpath}}">{{cent.center}}</a>
+							<a ng-href="https://{{lib.abbr}}.losrios.edu/{{cent.cpath}}">{{cent.center}}</a>
 						</li>
 					</ul>
 				</div>
