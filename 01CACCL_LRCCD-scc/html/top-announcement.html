@@ -1,26 +1,12 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '5-21-2021',
-endDate: '5-29-2021',
-cookieID: 'exl-outage'
+endDate: '7-3-2021',
+cookieID: 'exl-outage',
+daysToHide: 7
 });">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		OneSearch will be unavailable from 6:00 pm on Saturday, May 29 to 6:00 pm Sunday, May 30. 
-		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-			Hide this announcement
-			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
-		</md-button>
-	</p>
-</md-content>
-<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '6-7-2021',
-endDate: '6-20-2021',
-cookieID: 'start-of-summer'
-});">
-	<p layout-margin layout-align="center center">
-		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Welcome to Summer! Library buildings remain closed, but book pickup and online services are available. <a target="_blank" ng-href="{{$ctrl.refPage}}">Read more</a>. 
+		Curbside pickup will not be available on Saturday, July 3. 
 		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
