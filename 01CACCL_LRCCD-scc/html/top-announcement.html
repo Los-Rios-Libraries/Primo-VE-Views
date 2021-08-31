@@ -1,12 +1,11 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-endDate: '7-3-2021',
-cookieID: 'exl-outage',
-daysToHide: 7
+endDate: '9-12-2021',
+cookieID: 'start-term'
 });">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Curbside pickup will not be available on Saturday, July 3. 
+		The library is open this semester with modified hours and services. <a ng-href="{{$ctrl.refPage}}" target="_blank">Read more</a>. 
 		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px"></md-icon>
