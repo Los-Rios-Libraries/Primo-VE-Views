@@ -135,7 +135,8 @@ prm-search-result-frbr-line {display:none;}
 	
 /* hide citation features in brief record; will still show in full record */
 prm-citation-trails-indication-container {display:none;}
-
+/* hide publication year in journal search brief results only */
+prm-journals span[data-field-selector="creationdate"] {display: none;}
 /* create space between metadata fields in full record */
 #item-details .layout-row {margin-bottom: 10px;}
 /* problem reporter, brief results */
