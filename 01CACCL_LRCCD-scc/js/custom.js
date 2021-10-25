@@ -593,6 +593,63 @@
 			};
 		}
 	});
+	app.component('prmSearchResultThumbnailContainerAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-bumpup-thumbnail-size parent-ctrl="$ctrl.parentCtrl"></lr-bumpup-thumbnail-size>'
+	});
+	app.component('lrBumpupThumbnailSize', {
+		bindings: {
+			parentCtrl: '<',
+		},
+		template: '<div ng-init="$ctrl.makeImgBigger();"></div>', // function below will run for each thumbnail
+		controller: ['$interval', '$timeout', function($interval, $timeout) {
+			var vm = this;
+			var pattern = /syndetics\.com\/|cdnsecakmi\.kaltura\.com/;
+			var biggerURL = function(str) {
+				var replacement = '';
+				if (str.indexOf('/sc.jpg') > -1) { // syndetics
+					replacement = str.replace('/sc.jpg', '/mc.jpg');
+				} else if (str.indexOf('/width/88') > -1) { // fod
+					replacement = str.replace('/width/88', '/width/160');
+				}
+				return replacement;
+			};
+			vm.makeImgBigger = function() {
+				// only run this in collection discovery
+				if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
+					var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
+						var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
+						if (img) { // this takes a while to load, wait for it
+							// it has loaded, so cancel the interval
+							$interval.cancel(checkImg);
+							if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
+								var newURL = biggerURL(img.linkURL);
+								if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
+									var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
+									for (var i = 0; i < images.length; i++) {
+										if (images[i].getAttribute('ng-src') === img.linkURL) {
+											images[i].setAttribute('src', newURL);
+											images[i].style.width = 'auto';
+											images[i].removeAttribute('ng-src'); // probably not necessary
+										}
+									}
+								} else {
+									$interval.cancel(checkImg);
+								}
+							} else {
+								$interval.cancel(checkImg);
+							}
+						}
+					}, 50);
+					$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
+						$interval.cancel(checkImg);
+					}, 5000);
+				}
+			};
+		}]
+	});
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
