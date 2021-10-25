@@ -81,7 +81,7 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
-	// ** START SCC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
+	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('lrNewbooksDisplay', {
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'
@@ -285,7 +285,7 @@
 			console.log(newBooksArr[params.report]);
 		}
 	}]);
-	// ** END SCC-ONLY COMPONENT -- below this code is identical college-to-college**
+	// ** END SCC/ARC-ONLY COMPONENT -- below this code is identical college-to-college**
 	// logo
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},

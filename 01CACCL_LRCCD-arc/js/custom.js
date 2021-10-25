@@ -81,7 +81,211 @@
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
 	var app = angular.module('viewCustom', ['angularLoad']);
-	
+	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
+	app.component('lrNewbooksDisplay', {
+		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
+		controller: 'lrNewbooksDisplayController'
+	});
+	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', '$attrs', function($http, $timeout,$interval,$attrs) {
+		var vm = this;
+		vm.colAbbr = colAbbr;
+		var idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^(kan|loc)_/;
+		console.log($attrs.model);
+		var params = JSON.parse($attrs.model); // set in model attribute of directive. see https://stackoverflow.com/a/23612752/1903000
+		var numToShow = params.numToShow || 8; // default is 8
+		vm.cardName = params.cardName || 'Add a heading';
+		if (!(params.reportName)) {
+			console.log('no Analytics report indicated');
+			return false;
+		}
+		var newBooksArr = {}; // using object allows this to be used more tha once
+		vm.bookList = false; // when this becomes true, content block will show
+		var makeList = function(arr) { // the main function for displaying the books
+			if (arr.length < numToShow) { // if anyone keeps showing more and gets to the end of the array...
+				numToShow = arr.length;
+			}
+			if (!(vm.bookList)) { // this is on first page load or return to home page
+				// create first set of in titles to show
+				var newArr = [];
+				for (var i = 0; i < numToShow; i++) { // create the initial display
+					newArr.push(arr[i]);
+				}
+				vm.bookList = newArr;
+			} else {
+				// this is for when "show more" is selected - push more into array
+				for (var j = 0; j < numToShow; j++) { // why are we repeating this--seems like we could do this as a function...
+					vm.bookList.push(arr[j]);
+				}
+
+			}
+			newBooksArr[params.report].splice(0, numToShow); // hm... this means that if you go elsewhere in primo and return to the home page, the array is reduced in size from what it was. Maybe that's ok
+		};
+		var shuffleArr = function(array) { // randomizes the array. https://stackoverflow.com/a/2450976/1903000
+			var currentIndex = array.length,
+				temporaryValue, randomIndex;
+			// While there remain elements to shuffle...
+			while (0 !== currentIndex) {
+				// Pick a remaining element...
+				randomIndex = Math.floor(Math.random() * currentIndex);
+				currentIndex -= 1;
+				// And swap it with the current element.
+				temporaryValue = array[currentIndex];
+				array[currentIndex] = array[randomIndex];
+				array[randomIndex] = temporaryValue;
+			}
+			return array;
+		};
+		vm.makeId = function(str) { // only add id attribute for titles iwth proper ISBN or Kanopy id
+			str = str || '';
+			if (str !== '') {
+				if (str.indexOf('loc_') === 0) {
+					var mmsId = str.match(/\d{14}5325/);
+					if (mmsId !== null) {
+						return 'lr_loc_' + mmsId[0];
+					}
+				} else if (idRegex.test(str) === true) {
+					return 'lr_' + str;
+				} 
+			}
+		};
+		vm.checkIdentifier = function(str) { // titles without proper ISBN or Kanopy ID are treated as no-cover
+			str = str || '';
+			str = str.replace(/^lr_/, '');
+			if (idRegex.test(str) === false) {
+				return 'no-cover';
+			}
+		};
+
+		vm.imgSrc = function(str) { // determines source of images; syndetics uses isbn, kanopy has its own system
+			str = str || '';
+			var arr;
+			if (str.indexOf('kan_') === 0) {
+				arr = str.split('kan_');
+				return 'https://www.kanopy.com/node/' + arr[1] + '/external-image';
+			} else if (str.indexOf('loc_') === 0) {
+				arr = str.split('loc_');
+				return arr[1];
+			}
+			else if (idRegex.test(str) === true) {
+				return 'https://syndetics.com/index.php?client=primo&isbn=' + str + '/mc.jpg';
+			}
+		};
+		vm.checkImg = function(str) { // syndetics returns a 1x1 pixel image if it doesn't have a jacket based on isbn queried. so detect this and change classname when that happens to allow alternative styling
+			if (str !== 'lr_') { // check forwhen identifier is not found
+				if (/(kan|loc)_/.test(str) === false) {
+					var checkInt = $interval(function() { // interval allows some time for jacket to load
+						var el = document.getElementById(str);
+						var img = el.querySelector('#' + str + ' img');
+						if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
+							if ((img.complete === true) && (img.height === 1)) {
+								angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+							}
+						}
+					}, 1000);
+					$timeout(function() { // not good to let the interval run indefinitely
+						$interval.cancel(checkInt);
+					}, 4000);
+				}
+			}			
+		};
+		
+		vm.truncateTitle = function(str) { // full title is supplied for title attribute, but we want it to be truncated when displayed on items that don't have jacket images
+			var output = '<span class="lr-newbook-maintitle">';
+			// separate title from statement of responsibility
+			var arr = str.split('/');
+			// var totalLength = 0;
+			var mainTitle, subTitle, authors, subTitleSp, authorsSp;
+			if (arr.length > 1) {
+				var authArr = arr[1].split(';');
+				authors = authArr[0].trim();
+				authors = authors.replace(/\.$/, '').replace(/[\[\]]/g, '');
+				authorsSp = '<span class="lr-newbook-author">' + authors + '</span>';
+			} else {
+				authors = false;
+			}
+			// separate main title from subtitle
+			var wholeTitle = arr[0];
+			var arr2 = wholeTitle.split(':');
+			mainTitle = arr2[0].trim();
+			output += mainTitle + '</span> ';
+			if (arr2.length > 1) {
+				if (arr2.length > 2) { // indicates there's a colon in the subtitle
+					subTitle = arr2[1].trim() + ': ' + arr2[2].trim();
+				}
+				else {
+					subTitle = arr2[1].trim();
+				}
+				subTitleSp = '<span class="lr-newbook-subtitle">' + subTitle + '</span> ';
+			} else {
+				subTitle = false;
+			}
+			// limit what we include; if title + subtitle is not too long, include that. If it is, check if statement of repsnsibilty is not too long.
+			var arr3 = mainTitle.trim().split(' ');
+			if (subTitle !== false) {
+				if (arr3.length + subTitle.trim().split(' ').length < 11) {
+					output += subTitleSp;
+					//		console.log(output);
+				} else if ((authors) && (authors.trim().split(' ').length < 4)) {
+					output += authorsSp;
+					//	console.log(output);
+				}
+
+			} else {
+				if (authors !== false) {
+					if (authors.trim().split(' ').length < 5) {
+						output += authorsSp;
+					}
+				}
+			}
+
+			return output;
+		};
+		vm.itemFormat = function(str) {
+			return 'lr-format-' + str; // helps id book vs. video
+		};
+		vm.varyFlex = function(str) { // allows negative space, and kanopy images to be twice the width
+			str = str || '';
+			if (str.indexOf('kan_') > -1) {
+				return ['flex-gt-sm-40', 'flex-100'];
+			}
+			else {
+				return ['flex-20', 'flex-xs-40'];
+			}
+		};
+		if (typeof(newBooksArr[params.report]) !== 'undefined') {
+			// this will happen if user comes back to home page from elsewhere in Primo
+			makeList(newBooksArr[params.report]);
+		} else {
+			// this will happen on initial page load
+			$http.get(districtHost + filePath + 'utilities/analytics/analytics-proxy.php?report=' + params.reportName)
+				.then(function(response) {
+					var arr = response.data.QueryResult.ResultXml.rowset.Row; // table
+					console.log(arr);
+					// randomize the array
+					var shuffledArr = shuffleArr(arr);
+					newBooksArr[params.report] = shuffledArr; // cache randomized array of new title objects as object property value
+					makeList(newBooksArr[params.report]);
+				}, function(response) { // on error, hide the card and log error to console
+					vm.bookList = false;
+					console.log('http get error: ');
+					console.log(response);
+				});
+		}
+		vm.addBooks = function() {
+			makeList(newBooksArr[params.report]);
+		};
+		vm.showButton = function() { // removes button if anyone gets all the way to the end of the array
+			if (newBooksArr[params.report].length > 0) {
+				return true;
+			}
+		};
+		// keep track of this array in console, for testing
+		console.log('newBooksArr: ');
+		if (typeof(newBooksArr) !== 'undefined') {
+			console.log(newBooksArr[params.report]);
+		}
+	}]);
+	// ** END SCC/ARC-ONLY COMPONENT -- below this code is identical college-to-college**	
 	// logo
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
