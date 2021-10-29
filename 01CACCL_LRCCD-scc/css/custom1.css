@@ -135,6 +135,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .no-cover .lr-newbook-author {display: block;margin-top:8px;}
 .lr-play-vid {display:none;}
 .lr-format-VM .lr-play-vid {display:block;position:absolute; right:0; bottom:0; z-index:999; background: rgba(255,255,255,0.9);}
+.no-cover .lr-play-vid {background: transparent;}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-title {display:block; position:absolute; bottom:10px; background:rgba(255,255,255,0.9); padding-right:8px;}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-subtitle::before {content: ": "; margin-left: -3px;}
 .lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "- ";}
