@@ -121,7 +121,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .lr-newbook-title {display: none;} /* only shows if there's no cover */
 .no-cover a {width:120px; height:160px; vertical-align:bottom; border-radius: 4px; }
 .no-cover:nth-child(odd) a {background:#003057;background: linear-gradient(90deg, #000 0%, #003057 10%);} /* per-college */
-.no-cover:nth-child(even) a { background:#014C8D; background: linear-gradient(90deg, #000 0%, #014C8D 10%);}/* per-college */
+.no-cover:nth-child(even) a { background:#374049; background: linear-gradient(90deg, #000 0%, #374049 10%);}/* per-college */
 .no-cover:nth-child(3n) a {font-family: "Helvetica Neue", Helvetica, sans-serif; font-size:80%;}
 .no-cover a { color:#fff; box-shadow:0 1px 1px rgba(0,0,0,.3),2px 1px 0 #fff,-3px 3px 10px -3px rgba(0,0,0,.3);}
 .no-cover img {display: none;}
