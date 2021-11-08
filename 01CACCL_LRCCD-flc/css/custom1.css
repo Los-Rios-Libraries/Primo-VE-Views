@@ -157,14 +157,12 @@ prm-opac > div {order:2!important}
 prm-opac > .tabs-as-app {order:1!important}
 
 /* bump up prominence of full-text and ILL links */
-prm-alma-viewit-items h3 a, a[href*="interlibrary-loan"] {text-decoration:underline; font-size:120%;}
-prm-alma-viewit-items h3 a:hover, prm-alma-viewit-items h3 a:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none;}
+prm-alma-viewit-items h5 .item-title, a[href*="interlibrary-loan"] {text-decoration:underline; font-size:22px;}
+prm-alma-viewit-items h5 .item-title:hover, prm-alma-viewit-items h5 .item-title:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none; box-shadow: none;}
 /* hide coverage statement in ViewIt */
-prm-alma-viewit-items h4 {display:none;}
-/* but don't hide label */
-prm-alma-viewit-items .spaced-rows h4 {display:unset;}
+prm-alma-viewit-items h6.item-status {display:none;}
 /* but show for journals */
-#searchWithinJournal + .full-view-section prm-alma-viewit-items h4, prm-journals-full-view prm-alma-viewit-items h4 {display:block;}
+#searchWithinJournal + .full-view-section prm-alma-viewit-items h6.item-status, prm-journals-full-view prm-alma-viewit-items h6.item-status {display:block;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
