@@ -440,21 +440,20 @@
 			$window.open(problemReportVar().page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', problemReportVar().window);
 		};
 		vm.showReporter = function() {
-            if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
-            	var availability = vm.parentCtrl.result.delivery.availability;
-                if (availability) {
-					var regex = /(fulltext|not_restricted)/;
-					for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
-						if (regex.test(availability[i]) === true) { // only show when there is a full-text link
-					    return true;
+			if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
+				if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
+					var availability = vm.parentCtrl.result.delivery.availability;
+					if (availability) {
+						var regex = /(fulltext|not_restricted)/;
+						for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
+							if (regex.test(availability[i]) === true) { // only show when there is a full-text link
+								return true;
+							}
 						}
 					}
-				    
-			    }
-            }
-			
-		};
-		
+				}
+			}
+		};		
 	}]);
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
