@@ -118,6 +118,14 @@ prm-main-menu.isServicePage {display:unset;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
+/*fix ILL link having gray around it in full display from update below*/
+alma-howovp div:first-child {background:#fff;}
+/* White cards with light gray background on homepage and brief results page */
+prm-brief-result-container.list-item {background-color: #ffffff;}
+md-content, md-content.md-primoExplore-theme {background-color: #F2F2F2;}
+prm-brief-result-container:hover, prm-brief-result-container.list-item:focus {box-shadow: 1px 2px #b9b9b9;}
+prm-brief-result-container.list-item {cursor:pointer;}
+
 /* create space between items on brief results page */
 .list-item-wrapper {margin-bottom:6px;}
 .list-item-wrapper:hover, .list-item-wrapper:focus {border-bottom-style:none;}
