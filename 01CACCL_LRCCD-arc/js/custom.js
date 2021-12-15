@@ -394,7 +394,36 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
+		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
+	});
+	// notes to attach to view it when necessary, e.g. problematic cdi behavior
+	app.component('lrViewitNotes', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		templateUrl: custPackagePath + '/html/full-display/viewit-notes.html',
+		controller: function() {
+			var vm = this;
+			vm.showNote = function(source) {
+				var services = vm.parentCtrl.item.delivery.electronicServices;
+				if (services) {
+					var linkUrl = services[0].serviceUrl;
+					var journal = vm.parentCtrl.item.pnx.addata.jtitle[0];
+					if (linkUrl) {
+						if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
+							// check resource
+							if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal) === true) {
+								if (journal.indexOf('(Online)') === -1) { // seems not to be a problem with web content
+									if (source === 'USMajorDailies') {
+										return true;
+									}
+								}
+							}
+						}
+					}
+				}
+			};
+		} 
 	});
 	app.component('lrProblemReporter', {
 		bindings: {
