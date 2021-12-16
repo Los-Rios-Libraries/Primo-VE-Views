@@ -116,8 +116,16 @@ prm-main-menu.isServicePage {display:unset;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
-/*fix ILL link having gray around it in full display from update below*/
+/*fix ILL link having gray around it in full display, add padding to location heading and make location items in full display white boxes, & "more" menu contrast - from update below*/
 alma-howovp div:first-child {background:#fff;}
+.full-view-section .section-title {
+    line-height: 1.2em;
+    padding: 5px;}
+md-tab-content .tab-content-header {
+    margin-bottom: 1em;
+    background-color: #fff;
+	padding: 10px;}
+prm-main-menu[menu-type=full] .overlay-menu-content>div {background-color: #000000;}
 /* White cards with light gray background on homepage and brief results page */
 prm-brief-result-container.list-item {background-color: #ffffff;}
 md-content, md-content.md-primoExplore-theme {background-color: #F2F2F2;}
