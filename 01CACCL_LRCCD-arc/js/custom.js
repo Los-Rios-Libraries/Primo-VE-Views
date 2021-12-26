@@ -408,12 +408,12 @@
 				var services = vm.parentCtrl.item.delivery.electronicServices;
 				if (services) {
 					var linkUrl = services[0].serviceUrl;
-					var journal = vm.parentCtrl.item.pnx.addata.jtitle[0];
+					var journal = vm.parentCtrl.item.pnx.addata.jtitle;
 					if (linkUrl) {
 						if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
 							// check resource
-							if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal) === true) {
-								if (journal.indexOf('(Online)') === -1) { // seems not to be a problem with web content
+							if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal[0]) === true) {
+								if (journal[0].indexOf('(Online)') === -1) { // seems not to be a problem with web content
 									if (source === 'USMajorDailies') {
 										return true;
 									}
