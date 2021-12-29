@@ -182,9 +182,11 @@ prm-journals span[data-field-selector="creationdate"] {display: none;}
 #item-details .layout-row {margin-bottom: 10px;}
 /* problem reporter, brief results */
 .list-item:hover .lr-brief-problem-reporter, .list-item:focus .lr-brief-problem-reporter {opacity:1;}
-.lr-brief-problem-reporter { position: absolute;  right: 0;  bottom: 0;  font-size: .8em;  opacity: 0;  transition: opacity 0.1s linear;}
-/* position problem reporter button to the right */
-#lr-problem-reporter {position: absolute; right:0;}
+/* problem reporter, brief results */
+.list-item:hover lr-problem-reporter button, .list-item:focus lr-problem-reporter button {opacity:1;}
+lr-problem-reporter {display:flex;}
+lr-problem-reporter button {margin:-20px 0 0 0 !important;}
+prm-search-result-availability-line-after lr-problem-reporter button {font-size: .8em !important;  opacity: 0;  transition: opacity 0.1s linear !important;}
 /* hide search within journal service */
 #searchWithinJournal {display:none;}
 
@@ -257,5 +259,5 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
-	.lr-brief-problem-reporter {display: none;}
+	prm-search-result-availability-line-after lr-problem-reporter button {display: none;}
 }

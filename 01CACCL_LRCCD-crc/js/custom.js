@@ -173,24 +173,12 @@
 		};
 	}]);
 	// insert problem reporter
-	// shared variables
-	var problemReportVar = function() {
-		var w = 600;
-		var h = 600;
-		var left = (screen.width - w) / 2;
-        var top = (screen.height - h) / 4;
-		return {
-			'page': districtHost + filePath + 'utilities/problem-reporter/',
-			'window': 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left,
-			'icon': '<md-icon md-svg-icon="alert:ic_error_outline_24px"></md-icon>Report a problem</md-button>'
-		};
-	};
 	// full record
 	app.component('prmAlmaViewitAfter', {
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
+		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
 	});
 	// notes to attach to view it when necessary, e.g. problematic cdi behavior
 	app.component('lrViewitNotes', {
@@ -226,19 +214,52 @@
 			parentCtrl: '<'
 		},
 		controller: 'lrProblemReporterController',
-		template: '<md-button id="lr-problem-reporter" layout-margin ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()">' + problemReportVar().icon
+		template: '<md-button ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px" aria-label="Alert"></md-icon> Report a problem</md-button>'
 	});
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		var vm = this;
-		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
-		var elecServices = vm.parentCtrl.item.delivery.electronicServices;
-			}
+		var itemID = '';
+		var elecServices;
+		if (vm.parentCtrl.item) { // found in prmAlmaViewitAfter
+			itemID = vm.parentCtrl.item.pnx.control.recordid[0];
+			elecServices = vm.parentCtrl.item.delivery.electronicServices;
+		}
+		if (vm.parentCtrl.result) { // found in prmSearchResultAvailabilityLineAfter
+			itemID = vm.parentCtrl.result.pnx.control.recordid[0];
 		}
 		vm.openReporter = function() {
-			$window.open(problemReportVar().page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo&newsbank=' + newsBank, 'Problem reporter', problemReportVar().window);
+			var w = 600;
+			var h = 600;
+			var left = (screen.width - w) / 2;
+			var top = (screen.height - h) / 4;
+			var page = districtHost + filePath + 'utilities/problem-reporter/';
+			var winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
+			$window.open(page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', winParams);
 		};
 		vm.showProblemReporter = function() { // wait until links load to show the reporter
-			if (angular.element(document.querySelectorAll('prm-alma-viewit-items md-list-item')).length > 0) {
+			if (vm.parentCtrl.item) { // full display
+				if (vm.parentCtrl.item.delivery.electronicServices) {
+					if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
+						return true;
+					}
+				}
+			}
+			else if (vm.parentCtrl.result) { // brief results
+				if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
+					if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
+						var availability = vm.parentCtrl.result.delivery.availability;
+						if (availability) {
+							var regex = /(fulltext|not_restricted)/;
+							for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
+								if (regex.test(availability[i]) === true) { // only show when there is a full-text link
+									return true;
+								}
+							}
+						}
+					}
+				}
+			}
+			else {
 				return true;
 			}
 		};
@@ -248,31 +269,8 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		controller: 'prmSearchResultAvailabilityLineAfterController',
-		template: '<md-button class="lr-brief-problem-reporter" layout-margin ng-if="$ctrl.showReporter()" ng-click="$ctrl.openReporter()">' + problemReportVar().icon
+		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" layout-align="end center"></lr-problem-reporter>'
 		});
-	app.controller('prmSearchResultAvailabilityLineAfterController', ['$window', function($window) {
-		var vm = this;
-		var itemID = vm.parentCtrl.result.pnx.control.recordid[0] || '';
-		vm.openReporter = function() {
-			$window.open(problemReportVar().page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', problemReportVar().window);
-		};
-		vm.showReporter = function() {
-			if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
-				if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
-					var availability = vm.parentCtrl.result.delivery.availability;
-					if (availability) {
-						var regex = /(fulltext|not_restricted)/;
-						for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
-							if (regex.test(availability[i]) === true) { // only show when there is a full-text link
-								return true;
-							}
-						}
-					}
-				}
-			}
-		};		
-	}]);
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
@@ -434,36 +432,36 @@
 				return replacement;
 			};
 			vm.makeImgBigger = function() {
-				// only run this in collection discovery
-				if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
-					var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
-						var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
-						if (img) { // this takes a while to load, wait for it
-							// it has loaded, so cancel the interval
-							$interval.cancel(checkImg);
-							if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
-								var newURL = biggerURL(img.linkURL);
-								if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
-									var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
-									for (var i = 0; i < images.length; i++) {
-										if (images[i].getAttribute('ng-src') === img.linkURL) {
-											images[i].setAttribute('src', newURL);
-											images[i].style.width = 'auto';
-											images[i].removeAttribute('ng-src'); // probably not necessary
-										}
+			// only run this in collection discovery
+			if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
+				var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
+					var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
+					if (img) { // this takes a while to load, wait for it
+						// it has loaded, so cancel the interval
+						$interval.cancel(checkImg);
+						if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
+							var newURL = biggerURL(img.linkURL);
+							if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
+								var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
+								for (var i = 0; i < images.length; i++) {
+									if (images[i].getAttribute('ng-src') === img.linkURL) {
+										images[i].setAttribute('src', newURL);
+										images[i].style.width = 'auto';
+										images[i].removeAttribute('ng-src'); // probably not necessary
 									}
-								} else {
-									$interval.cancel(checkImg);
 								}
 							} else {
 								$interval.cancel(checkImg);
 							}
+						} else {
+							$interval.cancel(checkImg);
 						}
-					}, 50);
-					$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
-						$interval.cancel(checkImg);
-					}, 5000);
-				}
+					}
+				}, 50);
+				$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
+					$interval.cancel(checkImg);
+				}, 5000);
+			}
 			};
 		}]
 	});
