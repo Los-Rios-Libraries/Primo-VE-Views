@@ -231,14 +231,7 @@
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		var vm = this;
 		var itemID = vm.parentCtrl.item.pnx.control.recordid[0] || '';
-		var newsBank = '';
 		var elecServices = vm.parentCtrl.item.delivery.electronicServices;
-		if (elecServices) {
-			for (var i = 0; i < elecServices.length; i++) {
-				if (elecServices[i].packageName.indexOf('Newsbank') > -1) {
-					newsBank = 'true';
-					break;
-				}
 			}
 		}
 		vm.openReporter = function() {
