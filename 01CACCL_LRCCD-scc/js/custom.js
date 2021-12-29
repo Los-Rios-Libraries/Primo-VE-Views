@@ -629,15 +629,19 @@
 		bindings: {
 			parentCtrl: '<',
 		},
+	// function below will run for each thumbnail
 		controller: ['$interval', '$timeout', function($interval, $timeout) {
 			var vm = this;
-			var pattern = /syndetics\.com\/|cdnsecakmi\.kaltura\.com/;
+			var pattern = /syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/;
 			var biggerURL = function(str) {
 				var replacement = '';
 				if (str.indexOf('/sc.jpg') > -1) { // syndetics
 					replacement = str.replace('/sc.jpg', '/mc.jpg');
 				} else if (str.indexOf('/width/88') > -1) { // fod
 					replacement = str.replace('/width/88', '/width/160');
+				}
+				else if (str.indexOf('books.google.com') > -1){
+					replacement = str;
 				}
 				return replacement;
 			};
@@ -657,6 +661,9 @@
 										images[i].setAttribute('src', newURL);
 										images[i].style.width = 'auto';
 										images[i].removeAttribute('ng-src'); // probably not necessary
+										if (newURL.indexOf('books.google.com') > -1) {
+											images[i].style.height = '160px';
+										}
 									}
 								}
 							} else {
