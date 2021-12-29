@@ -271,6 +271,13 @@
 		},
 		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" layout-align="end center"></lr-problem-reporter>'
 		});
+	// record cannot be displayed page
+	app.component('prmSignInToViewAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<md-card class="default-card" style="margin-top:-9px;"><md-card-content><md-card-actions layout-align="end-center" layout="row"><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter></md-card-actions></md-card-content></md-card>'
+	});
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
