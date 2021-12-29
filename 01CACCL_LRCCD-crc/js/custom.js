@@ -425,7 +425,6 @@
 		bindings: {
 			parentCtrl: '<',
 		},
-		template: '<div ng-init="$ctrl.makeImgBigger();"></div>', // function below will run for each thumbnail
 		controller: ['$interval', '$timeout', function($interval, $timeout) {
 			var vm = this;
 			var pattern = /syndetics\.com\/|cdnsecakmi\.kaltura\.com/;
@@ -438,7 +437,6 @@
 				}
 				return replacement;
 			};
-			vm.makeImgBigger = function() {
 			// only run this in collection discovery
 			if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
 				var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
@@ -469,7 +467,6 @@
 					$interval.cancel(checkImg);
 				}, 5000);
 			}
-			};
 		}]
 	});
 	// set cookie for things like films on demand workaround
