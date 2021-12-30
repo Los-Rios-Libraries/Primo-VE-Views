@@ -473,7 +473,7 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" layout-align="end center"></lr-problem-reporter>'
+		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>'
 		});
 	// record cannot be displayed page
 	app.component('prmSignInToViewAfter', {
