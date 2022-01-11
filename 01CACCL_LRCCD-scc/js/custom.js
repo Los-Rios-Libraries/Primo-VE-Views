@@ -376,15 +376,7 @@
 			}
 		};
 	}]);
-	// insert problem reporter
-	// full record
-	app.component('prmAlmaViewitAfter', {
-		bindings: {
-			parentCtrl: '<'
-		},
-		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
-	});
-	// notes to attach to view it when necessary, e.g. problematic cdi behavior
+	// notes to attach to view it when necessary, e.g. problematic cdi behavior. will be inserted into prmAlmaViewItAfter
 	app.component('lrViewitNotes', {
 		bindings: {
 			parentCtrl: '<'
@@ -413,6 +405,7 @@
 			};
 		} 
 	});
+	// problem reporter. this template is inserted into a few different directives
 	app.component('lrProblemReporter', {
 		bindings: {
 			parentCtrl: '<'
@@ -468,6 +461,15 @@
 			}
 		};
 	}]);
+	// now the directive gets inserted
+	// full display
+	app.component('prmAlmaViewitAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		// two different directives here
+		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>'
+	});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
 		bindings: {
