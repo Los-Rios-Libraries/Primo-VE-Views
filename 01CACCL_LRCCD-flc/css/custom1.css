@@ -193,7 +193,11 @@ label[translate="almaRequest.termsOfUse"] {overflow: visible !important;}
 form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 /* fix problem where delivery locations at bottom of list can't be scrolled to */
 md-select-menu._md-overflow {max-height: unset;}
-
+/* notes on delivery locations */
+prm-opac {position:relative;}
+lr-delivery-blurb {position:absolute;top:0; font-size:1.3em; background: #fff;}
+.lr-highlighted {background: #F9FD88; transition: background-color 0.5s linear;}
+.lr-no-highlight {background:#fff;transition: background-color 0.8s linear;}
 /* hide "other item" and digitization requests, which should not be showing but are, march 2 2021 */
 button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 
@@ -234,4 +238,5 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
+	lr-delivery-blurb {position:static;}
 }

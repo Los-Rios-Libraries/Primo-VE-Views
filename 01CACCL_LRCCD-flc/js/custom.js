@@ -476,6 +476,58 @@
 			}
 		}]
 	});
+	// display text for delivery locations
+	app.component('prmRequestServicesAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-delivery-blurb parent-ctrl="$ctrl.parentCtrl"></lr-delivery-blurb>'
+	});
+	app.component('lrDeliveryBlurb', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{$ctrl.urlPath}}" target="_blank">see our FAQ <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open in new tab"></md-icon></a>.</div>',
+		controller: ['$timeout', function($timeout) {
+			var vm = this;
+			vm.urlPath = '';
+			vm.highlight = '';
+			var deliveryLibraries = [ // library ID may be found using configuration API
+				/*{ // scc lockers
+					id: '5066568570005325',
+					col: 'scc',
+					path: '360910'
+				},
+				{ // flc lockers
+					id: '5020041320005325',
+					col: 'flc',
+					path: ''
+				} */
+			];
+			vm.showBlurb = function() {
+				for (var i = 0; i < deliveryLibraries.length; i++) {
+					var lib = deliveryLibraries[i];
+					if (vm.parentCtrl.requestService._formData.requestType === 'hold') {
+						var pickupLib = vm.parentCtrl.requestService._formData.pickupLocation;
+						if ((pickupLib) && (lib.id)) {
+							if (pickupLib.indexOf(lib.id) > -1) {
+								vm.urlPath = lib.col + '/faq/' + lib.path;
+								return true;
+							}
+						}
+					}
+				}
+			};
+			vm.fadeHighlight = function() { // background animation to emphasize presence of the blurb
+					$timeout(function() {
+						vm.highlight = 'lr-highlighted';
+					}, 100);
+					$timeout(function() {
+						vm.highlight = 'lr-no-highlight';
+					}, 3000);
+			};	
+		}]
+	});
 	// set cookie for things like films on demand workaround
 	setTimeout(function() {
 		var el = document.createElement('iframe');
