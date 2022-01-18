@@ -503,8 +503,8 @@
 				{ // flc lockers
 					id: '5020041320005325',
 					col: 'flc',
-					path: ''
 				} */
+					path: '361527'
 			];
 			vm.showBlurb = function() {
 				for (var i = 0; i < deliveryLibraries.length; i++) {
