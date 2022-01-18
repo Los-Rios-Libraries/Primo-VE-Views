@@ -699,7 +699,7 @@
 			vm.urlPath = '';
 			vm.highlight = '';
 			var deliveryLibraries = [ // library ID may be found using configuration API
-				/*{ // scc lockers
+				{ // scc lockers
 					id: '5066568570005325',
 					col: 'scc',
 					path: '360910'
@@ -707,8 +707,8 @@
 				{ // flc lockers
 					id: '5020041320005325',
 					col: 'flc',
-				} */
 					path: '361527'
+				} 
 			];
 			vm.showBlurb = function() {
 				for (var i = 0; i < deliveryLibraries.length; i++) {
