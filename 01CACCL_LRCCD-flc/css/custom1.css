@@ -221,7 +221,7 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 
 .lr-single-column-card {margin:auto;}
 /* hide locker request options while testing */
-md-option[value="5066568570005325$$LIBRARY"], md-option[value="5020041320005325$$LIBRARY"] {display:none;}
+md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
