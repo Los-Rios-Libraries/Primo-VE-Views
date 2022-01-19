@@ -224,7 +224,7 @@ form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 md-select-menu._md-overflow {max-height: unset;}
 /* notes on delivery locations */
 prm-opac {position:relative;}
-lr-delivery-blurb {position:absolute;top:0; font-size:1.3em; background: #fff;}
+lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background: #fff;}
 .lr-highlighted {background: #F9FD88; transition: background-color 0.5s linear;}
 .lr-no-highlight {background:#fff;transition: background-color 0.8s linear;}
 
@@ -263,6 +263,7 @@ md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 	.lr-footer {padding: 20px;}
 			/* scc-only - search button looks bad if background isn't white at this screen size */
 	.search-actions .md-button.button-confirm {background:#fff;}
+	lr-delivery-blurb {position:static;}
 }
 
 @media only screen and (max-width: 600px) {
@@ -273,5 +274,4 @@ md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
-	lr-delivery-blurb {position:static;}
 }

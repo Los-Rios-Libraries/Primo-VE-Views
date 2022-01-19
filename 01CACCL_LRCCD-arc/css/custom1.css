@@ -221,7 +221,7 @@ form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 md-select-menu._md-overflow {max-height: unset;}
 /* notes on delivery locations */
 prm-opac {position:relative;}
-lr-delivery-blurb {position:absolute;top:0; font-size:1.3em; background: #fff;}
+lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background: #fff;}
 .lr-highlighted {background: #F9FD88; transition: background-color 0.5s linear;}
 .lr-no-highlight {background:#fff;transition: background-color 0.8s linear;}
 /* hide "other item" and digitization requests, which should not be showing but are, march 2 2021 */
@@ -255,6 +255,7 @@ md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 	a[href^="tel:"] {text-decoration: underline !important;}
 	a[href^="tel:"]:hover, a[href^="tel:"]:focus {background:transparent; box-shadow: none; text-decoration: none;}
 	.lr-footer {padding: 20px;}
+	lr-delivery-blurb {position:static;}
 }
 
 
@@ -266,5 +267,4 @@ md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
-	lr-delivery-blurb {position:static;}
 }
