@@ -228,7 +228,8 @@ lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background
 button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
-
+/* hide SCC main delivery option temporarily */
+md-option[value="112026310005325$$LIBRARY"] {display:none;}
 /* footer styles */
 #footer {background:#014c8d;  border-top:1px solid #ccc; color:#fff;}
 #footer a, #footer a:visited {color:#fff; text-decoration: underline;}
@@ -246,8 +247,6 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 .s-lch-widget-float-btn {background: #fff !important;}
 
 .lr-single-column-card {margin:auto;}
-/* hide locker request options while testing */
-md-option[value="5066568570005325$$LIBRARY"] {display:none;}
 
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
