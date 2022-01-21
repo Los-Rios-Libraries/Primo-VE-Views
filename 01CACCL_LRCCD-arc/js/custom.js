@@ -621,6 +621,37 @@
 			};
 		}
 	});
+	app.component('prmRequestsAfter', { // notes regarding certain types of requests or holds
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-hold-notes parent-ctrl="$ctrl.parentCtrl"></lr-hold-notes>'
+	});
+	app.component('lrHoldNotes', { // currently custom note for SCC Lockers holdshelf. Can make this accommodate other types of notes if needed
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<div ng-if="$ctrl.showNote();">Note: one or more items listed above was requested for locker pickup and is currently being held inside the SCC Library. It will be placed in a locker when one becomes available. Please <a href="https://answers.library.losrios.edu/scc/faq/360910" target="_blank">see SCC locker info <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open website in new tab" style="height:18px; min-height:18px;"></md-icon></a>.</div>',
+		controller: function() {
+			var vm = this;
+			vm.showNote = function() {
+				var requests = vm.parentCtrl.requestsService._requestsDisplay;
+				if (requests) {
+					for (var i = 0; i < requests.length; i++) {
+						if (requests[i].requestType === 'holds') {
+							console.log('is hold');
+							var pickup = requests[i].secondLineRight;
+							if (pickup) {					
+									if (pickup === 'SCC Lockers') {
+										return true;
+									}				
+							}
+						}
+					}
+				}
+			};
+		}
+	});
 	app.component('prmSearchResultThumbnailContainerAfter', {
 		bindings: {
 			parentCtrl: '<'
