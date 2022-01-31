@@ -639,12 +639,13 @@
 				if (requests) {
 					for (var i = 0; i < requests.length; i++) {
 						if (requests[i].requestType === 'holds') {
-							console.log('is hold');
-							var pickup = requests[i].secondLineRight;
-							if (pickup) {					
-									if (pickup === 'SCC Lockers') {
+							var pickupLib = requests[i].secondLineRight;
+							if (pickupLib) {
+								if (pickupLib === 'SCC Lockers') {
+									if (/on hold( )?shelf/i.test(requests[i].status) === true) {
 										return true;
-									}				
+									}
+								}
 							}
 						}
 					}
