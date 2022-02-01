@@ -193,6 +193,10 @@ label[translate="almaRequest.termsOfUse"] {overflow: visible !important;}
 form[name="requestForm"] prm-icon[icon-definition="lock"] {display:none;}
 /* fix problem where delivery locations at bottom of list can't be scrolled to */
 md-select-menu._md-overflow {max-height: unset;}
+/* hide "No Campus" label and smooth appearance of libraries in it */
+md-optgroup[label="No Campus"] md-option {padding-left:16px;}
+md-optgroup[label="No Campus"] label {display: none;}
+md-optgroup[label="No Campus"] .md-text { font-size:14px; text-transform:uppercase;font-weight: 500;}
 /* notes on delivery locations */
 prm-opac {position:relative;}
 lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background: #fff; z-index:9999;}
