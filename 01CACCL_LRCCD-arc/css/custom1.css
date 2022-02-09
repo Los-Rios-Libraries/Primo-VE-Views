@@ -14,6 +14,9 @@ a[href^="tel:"] {text-decoration: none !important; color:inherit;}
 prm-request-services .alert-bar {
 	display:flex;
 }
+prm-alma-viewit .alert-bar {
+	display:flex;
+}
 /* hide refworks link in mobile */
 .my-refworks-ctm {display: none;}
 /* Hide expand my results */
