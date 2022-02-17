@@ -232,9 +232,6 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 .s-lch-widget-float-btn {background: #fff !important;}
 
 .lr-single-column-card {margin:auto;}
-/* hide SCC main delivery option temporarily */
-md-option[value="112026310005325$$LIBRARY"] {display:none;}
-
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
 	.search-wrapper .flex-lg-65 {max-width:100%;}
