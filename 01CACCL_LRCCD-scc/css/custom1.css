@@ -19,12 +19,9 @@ prm-alma-viewit .alert-bar {
 }
 /* hide refworks link in mobile */
 .my-refworks-ctm {display: none;}
-
-/* Hide expand my results */
-md-checkbox[aria-label="Expand My Results"] {
-	display:none;
-	}
-
+/* Move expand my results to bottom of facets */
+#facets .sidebar-inner-wrapper {display: flex;}
+#facets .sidebar-inner-wrapper .sidebar-section:nth-child(2) { order:20;}
 /* Hide facet Open access */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
