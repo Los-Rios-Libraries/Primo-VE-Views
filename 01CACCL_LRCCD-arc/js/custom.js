@@ -469,31 +469,6 @@
 		},
 		// two different directives here
 		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>',
-		controller: ['$interval', '$timeout', function($interval, $timeout) { // hide sign-in banner that appears for digital representations if no sign-in is needed. Putting it here because no template is needed.
-			var vm = this;
-			if (vm.parentCtrl.item.delivery.deliveryCategory.indexOf('Alma-D') > -1) {
-				var checkAvail = $interval(function() { // this property is not populated immediately
-					if (vm.parentCtrl.item.delivery.displayedAvailability) {
-						$interval.cancel(checkAvail);
-						if (vm.parentCtrl.item.delivery.displayedAvailability === 'not_restricted') {
-							var alert = document.querySelector('prm-alma-viewit prm-alert-bar');
-							var alertCheck = $interval(function() {
-								if (alert) {
-									$interval.cancel(alertCheck);
-									alert.style.display = 'none';
-								}
-							}, 50);
-							$timeout(function() {
-								$interval.cancel(alertCheck);
-							}, 5000);	
-						}	
-					}
-				}, 50);
-				$timeout(function() {
-					$interval.cancel(checkAvail);
-				}, 5000);
-			}
-		}]
 	});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
