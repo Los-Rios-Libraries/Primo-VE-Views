@@ -21,7 +21,7 @@ prm-alma-viewit .alert-bar {
 .my-refworks-ctm {display: none;}
 /* Move expand my results to bottom of facets */
 #facets .sidebar-inner-wrapper {display: flex;}
-#facets .sidebar-inner-wrapper .sidebar-section:nth-child(2) { order:20;}
+.sidebar-section[ng-if="::(!$ctrl.isRapido() && ($ctrl.showPcAvailability && !$ctrl.searchInProgress))"] { order:20;}
 /* Hide facet Open access */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
