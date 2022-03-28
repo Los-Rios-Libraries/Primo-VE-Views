@@ -187,6 +187,12 @@ prm-alma-viewit-items h6.item-status {display:none;}
 /* but show for journals */
 #searchWithinJournal + .full-view-section prm-alma-viewit-items h6.item-status, prm-journals-full-view prm-alma-viewit-items h6.item-status {display:block;}
 
+/* digital object adjustments*/
+/* hide Showing n of n results */
+div[translate="ui.viewit.digital_version"] + span {display:none;}
+/* hide Digital version(s) */
+md-list-item[aria-label^="Digital"] h3 {position: absolute; right:-9999px;}
+
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
