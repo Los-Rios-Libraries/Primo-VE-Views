@@ -21,7 +21,10 @@ prm-alma-viewit .alert-bar {
 .my-refworks-ctm {display: none;}
 /* Move expand my results to bottom of facets */
 #facets .sidebar-inner-wrapper {display: flex;}
+/* remove next line after May 2022 release */
 .sidebar-section[ng-if="::(!$ctrl.isRapido() && ($ctrl.showPcAvailability && !$ctrl.searchInProgress))"] { order:20;}
+/* below is for changes in May 2022 release - remove comment once applied */
+.switch-results {order:20;}
 /* Hide facet Open access */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
