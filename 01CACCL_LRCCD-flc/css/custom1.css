@@ -183,7 +183,8 @@ div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
 prm-opac{ display: flex; flex-direction: column;}
 prm-opac > div {order:2!important}
 prm-opac > .tabs-as-app {order:1!important}
-
+/* improve contrast in link on request confirmation */
+#lr-request-success {color: #09337b;}
 /* bump up prominence of full-text and ILL links */
 prm-alma-viewit-items h5 .item-title, a[href*="interlibrary-loan"] {text-decoration:underline; font-size:22px;}
 prm-alma-viewit-items h5 .item-title:hover, prm-alma-viewit-items h5 .item-title:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none; box-shadow: none;}
