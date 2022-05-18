@@ -24,7 +24,7 @@ prm-alma-viewit .alert-bar {
 /* remove next line after May 2022 release */
 .sidebar-section[ng-if="::(!$ctrl.isRapido() && ($ctrl.showPcAvailability && !$ctrl.searchInProgress))"] { order:20;}
 /* below is for changes in May 2022 release - remove comment once applied */
-.switch-results {order:20;}
+.switch-results {order:20; padding:20px 0;}
 /* Hide facet Open access */
 div[data-facet-value="tlevel-open_access"] {
 	display:none !important;
