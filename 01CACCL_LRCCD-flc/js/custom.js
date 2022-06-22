@@ -91,38 +91,40 @@
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
 		var vm = this;
-		vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
-		vm.scrollUp = function() { // force page to scroll up
-			$window.scrollTo(0,0);
-			return true;
+		vm.onInit = function() {
+			vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
+			vm.scrollUp = function() { // force page to scroll up
+				$window.scrollTo(0, 0);
+				return true;
+			};
 		};
-
 	}]);
 	app.controller('exploreFooterAfterController', ['$window', function($window) {
 		var vm = this;
-		vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
-		vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
-			$window.scrollTo(0,0);
-			return true;
-		};
-
-		vm.checkForContent = function () {
-			var content = angular.element(document.getElementsByTagName('md-content'));
-			if (content.length > 0) {
-				var h = 0;
-				for (var i = 0; i < content.length; i++) {
-					h += content[i].offsetHeight;
+		vm.$onInit = function() {
+			vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
+			vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
+				$window.scrollTo(0, 0);
+				return true;
+			};
+			vm.checkForContent = function() {
+				var content = angular.element(document.getElementsByTagName('md-content'));
+				if (content.length > 0) {
+					var h = 0;
+					for (var i = 0; i < content.length; i++) {
+						h += content[i].offsetHeight;
+					}
+					if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
+						return true;
+					}
 				}
-				if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
-					return true;
-				}
-			}
-		};
-		vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
-		vm.libraries = libraries;
-		vm.c19Page = c19Page;
-		vm.askUs = districtHost + 'ask-us/?' + colAbbr;
-		}]);
+			};
+			vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
+			vm.libraries = libraries;
+			vm.c19Page = c19Page;
+			vm.askUs = districtHost + 'ask-us/?' + colAbbr;
+		};		
+	}]);
 
 	app.component('prmExploreFooterAfter', { // insert template into footer area
 		controller: 'exploreFooterAfterController',
@@ -135,41 +137,42 @@
 	});
 	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
 		var vm = this;
-		vm.col = colAbbr;
-		vm.faqList = '';
-		vm.faqExist = false;
-		vm.getFaq = function() {
-
-			// local storage keys
-			var faq = 'lrFaqList' + colAbbr;
-			var timestamp = 'lrFaqTS' + colAbbr;
-			// get json from local storage if not more than 2 hours old
-			var local = $window.localStorage.getItem(faq);
-			var ts = $window.localStorage.getItem(timestamp); // timestamp
-			var old = false; // json assumed to be not old
-			if (ts !== null) { // check age of timestamp
-				var d = new Date();
-				var ageLimit = 4 * 60 * 60 * 1000; // four hours
-				if ((d - new Date(ts)) < ageLimit) { // get local storage object and insert it
-					vm.faqList = angular.fromJson(local);
-					vm.faqExist = true;
-				} else { // set flag to true
+		vm.$onInit = function() {
+			vm.col = colAbbr;
+			vm.faqList = '';
+			vm.faqExist = false;
+			vm.getFaq = function() {
+				// local storage keys
+				var faq = 'lrFaqList' + colAbbr;
+				var timestamp = 'lrFaqTS' + colAbbr;
+				// get json from local storage if not more than 2 hours old
+				var local = $window.localStorage.getItem(faq);
+				var ts = $window.localStorage.getItem(timestamp); // timestamp
+				var old = false; // json assumed to be not old
+				if (ts !== null) { // check age of timestamp
+					var d = new Date();
+					var ageLimit = 4 * 60 * 60 * 1000; // four hours
+					if ((d - new Date(ts)) < ageLimit) { // get local storage object and insert it
+						vm.faqList = angular.fromJson(local);
+						vm.faqExist = true;
+					} else { // set flag to true
+						old = true;
+					}
+				} else { // no timestamp found; same as if it were old
 					old = true;
 				}
-			} else { // no timestamp found; same as if it were old
-				old = true;
-			}
-			if (old === true) { // only runs if timestamp is old
-				$http.get(districtHost + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
-					.then(function(response) {
-						vm.faqList = response.data.faqs;
-						// set local storage for next time
-						$window.localStorage.setItem(faq, angular.toJson(vm.faqList));
-						var d = new Date();
-						$window.localStorage.setItem(timestamp, d.toString());
-						vm.faqExist = true;
-					});
-			}
+				if (old === true) { // only runs if timestamp is old
+					$http.get(districtHost + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
+						.then(function(response) {
+							vm.faqList = response.data.faqs;
+							// set local storage for next time
+							$window.localStorage.setItem(faq, angular.toJson(vm.faqList));
+							var d = new Date();
+							$window.localStorage.setItem(timestamp, d.toString());
+							vm.faqExist = true;
+						});
+				}
+			};
 		};
 	}]);
 	// notes to attach to view it when necessary, e.g. problematic cdi behavior. will be inserted into prmAlmaViewItAfter
@@ -180,25 +183,27 @@
 		templateUrl: custPackagePath + '/html/full-display/viewit-notes.html',
 		controller: function() {
 			var vm = this;
-			vm.showNote = function(source) {
-				var services = vm.parentCtrl.item.delivery.electronicServices;
-				if (services) {
-					var linkUrl = services[0].serviceUrl;
-					var journal = vm.parentCtrl.item.pnx.addata.jtitle;
-					if (linkUrl) {
-						if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
-							// check resource
-							if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal[0]) === true) {
-								if (journal[0].indexOf('(Online)') === -1) { // seems not to be a problem with web content
-									if (source === 'USMajorDailies') {
-										return true;
+			vm.$onInit = function() {
+				vm.showNote = function(source) {
+					var services = vm.parentCtrl.item.delivery.electronicServices;
+					if (services) {
+						var linkUrl = services[0].serviceUrl;
+						var journal = vm.parentCtrl.item.pnx.addata.jtitle;
+						if (linkUrl) {
+							if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
+								// check resource
+								if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal[0]) === true) {
+									if (journal[0].indexOf('(Online)') === -1) { // seems not to be a problem with web content
+										if (source === 'USMajorDailies') {
+											return true;
+										}
 									}
 								}
 							}
 						}
 					}
-				}
-			};
+				};
+			};			
 		} 
 	});
 	// problem reporter. this template is inserted into a few different directives
@@ -211,51 +216,51 @@
 	});
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		var vm = this;
-		var itemID = '';
-		var elecServices;
-		if (vm.parentCtrl.item) { // found in prmAlmaViewitAfter
-			itemID = vm.parentCtrl.item.pnx.control.recordid[0];
-			elecServices = vm.parentCtrl.item.delivery.electronicServices;
-		}
-		if (vm.parentCtrl.result) { // found in prmSearchResultAvailabilityLineAfter
-			itemID = vm.parentCtrl.result.pnx.control.recordid[0];
-		}
-		vm.openReporter = function() {
-			var w = 600;
-			var h = 600;
-			var left = (screen.width - w) / 2;
-			var top = (screen.height - h) / 4;
-			var page = districtHost + filePath + 'utilities/problem-reporter/';
-			var winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
-			$window.open(page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', winParams);
-		};
-		vm.showProblemReporter = function() { // wait until links load to show the reporter
-			if (vm.parentCtrl.item) { // full display
-				if (vm.parentCtrl.item.delivery.electronicServices) {
-					if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
-						return true;
-					}
-				}
+		vm.$onInit = function() {
+			var itemID = '';
+			var elecServices;
+			if (vm.parentCtrl.item) { // found in prmAlmaViewitAfter
+				itemID = vm.parentCtrl.item.pnx.control.recordid[0];
+				elecServices = vm.parentCtrl.item.delivery.electronicServices;
 			}
-			else if (vm.parentCtrl.result) { // brief results
-				if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
-					if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
-						var availability = vm.parentCtrl.result.delivery.availability;
-						if (availability) {
-							var regex = /(fulltext|not_restricted)/;
-							for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
-								if (regex.test(availability[i]) === true) { // only show when there is a full-text link
-									return true;
+			if (vm.parentCtrl.result) { // found in prmSearchResultAvailabilityLineAfter
+				itemID = vm.parentCtrl.result.pnx.control.recordid[0];
+			}
+			vm.openReporter = function() {
+				var w = 600;
+				var h = 600;
+				var left = (screen.width - w) / 2;
+				var top = (screen.height - h) / 4;
+				var page = districtHost + filePath + 'utilities/problem-reporter/';
+				var winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
+				$window.open(page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', winParams);
+			};
+			vm.showProblemReporter = function() { // wait until links load to show the reporter
+				if (vm.parentCtrl.item) { // full display
+					if (vm.parentCtrl.item.delivery.electronicServices) {
+						if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
+							return true;
+						}
+					}
+				} else if (vm.parentCtrl.result) { // brief results
+					if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
+						if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
+							var availability = vm.parentCtrl.result.delivery.availability;
+							if (availability) {
+								var regex = /(fulltext|not_restricted)/;
+								for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
+									if (regex.test(availability[i]) === true) { // only show when there is a full-text link
+										return true;
+									}
 								}
 							}
 						}
 					}
+				} else {
+					return true;
 				}
-			}
-			else {
-				return true;
-			}
-		};
+			};
+		};		
 	}]);
 	// now the directive gets inserted
 	// full display
@@ -265,7 +270,7 @@
 		},
 		// two different directives here
 		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>',
-	});
+		});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
 		bindings: {
@@ -289,25 +294,26 @@
 	});
 	app.controller('prmBrowseSearchAfterController', function() { 
 		var vm = this;
-		vm.showCards = function() { // avoid typeError by waiting for property to become available
-			if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
-				return true;
-			}
+		vm.$onInit = function() {
+			vm.showCards = function() { // avoid typeError by waiting for property to become available
+				if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
+					return true;
+				}
+			};
+			vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
+				var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
+				if (searchScope.indexOf(box) > -1) {
+					return true;
+				}
+			};
+			vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
+				var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
+				var inProgress = vm.parentCtrl.browseSearchService._inProgress;
+				if ((results.length > 0 || inProgress === true)) {
+					return true;
+				}
+			};
 		};
-		vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
-			var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
-			if (searchScope.indexOf(box) > -1) {
-				return true;
-			}
-		};
-		vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
-			var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
-			var inProgress = vm.parentCtrl.browseSearchService._inProgress;
-			if ((results.length > 0  || inProgress === true)) {
-				return true;
-			}
-		};
-		
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { 
 		template: '<lr-top-announcement></lr-top-announcement>',
@@ -318,63 +324,65 @@
 	});
 	app.controller('lrTopAnnouncementController', ['$cookies', '$timeout', function($cookies, $timeout) {
 		var vm = this;
-		vm.fade = ''; // used for adding classes when dissmissing
-		vm.hide = false;
-		vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
-		vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
-		vm.daysToHide = 14; // default days that banner is hidden if user dismisses
-		var getDate = function(str) {
-			var arr = str.split('-');
-			var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
-			var exp = new Date();
-			exp.setFullYear(arr[2], m, arr[1]);
-			return exp;
-		};
-		vm.showAnnounce = function(obj) {
-			if (vm.hide === true) { // this happens after dismiss button is pressed
-				return false;
-			}
-			var announceStart = obj.startDate || '';
-			var announceExp = obj.endDate || '';
-			if (obj.daysToHide) {
-				vm.daysToHide = obj.daysToHide;
-			}
-			var today = new Date();
-			if (announceExp !== '') {
-				var exp = getDate(announceExp);
-				if ((today - exp) > 0) {
+		vm.$onInit = function() {
+			vm.fade = ''; // used for adding classes when dissmissing
+			vm.hide = false;
+			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
+			vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
+			vm.daysToHide = 14; // default days that banner is hidden if user dismisses
+			var getDate = function(str) {
+				var arr = str.split('-');
+				var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
+				var exp = new Date();
+				exp.setFullYear(arr[2], m, arr[1]);
+				return exp;
+			};
+			vm.showAnnounce = function(obj) {
+				if (vm.hide === true) { // this happens after dismiss button is pressed
 					return false;
 				}
-			}
-			if (announceStart !== '') {
-				var start = getDate(announceStart);
-				if ((today - start) < 0){
-					return false;
+				var announceStart = obj.startDate || '';
+				var announceExp = obj.endDate || '';
+				if (obj.daysToHide) {
+					vm.daysToHide = obj.daysToHide;
 				}
-			}
-			if (obj.cookieID) {
-				vm.cookieID = obj.cookieID + '_' + colAbbr;
-			}
-			var hideCookie = $cookies.get(vm.cookieID) || '';
-			if (hideCookie !== 'true') {
+				var today = new Date();
+				if (announceExp !== '') {
+					var exp = getDate(announceExp);
+					if ((today - exp) > 0) {
+						return false;
+					}
+				}
+				if (announceStart !== '') {
+					var start = getDate(announceStart);
+					if ((today - start) < 0) {
+						return false;
+					}
+				}
+				if (obj.cookieID) {
+					vm.cookieID = obj.cookieID + '_' + colAbbr;
+				}
+				var hideCookie = $cookies.get(vm.cookieID) || '';
+				if (hideCookie !== 'true') {
+					return true;
+				}
+			};
+			vm.hideAnnounce = function() {
+				var cookieKey = vm.cookieID;
+				var d = new Date();
+				d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
+				vm.fade = 'lr-fadeout'; // allows animation via class
+				$timeout(function() {
+					$cookies.put(cookieKey, 'true', {
+						'expires': d.toUTCString(),
+						'path': '/',
+						'secure': true
+					}); // set cookie to stop showing announcement
+					vm.hide = true; // removes element so space stops showing
+				}, 300);
 				return true;
-			}
-		};
-		vm.hideAnnounce = function() {
-			var cookieKey = vm.cookieID;
-			var d = new Date();
-			d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
-			vm.fade = 'lr-fadeout'; // allows animation via class
-			$timeout(function() {
-				$cookies.put(cookieKey, 'true', {
-					'expires': d.toUTCString(),
-					'path' : '/',
-					'secure': true
-				}); // set cookie to stop showing announcement
-				vm.hide = true; // removes element so space stops showing
-			}, 300);
-			return true;
-		};
+			};
+		};		
 	}]);
 	// collection discovery
 	app.component('prmCollectionSearchAfter', {
@@ -390,11 +398,13 @@
 		templateUrl: custPackagePath + '/html/collections/blurb.html',
 		controller: function() {
 			var vm = this;
-			var collectionID = vm.parentCtrl.$stateParams.collectionId;
-			vm.showBlurb = function(colID) {
-				if (colID === collectionID) {
-					return true;
-				}
+			vm.$onInit = function() {
+				var collectionID = vm.parentCtrl.$stateParams.collectionId;
+				vm.showBlurb = function(colID) {
+					if (colID === collectionID) {
+						return true;
+					}
+				};
 			};
 		}
 	});
@@ -405,15 +415,16 @@
 		templateUrl: custPackagePath + '/html/fines.html',
 		controller: function() { // only show if there are fines
 			var vm = this;
-			vm.c19Page = c19Page;
-			vm.hasFines = function() {
-				// if there are no fines, this value is the number 0; if there are fines, it is a string		
-				if (typeof(vm.parentCtrl.finesCounters) === 'string') {
-					return true;
-				}
-				else {
-					return false;
-				}
+			vm.$onInit = function() {
+				vm.c19Page = c19Page;
+				vm.hasFines = function() {
+					// if there are no fines, this value is the number 0; if there are fines, it is a string		
+					if (typeof(vm.parentCtrl.finesCounters) === 'string') {
+						return true;
+					} else {
+						return false;
+					}
+				};
 			};
 		}
 	});
@@ -430,23 +441,25 @@
 		template: '<div ng-if="$ctrl.showNote();">Note: one or more items listed above was requested for locker pickup and is currently being held inside the SCC Library. It will be placed in a locker when one becomes available. Please <a href="https://answers.library.losrios.edu/scc/faq/360910" target="_blank">see SCC locker info <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open website in new tab" style="height:18px; min-height:18px;"></md-icon></a>.</div>',
 		controller: function() {
 			var vm = this;
-			vm.showNote = function() {
-				var requests = vm.parentCtrl.requestsService._requestsDisplay;
-				if (requests) {
-					for (var i = 0; i < requests.length; i++) {
-						if (requests[i].requestType === 'holds') {
-							var pickupLib = requests[i].secondLineRight;
-							if (pickupLib) {
-								if (pickupLib === 'SCC Lockers') {
-									if (/on hold( )?shelf/i.test(requests[i].status) === true) {
-										return true;
+			vm.$onInit = function() {
+				vm.showNote = function() {
+					var requests = vm.parentCtrl.requestsService._requestsDisplay;
+					if (requests) {
+						for (var i = 0; i < requests.length; i++) {
+							if (requests[i].requestType === 'holds') {
+								var pickupLib = requests[i].secondLineRight;
+								if (pickupLib) {
+									if (pickupLib === 'SCC Lockers') {
+										if (/on hold( )?shelf/i.test(requests[i].status) === true) {
+											return true;
+										}
 									}
 								}
 							}
 						}
 					}
-				}
-			};
+				};
+			};			
 		}
 	});
 	app.component('prmSearchResultThumbnailContainerAfter', {
@@ -462,52 +475,53 @@
 	// function below will run for each thumbnail
 		controller: ['$interval', '$timeout', function($interval, $timeout) {
 			var vm = this;
-			var pattern = /syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/;
-			var biggerURL = function(str) {
-				var replacement = '';
-				if (str.indexOf('/sc.jpg') > -1) { // syndetics
-					replacement = str.replace('/sc.jpg', '/mc.jpg');
-				} else if (str.indexOf('/width/88') > -1) { // fod
-					replacement = str.replace('/width/88', '/width/160');
-				}
-				else if (str.indexOf('books.google.com') > -1){
-					replacement = str;
-				}
-				return replacement;
-			};
-			// only run this in collection discovery
-			if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
-				var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
-					var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
-					if (img) { // this takes a while to load, wait for it
-						// it has loaded, so cancel the interval
-						$interval.cancel(checkImg);
-						if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
-							var newURL = biggerURL(img.linkURL);
-							if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
-								var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
-								for (var i = 0; i < images.length; i++) {
-									if (images[i].getAttribute('ng-src') === img.linkURL) {
-										images[i].setAttribute('src', newURL);
-										images[i].style.width = 'auto';
-										images[i].removeAttribute('ng-src'); // probably not necessary
-										if (newURL.indexOf('books.google.com') > -1) {
-											images[i].style.height = '160px';
+			vm.$onInit = function() {
+				var pattern = /syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/;
+				var biggerURL = function(str) {
+					var replacement = '';
+					if (str.indexOf('/sc.jpg') > -1) { // syndetics
+						replacement = str.replace('/sc.jpg', '/mc.jpg');
+					} else if (str.indexOf('/width/88') > -1) { // fod
+						replacement = str.replace('/width/88', '/width/160');
+					} else if (str.indexOf('books.google.com') > -1) {
+						replacement = str;
+					}
+					return replacement;
+				};
+				// only run this in collection discovery
+				if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
+					var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
+						var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
+						if (img) { // this takes a while to load, wait for it
+							// it has loaded, so cancel the interval
+							$interval.cancel(checkImg);
+							if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
+								var newURL = biggerURL(img.linkURL);
+								if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
+									var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
+									for (var i = 0; i < images.length; i++) {
+										if (images[i].getAttribute('ng-src') === img.linkURL) {
+											images[i].setAttribute('src', newURL);
+											images[i].style.width = 'auto';
+											images[i].removeAttribute('ng-src'); // probably not necessary
+											if (newURL.indexOf('books.google.com') > -1) {
+												images[i].style.height = '160px';
+											}
 										}
 									}
+								} else {
+									$interval.cancel(checkImg);
 								}
 							} else {
 								$interval.cancel(checkImg);
 							}
-						} else {
-							$interval.cancel(checkImg);
 						}
-					}
-				}, 50);
-				$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
-					$interval.cancel(checkImg);
-				}, 5000);
-			}
+					}, 50);
+					$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
+						$interval.cancel(checkImg);
+					}, 5000);
+				}
+			};
 		}]
 	});
 	// display text for delivery locations
@@ -524,42 +538,44 @@
 		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{$ctrl.urlPath}}" target="_blank">see our FAQ <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open in new tab"></md-icon></a>.</div>',
 		controller: ['$timeout', function($timeout) {
 			var vm = this;
-			vm.urlPath = '';
-			vm.highlight = '';
-			var deliveryLibraries = [ // library ID may be found using configuration API
-				{ // scc lockers
-					id: '5066568570005325',
-					col: 'scc',
-					path: '360910'
-				},
-				{ // flc lockers
-					id: '5020041320005325',
-					col: 'flc',
-					path: '361527'
-				} 
-			];
-			vm.showBlurb = function() {
-				for (var i = 0; i < deliveryLibraries.length; i++) {
-					var lib = deliveryLibraries[i];
-					if (vm.parentCtrl.requestService._formData.requestType === 'hold') {
-						var pickupLib = vm.parentCtrl.requestService._formData.pickupLocation;
-						if ((pickupLib) && (lib.id)) {
-							if (pickupLib.indexOf(lib.id) > -1) {
-								vm.urlPath = lib.col + '/faq/' + lib.path;
-								return true;
+			vm.$onInit = function() {
+				vm.urlPath = '';
+				vm.highlight = '';
+				var deliveryLibraries = [ // library ID may be found using configuration API
+					{ // scc lockers
+						id: '5066568570005325',
+						col: 'scc',
+						path: '360910'
+					},
+					{ // flc lockers
+						id: '5020041320005325',
+						col: 'flc',
+						path: '361527'
+					}
+				];
+				vm.showBlurb = function() {
+					for (var i = 0; i < deliveryLibraries.length; i++) {
+						var lib = deliveryLibraries[i];
+						if (vm.parentCtrl.requestService._formData.requestType === 'hold') {
+							var pickupLib = vm.parentCtrl.requestService._formData.pickupLocation;
+							if ((pickupLib) && (lib.id)) {
+								if (pickupLib.indexOf(lib.id) > -1) {
+									vm.urlPath = lib.col + '/faq/' + lib.path;
+									return true;
+								}
 							}
 						}
 					}
-				}
-			};
-			vm.fadeHighlight = function() { // background animation to emphasize presence of the blurb
+				};
+				vm.fadeHighlight = function() { // background animation to emphasize presence of the blurb
 					$timeout(function() {
 						vm.highlight = 'lr-highlighted';
 					}, 100);
 					$timeout(function() {
 						vm.highlight = 'lr-no-highlight';
 					}, 3000);
-			};	
+				};
+			};
 		}]
 	});
 	// set cookie for things like films on demand workaround
