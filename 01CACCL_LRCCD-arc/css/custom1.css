@@ -219,7 +219,7 @@ prm-alma-viewit-items h6.item-status {display:none;}
 div[translate="ui.viewit.digital_version"] + span {display:none;}
 /* hide Digital version(s) */
 md-list-item[aria-label^="Digital"] h3 {position: absolute; right:-9999px;}
-
+#denied-note {text-decoration:underline; color: #53738c;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
