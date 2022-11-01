@@ -142,7 +142,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 /* featured collections widget */
 #lr-featured-collections li {list-style-type:none;}
 #lr-featured-collections li {display: block; overflow:hidden;}
-#lr-featured-collections img {object-fit:none;object-position:-700px; max-height:100px;}
+#lr-featured-collections img {object-position:-200px; max-height:100px;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
