@@ -4,6 +4,7 @@
 	var colAbbr = 'crc';
 	var libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	var c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
+	var almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -175,6 +176,30 @@
 			};
 		};
 	}]);
+	// links to info about digital objects / alma-d
+	app.component('prmAlmaViewitItemsAfter', {
+		bindings: { parentCtrl: '<'},
+		template: '<lr-alma-d-notes parent-ctrl="$ctrl.parentCtrl"></lr-alma-d-notes>'
+	});
+	app.component('lrAlmaDNotes', {
+		bindings: {	parentCtrl: '<' },
+		template: '<div ng-if="$ctrl.showInfo();"><a href="" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
+		controller: function () {
+			var vm = this;
+			vm.$onInit = function () {
+				if (almaDHelp !== '') {
+					vm.url = almaDHelp;
+					vm.showInfo = function () {
+						var serviceType = vm.parentCtrl.serviceType;
+						console.log('serviceType: ' + serviceType);
+						if (serviceType === 'DIGITAL') {
+							return true;
+						}
+					};
+				}
+			};
+		}
+	});
 	// notes to attach to view it when necessary, e.g. problematic cdi behavior. will be inserted into prmAlmaViewItAfter
 	app.component('lrViewitNotes', {
 		bindings: {

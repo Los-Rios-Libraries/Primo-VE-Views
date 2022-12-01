@@ -4,6 +4,7 @@
 	var colAbbr = 'flc';
 	var libchatHash = '30c067282fb40fb55e758c16d27c656d';
 	var c19Page = 'https://researchguides.flc.losrios.edu/library_closure';
+	var almaDHelp = '';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -175,6 +176,30 @@
 			};
 		};
 	}]);
+	// links to info about digital objects / alma-d
+	app.component('prmAlmaViewitItemsAfter', {
+		bindings: { parentCtrl: '<'},
+		template: '<lr-alma-d-notes parent-ctrl="$ctrl.parentCtrl"></lr-alma-d-notes>'
+	});
+	app.component('lrAlmaDNotes', {
+		bindings: {	parentCtrl: '<' },
+		template: '<div ng-if="$ctrl.showInfo();"><a href="" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
+		controller: function () {
+			var vm = this;
+			vm.$onInit = function () {
+				if (almaDHelp !== '') {
+					vm.url = almaDHelp;
+					vm.showInfo = function () {
+						var serviceType = vm.parentCtrl.serviceType;
+						console.log('serviceType: ' + serviceType);
+						if (serviceType === 'DIGITAL') {
+							return true;
+						}
+					};
+				}
+			};
+		}
+	});
 	// notes to attach to view it when necessary, e.g. problematic cdi behavior. will be inserted into prmAlmaViewItAfter
 	app.component('lrViewitNotes', {
 		bindings: {
