@@ -636,7 +636,7 @@
 		div.id = 'libchat_' + libchatHash;
 		document.getElementsByTagName('body')[0].appendChild(div);
 		var scr = document.createElement('script');
-		scr.src = 'https://v2.libanswers.com/load_chat.php?hash=' + libchatHash;
+		scr.src = 'https://answers.library.losrios.edu/load_chat.php?hash=' + libchatHash;
 		setTimeout(function () {
 			document.getElementsByTagName('body')[0].appendChild(scr);
 		}, 2000);
