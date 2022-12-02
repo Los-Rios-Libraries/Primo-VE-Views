@@ -277,6 +277,8 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 			/* scc-only - search button looks bad if background isn't white at this screen size */
 	.search-actions .md-button.button-confirm {background:#fff;}
 	lr-delivery-blurb {position:static;}
+	/* digital help note */
+lr-alma-d-notes div {margin-bottom:20px;}
 }
 
 @media only screen and (max-width: 600px) {
