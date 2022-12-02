@@ -183,7 +183,7 @@
 	});
 	app.component('lrAlmaDNotes', {
 		bindings: {	parentCtrl: '<' },
-		template: '<div ng-if="$ctrl.showInfo();"><a href="" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
+		template: '<div ng-if="$ctrl.showInfo();"><a href="{{$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
 		controller: function () {
 			var vm = this;
 			vm.$onInit = function () {
