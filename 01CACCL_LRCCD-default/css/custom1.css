@@ -114,6 +114,8 @@ md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 	.search-wrapper {margin-left: 0;}
 	.search-wrapper .flex-lg-65 {max-width:100%}
 	.lr-footer {padding: 20px;}
+		/* digital help note */
+lr-alma-d-notes div {margin-bottom:20px;}
 }
 
 @media only screen and (max-width: 600px) {

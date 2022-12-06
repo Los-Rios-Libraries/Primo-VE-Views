@@ -4,7 +4,7 @@
 	var colAbbr = 'flc';
 	var libchatHash = '30c067282fb40fb55e758c16d27c656d';
 	var c19Page = 'https://researchguides.flc.losrios.edu/library_closure';
-	var almaDHelp = '';
+	var almaDHelp = 'https://answers.library.losrios.edu/flc/search/?t=0&adv=1&topics=digital%20books';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -183,7 +183,7 @@
 	});
 	app.component('lrAlmaDNotes', {
 		bindings: {	parentCtrl: '<' },
-		template: '<div ng-if="$ctrl.showInfo();"><a href="" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
+		template: '<div ng-if="$ctrl.showInfo();"><a href="{{$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks</a></div>',
 		controller: function () {
 			var vm = this;
 			vm.$onInit = function () {
