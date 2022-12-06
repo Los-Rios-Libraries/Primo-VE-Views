@@ -1,8 +1,16 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-endDate: 'DATE',
-cookieID: 'c-ID',
-daysToHide: COUNT
+startDate: '12-13-2022',
+endDate: '1-5-2023',
+cookieID: 'requesting',
+daysToHide: 30
 });">
-	
+	<p layout-margin layout-align="center center">
+		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+		Book requesting is temporarily unavailable. Requesting will resume on January 6, 2023.
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement
+			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+		</md-button>
+	</p>
 </md-content>

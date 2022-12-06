@@ -1,27 +1,13 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-endDate: '8-11-2022',
-cookieID: 'c-maintenance',
-daysToHide: 5
+startDate: '12-13-2022',
+endDate: '1-5-2023',
+cookieID: 'requesting',
+daysToHide: 30
 });">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Access to databases and your library account may be interrupted on Thursday, August 11, from 9:00 pm to midnight.
-		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-			Hide this announcement
-			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
-		</md-button>
-	</p>
-</md-content>
-<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '8-13-2022',
-endDate: '8-14-2022',
-cookieID: 'd-maintenance',
-daysToHide: 5
-});">
-	<p layout-margin layout-align="center center">
-		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Access to databases and your library account may be interrupted  on Sunday, August 14 from 6:00 am to 9:00 am.
+		Book requesting is temporarily unavailable. Requesting will resume on January 6, 2023.
 		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
