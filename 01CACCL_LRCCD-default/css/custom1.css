@@ -109,7 +109,10 @@ prm-service-button .button-as-link.md-button { border: 1px solid #143137; border
 md-select[name="termsOfUse"] ._md-select-icon {display:none;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
-
+/* los rios icon svg for badge */
+.lr-logo-a{fill:#252d65;}
+.lr-logo-b{fill:#215dd6;}
+.lr-logo-c{fill:#9cceeb;}
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
 	.search-wrapper .flex-lg-65 {max-width:100%}
