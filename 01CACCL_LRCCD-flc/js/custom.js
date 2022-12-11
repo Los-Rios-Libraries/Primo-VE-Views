@@ -618,10 +618,10 @@
 				vm.showBadge = function () {
 					var lrCrField = vm.parentCtrl.item.pnx.display.lds09;
 					if (lrCrField) {
-						if (lrCrField[0].indexOf('lrcreator') > -1) {
-							vm.creatorType = 'creator';
+						if (lrCrField[0].indexOf('lrcreator') > -1) { // must have this value in 988$a
+							vm.creatorType = 'creator'; // default if role is not defined
 							var arr = lrCrField[0].split('$');
-							if (arr[2]) {
+							if (arr[2]) { // get role
 								if (arr[2] !== 'z') {
 									vm.creatorType = arr[2];
 								}
