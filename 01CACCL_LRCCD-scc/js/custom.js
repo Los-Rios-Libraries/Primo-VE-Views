@@ -817,9 +817,72 @@
 		templateUrl: custPackagePath + '/html/local-creator.html',
 		controller: function () {
 			var vm = this;
-			vm.$onInit = function () {
-				vm.showBadge = function () {
-					var lrCrField = vm.parentCtrl.item.pnx.display.lds09;
+			vm.$onInit = function() {
+				var lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
+				vm.creators = []; // we push creator objects into an array that the template iterates through
+				var creator = {};
+				for (var i = 0; i < lrCrField.length; i++) { // for each array member we will split by delimiter and process
+					var arr = lrCrField[i].split('$');
+					if (arr.length === 7) { // all fields must be present
+						if ((arr[1] !== 'z') && (arr[5] !== 'z')) {
+							creator.crName = arr[1];
+							var zTitle = 'affiliated';
+							var connector = 'with';
+							var currency = 'is';
+							var art = '';
+							var title = zTitle;
+							if (arr[4] !== 'z') {
+								title = arr[4];
+								connector = 'at';
+								if (/^[aeiou]/i.test(title)) {
+									art = 'an';
+								}
+								else {
+									art = 'a';
+								}
+								if (arr[5] === 'former') {
+									currency = 'is a former';
+									art = '';
+									if (title === zTitle) {
+										currency = 'was formerly';
+									}
+								}
+							}
+							creator.title = currency + ' ' + art + ' ' + title + ' ' + connector;
+							var college = 'Los Rios Community College District';
+							var crCol = [];
+							var collegePhr = '';
+							if (arr[3] !== 'z') {
+								for (var j = 0; j < libraries.length; j++) { // use libraries array defined at top of this file
+									if (arr[3].indexOf(libraries[j].abbr) > -1) {
+										crCol.push(libraries[j].name + ' College');
+									}
+								}
+								var colNum = crCol.length; // vary syntax based on how many colleges are listed
+								if (colNum === 1) { // just one college
+									collegePhr = crCol[0];
+								}
+								else if (colNum === 2) { // two colleges
+									collegePhr = crCol[0] + ' and ' + crCol[1];
+								}
+								else { // moret than two
+									var lastMember = crCol[colNum - 1];
+									crCol.splice(colNum - 1, 1, 'and ' + lastMember);
+									collegePhr = crCol.join(', ');
+								}
+								college = collegePhr;
+							}
+							creator.college = college;
+						}
+					}
+						var url = '';
+						if (arr[6] !== 'z') {
+							url = arr[6];
+						}
+						creator.url = url;
+						vm.creators.push(creator);
+						}
+				vm.showBadge = function() {
 					if (lrCrField) {
 						if (lrCrField[0].indexOf('lrcreator') > -1) { // must have this value in 988$a
 							vm.creatorType = 'creator'; // default if role is not defined
@@ -831,6 +894,11 @@
 							}
 							return true;
 						}
+					}
+				};
+				vm.showBlurb = function() { // only show creator statement in full display
+					if (vm.parentCtrl.$location.$$url.indexOf('/fulldisplay') === 0) {
+						return true;
 					}
 				};
 			};
