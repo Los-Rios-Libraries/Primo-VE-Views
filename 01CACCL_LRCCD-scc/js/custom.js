@@ -176,10 +176,12 @@
 					if (/(kan|loc)_/.test(str) === false) {
 						var checkInt = $interval(function() { // interval allows some time for jacket to load
 							var el = document.getElementById(str);
-							var img = el.querySelector('#' + str + ' img');
-							if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
-								if ((img.complete === true) && (img.height === 1)) {
-									angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+							if (el) {
+								var img = el.querySelector('#' + str + ' img');
+								if ((angular.element(el).length) && (!(angular.element(el).hasClass('no-cover')))) {
+									if ((img.complete === true) && (img.height === 1)) {
+										angular.element(el).addClass('no-cover'); // maybe there's a better way to do this using ng-class
+									}
 								}
 							}
 						}, 1000);
