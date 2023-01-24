@@ -4,7 +4,7 @@
 	var colAbbr = 'scc'; 
 	var libchatHash = 'c5c1abe3b80e070681d3fa045fc19bf4'; 
 	var c19Page = 'https://scc.losrios.edu/student-resources/library/covid-19-faq';
-	var almaDHelp = '';
+	var almaDHelp = 'https://answers.library.losrios.edu/scc/faq/382385';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
