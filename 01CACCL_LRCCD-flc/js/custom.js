@@ -412,29 +412,42 @@
 			};
 		};		
 	}]);
-	// collection discovery
+	// collection discovery - blurb above display
+	// $attrs.model will be used to set position in the template. see blurb.html in html/collections
 	app.component('prmCollectionSearchAfter', {
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<lr-collection-blurb parent-ctrl="$ctrl.parentCtrl"></lr-collection-blurb>'
+		template: '<lr-collection-blurb parent-ctrl="$ctrl.parentCtrl" model=\'{"position":"top"}\'></lr-collection-blurb>'
+	});
+	// collection discovery - blurb below display
+	app.component('prmCollectionGalleryAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-collection-blurb parent-ctrl="$ctrl.parentCtrl" model=\'{"position":"bottom"}\'></lr-collection-blurb>'
 	});
 	app.component('lrCollectionBlurb', {
 		bindings: {
 			parentCtrl: '<'
 		},
 		templateUrl: custPackagePath + '/html/collections/blurb.html',
-		controller: function() {
+		controller: ['$attrs', function($attrs) {
 			var vm = this;
 			vm.$onInit = function() {
+				var params = JSON.parse($attrs.model);
 				var collectionID = vm.parentCtrl.$stateParams.collectionId;
-				vm.showBlurb = function(colID) {
-					if (colID === collectionID) {
-						return true;
+				vm.showBlurb = function(obj) {
+					if (obj.collection === collectionID) {
+						if (obj.position === params.position) {
+							if (vm.parentCtrl._itemsExist === true) { // wait for jackets to load
+								return true;
+							}
+						}
 					}
 				};
 			};
-		}
+		}]
 	});
 	app.component('prmFinesAfter', { // show message explaining how to pay fines
 		bindings: {
