@@ -1,13 +1,6 @@
-<!-- In this file you may add blubrs that will be placed below the collection banner. To add one for a given collection, copy the first md-content block and paste it underneath. Change the string in showBlurb('string') to match the ID of your collection. Then change the text as appropriate for your collection.
-
-The sample blurb below is viewable on the sandbox at https://sandbox02-na.primo.exlibrisgroup.com/discovery/collectionDiscovery?vid=01CACCL_CC:scc&collectionId=8128969520005264
--->
-
-<md-content ng-if="$ctrl.showBlurb('8128969520005264');" class="padded-container" layout="row" flex>
+<md-content ng-if="$ctrl.showBlurb({'collection':'8184003930005325', 'position': 'bottom'});" class="padded-container" layout="row" flex>
 	<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
 	<div layout="column" class="md-subhead margin-left-small">
-		<!-- description goes below -->
-		<p>This is a sample description of a collection. This collection shows various resources that are available on a particular topic.</p>
-		<p>Multiple paragraphs are possible, as are <a target="_blank" href="https://www.scc.losrios.edu/library">links</a> or any other html.</p>
+		<p>Explore more resources on Afrofuturism with a <a href="/discovery/search?query=sub%2Ccontains%2CAfrofuturism%2CAND&vid=01CACCL_LRCCD%3Ascc&mode=advanced&offset=0">subject search</a>.</p>
 	</div>
 </md-content>
