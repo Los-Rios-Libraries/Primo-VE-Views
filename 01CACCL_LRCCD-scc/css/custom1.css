@@ -228,6 +228,9 @@ md-list-item[aria-label^="Digital"] h3 {margin-left: -20px !important;}
 #denied-note {text-decoration:underline; color: #53738c;}
 /* hide topbar that shows logo and login */
 #almaViewerHeader prm-topbar {display:none;}
+/* deemphasize header */
+#almaRepresentationViewer #toolbar-title {font-size: 1em;}
+#almaRepresentationViewer #toolbar-title-text {font-weight: normal;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h3.section-title {position:absolute !important; left:-999999px;} 
