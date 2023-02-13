@@ -823,6 +823,47 @@
 			};
 		}]
 	});
+	app.component('prmLocationsAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"locations"}\'></lr-getit-locations-note>'
+	});
+	app.component('prmLocationItemsAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"items"}\'></lr-getit-locations-note>'
+	});
+	app.component('lrGetitLocationsNote', { // provide notes for particular records for particular locations in Get It area
+		bindings: {
+			parentCtrl: '<'
+		},
+		templateUrl: custPackagePath + '/html/getit/locations-note.html',
+		controller: ['$attrs', function ($attrs) {
+			var vm = this;
+			vm.$onInit = function () {
+				var params = JSON.parse($attrs.model);
+				var record = vm.parentCtrl.item.pnx.control.sourcerecordid[0];
+				vm.showNote = function (obj) {
+					if (obj.record === record) {
+						if (params.directive === 'locations') { // this is for initial getit screen
+							var holdings = vm.parentCtrl.item.delivery.holding;
+							for (var i = 0; i < holdings.length; i++) {
+								if (holdings[i].libraryCode === obj.library) {
+									return true;
+								}
+							}
+						}
+						if (params.directive === 'items') {
+							if (vm.parentCtrl.loc) { // this data element only exists in prmlocationitems
+								var library = vm.parentCtrl.loc.location.libraryCode;
+								if (library == obj.library) {
+									return true;
+								}
+							}
+						}
+					}
+				};
+			};
+			}]
+	});
 	app.component('prmBriefResultAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge>'
