@@ -191,7 +191,6 @@
 					vm.url = almaDHelp;
 					vm.showInfo = function () {
 						var serviceType = vm.parentCtrl.serviceType;
-						console.log('serviceType: ' + serviceType);
 						if (serviceType === 'DIGITAL') {
 							return true;
 						}
