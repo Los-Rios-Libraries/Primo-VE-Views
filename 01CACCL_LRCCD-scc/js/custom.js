@@ -764,7 +764,7 @@
 					}, 50);
 					$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
 						$interval.cancel(checkImg);
-					}, 5000);
+					}, 10000);
 				}
 			};
 		}]
