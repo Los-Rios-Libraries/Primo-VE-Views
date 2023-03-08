@@ -434,6 +434,7 @@
 		controller: ['$attrs', function($attrs) {
 			var vm = this;
 			vm.$onInit = function() {
+				vm.col = colAbbr;
 				var params = JSON.parse($attrs.model);
 				var collectionID = vm.parentCtrl.$stateParams.collectionId;
 				vm.showBlurb = function(obj) {
