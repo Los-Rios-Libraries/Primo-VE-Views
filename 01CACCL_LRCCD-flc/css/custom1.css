@@ -70,7 +70,7 @@ background-color: #E5E5E5;
 	/* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*flc*/ background: #94C7D3 !important;}
 lr-top-announcement .md-button {color:#000;}
-lr-top-announcement a {color:#743182;}
+lr-top-announcement a.md-primoExplore-theme {color:#743182; margin-right:0; box-shadow:inset 0 -2px 0 0 #53738c;}
 lr-top-announcement a:hover, lr-top-announcement a:focus {box-shadow: inset 0 -2px 0 0 #743182;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
