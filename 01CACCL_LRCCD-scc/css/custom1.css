@@ -176,7 +176,9 @@ prm-login md-content.md-primoExplore-theme {background-color: unset;}
 span[ng-if*="location.subLocation"] + span[ng-if*="location.callNumber"]{ color: transparent;}
 /* move call number to next line */
 span[ng-if*="location.subLocation"] + span[ng-if*="location.callNumber"]::after { display:block; content: '';}
-
+/* libkey tweaks */
+.browzine {margin-right: 0 !important; margin-left:4.5em;}
+.libkey-link-optimizer, .browzine {order:5;}
 /* hide frbr/dedup line in brief results only */
 prm-search-result-frbr-line {display:none;}
 #full-view-container prm-search-result-frbr-line {display: initial;}

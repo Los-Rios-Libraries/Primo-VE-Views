@@ -5,6 +5,9 @@
 	var libchatHash = '30c067282fb40fb55e758c16d27c656d';
 	var c19Page = 'https://researchguides.flc.losrios.edu/library_closure';
 	var almaDHelp = 'https://answers.library.losrios.edu/flc/search/?t=0&adv=1&topics=digital%20books';
+	var libKeyId = '3236';
+	var lkAPI = 'bb1e3a4b-f384-4323-8ae8-a95c56f8e091';
+	var lkEmail = 'BrinklA@flc.losrios.edu';
 	/* end college-specific variables */
 	var viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
@@ -300,7 +303,7 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>'
+		template: '<lr-libkey parent-ctrl="$ctrl.parentCtrl"></lr-libkey><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>'
 		});
 	// record cannot be displayed page
 	app.component('prmSignInToViewAfter', {
@@ -309,6 +312,44 @@
 		},
 		template: '<md-card class="default-card" style="margin-top:-9px;"><md-card-content><md-card-actions layout-align="end-center" layout="row"><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter></md-card-actions></md-card-content></md-card>'
 	});
+	// Begin BrowZine - Primo Integration...
+  	window.browzine = {
+      api: 'https://public-api.thirdiron.com/public/v1/libraries/' + libKeyId,
+      apiKey: lkAPI,
+      journalCoverImagesEnabled: true,
+      journalBrowZineWebLinkTextEnabled: false,
+      journalBrowZineWebLinkText: 'View Journal Contents',
+      articleBrowZineWebLinkTextEnabled: false,
+      articleBrowZineWebLinkText: 'View Issue Contents',
+      articlePDFDownloadLinkEnabled: true,
+      articlePDFDownloadLinkText: 'View PDF',
+      articleLinkEnabled: false,
+      articleLinkText: 'Read Article',
+      printRecordsIntegrationEnabled: true,
+      showFormatChoice: false,
+      showLinkResolverLink: true,
+      enableLinkOptimizer: true,
+      articleRetractionWatchEnabled: true,
+      articleRetractionWatchText: 'Retracted Article',
+      unpaywallEmailAddressKey: 'karlsej@scc.losrios.edu',
+      articlePDFDownloadViaUnpaywallEnabled: true,
+      articlePDFDownloadViaUnpaywallText: 'View PDF',
+      articleLinkViaUnpaywallEnabled: false,
+      articleLinkViaUnpaywallText: 'Read Article (via Unpaywall)',
+      articleAcceptedManuscriptPDFViaUnpaywallEnabled: true,
+      articleAcceptedManuscriptPDFViaUnpaywallText:  'View PDF (Accepted Manuscript)',
+      articleAcceptedManuscriptArticleLinkViaUnpaywallEnabled: false,
+      articleAcceptedManuscriptArticleLinkViaUnpaywallText: 'Read Article (Accepted Manuscript)',
+    };
+    browzine.script = document.createElement('script');
+    browzine.script.src = 'https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js';
+    document.head.appendChild(browzine.script);
+	app.component('lrLibkey', {
+   		bindings: { parentCtrl: '<' },
+    	controller: function($scope) {
+			window.browzine.primo.searchResult($scope);
+		}
+ 	 });
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
