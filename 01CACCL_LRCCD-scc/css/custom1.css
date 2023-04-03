@@ -228,7 +228,8 @@ prm-alma-viewit-items h6.item-status {display:none;}
 div[translate="ui.viewit.digital_version"] + span {display:none;}
 /* reformat viewer heading */
 md-list-item[aria-label^="Digital"] h3 {margin-left: -20px !important;}
-#denied-note {text-decoration:underline; color: #53738c;}
+#denied-note {text-decoration:underline; color: #53738c; font-size:1.4em;}
+h4[ng-if~="item.numberOfFiles"] + p #public-note {font-size:1.4em;}
 /* hide topbar that shows logo and login */
 #almaViewerHeader prm-topbar {display:none;}
 /* deemphasize header */
