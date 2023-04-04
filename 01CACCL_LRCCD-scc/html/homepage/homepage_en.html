@@ -28,45 +28,25 @@
             </md-card>
         </div>  
     </div>
-    <div layout="row" id="lr-featured-collections">
-        <md-card class="default-card" layout="column" flex="100">
-            <md-card-title>
-                <md-card-title-text>
-                    <h2 class="md-headline">Featured Collections</h2>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-			<div>
-				<ul layout="row" layout-wrap flex flex="100" class="zero-margin">
-                    <li layout-margin flex="40" flex-gt-xs="20" >
-						<a class="zero-margin" title="Arab-American Authors and Poets collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8185113600005325">
-							<img alt="" src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/8185113600005325">
-							<div>Arab-American Authors and Poets</div>
-						</a>
-					</li>        
-                    <li layout-margin flex="40" flex-gt-xs="20" >
-						<a class="zero-margin" title="Create your own graphic novels" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8184352960005325">
-							<img alt="" src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/8184352960005325">
-							<div>Create Your Own Graphic Novels</div>
-						</a>
-					</li>     
-                    <li layout-margin flex="40" flex-gt-xs="20" >
-						<a class="zero-margin" title="Afrofuturism collection"  href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8184003930005325" >
-							<img alt="" src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/8184003930005325">	
-							<div>Afrofuturism</div>
-						</a>
-					</li>     
-                    <li layout-margin flex="40" flex-gt-xs="20" >
-						<a class="zero-margin" title="Fashion illustration"  href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId=8182753580005325" >
-							<img alt="" src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/8182753580005325">
-							<div>Fashion Illustration</div>
-						</a>
-					</li>  
-                </ul>
-            </div>
-		</md-card-content>
-        </md-card>
-    </div>
+    <lr-featured-collections model='[
+    {
+      "id": "8185113600005325",
+      "title": "Arab-American Authors and Poets"
+    },
+    {
+      "id": "8184352960005325",
+      "title": "Create Your Own Graphic Novels"
+    },
+    {
+      "id": "8184003930005325",
+      "title": "Afrofuturism"
+    },
+    {
+      "id": "8182753580005325",
+      "title": "Fashion Illustration"
+    }
+    ]
+    '></lr-featured-collections>
 
     <!-- model attribute takes JSON object with properties cardName: string that displays as heading, reportName: string that matches nickname in analytics proxy php file, (optional) numToShow: integer that sets hwo many appear initially and are added when "show more" button is clicked -->
      <lr-newbooks-display model='{
