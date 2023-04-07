@@ -935,9 +935,16 @@
 								if (arr[4] !== 'z') {
 									title = arr[4];
 									connector = 'at';
+									if (/^(Interim )?President/.test(title)) {
+										connector = 'of';
+									}
 									if (/^[aeiou]/i.test(title)) {
 										art = 'an';
-									} else {
+									} 
+									else if (/^((Interim )?(Dean|Pres|Vice|Direct))/.test(title)) {
+										art = '';
+									}
+									else {
 										art = 'a';
 									}
 									if (arr[5] === 'former') {
