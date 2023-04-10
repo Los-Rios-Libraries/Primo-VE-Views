@@ -16,7 +16,7 @@
 	<div ng-if="$ctrl.showBlurb();">
 		<div ng-repeat="a in $ctrl.creators" layout="row">
 			<div>
-				<em><a ng-if="a.url !== ''" target="_blank" title="Learn more about {{a.crName}}" href="{{a.url}}">{{a.crName}}</a><span ng-if="a.url===''">{{a.crName}}</span> {{a.currency}} {{a.title}} {{a.college}}.</em>
+				<em><a ng-if="a.url !== ''" target="_blank" title="Learn more about {{a.crName}}" href="{{a.url}}">{{a.crName}} <prm-icon external-link=""  icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon></a><span ng-if="a.url===''">{{a.crName}}</span> {{a.currency}} {{a.title}} {{a.college}}.</em>
 			</div>
 		</div>
 	</div>
