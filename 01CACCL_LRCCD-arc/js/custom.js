@@ -300,7 +300,7 @@
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
 		var vm = this;
-		vm.onInit = function() {
+		vm.$onInit = function() {
 			vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
 			vm.scrollUp = function() { // force page to scroll up
 				$window.scrollTo(0, 0);
