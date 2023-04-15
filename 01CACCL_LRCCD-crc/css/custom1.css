@@ -69,7 +69,7 @@ background-color: #E5E5E5;
 	prm-collection-gallery-header .collection-info {background:rgba(0,0,0,0.4);}
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#fff; /*crc*/ background: #F26E21 !important;}
-lr-top-announcement a.md-primoExplore-theme {margin-right:0; box-shadow:inset 0 -2px 0 0 #53738c;}
+lr-top-announcement a.md-primoExplore-theme {margin:0;}
 lr-top-announcement .md-button {color:#fff;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
