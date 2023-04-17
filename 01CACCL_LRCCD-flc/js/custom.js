@@ -715,10 +715,10 @@
 			vm.$onInit = function() {
 				var lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
 				vm.creators = []; // we push creator objects into an array that the template iterates through
-				var creator = {};
 				if (lrCrField) {
 					for (var i = 0; i < lrCrField.length; i++) { // for each array member we will split by delimiter and process
 						var arr = lrCrField[i].split('$');
+						var creator = {};
 						if (arr.length === 7) { // all fields must be present
 							if ((arr[1] !== 'z') && (arr[5] !== 'z')) {
 								creator.crName = arr[1];
