@@ -5,7 +5,7 @@
 			<h2>More Resources</h2>
 			<div class="lr-dbs">
 				<ul>
-					<li><a ng-href="{{$ctrl.browseURL}}" ng-click="$ctrl.scrollUp();">Browse by Call Number or Subject</a></li>
+					<li><a ng-href="{{::$ctrl.browseURL}}" ng-click="$ctrl.scrollUp();">Browse by Call Number or Subject</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=all" target="_blank">EBSCO Search</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://scholar.google.com/" target="_blank">Google Scholar</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://infotrac.galegroup.com/itweb?db=GVRL" target="_blank">Gale eBooks</a></li>
@@ -14,7 +14,7 @@
 				</ul>
 				<p ng-if="$ctrl.askUs">
 					<md-icon md-svg-icon="action:ic_help_24px"></md-icon> Not sure where to start?
-					<a href="{{$ctrl.askUs}}">
+					<a href="{{::$ctrl.askUs}}">
 						Ask Us.
 					</a>
 				</p>
@@ -41,22 +41,22 @@
 	</div>
 	<!-- subfooter; see js file for content -->
 	<div id="subfooter" class="lr-footer">
-		<div layout="row" layout-align="center" layout-align-xs="start" flex="" id="lr-libraries-logo"><img ng-src="{{$ctrl.LRLogoSrc}}" alt="Los Rios Libraries"></div>
+		<div layout="row" layout-align="center" layout-align-xs="start" flex="" id="lr-libraries-logo"><img ng-src="{{::$ctrl.LRLogoSrc}}" alt="Los Rios Libraries"></div>
 		<div layout="row" layout-xs="column">
-			<div class="lr-ft-college-column" layout="column"  flex="" ng-repeat="lib in $ctrl.libraries">
+			<div class="lr-ft-college-column" layout="column"  flex="" ng-repeat="lib in ::$ctrl.libraries">
 				<div class="lr-ft-college">
-				<div><a ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.path}}">{{lib.name}} College Library</a></div>
-				<div><a ng-href="tel:+1-916-{{lib.phone}}">(916) {{lib.phone}}</a></div>	
+				<div><a ng-href="https://{{::lib.abbr}}.losrios.edu/{{::lib.path}}">{{::lib.name}} College Library</a></div>
+				<div><a ng-href="tel:+1-916-{{::lib.phone}}">(916) {{::lib.phone}}</a></div>	
 				</div>
 				
 				<div class="lr-centers">
 					<p ng-if="lib.center">
-						<a ng-if="lib.cpath" ng-href="https://{{lib.abbr}}.losrios.edu/{{lib.cpath}}">{{lib.center}}</a>
-						<a ng-if="lib.centerurl" ng-href="{{lib.centerurl}}">{{lib.center}}</a> <!-- to cover arc -- should find better way of doing this -->
+						<a ng-if="lib.cpath" ng-href="https://{{::lib.abbr}}.losrios.edu/{{::lib.cpath}}">{{lib.center}}</a>
+						<a ng-if="lib.centerurl" ng-href="{{::lib.centerurl}}">{{::lib.center}}</a> <!-- to cover arc -- should find better way of doing this -->
 					</p>
 					<ul ng-if="lib.centers">
-						<li ng-repeat="cent in lib.centers">
-							<a ng-href="https://{{lib.abbr}}.losrios.edu/{{cent.cpath}}">{{cent.center}}</a>
+						<li ng-repeat="cent in ::lib.centers">
+							<a ng-href="https://{{::lib.abbr}}.losrios.edu/{{::cent.cpath}}">{{::cent.center}}</a>
 						</li>
 					</ul>
 				</div>

@@ -305,7 +305,7 @@
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
 		controller: 'prmSearchBarAfterController',
-		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
+		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{::$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
 		
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
@@ -352,7 +352,7 @@
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
 		controller: 'lrHomepageFaqController',
-		template: '<div id="lr-faq-block" ng-init="$ctrl.getFaq();"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in $ctrl.faqList" layout-padding><a href="{{f.url.public}}" target="_blank">{{f.question}} <span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></span></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{$ctrl.col}}" target="_blank">More Library Answers <md-icon md-svg-icon="action:ic_launch_24px"></md-icon></md-button></p></div>'
+		template: '<div id="lr-faq-block" ng-init="$ctrl.getFaq();"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding><a href="{{::f.url.public}}" target="_blank">{{::f.question}} <span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></span></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers <md-icon md-svg-icon="action:ic_launch_24px"></md-icon></md-button></p></div>'
 	});
 	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
 		var vm = this;
@@ -401,7 +401,7 @@
 	});
 	app.component('lrAlmaDNotes', {
 		bindings: {	parentCtrl: '<' },
-		template: '<div ng-if="$ctrl.showInfo();"><a href="{{$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks <span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></span></a></a></div>',
+		template: '<div ng-if="$ctrl.showInfo();"><a href="{{::$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks <span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></span></a></a></div>',
 		controller: function () {
 			var vm = this;
 			vm.$onInit = function () {
@@ -832,7 +832,7 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{$ctrl.urlPath}}" target="_blank">see our FAQ <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open in new tab"></md-icon></a>.</div>',
+		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{::$ctrl.urlPath}}" target="_blank">see our FAQ <md-icon md-svg-icon="action:ic_launch_24px" aria-label="Open in new tab"></md-icon></a>.</div>',
 		controller: ['$timeout', function($timeout) {
 			var vm = this;
 			vm.$onInit = function() {

@@ -10,13 +10,13 @@
 					<path class="lr-logo-c" d="M55.72,70.5A30.32,30.32,0,0,1,1.15,62.13,53.84,53.84,0,0,1,16.85,61c11.47,1.08,21.94,7.06,33.31,8.91A49.86,49.86,0,0,0,55.72,70.5Z"/>
 				</svg>
 			</div>
-				<span class="badge-label">Los Rios {{$ctrl.creatorType}}</span>
+				<span class="badge-label">Los Rios {{::$ctrl.creatorType}}</span>
 			</div>
 		</div>
 	<div ng-if="$ctrl.showBlurb();">
 		<div ng-repeat="a in $ctrl.creators" layout="row">
 			<div>
-				<em><a ng-if="a.url !== ''" target="_blank" title="Learn more about {{a.crName}}" href="{{a.url}}">{{a.crName}} <prm-icon external-link=""  icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon></a><span ng-if="a.url===''">{{a.crName}}</span> {{a.currency}} {{a.title}} {{a.college}}.</em>
+				<em><a ng-if="a.url !== ''" target="_blank" title="Learn more about {{::a.crName}}" href="{{::a.url}}">{{::a.crName}} <prm-icon external-link=""  icon-type="svg" svg-icon-set="primo-ui" icon-definition="open-in-new"></prm-icon></a><span ng-if="a.url===''">{{::a.crName}}</span> {{::a.currency}} {{::a.title}} {{::a.college}}.</em>
 			</div>
 		</div>
 	</div>
