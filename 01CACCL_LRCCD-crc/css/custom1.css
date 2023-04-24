@@ -123,8 +123,8 @@ md-tab-content .tab-content-header {
     background-color: #fff;
 	padding: 10px;}
 prm-main-menu[menu-type=full] .overlay-menu-content>div {background-color: #000000;}
-/* White cards with light gray background on homepage and brief results page */
-prm-brief-result-container.list-item {background-color: #ffffff;}
+/* White cards with light gray background on homepage, brief results, and collections pages */
+prm-brief-result-container.list-item, prm-gallery-item .collection-element,  prm-gallery-item .collection-element .resource-type, prm-gallery-item .collection-element .item-title {background-color: #fff;}
 md-content, md-content.md-primoExplore-theme {background-color: #F2F2F2;}
 prm-brief-result-container.list-item:hover, prm-brief-result-container.list-item:focus {box-shadow: 1px 2px #b9b9b9;}
 prm-brief-result-container.list-item {cursor:pointer;}
