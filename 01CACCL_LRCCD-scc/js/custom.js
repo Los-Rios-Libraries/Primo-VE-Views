@@ -1051,7 +1051,7 @@
 
 		}());
 	(function () { // load libchat
-		var almaDStr = 'https://caccl-lrccd.primo.exlibrisgroup.com/discovery/delivery/01CACCL_LRCCD';
+		var almaDStr = 'https://' + location.hostname + '/discovery/delivery/';
 		var div = document.createElement('div');
 		div.id = 'libchat_' + libchatHash;
 		document.getElementsByTagName('body')[0].appendChild(div);
