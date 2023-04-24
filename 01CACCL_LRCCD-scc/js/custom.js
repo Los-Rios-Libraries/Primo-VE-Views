@@ -36,51 +36,28 @@
 			name: 'American River',
 			abbr: 'arc',
 			path: 'student-resources/library',
-			phone: '484-8455',
-			center: 'Natomas Center',
-			centerurl: 'https://libguides.arc.losrios.edu/c.php?g=366843&amp;p=6570176'
+			phone: '484-8455'
 		},
 
 		{
 			name: 'Cosumnes River',
 			abbr: 'crc',
 			path: 'student-resources/library',
-			phone: '691-7266',
-			center: 'Elk Grove Center',
-			cpath: 'about/elk-grove-center-library-services'
-			},
+			phone: '691-7266'
+		},
 
 		{
 			name: 'Folsom Lake',
 			abbr: 'flc',
 			path: 'student-resources/library',
-			phone: '608-6613',
-			centers: [
-				{
-					center: 'El Dorado Center',
-					cpath: 'student-resources/library/about/el-dorado-center'
-				},
-				{
-					center: 'Rancho Cordova Center',
-					cpath: 'student-resources/library/about/rancho-cordova-center'
-				}]
+			phone: '608-6613'
 		},
 
 		{
 			name: 'Sacramento City',
 			abbr: 'scc',
 			path: 'library',
-			phone: '558-2301',
-			centers: [
-				{
-					center: 'Davis Center',
-					cpath: 'student-resources/support-services/davis-center-services/davis-center-library-services'
-				},
-				{
-					center: 'West Sacramento Center',
-					cpath: 'student-resources/support-services/west-sacramento-center-services/west-sacramento-center-library-services'
-				}
-			]
+			phone: '558-2301'
 			}
 		];
 	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;

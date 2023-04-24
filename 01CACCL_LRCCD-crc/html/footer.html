@@ -44,18 +44,6 @@
 				<div><a ng-href="https://{{::lib.abbr}}.losrios.edu/{{::lib.path}}">{{::lib.name}} College Library</a></div>
 				<div><a ng-href="tel:+1-916-{{::lib.phone}}">(916) {{::lib.phone}}</a></div>	
 				</div>
-				
-				<div class="lr-centers">
-					<p ng-if="lib.center">
-						<a ng-if="lib.cpath" ng-href="https://{{::lib.abbr}}.losrios.edu/{{::lib.cpath}}">{{lib.center}}</a>
-						<a ng-if="lib.centerurl" ng-href="{{::lib.centerurl}}">{{::lib.center}}</a> <!-- to cover arc -- should find better way of doing this -->
-					</p>
-					<ul ng-if="lib.centers">
-						<li ng-repeat="cent in ::lib.centers">
-							<a ng-href="https://{{::lib.abbr}}.losrios.edu/{{::cent.cpath}}">{{::cent.center}}</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
 	</div>
