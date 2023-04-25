@@ -63,6 +63,8 @@ background-color: #E5E5E5;
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #743182; 
   }
+    /* ext link icon when button */
+	.md-button:hover [external-link], .md-button:focus [external-link]:focus {color:#fff;} 
 		/* fixes for collection header */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
 	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
@@ -231,8 +233,8 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 
 /* footer styles */
 #footer {background:#0084AC;  border-top:1px solid #204963; color:#fff;}
-#footer a, #footer a:visited {color:#fff; text-decoration: underline;}
 #footer a:hover, #footer a:focus {text-decoration: none;}
+#footer a, #footer a:visited, #footer [external-link]  {color:#fff;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #top-footer p:first-of-type {margin-top:15px;}
