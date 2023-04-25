@@ -5,7 +5,7 @@
 			<h2>More Resources</h2>
 			<div class="lr-dbs">
 				<ul>
-					<li><a ng-href="{{::$ctrl.browseURL}}" ng-click="$ctrl.scrollUp();">Browse by Call Number or Subject</a></li>
+					<li><a class="arrow-link" zero-margin="" ng-href="{{::$ctrl.browseURL}}" ng-click="$ctrl.scrollUp();">Browse by Call Number or Subject<prm-icon link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=all" target="_blank">EBSCO Search</a></li>
 					<li><a href="https://ezproxy.losrios.edu/login?url=https://infotrac.galegroup.com/itweb?db=GVRL">Gale eBooks</a></li>
 					<li><a href="https://library.losrios.edu/databases/?category=news" target="_blank">Newspaper Databases</a></li>
@@ -14,7 +14,7 @@
 				<p ng-if="$ctrl.askUs">
 					<md-icon md-svg-icon="action:ic_help_24px"></md-icon> Not sure where to start?
 					<a href="{{::$ctrl.askUs}}">
-						Ask Us.
+						Ask Us. <lr-ext-link-icon></lr-ext-link-icon>
 					</a>
 				</p>
 			</div>
@@ -31,7 +31,7 @@
 		<div layout="column" flex="">
 			<h2>Visit the Library</h2>
 			<p>Check out books, get research help, use a study room, or recharge between classes.</p>
-			<p><a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">Library hours</a></p>
+			<p><a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">Library hours <lr-ext-link-icon></lr-ext-link-icon></a></p>
 		</div>
 	</div>
 	<!-- subfooter; see js file for content -->
