@@ -1,7 +1,7 @@
 ::selection {background:#999; color:#fff;}
 .lr-fadeout {opacity: 0; transition: opacity 0.3s linear;}
 /* hide underlining on phone links on desktop/laptop */
-a[href^="tel:"] {text-decoration: none !important; color:inherit;}
+a[href^="tel:"] {text-decoration: none !important; box-shadow:none !important; color:inherit;}
 /* used for nested spans in labels. spans cannot contain block-level elements as children */
 .lr-linebreak {display:block; line-height:1.5em;}
 
@@ -231,15 +231,14 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 
 /* footer styles */
 #footer {background:#00263D;  border-top:4px solid #F26E21; color:#fff;}
-#footer a:hover, #footer a:focus {text-decoration: none;}
 #footer a, #footer a:visited, #footer [external-link] {color:#fff;}
+#footer a:hover, #footer a:focus {box-shadow:inset 0 -2px 0 0 #fff;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #top-footer p:first-of-type {margin-top:15px;}
 #subfooter {background:#12254D;}
-#subfooter a {color:#fff; background: transparent; box-shadow: none;}
+#subfooter a {color:#fff; background: transparent;}
 .lr-ft-college {min-height:50%;}
-.lr-centers p {margin-top:15px;}
 #lr-libraries-logo {margin-bottom:20px;}
 /* chat widget */
 .s-lch-widget-float {right:80px !important;}
