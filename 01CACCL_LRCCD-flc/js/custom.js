@@ -281,10 +281,56 @@
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
 		bindings: {
-			parentCtrl: '<'
+			parentCtrl: '<',
 		},
-		template: '<lr-libkey parent-ctrl="$ctrl.parentCtrl"></lr-libkey><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>'
-		});
+		template:
+			'<lr-libkey parent-ctrl="$ctrl.parentCtrl"></lr-libkey><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>',
+		controller: [
+			'$interval',
+				'$timeout',
+			function ($interval, $timeout) {
+				var vm = this;
+				vm.$onInit = function () {
+					// hide online link when digital link also exists. This works on brief results and full display, but not overlay when clicking from brief results -- seems like digest is not refreshed
+					// function gets parents of given element
+					var getParents = function (el, selector) {
+						var parents = [];
+						while ((el = el.parentNode) && el !== document) {
+							if (!selector || el.matches(selector)) parents.push(el);
+						}
+						return parents;
+					};
+					var deliveryCat = vm.parentCtrl.result.delivery.deliveryCategory;
+					var position;
+					if (
+						deliveryCat.includes('Alma-E') &&
+						deliveryCat.includes('Alma-D')
+					) {
+						for (var i = 0; i < deliveryCat.length; i++) {
+							if (deliveryCat[i] === 'Alma-E') {
+								position = i; // this seems to be the order in which the links appear
+							}
+						}
+						var recordId = vm.parentCtrl.result.pnx.control.recordid; // used in id of span
+						var checkEl = $interval(function () {
+							// interval is needed because property is not populated immediately when directive appears
+							var label = document.getElementById(
+								recordId + 'availabilityLine' + position
+							);
+							if (label) {
+								$interval.cancel(checkEl);
+								var parentEl = getParents(label, '.layout-row');					
+								parentEl[0].style.display = 'none';
+							}
+						}, 50);
+						$timeout(function () {
+							$interval.cancel(checkEl);
+						}, 5000);
+					}
+				};
+			},
+		],
+	});
 	// record cannot be displayed page
 	app.component('prmSignInToViewAfter', {
 		bindings: {
