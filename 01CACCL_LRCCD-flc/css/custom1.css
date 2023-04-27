@@ -64,7 +64,7 @@ background-color: #E5E5E5;
   background-color: #743182; 
   }
     /* ext link icon when button */
-	.md-button:hover [external-link], .md-button:focus [external-link]:focus {color:#fff;} 
+	.md-button:hover lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus, .md-button:active lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus {color:#fff;} 
 		/* fixes for collection header */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
 	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
