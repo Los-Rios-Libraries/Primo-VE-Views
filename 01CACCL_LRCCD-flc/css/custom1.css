@@ -41,7 +41,8 @@ prm-topbar {
 #mainMenu {
 	font-size: 1.2em;
 }
-
+/* restore hover shading to menu links */
+#mainMenu a:hover, #mainMenu a:focus {background: #e5e5e5;}
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
     color: #743182 !important;
