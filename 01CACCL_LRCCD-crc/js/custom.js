@@ -743,67 +743,65 @@
 				vm.creators = []; // we push creator objects into an array that the template iterates through
 				if (lrCrField) {
 					for (var i = 0; i < lrCrField.length; i++) { // for each array member we will split by delimiter and process
-						var arr = lrCrField[i].split('$');
+						var data = JSON.parse(lrCrField[i]);
 						var creator = {};
-						if (arr.length === 7) { // all fields must be present
-							if ((arr[1] !== 'z') && (arr[5] !== 'z')) {
-								creator.crName = arr[1];
-								var zTitle = 'affiliated';
-								var connector = 'with';
-								var currency = 'is';
-								var art = '';
-								var title = zTitle;
-								if (arr[4] !== 'z') {
-									title = arr[4];
-									connector = 'at';
-									if (/^(Interim )?President/.test(title)) {
-										connector = 'of';
-									}
-									if (/^[aeiou]/i.test(title)) {
-										art = 'an';
-									} 
-									else if (/^((Interim )?(Dean|Pres|Vice|Direct))/.test(title)) {
-										art = '';
-									}
-									else {
-										art = 'a';
-									}
-									if (arr[5] === 'former') {
-										currency = 'is a former';
-										art = '';
-										if (title === zTitle) {
-											currency = 'was formerly';
-										}
+						if ((((data.crName) && (data.crName !== 'z')) && (data.currency) && (data.currency !== 'z'))) {
+							creator.crName = data.crName;
+							var zTitle = 'affiliated';
+							var connector = 'with';
+							var currency = 'is';
+							var art = '';
+							var title = zTitle;
+							if ((data.position) && (data.position !== 'z')) {
+								title = data.position;
+								connector = 'at';
+								if (/^(Interim )?President/.test(title)) {
+									connector = 'of';
+								}
+								if (/^[aeiou]/i.test(title)) {
+									art = 'an';
+								} 
+								else if (/^((Interim )?(Dean|Pres|Vice|Direct))/.test(title)) {
+									art = '';
+								}
+								else {
+									art = 'a';
+								}
+								if (data.currency === 'former') {
+									currency = 'is a former';
+									art = '';
+									if (title === zTitle) {
+										currency = 'was formerly';
 									}
 								}
-								creator.title = currency + ' ' + art + ' ' + title + ' ' + connector;
-								var college = 'Los Rios Community College District';
-								var crCol = [];
-								var collegePhr = '';
-								if (arr[3] !== 'z') {
-									for (var j = 0; j < libraries.length; j++) { // use libraries array defined at top of this file
-										if (arr[3].indexOf(libraries[j].abbr) > -1) {
-											crCol.push(libraries[j].name + ' College');
-										}
-									}
-									var colNum = crCol.length; // vary syntax based on how many colleges are listed
-									if (colNum === 1) { // just one college
-										collegePhr = crCol[0];
-									} else if (colNum === 2) { // two colleges
-										collegePhr = crCol[0] + ' and ' + crCol[1];
-									} else { // moret than two
-										var lastMember = crCol[colNum - 1];
-										crCol.splice(colNum - 1, 1, 'and ' + lastMember);
-										collegePhr = crCol.join(', ');
-									}
-									college = collegePhr;
-								}
-								creator.college = college;
 							}
+							creator.title = currency + ' ' + art + ' ' + title + ' ' + connector;
+							var college = 'Los Rios Community College District';
+							var crCol = [];
+							var collegePhr = '';
+							if ((data.college) && (data.college !== 'z')) {
+								for (var j = 0; j < libraries.length; j++) { // use libraries array defined at top of this file
+									if (data.college.indexOf(libraries[j].abbr) > -1) {
+										crCol.push(libraries[j].name + ' College');
+									}
+								}
+								var colNum = crCol.length; // vary syntax based on how many colleges are listed
+								if (colNum === 1) { // just one college
+								collegePhr = crCol[0];
+								} else if (colNum === 2) { // two colleges
+									collegePhr = crCol[0] + ' and ' + crCol[1];
+								} else { // moret than two
+									var lastMember = crCol[colNum - 1];
+									crCol.splice(colNum - 1, 1, 'and ' + lastMember);
+									collegePhr = crCol.join(', ');
+								}
+								college = collegePhr;
+							}
+							creator.college = college;
 						}
 						var url = '';
-						if (arr[6] !== 'z') {
-							url = arr[6];
+						if ((data.url) && (data.url !== 'z')) {
+							url = data.url;
 						}
 						creator.url = url;
 						vm.creators.push(creator);
@@ -811,13 +809,11 @@
 				}
 				vm.showBadge = function() {
 					if (lrCrField) {
-						if (lrCrField[0].indexOf('lrcreator') > -1) { // must have this value in 988$a
+						var data = JSON.parse(lrCrField[0]);
+						if (data.lrcreator.indexOf('lrcreator') > -1) { // must have this value in 988$a
 							vm.creatorType = 'creator'; // default if role is not defined
-							var arr = lrCrField[0].split('$');
-							if (arr[2]) { // get role
-								if (arr[2] !== 'z') {
-									vm.creatorType = arr[2];
-								}
+							if ((data.role) && (data.role !== 'z')) { // get role
+									vm.creatorType = data.role;
 							}
 							return true;
 						}
