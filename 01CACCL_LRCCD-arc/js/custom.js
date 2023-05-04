@@ -618,6 +618,9 @@
 	app.component('prmBackToSearchResultsButtonAfter', { 
 		template: '<lr-top-announcement></lr-top-announcement>'
 	});
+	app.component('prmCollectionGalleryHeaderAfter', {
+		template:  '<lr-top-announcement></lr-top-announcement>'
+	});
 	app.component('lrTopAnnouncement', { // this allows dismissable announcement to show just under search bar area
 		controller: 'lrTopAnnouncementController',
 		templateUrl: custPackagePath + '/html/top-announcement.html' // enter content into / uncomment this template to show the announcement
