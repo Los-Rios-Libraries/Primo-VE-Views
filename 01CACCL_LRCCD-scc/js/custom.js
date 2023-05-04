@@ -623,10 +623,10 @@
 		};
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { 
-		template: '<lr-top-announcement></lr-top-announcement>',
+		template: '<lr-top-announcement></lr-top-announcement>'
 	});
 	app.component('prmBackToSearchResultsButtonAfter', { 
-		template: '<lr-top-announcement></lr-top-announcement>',
+		template: '<lr-top-announcement></lr-top-announcement>'
 	});
 	app.component('lrTopAnnouncement', { // this allows dismissable announcement to show just under search bar area
 		controller: 'lrTopAnnouncementController',
