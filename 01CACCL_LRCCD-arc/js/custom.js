@@ -270,7 +270,7 @@
 	// ** END SCC/ARC-ONLY COMPONENT -- below this code is identical college-to-college**
 	// external link template
 	app.component('lrExtLinkIcon', {
-		template: '<span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></span>'
+		template: '<span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></md-icon></span>'
 	});
 	// logo
 	app.component('prmSearchBarAfter', {
