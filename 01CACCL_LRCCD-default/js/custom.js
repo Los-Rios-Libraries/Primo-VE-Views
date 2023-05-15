@@ -34,21 +34,19 @@
 		controller: function () {
 			var vm = this;
 			vm.$onInit = function () {
-				vm.showBadge = function () {
-					var lrCrField = vm.parentCtrl.item.pnx.display.lds09;
+				var lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
+				vm.showBadge = function() {
 					if (lrCrField) {
-						if (lrCrField[0].indexOf('lrcreator') > -1) {
-							vm.creatorType = 'creator';
-							var arr = lrCrField[0].split('$');
-							if (arr[2]) {
-								if (arr[2] !== 'z') {
-									vm.creatorType = arr[2];
-								}
+						var data = JSON.parse(lrCrField[0]);
+						if (data.lrcreator.indexOf('lrcreator') > -1) { // must have this value in 988$a
+							vm.creatorType = 'creator'; // default if role is not defined
+							if ((data.role) && (data.role !== 'z')) { // get role
+								vm.creatorType = data.role;
 							}
 							return true;
 						}
 					}
-				};
+				};	
 			};
 		}
 	});
