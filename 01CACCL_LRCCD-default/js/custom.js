@@ -19,9 +19,9 @@
 				{ view: 'flc', scope: 'flc_everything', tab: 'everything' },
 				{ view: 'scc', scope: 'scc_everything', tab: 'everything' }
 			];
-			vm.docID = vm.parentCtrl.$stateParams.docid;
+			vm.docID = vm.parentCtrl.result.pnx.control.sourcerecordid[0];
 			vm.fullView = function () {
-				if ((vm.parentCtrl.isFullView === true) && (typeof (vm.parentCtrl.isOverlayFullView) === 'undefined')) {
+				if (vm.parentCtrl.isFullView === true)  {
 					return true;
 				}
 			};
