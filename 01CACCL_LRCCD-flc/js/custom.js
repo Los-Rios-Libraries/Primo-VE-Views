@@ -388,8 +388,6 @@
 		vm.$onInit = function() {
 			vm.searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1;
 			vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
-				var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
-				var inProgress = vm.parentCtrl.browseSearchService._inProgress;
 				var results = vm.parentCtrl.browseSearchService._browseResult || ''; // array of search results
 				var inProgress = vm.parentCtrl.browseSearchService._inProgress || '';
 				if ((results.length > 0 || inProgress === true)) {
