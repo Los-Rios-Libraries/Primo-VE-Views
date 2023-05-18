@@ -1,13 +1,36 @@
-<!-- In this file you may add blubrs that will be placed below the collection banner. To add one for a given collection, copy the first md-content block and paste it underneath. Change the string in showBlurb('string') to match the ID of your collection. Then change the text as appropriate for your collection.
-
-The sample blurb below is viewable on the sandbox at https://sandbox02-na.primo.exlibrisgroup.com/discovery/collectionDiscovery?vid=01CACCL_CC:scc&collectionId=8128969520005264
--->
-
-<md-content ng-if="$ctrl.showBlurb('8128969520005264');" class="padded-container" layout="row" flex>
-	<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
-	<div layout="column" class="md-subhead margin-left-small">
-		<!-- description goes below -->
-		<p>This is a sample description of a collection. This collection shows various resources that are available on a particular topic.</p>
-		<p>Multiple paragraphs are possible, as are <a target="_blank" href="https://www.scc.losrios.edu/library">links</a> or any other html.</p>
+<div ng-if="$ctrl.parentCtrl._itemsExist === true">
+	<!-- blurbs at bottom of collections -->
+	<div ng-if="::$ctrl.position === 'bottom'">
+		<md-content ng-if="$ctrl.collectionID === '8184003930005325'" class="padded-container" layout="row" flex>
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Explore more resources on Afrofuturism with a <a class="arrow-link"
+						href="/discovery/search?query=sub%2Ccontains%2CAfrofuturism%2CAND&vid=01CACCL_LRCCD%3A{{::$ctrl.col}}&mode=advanced&offset=0">subject
+						search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg"
+							svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+			</div>
+		</md-content>
+		<md-content ng-if="::$ctrl.collectionID ==='8184352960005325'" class="padded-container" layout="row" flex>
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Find more resources on creating graphic novels, comics, and manga with a <a class="arrow-link"
+						href="/discovery/search?query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Technique,OR&amp;query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Authorship,AND&amp;tab=everything&amp;search_scope={{::$ctrl.col}}_everything&amp;vid=01CACCL_LRCCD:{{::$ctrl.col}}&amp;mode=advanced&amp;offset=0">subject
+						search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg"
+							svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+			</div>
+		</md-content>
 	</div>
-</md-content>
+
+	<!-- blurbs at top of collections -->
+	<div ng-if="::$ctrl.position === 'top'">
+		<md-content ng-if="::$ctrl.collectionID === '8185113600005325'" class="padded-container" layout="row" flex
+			style="padding-bottom:0;">
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Also <a href="https://researchguides.scc.losrios.edu/award-winning-books/arab-american-book-awards"
+						target="_blank">view our guide to award-winning Arab-American books.
+						<lr-ext-link-icon></lr-ext-link-icon></a></p>
+		</md-content>
+	</div>
+
+</div>

@@ -1,17 +1,36 @@
-<md-content ng-if="$ctrl.showBlurb({'collection':'8184003930005325', 'position': 'bottom'});" class="padded-container" layout="row" flex>
-	<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
-	<div layout="column" class="md-subhead margin-left-small">
-		<p>Explore more resources on Afrofuturism with a <a class="arrow-link" href="/discovery/search?query=sub%2Ccontains%2CAfrofuturism%2CAND&vid=01CACCL_LRCCD%3A{{::$ctrl.col}}&mode=advanced&offset=0">subject search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+<div ng-if="$ctrl.parentCtrl._itemsExist === true">
+	<!-- blurbs at bottom of collections -->
+	<div ng-if="::$ctrl.position === 'bottom'">
+		<md-content ng-if="$ctrl.collectionID === '8184003930005325'" class="padded-container" layout="row" flex>
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Explore more resources on Afrofuturism with a <a class="arrow-link"
+						href="/discovery/search?query=sub%2Ccontains%2CAfrofuturism%2CAND&vid=01CACCL_LRCCD%3A{{::$ctrl.col}}&mode=advanced&offset=0">subject
+						search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg"
+							svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+			</div>
+		</md-content>
+		<md-content ng-if="::$ctrl.collectionID ==='8184352960005325'" class="padded-container" layout="row" flex>
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Find more resources on creating graphic novels, comics, and manga with a <a class="arrow-link"
+						href="/discovery/search?query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Technique,OR&amp;query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Authorship,AND&amp;tab=everything&amp;search_scope={{::$ctrl.col}}_everything&amp;vid=01CACCL_LRCCD:{{::$ctrl.col}}&amp;mode=advanced&amp;offset=0">subject
+						search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg"
+							svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+			</div>
+		</md-content>
 	</div>
-</md-content>
-<md-content ng-if="$ctrl.showBlurb({'collection':'8184352960005325', 'position': 'bottom'});" class="padded-container" layout="row" flex>
-	<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
-	<div layout="column" class="md-subhead margin-left-small">
-		<p>Find more resources on creating graphic novels, comics, and manga with a <a class="arrow-link" href="/discovery/search?query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Technique,OR&amp;query=sub,contains,Comic%20books,%20strips,%20etc%20--%20Authorship,AND&amp;tab=everything&amp;search_scope={{::$ctrl.col}}_everything&amp;vid=01CACCL_LRCCD:{{::$ctrl.col}}&amp;mode=advanced&amp;offset=0">subject search <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></a>.</p>
+
+	<!-- blurbs at top of collections -->
+	<div ng-if="::$ctrl.position === 'top'">
+		<md-content ng-if="::$ctrl.collectionID === '8185113600005325'" class="padded-container" layout="row" flex
+			style="padding-bottom:0;">
+			<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
+			<div layout="column" class="md-subhead margin-left-small">
+				<p>Also <a href="https://researchguides.scc.losrios.edu/award-winning-books/arab-american-book-awards"
+						target="_blank">view our guide to award-winning Arab-American books.
+						<lr-ext-link-icon></lr-ext-link-icon></a></p>
+		</md-content>
 	</div>
-</md-content>
-<md-content ng-if="$ctrl.showBlurb({'collection':'8185113600005325', 'position': 'top'});" class="padded-container" layout="row" flex style="padding-bottom:0;">
-	<div flex="0" flex-md="0" flex-lg="10" flex-xl="20"></div>
-	<div layout="column" class="md-subhead margin-left-small">
-		<p>Also <a href="https://researchguides.scc.losrios.edu/award-winning-books/arab-american-book-awards" target="_blank">view our guide to award-winning Arab-American books. <lr-ext-link-icon></lr-ext-link-icon></a></p>
-</md-content>
+
+</div>

@@ -602,20 +602,10 @@
 	app.controller('prmBrowseSearchAfterController', function() { 
 		var vm = this;
 		vm.$onInit = function() {
-			vm.showCards = function() { // avoid typeError by waiting for property to become available
-				if (vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1) {
-					return true;
-				}
-			};
-			vm.showExplanation = function(box) { // show explanation card appropriate to browse index used
-				var searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1; // this property stores the browse index label
-				if (searchScope.indexOf(box) > -1) {
-					return true;
-				}
-			};
+			vm.searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1;
 			vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
-				var results = vm.parentCtrl.browseSearchService._browseResult; // array of search results
-				var inProgress = vm.parentCtrl.browseSearchService._inProgress;
+				var results = vm.parentCtrl.browseSearchService._browseResult || ''; // array of search results
+				var inProgress = vm.parentCtrl.browseSearchService._inProgress || '';
 				if ((results.length > 0 || inProgress === true)) {
 					return true;
 				}
@@ -721,17 +711,9 @@
 			var vm = this;
 			vm.$onInit = function() {
 				vm.col = colAbbr;
-				var params = JSON.parse($attrs.model);
-				var collectionID = vm.parentCtrl.$stateParams.collectionId;
-				vm.showBlurb = function(obj) {
-					if (obj.collection === collectionID) {
-						if (obj.position === params.position) {
-							if (vm.parentCtrl._itemsExist === true) { // wait for jackets to load
-								return true;
-							}
-						}
-					}
-				};
+				var params = JSON.parse($attrs.model) || '';
+				vm.position = params.position;
+				vm.collectionID = vm.parentCtrl.$stateParams.collectionId || '';
 			};
 		}]
 	});
@@ -963,8 +945,13 @@
 				if (lrCrField) {
 					for (var i = 0; i < lrCrField.length; i++) { // for each array member we will split by delimiter and process
 						var data = JSON.parse(lrCrField[i]);
+						vm.creatorType = 'creator'; // default if role is not defined
+						if ((data.role) && (data.role !== 'z')) { // get role
+							vm.creatorType = data.role;
+						}
 						var creator = {};
 						if ((((data.crName) && (data.crName !== 'z')) && (data.currency) && (data.currency !== 'z'))) {
+							vm.badge = true; // set property that allows the badges to show
 							creator.crName = data.crName;
 							var zTitle = 'affiliated';
 							var connector = 'with';
@@ -1026,23 +1013,6 @@
 						vm.creators.push(creator);
 					}
 				}
-				vm.showBadge = function() {
-					if (lrCrField) {
-						var data = JSON.parse(lrCrField[0]);
-						if (data.lrcreator.indexOf('lrcreator') > -1) { // must have this value in 988$a
-							vm.creatorType = 'creator'; // default if role is not defined
-							if ((data.role) && (data.role !== 'z')) { // get role
-									vm.creatorType = data.role;
-							}
-							return true;
-						}
-					}
-				};
-				vm.showBlurb = function() { // only show creator statement in full display
-					if (vm.parentCtrl.$location.$$url.indexOf('/fulldisplay') === 0) {
-						return true;
-					}
-				};
 			};
 		}
 	});

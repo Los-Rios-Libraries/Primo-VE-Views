@@ -1,5 +1,5 @@
-<div id="lr-browse-screen" layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card" ng-if="$ctrl.showCards();" ng-hide="$ctrl.hideOnResults();">
-	<md-card class="default-card" ng-if="$ctrl.showExplanation('callnumber');">
+<div id="lr-browse-screen" layout="column" layout-align="center" flex-xs flex-gt-xs="80" flex-gt-sm="40" class="lr-single-column-card" ng-if="$ctrl.parentCtrl.browseSearchBarService._selectedScope.SourceCode1" ng-hide="$ctrl.hideOnResults();">
+	<md-card class="default-card" ng-if="$ctrl.parentCtrl.browseSearchBarService._selectedScope.SourceCode1.indexOf('callnumber') > -1">
 		<md-card-title>
 			<md-card-title-text>
 				<h2 class="md-headline">Browse by Call Number</h2>
@@ -21,7 +21,7 @@
 			<p>Find the letters and titles of the main LC classes in the <a href="https://www.loc.gov/catdir/cpso/lcco/" target="_blank">Library of Congress Classification Outline <lr-ext-link-icon></lr-ext-link-icon></a>.</p>
 		</md-card-content>
 	</md-card>
-	<md-card class="default-card" ng-if="$ctrl.showExplanation('subject');">
+	<md-card class="default-card" ng-if="$ctrl.parentCtrl.browseSearchBarService._selectedScope.SourceCode1.indexOf('subject') > -1">
 		<md-card-title>
 			<md-card-title-text>
 				<h2 class="md-headline">Browse by Subject</h2>
