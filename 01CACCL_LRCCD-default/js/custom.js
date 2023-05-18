@@ -1,5 +1,51 @@
 (function () {
     "use strict";
+	var viewCode = function (str) { // allow all views to refer to templates in their own view
+		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
+		if (str.indexOf('%3A') > -1) {
+			str = str.replace(/%3A/g, ':');
+		}
+		var environment = 'LRCCD'; 
+		if (str.indexOf('01CACCL_CC') > -1) { // this allows us to use the sandbox
+			environment = 'CC';
+		}
+		var arr=str.split('01CACCL_'+ environment + ':');
+		var arr2=arr[1].split('&');
+		return {
+			env: environment,
+			view: arr2[0]
+		};
+	}(location.href);
+	var libraries = [
+		{
+			name: 'American River',
+			abbr: 'arc',
+			path: 'student-resources/library',
+			phone: '484-8455'
+		},
+
+		{
+			name: 'Cosumnes River',
+			abbr: 'crc',
+			path: 'student-resources/library',
+			phone: '691-7266'
+		},
+
+		{
+			name: 'Folsom Lake',
+			abbr: 'flc',
+			path: 'student-resources/library',
+			phone: '608-6613'
+		},
+
+		{
+			name: 'Sacramento City',
+			abbr: 'scc',
+			path: 'library',
+			phone: '558-2301'
+			}
+		];
+	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
     var app = angular.module('viewCustom', ['angularLoad']);
     app.component('prmSearchResultAvailabilityLineAfter', {
         bindings: {parentCtrl: '<'},
