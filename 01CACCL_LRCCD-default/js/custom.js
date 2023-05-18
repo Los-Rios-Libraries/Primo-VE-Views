@@ -53,7 +53,7 @@
         });
     app.component('lrViewButtons', {
         bindings: {parentCtrl: '<'},
-		template: '<div layout="row" layout-align="center" style="font-weight:bold;" ng-if="$ctrl.fullView();"><div layout="column" layout-align="center"><p>See this record in a college-level OneSearch view:</p></div><div layout="column"><ul layout="row"><li ng-repeat="library in $ctrl.views" style="list-style-type:none;"><md-button external-link=""  ng-href="https://{{::$ctrl.host}}/discovery/fulldisplay?docid={{::$ctrl.docID}}&amp;vid={{::$ctrl.institutionCode}}:{{::library.view}}&amp;search_scope={{::library.scope}}&amp;tab={{::library.tab}}" target="_blank">{{::library.view}} <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></md-icon></md-button></li></ul></div></div>',
+		template: '<div layout="row" layout-align="center" style="font-weight:bold;" ng-if="::$ctrl.parentCtrl.isFullView === true"><div layout="column" layout-align="center"><p>See this record in a college-level OneSearch view:</p></div><div layout="column"><ul layout="row"><li ng-repeat="library in $ctrl.views" style="list-style-type:none;"><md-button external-link=""  ng-href="https://{{::$ctrl.host}}/discovery/fulldisplay?docid={{::$ctrl.docID}}&amp;vid={{::$ctrl.institutionCode}}:{{::library.view}}&amp;search_scope={{::library.scope}}&amp;tab={{::library.tab}}" target="_blank">{{::library.view}} <md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></md-icon></md-button></li></ul></div></div>',
 	controller: ['$location', function ($location) {
 		var vm = this;
 		vm.$onInit = function () {
@@ -66,11 +66,6 @@
 				{ view: 'scc', scope: 'scc_everything', tab: 'everything' }
 			];
 			vm.docID = vm.parentCtrl.result.pnx.control.sourcerecordid[0];
-			vm.fullView = function () {
-				if (vm.parentCtrl.isFullView === true)  {
-					return true;
-				}
-			};
 		};
 
 	}]
