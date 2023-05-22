@@ -301,3 +301,10 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
 }
+@media print {
+	prm-topbar, .default-toolbar,prm-collection-discovery-view-switcher, .s-lch-widget-float, prm-collection-search, prm-save-to-favorites-button, button[ng-if="$ctrl.hasNextResults"], prm-explore-footer {display:none !important;}
+	#mainCollResults {padding-top:0;}
+	prm-gallery-item {width:20%;max-width:2in; max-height:2.4in; margin-bottom:0.8in; }
+	img[class*="fan-img"] {display: block !important;}
+	img.lr-loaded {display:none;}
+}
