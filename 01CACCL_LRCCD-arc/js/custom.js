@@ -323,7 +323,7 @@
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
 		controller: 'lrHomepageFaqController',
-		template: '<div id="lr-faq-block" ng-init="$ctrl.getFaq();"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding><a href="{{::f.url.public}}" target="_blank">{{::f.question}} <lr-ext-link-icon></lr-ext-link-icon></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers <lr-ext-link-icon></lr-ext-link-icon></md-button></p></div>'
+		template: '<div id="lr-faq-block"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding><a href="{{::f.url.public}}" target="_blank">{{::f.question}} <lr-ext-link-icon></lr-ext-link-icon></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers <lr-ext-link-icon></lr-ext-link-icon></md-button></p></div>'
 	});
 	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
 		var vm = this;
@@ -331,11 +331,10 @@
 			vm.col = colAbbr;
 			vm.faqList = '';
 			vm.faqExist = false;
-			vm.getFaq = function() {
-				// local storage keys
-				var faq = 'lrFaqList' + colAbbr;
-				var timestamp = 'lrFaqTS' + colAbbr;
-				// get json from local storage if not more than 2 hours old
+			// local storage keys
+			var faq = 'lrFaqList' + colAbbr;
+			var timestamp = 'lrFaqTS' + colAbbr;
+			// get json from local storage if not more than 4 hours old
 				var local = $window.localStorage.getItem(faq);
 				var ts = $window.localStorage.getItem(timestamp); // timestamp
 				var old = false; // json assumed to be not old
@@ -360,9 +359,9 @@
 							var d = new Date();
 							$window.localStorage.setItem(timestamp, d.toString());
 							vm.faqExist = true;
-						});
+					});
 				}
-			};
+			
 		};
 	}]);
 	// links to info about digital objects / alma-d
