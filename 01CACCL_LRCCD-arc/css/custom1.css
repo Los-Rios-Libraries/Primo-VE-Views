@@ -65,10 +65,17 @@ background-color: #E5E5E5;
   }
     /* ext link icon when button */
 	.md-button:hover lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus, .md-button:active lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus {color:#fff;} 
-	/* fixes for collection header */
+	/* fixes for collection header and thumbnails */
 	prm-explore-main .header .transparent-top-bar:before {background-color: #fff;opacity: 1;}
 	prm-collection-gallery-header .collection-header-inner.has-transparent-topbar {margin-top:0; padding-top:0;}
 	prm-collection-gallery-header .collection-info {background:rgba(0,0,0,0.4);}
+	prm-gallery-item prm-search-result-thumbnail-container img[class*="fan-img"] {display:none;}
+.lr-loaded {width:auto; max-height:160px !important;}
+.lr-loaded[src*="exl_rewrite/books.google.com/books"] {height:160px;}
+.result-item-image .lr-loaded, prm-more-like-this-item .lr-loaded {display:none;}
+/* if we don't include the next line, full display of collection items includes both thumbnails, even if one is hidden */
+prm-more-like-this-item md-card .card-image img[class*="fan-img"] {height:100px !important;}
+prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item {background:rgba(0,0,0,0.7);}
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*arc*/ background:#F8E6E9 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}

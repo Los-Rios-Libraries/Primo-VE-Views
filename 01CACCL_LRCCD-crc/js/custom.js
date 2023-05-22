@@ -561,60 +561,67 @@
 		template: '<lr-bumpup-thumbnail-size parent-ctrl="$ctrl.parentCtrl"></lr-bumpup-thumbnail-size>'
 	});
 	app.component('lrBumpupThumbnailSize', {
+		// where possible/relevant, load larger thumbnails and hide smaller ones. Also requires some css, see custom1.css "fixes for collection header and thumbnails"
 		bindings: {
-			parentCtrl: '<',
+			parentCtrl: '<'
 		},
-	// function below will run for each thumbnail
-		controller: ['$interval', '$timeout', function($interval, $timeout) {
+		template:
+			'<div ng-if="::$ctrl.imgSrc"><img ng-src="{{::$ctrl.imgSrc}}" alt="" ng-class="::$ctrl.loaded"></div>',
+		// function below will run for each thumbnail
+		controller: function () {
 			var vm = this;
-			vm.$onInit = function() {
-				var pattern = /syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/;
-				var biggerURL = function(str) {
+			vm.$onInit = function () {
+				var pattern =
+					/syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/; // identify image sources to replace. Some are ok already, e.g. Kanopy
+				var biggerURL = function (str) {
 					var replacement = '';
-					if (str.indexOf('/sc.jpg') > -1) { // syndetics
+					if (str.indexOf('/sc.jpg') > -1) {
+						// syndetics
 						replacement = str.replace('/sc.jpg', '/mc.jpg');
-					} else if (str.indexOf('/width/88') > -1) { // fod
+					} else if (str.indexOf('/width/88') > -1) {
+						// fod
 						replacement = str.replace('/width/88', '/width/160');
 					} else if (str.indexOf('books.google.com') > -1) {
 						replacement = str;
 					}
 					return replacement;
 				};
+
 				// only run this in collection discovery
-				if (vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1) {
-					var checkImg = $interval(function() { // set up interval to get this done asap. Runs every 50 milliseconds until canceled
-						var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
-						if (img) { // this takes a while to load, wait for it
-							// it has loaded, so cancel the interval
-							$interval.cancel(checkImg);
-							if (pattern.test(img.linkURL) === true) { // only replace the URL if it is syndetics or fod, otherwise cancel the interval
-								var newURL = biggerURL(img.linkURL);
-								if (newURL !== '') { // failed replacement will return empty string, in which case we exit and cancel the interval
-									var images = document.querySelectorAll('.fan-img-1, .fan-img-2, .fan-img-3');
-									for (var i = 0; i < images.length; i++) {
-										if (images[i].getAttribute('ng-src') === img.linkURL) {
-											images[i].setAttribute('src', newURL);
-											images[i].style.width = 'auto';
-											images[i].removeAttribute('ng-src'); // probably not necessary
-											if (newURL.indexOf('books.google.com') > -1) {
-												images[i].style.height = '160px';
-											}
-										}
+				if (
+					vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1
+				) {
+					vm.$doCheck = function () {
+						// $doCheck is needed because data takes time to load after directive appears
+						if (vm.parentCtrl.item) {
+							var recordid = vm.parentCtrl.item.pnx.control.recordid;
+							var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
+							if (img) {
+								if (pattern.test(img.linkURL) === true) {
+									// only replace the URL if it is syndetics or fod
+									var newURL = biggerURL(img.linkURL);
+									if (newURL !== '') {
+										// load the replacement image
+										vm.imgSrc = newURL;
+										vm.loaded = 'lr-loaded'; // adds class to image, which facilitates CSS variations
 									}
 								} else {
-									$interval.cancel(checkImg);
+									// if we didn't or couldn't replace the image, unhide the default image
+									var el = document.querySelector(
+										'span[data-url*=' +
+											recordid +
+											'] + div prm-search-result-thumbnail-container img[class*="fan-img"]'
+									);
+									if (el) {
+										el.style.display = 'block';
+									}
 								}
-							} else {
-								$interval.cancel(checkImg);
 							}
 						}
-					}, 50);
-					$timeout(function() { // not a great idea to leave it running constantly so end any remaining intervals--e.g. for non-syndetics images--after 5 seconds
-						$interval.cancel(checkImg);
-					}, 10000);
+					};
 				}
 			};
-		}]
+		}
 	});
 	// display text for delivery locations
 	app.component('prmRequestServicesAfter', {
