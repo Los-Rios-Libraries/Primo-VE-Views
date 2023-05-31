@@ -10,7 +10,7 @@
                 <ul layout="row" layout-wrap flex flex="100" class="zero-margin">
                     <li layout-margin flex="40" flex-gt-xs="20" ng-repeat="c in ::$ctrl.collections">
                         <a class="zero-margin arrow-link" title="{{::c.title}} collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId={{::c.id}}">
-							<img alt="" ng-src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/{{::c.id}}">
+							<img loading="lazy" alt="" ng-src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/{{::c.id}}">
 							<div>{{::c.title}} <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></div>
 						</a>
                     </li>
