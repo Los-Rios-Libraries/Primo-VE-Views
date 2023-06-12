@@ -574,11 +574,12 @@
     browzine.script.src = 'https://s3.amazonaws.com/browzine-adapters/primo/browzine-primo-adapter.js';
     document.head.appendChild(browzine.script);
 	app.component('lrLibkey', {
-    	bindings: { parentCtrl: '<' },
-    	controller: function($scope) {
-			window.browzine.primo.searchResult($scope);
-		}
-  	});
+		bindings: { parentCtrl: '<' },
+		controller: ['$scope',function ($scope) {
+				window.browzine.primo.searchResult($scope);
+			}
+		]
+	});
 	app.component('prmBrowseSearchAfter', { // insert template into browse screens. would be nice to hide it when results appear
 		bindings: {
 			parentCtrl: '<'
