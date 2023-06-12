@@ -1,37 +1,37 @@
 (function () {
 	'use strict';
 	/* college-specific variables */
-	var colAbbr = 'crc';
-	var libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
-	var c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
-	var almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
-	var libKeyId = '3235';
-	var lkAPI = '5fa2bff1-a7f4-4dae-a28c-23c12012b54c';
-	var lkEmail = 'AdkinsA@crc.losrios.edu';
+	const colAbbr = 'crc';
+	const libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
+	const c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
+	const almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
+	const libKeyId = '3235';
+	const lkAPI = '5fa2bff1-a7f4-4dae-a28c-23c12012b54c';
+	const lkEmail = 'AdkinsA@crc.losrios.edu';
 	/* end college-specific variables */
-	var viewCode = function (str) { // allow all views to refer to templates in their own view
+	const viewCode = function (str) { // allow all views to refer to templates in their own view
 		// EXL uses a colon in their URL but as it is loading it may show as HTML entity, we can't predict
 		if (str.indexOf('%3A') > -1) {
 			str = str.replace(/%3A/g, ':');
 		}
-		var environment = 'LRCCD'; 
+		let environment = 'LRCCD'; 
 		if (str.indexOf('01CACCL_CC') > -1) { // this allows us to use the sandbox
 			environment = 'CC';
 		}
-		var arr=str.split('01CACCL_'+ environment + ':');
-		var arr2=arr[1].split('&');
+		const arr=str.split('01CACCL_'+ environment + ':');
+		const arr2=arr[1].split('&');
 		return {
 			env: environment,
 			view: arr2[0]
 		};
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
-	var districtHost = 'https://library.losrios.edu/';
-	var filePath = ''; 
+	const districtHost = 'https://library.losrios.edu/';
+	let filePath = ''; 
 	if (viewCode.env === 'CC') {
-		filePath = colAbbr + '/bitbucket/lsp-related-tools-and-resources/';
+		filePath = `${colAbbr}/bitbucket/lsp-related-tools-and-resources/`;
 	}
-	var libraries = [
+	const libraries = [
 		{
 			name: 'American River',
 			abbr: 'arc',
@@ -60,8 +60,8 @@
 			phone: '558-2301'
 			}
 		];
-	var custPackagePath = '/discovery/custom/01CACCL_' + viewCode.env + '-' + viewCode.view;
-	var app = angular.module('viewCustom', ['angularLoad']);
+	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
+	const app = angular.module('viewCustom', ['angularLoad']);
 	// external link template
 	app.component('lrExtLinkIcon', {
 		template: '<span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></md-icon></span>'
@@ -74,28 +74,28 @@
 		
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
-		var vm = this;
-		vm.$onInit = function() {
-			vm.homePage = '/discovery/search?vid=' + vm.parentCtrl.vid;
-			vm.scrollUp = function() { // force page to scroll up
+		const vm = this;
+		vm.$onInit = () => {
+			vm.homePage = `/discovery/search?vid=${vm.parentCtrl.vid}`;
+			vm.scrollUp = () => { // force page to scroll up
 				$window.scrollTo(0, 0);
 				return true;
 			};
 		};
 	}]);
 	app.controller('exploreFooterAfterController', ['$window', function($window) {
-		var vm = this;
-		vm.$onInit = function() {
-			vm.browseURL = '/discovery/browse?vid=01CACCL_' + viewCode.env + ':' + viewCode.view;
-			vm.scrollUp = function() { // force page to scroll up when clicking browse link in footer
+		const vm = this;
+		vm.$onInit = () => {
+			vm.browseURL = `/discovery/browse?vid=01CACCL_${viewCode.env}:${viewCode.view}`;
+			vm.scrollUp = () => { // force page to scroll up when clicking browse link in footer
 				$window.scrollTo(0, 0);
 				return true;
 			};
-			vm.checkForContent = function() {
-				var content = angular.element(document.getElementsByTagName('md-content'));
+			vm.checkForContent = () => {
+				const content = angular.element(document.getElementsByTagName('md-content'));
 				if (content.length > 0) {
-					var h = 0;
-					for (var i = 0; i < content.length; i++) {
+					let h = 0;
+					for (let i = 0; i < content.length; i++) {
 						h += content[i].offsetHeight;
 					}
 					if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
@@ -103,10 +103,10 @@
 					}
 				}
 			};
-			vm.LRLogoSrc = custPackagePath + '/img/Los Rios Libraries_Logo_Horizontal_BW.png';
+			vm.LRLogoSrc = `${custPackagePath}/img/Los Rios Libraries_Logo_Horizontal_BW.png`;
 			vm.libraries = libraries;
 			vm.c19Page = c19Page;
-			vm.askUs = districtHost + 'ask-us/?' + colAbbr;
+			vm.askUs = `${districtHost}ask-us/?${colAbbr}`;
 		};		
 	}]);
 
@@ -120,21 +120,21 @@
 		template: '<div id="lr-faq-block"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding><a href="{{::f.url.public}}" target="_blank">{{::f.question}} <lr-ext-link-icon></lr-ext-link-icon></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers <lr-ext-link-icon></lr-ext-link-icon></md-button></p></div>'
 	});
 	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
-		var vm = this;
-		vm.$onInit = function() {
+		const vm = this;
+		vm.$onInit = () => {
 			vm.col = colAbbr;
 			vm.faqList = '';
 			vm.faqExist = false;
 			// local storage keys
-			var faq = 'lrFaqList' + colAbbr;
-			var timestamp = 'lrFaqTS' + colAbbr;
+			const faq = 'lrFaqList' + colAbbr;
+			const timestamp = 'lrFaqTS' + colAbbr;
 			// get json from local storage if not more than 4 hours old
-				var local = $window.localStorage.getItem(faq);
-				var ts = $window.localStorage.getItem(timestamp); // timestamp
-				var old = false; // json assumed to be not old
+				const local = $window.localStorage.getItem(faq);
+				const ts = $window.localStorage.getItem(timestamp); // timestamp
+				let old = false; // json assumed to be not old
 				if (ts !== null) { // check age of timestamp
-					var d = new Date();
-					var ageLimit = 4 * 60 * 60 * 1000; // four hours
+					const d = new Date();
+					const ageLimit = 4 * 60 * 60 * 1000; // four hours
 					if ((d - new Date(ts)) < ageLimit) { // get local storage object and insert it
 						vm.faqList = angular.fromJson(local);
 						vm.faqExist = true;
@@ -145,12 +145,12 @@
 					old = true;
 				}
 				if (old === true) { // only runs if timestamp is old
-					$http.get(districtHost + filePath + 'utilities/primo-faq-getter/get-faq.php?college=' + colAbbr) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
-						.then(function(response) {
+					$http.get(`${districtHost + filePath}utilities/primo-faq-getter/get-faq.php?college=${colAbbr}`) // Springshare doesn't set CORS and using JSONP in AngularJS is too complicated, so we are proxying the JSON on our serve. We also cache it there for a few hours to limit API hits
+						.then((response) => {
 							vm.faqList = response.data.faqs;
 							// set local storage for next time
 							$window.localStorage.setItem(faq, angular.toJson(vm.faqList));
-							var d = new Date();
+							const d = new Date();
 							$window.localStorage.setItem(timestamp, d.toString());
 							vm.faqExist = true;
 					});
@@ -167,12 +167,12 @@
 		bindings: {	parentCtrl: '<' },
 		template: '<div ng-if="$ctrl.showInfo();"><a href="{{::$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks <span external-link=""><lr-ext-link-icon></lr-ext-link-icon></a></a></div>',
 		controller: function () {
-			var vm = this;
-			vm.$onInit = function () {
+			const vm = this;
+			vm.$onInit =  () => {
 				if (almaDHelp !== '') {
 					vm.url = almaDHelp;
-					vm.showInfo = function () {
-						var serviceType = vm.parentCtrl.serviceType;
+					vm.showInfo = () => {
+						const serviceType = vm.parentCtrl.serviceType;
 						if (serviceType === 'DIGITAL') {
 							return true;
 						}
@@ -188,13 +188,13 @@
 		},
 		templateUrl: custPackagePath + '/html/full-display/viewit-notes.html',
 		controller: function() {
-			var vm = this;
-			vm.$onInit = function() {
-				vm.showNote = function(source) {
-					var services = vm.parentCtrl.item.delivery.electronicServices;
+			const vm = this;
+			vm.$onInit = () => {
+				vm.showNote = (source) => {
+					const services = vm.parentCtrl.item.delivery.electronicServices;
 					if (services) {
-						var linkUrl = services[0].serviceUrl;
-						var journal = vm.parentCtrl.item.pnx.addata.jtitle;
+						const linkUrl = services[0].serviceUrl;
+						const journal = vm.parentCtrl.item.pnx.addata.jtitle;
 						if (linkUrl) {
 							if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
 								// check resource
@@ -221,27 +221,25 @@
 		template: '<md-button ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px" aria-label="Alert"></md-icon> Report a problem</md-button>'
 	});
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
-		var vm = this;
-		vm.$onInit = function() {
-			var itemID = '';
-			var elecServices;
+		const vm = this;
+		vm.$onInit = () => {
+			let itemID = '';
 			if (vm.parentCtrl.item) { // found in prmAlmaViewitAfter
 				itemID = vm.parentCtrl.item.pnx.control.recordid[0];
-				elecServices = vm.parentCtrl.item.delivery.electronicServices;
 			}
 			if (vm.parentCtrl.result) { // found in prmSearchResultAvailabilityLineAfter
 				itemID = vm.parentCtrl.result.pnx.control.recordid[0];
 			}
-			vm.openReporter = function() {
-				var w = 600;
-				var h = 600;
-				var left = (screen.width - w) / 2;
-				var top = (screen.height - h) / 4;
-				var page = districtHost + filePath + 'utilities/problem-reporter/';
-				var winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
-				$window.open(page + '?url=' + encodeURIComponent(location.href) + '&recordid=' + itemID + '&college=' + colAbbr + '&source=primo', 'Problem reporter', winParams);
+			vm.openReporter = () =>{
+				const w = 600;
+				const h = 600;
+				const left = (screen.width - w) / 2;
+				const top = (screen.height - h) / 4;
+				const page = `${districtHost + filePath}utilities/problem-reporter/`;
+				const winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
+				$window.open(`${page}?url=${encodeURIComponent(location.href)}&recordid=${itemID}&college=${colAbbr}&source=primo`, 'Problem reporter', winParams);
 			};
-			vm.showProblemReporter = function() { // wait until links load to show the reporter
+			vm.showProblemReporter = () => { // wait until links load to show the reporter
 				if (vm.parentCtrl.item) { // full display
 					if (vm.parentCtrl.item.delivery.electronicServices) {
 						if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
@@ -251,11 +249,11 @@
 				} else if (vm.parentCtrl.result) { // brief results
 					if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
 						if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
-							var availability = vm.parentCtrl.result.delivery.availability;
+							const availability = vm.parentCtrl.result.delivery.availability;
 							if (availability) {
-								var regex = /(fulltext|not_restricted)/;
-								for (var i = 0; i < availability.length; i++) { // sometimes physical and full-text are both present
-									if (regex.test(availability[i]) === true) { // only show when there is a full-text link
+								const regex = /(fulltext|not_restricted)/;
+								for (let format of availability) { // sometimes physical and full-text are both present
+									if (regex.test(format) === true) { // only show when there is a full-text link
 										return true;
 									}
 								}
@@ -288,41 +286,41 @@
 			'$interval',
 				'$timeout',
 			function ($interval, $timeout) {
-				var vm = this;
-				vm.$onInit = function () {
+				const vm = this;
+				vm.$onInit = () => {
 					// hide online link when digital link also exists. This works on brief results and full display, but not overlay when clicking from brief results -- seems like digest is not refreshed
 					// function gets parents of given element
-					var getParents = function (el, selector) {
-						var parents = [];
+					const getParents = (el, selector) => {
+						const parents = [];
 						while ((el = el.parentNode) && el !== document) {
 							if (!selector || el.matches(selector)) parents.push(el);
 						}
 						return parents;
 					};
-					var deliveryCat = vm.parentCtrl.result.delivery.deliveryCategory;
-					var position;
+					const deliveryCat = vm.parentCtrl.result.delivery.deliveryCategory;
+					let position;
 					if (
 						deliveryCat.includes('Alma-E') &&
 						deliveryCat.includes('Alma-D')
 					) {
-						for (var i = 0; i < deliveryCat.length; i++) {
+						for (let i = 0; i < deliveryCat.length; i++) {
 							if (deliveryCat[i] === 'Alma-E') {
 								position = i; // this seems to be the order in which the links appear
 							}
 						}
-						var recordId = vm.parentCtrl.result.pnx.control.recordid; // used in id of span
-						var checkEl = $interval(function () {
+						const recordId = vm.parentCtrl.result.pnx.control.recordid; // used in id of span
+						const checkEl = $interval(() => {
 							// interval is needed because property is not populated immediately when directive appears
-							var label = document.getElementById(
+							const label = document.getElementById(
 								recordId + 'availabilityLine' + position
 							);
 							if (label) {
 								$interval.cancel(checkEl);
-								var parentEl = getParents(label, '.layout-row');					
+								const parentEl = getParents(label, '.layout-row');					
 								parentEl[0].style.display = 'none';
 							}
 						}, 50);
-						$timeout(function () {
+						$timeout(() => {
 							$interval.cancel(checkEl);
 						}, 5000);
 					}
@@ -339,7 +337,7 @@
 	});
 	// Begin BrowZine - Primo Integration...
   	window.browzine = {
-      api: 'https://public-api.thirdiron.com/public/v1/libraries/' + libKeyId,
+      api: `https://public-api.thirdiron.com/public/v1/libraries/${libKeyId}`,
       apiKey: lkAPI,
       journalCoverImagesEnabled: true,
       journalBrowZineWebLinkTextEnabled: false,
@@ -383,16 +381,21 @@
 		templateUrl: custPackagePath + '/html/browse.html'
 	});
 	app.controller('prmBrowseSearchAfterController', function() { 
-		var vm = this;
-		vm.$onInit = function() {
-			vm.searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1;
-			vm.hideOnResults = function() { // hide cards when there are search results or when search is in progress
-				var results = vm.parentCtrl.browseSearchService._browseResult || ''; // array of search results
-				var inProgress = vm.parentCtrl.browseSearchService._inProgress || '';
-				if ((results.length > 0 || inProgress === true)) {
-					return true;
+		const vm = this;
+		vm.$onInit = () => {
+			vm.$doCheck = () => {
+				if (vm.parentCtrl.browseSearchBarService._selectedScope) {
+					vm.searchScope = vm.parentCtrl.browseSearchBarService._selectedScope.SourceCode1;
+					vm.hideOnResults = () => {
+						// hide cards when there are search results or when search is in progress
+						const results = vm.parentCtrl.browseSearchService._browseResult || ''; // array of search results
+						const inProgress = vm.parentCtrl.browseSearchService._inProgress || '';
+						if (results.length > 0 || inProgress === true) {
+							return true;
+						}
+					};
 				}
-			};
+			};	
 		};
 	});
 	app.component('prmBackToLibrarySearchButtonAfter', { 
@@ -409,56 +412,56 @@
 		templateUrl: custPackagePath + '/html/top-announcement.html' // enter content into / uncomment this template to show the announcement
 	});
 	app.controller('lrTopAnnouncementController', ['$cookies', '$timeout', function($cookies, $timeout) {
-		var vm = this;
-		vm.$onInit = function() {
+		const vm = this;
+		vm.$onInit = () => {
 			vm.fade = ''; // used for adding classes when dissmissing
 			vm.hide = false;
 			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 			vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
 			vm.daysToHide = 14; // default days that banner is hidden if user dismisses
-			var getDate = function(str) {
-				var arr = str.split('-');
-				var m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
-				var exp = new Date();
+			const getDate = (str) => {
+				const arr = str.split('-');
+				const m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
+				const exp = new Date();
 				exp.setFullYear(arr[2], m, arr[1]);
 				return exp;
 			};
-			vm.showAnnounce = function(obj) {
+			vm.showAnnounce = (obj) => {
 				if (vm.hide === true) { // this happens after dismiss button is pressed
 					return false;
 				}
-				var announceStart = obj.startDate || '';
-				var announceExp = obj.endDate || '';
+				const announceStart = obj.startDate || '';
+				const announceExp = obj.endDate || '';
 				if (obj.daysToHide) {
 					vm.daysToHide = obj.daysToHide;
 				}
-				var today = new Date();
+				const today = new Date();
 				if (announceExp !== '') {
-					var exp = getDate(announceExp);
+					const exp = getDate(announceExp);
 					if ((today - exp) > 0) {
 						return false;
 					}
 				}
 				if (announceStart !== '') {
-					var start = getDate(announceStart);
+					const start = getDate(announceStart);
 					if ((today - start) < 0) {
 						return false;
 					}
 				}
 				if (obj.cookieID) {
-					vm.cookieID = obj.cookieID + '_' + colAbbr;
+					vm.cookieID = `${obj.cookieID}_${colAbbr}`;
 				}
-				var hideCookie = $cookies.get(vm.cookieID) || '';
+				const hideCookie = $cookies.get(vm.cookieID) || '';
 				if (hideCookie !== 'true') {
 					return true;
 				}
 			};
 			vm.hideAnnounce = function() {
-				var cookieKey = vm.cookieID;
-				var d = new Date();
+				const cookieKey = vm.cookieID;
+				const d = new Date();
 				d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
 				vm.fade = 'lr-fadeout'; // allows animation via class
-				$timeout(function() {
+				$timeout(() => {
 					$cookies.put(cookieKey, 'true', {
 						'expires': d.toUTCString(),
 						'path': '/',
@@ -491,10 +494,10 @@
 		},
 		templateUrl: custPackagePath + '/html/collections/blurb.html',
 		controller: ['$attrs', function($attrs) {
-			var vm = this;
-			vm.$onInit = function() {
+			const vm = this;
+			vm.$onInit = () => {
 				vm.col = colAbbr;
-				var params = JSON.parse($attrs.model) || '';
+				const params = JSON.parse($attrs.model) || '';
 				vm.position = params.position;
 				vm.collectionID = vm.parentCtrl.$stateParams.collectionId || '';
 			};
@@ -506,10 +509,10 @@
 		},
 		templateUrl: custPackagePath + '/html/fines.html',
 		controller: function() { // only show if there are fines
-			var vm = this;
-			vm.$onInit = function() {
+			const vm = this;
+			vm.$onInit = () => {
 				vm.c19Page = c19Page;
-				vm.hasFines = function() {
+				vm.hasFines = () => {
 					// if there are no fines, this value is the number 0; if there are fines, it is a string		
 					if (typeof(vm.parentCtrl.finesCounters) === 'string') {
 						return true;
@@ -532,14 +535,14 @@
 		},
 		template: '<div ng-if="$ctrl.showNote();">Note: one or more items listed above was requested for locker pickup and is currently being held inside the SCC Library. It will be placed in a locker when one becomes available. Please <a href="https://answers.library.losrios.edu/scc/faq/360910" target="_blank">see SCC locker info <lr-ext-link-icon></lr-ext-link-icon></a>.</div>',
 		controller: function() {
-			var vm = this;
-			vm.$onInit = function() {
-				vm.showNote = function() {
-					var requests = vm.parentCtrl.requestsService._requestsDisplay;
+			const vm = this;
+			vm.$onInit = () => {
+				vm.showNote = () => {
+					const requests = vm.parentCtrl.requestsService._requestsDisplay;
 					if (requests) {
-						for (var i = 0; i < requests.length; i++) {
-							if (requests[i].requestType === 'holds') {
-								var pickupLib = requests[i].secondLineRight;
+						for (req of requests) {
+							if (req.requestType === 'holds') {
+								const pickupLib = req.secondLineRight;
 								if (pickupLib) {
 									if (pickupLib === 'SCC Lockers') {
 										if (/on hold( )?shelf/i.test(requests[i].status) === true) {
@@ -569,12 +572,12 @@
 			'<div ng-if="::$ctrl.imgSrc"><img ng-src="{{::$ctrl.imgSrc}}" alt="" ng-class="::$ctrl.loaded"></div>',
 		// function below will run for each thumbnail
 		controller: function () {
-			var vm = this;
-			vm.$onInit = function () {
-				var pattern =
+			const vm = this;
+			vm.$onInit = () => {
+				const pattern =
 					/syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/; // identify image sources to replace. Some are ok already, e.g. Kanopy
-				var biggerURL = function (str) {
-					var replacement = '';
+				const biggerURL = (str) => {
+					let replacement = '';
 					if (str.indexOf('/sc.jpg') > -1) {
 						// syndetics
 						replacement = str.replace('/sc.jpg', '/mc.jpg');
@@ -591,15 +594,15 @@
 				if (
 					vm.parentCtrl.$state.current.name.indexOf('collectionDiscovery') > -1
 				) {
-					vm.$doCheck = function () {
+					vm.$doCheck = () => {
 						// $doCheck is needed because data takes time to load after directive appears
 						if (vm.parentCtrl.item) {
-							var recordid = vm.parentCtrl.item.pnx.control.recordid;
-							var img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
+							const recordid = vm.parentCtrl.item.pnx.control.recordid;
+							const img = vm.parentCtrl.selectedThumbnailLink; // this is the thumbnail link
 							if (img) {
 								if (pattern.test(img.linkURL) === true) {
 									// only replace the URL if it is syndetics or fod
-									var newURL = biggerURL(img.linkURL);
+									const newURL = biggerURL(img.linkURL);
 									if (newURL !== '') {
 										// load the replacement image
 										vm.imgSrc = newURL;
@@ -607,10 +610,8 @@
 									}
 								} else {
 									// if we didn't or couldn't replace the image, unhide the default image
-									var el = document.querySelector(
-										'span[data-url*=' +
-											recordid +
-											'] + div prm-search-result-thumbnail-container img[class*="fan-img"]'
+									const el = document.querySelector(
+										`span[data-url*=${recordid}] + div prm-search-result-thumbnail-container img[class*="fan-img"]`
 									);
 									if (el) {
 										el.style.display = 'block';
@@ -636,11 +637,11 @@
 		},
 		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{::$ctrl.urlPath}}" target="_blank">see our FAQ <lr-ext-link-icon></lr-ext-link-icon></a>.</div>',
 		controller: ['$timeout', function($timeout) {
-			var vm = this;
-			vm.$onInit = function() {
+			const vm = this;
+			vm.$onInit = () => {
 				vm.urlPath = '';
 				vm.highlight = '';
-				var deliveryLibraries = [ // library ID may be found using configuration API
+				const deliveryLibraries = [ // library ID may be found using configuration API
 					{ // scc lockers
 						id: '5066568570005325',
 						col: 'scc',
@@ -652,25 +653,24 @@
 						path: '361527'
 					}
 				];
-				vm.showBlurb = function() {
-					for (var i = 0; i < deliveryLibraries.length; i++) {
-						var lib = deliveryLibraries[i];
+				vm.showBlurb = () => {
+					for (let lib of deliveryLibraries) {
 						if (vm.parentCtrl.requestService._formData.requestType === 'hold') {
-							var pickupLib = vm.parentCtrl.requestService._formData.pickupLocation;
+							const pickupLib = vm.parentCtrl.requestService._formData.pickupLocation;
 							if ((pickupLib) && (lib.id)) {
 								if (pickupLib.indexOf(lib.id) > -1) {
-									vm.urlPath = lib.col + '/faq/' + lib.path;
+									vm.urlPath = `${lib.col}/faq/${lib.path}`;
 									return true;
 								}
 							}
 						}
 					}
 				};
-				vm.fadeHighlight = function() { // background animation to emphasize presence of the blurb
-					$timeout(function() {
+				vm.fadeHighlight = () => { // background animation to emphasize presence of the blurb
+					$timeout(() => {
 						vm.highlight = 'lr-highlighted';
 					}, 100);
-					$timeout(function() {
+					$timeout(() => {
 						vm.highlight = 'lr-no-highlight';
 					}, 3000);
 				};
@@ -691,23 +691,23 @@
 		},
 		templateUrl: custPackagePath + '/html/getit/locations-note.html',
 		controller: ['$attrs', function ($attrs) {
-			var vm = this;
-			vm.$onInit = function () {
-				var params = JSON.parse($attrs.model);
-				var record = vm.parentCtrl.item.pnx.control.sourcerecordid[0];
-				vm.showNote = function (obj) {
+			const vm = this;
+			vm.$onInit = () => {
+				const params = JSON.parse($attrs.model);
+				const record = vm.parentCtrl.item.pnx.control.sourcerecordid[0];
+				vm.showNote = (obj) => {
 					if ((obj.record === record) || (!(obj.record))) {
 						if (params.directive === 'locations') { // this is for initial getit screen
-							var holdings = vm.parentCtrl.item.delivery.holding;
-							for (var i = 0; i < holdings.length; i++) {
-								if (holdings[i].libraryCode === obj.library) {
+							const holdings = vm.parentCtrl.item.delivery.holding;
+							for (let h of holdings) {
+								if (h.libraryCode === obj.library) {
 									return true;
 								}
 							}
 						}
 						if (params.directive === 'items') {
 							if (vm.parentCtrl.loc) { // this data element only exists in prmlocationitems
-								var library = vm.parentCtrl.loc.location.libraryCode;
+								const library = vm.parentCtrl.loc.location.libraryCode;
 								if (library == obj.library) {
 									return true;
 								}
@@ -728,26 +728,26 @@
 		},
 		templateUrl: custPackagePath + '/html/local-creator.html',
 		controller: function () {
-			var vm = this;
-			vm.$onInit = function() {
-				var lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
+			const vm = this;
+			vm.$onInit = () => {
+				const lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
 				vm.creators = []; // we push creator objects into an array that the template iterates through
 				if (lrCrField) {
-					for (var i = 0; i < lrCrField.length; i++) { // for each array member we will split by delimiter and process
-						var data = JSON.parse(lrCrField[i]);
+					for (let field of lrCrField) { // for each array member we will split by delimiter and process
+						const data = JSON.parse(field);
 						vm.creatorType = 'creator'; // default if role is not defined
 						if ((data.role) && (data.role !== 'z')) { // get role
 							vm.creatorType = data.role;
 						}
-						var creator = {};
+						const creator = {};
 						if ((((data.crName) && (data.crName !== 'z')) && (data.currency) && (data.currency !== 'z'))) {
 							vm.badge = true; // set property that allows the badges to show
 							creator.crName = data.crName;
-							var zTitle = 'affiliated';
-							var connector = 'with';
-							var currency = 'is';
-							var art = '';
-							var title = zTitle;
+							const zTitle = 'affiliated';
+							let connector = 'with';
+							let currency = 'is';
+							let art = '';
+							let title = zTitle;
 							if ((data.position) && (data.position !== 'z')) {
 								title = data.position;
 								connector = 'at';
@@ -771,23 +771,23 @@
 									}
 								}
 							}
-							creator.title = currency + ' ' + art + ' ' + title + ' ' + connector;
-							var college = 'Los Rios Community College District';
-							var crCol = [];
-							var collegePhr = '';
+							creator.title = `${currency} ${art} ${title} ${connector}`;
+							let college = 'Los Rios Community College District';
+							const crCol = [];
+							let collegePhr = '';
 							if ((data.college) && (data.college !== 'z')) {
-								for (var j = 0; j < libraries.length; j++) { // use libraries array defined at top of this file
-									if (data.college.indexOf(libraries[j].abbr) > -1) {
-										crCol.push(libraries[j].name + ' College');
+								for (let lib of libraries) { // use libraries array defined at top of this file
+									if (data.college.indexOf(lib.abbr) > -1) {
+										crCol.push(`${lib.name} College`);
 									}
 								}
-								var colNum = crCol.length; // vary syntax based on how many colleges are listed
+								let colNum = crCol.length; // vary syntax based on how many colleges are listed
 								if (colNum === 1) { // just one college
 								collegePhr = crCol[0];
 								} else if (colNum === 2) { // two colleges
-									collegePhr = crCol[0] + ' and ' + crCol[1];
+									collegePhr = `${crCol[0]} and ${crCol[1]}`;
 								} else { // moret than two
-									var lastMember = crCol[colNum - 1];
+									const lastMember = crCol[colNum - 1];
 									crCol.splice(colNum - 1, 1, 'and ' + lastMember);
 									collegePhr = crCol.join(', ');
 								}
@@ -795,7 +795,7 @@
 							}
 							creator.college = college;
 						}
-						var url = '';
+						let url = '';
 						if ((data.url) && (data.url !== 'z')) {
 							url = data.url;
 						}
@@ -807,31 +807,31 @@
 		}
 	});
 	// set cookie for things like films on demand workaround
-	setTimeout(function() {
-		var el = document.createElement('iframe');
+	setTimeout(() => {
+		const el = document.createElement('iframe');
 		el.style.position = 'absolute';
 		el.style.left = '-99999px';
-		el.setAttribute('src', districtHost + filePath + 'utilities/cookie-setter.php?college=' + colAbbr);
+		el.setAttribute('src', `${districtHost + filePath}utilities/cookie-setter.php?college=${colAbbr}`);
 		// append the iframe in order to set the cookie, then remove it from the DOM
 		document.getElementsByTagName('body')[0].appendChild(el);
-		setTimeout(function(){
+		setTimeout(() => {
 			el.parentNode.removeChild(el);	
 		}, 2000);
 		
 		
 	}, 10000);
 	
-	(function () {
+	(() => {
 			// Footer (from NLNZ) - measure page once "is sticky" is put in and (try) to put footer after results. Posted on Primo listserv by Bond University, November 2019
 
 			// Instantiate variables that will be reset repeatedly in the listener function
-			var max = 0;
-			var winHeight = 0;
-			var scrollTop = 0;
-			var foot = 0;
+			let max = 0;
+			let winHeight = 0;
+			let scrollTop = 0;
+			let foot = 0;
 			// and let's have a small buffer before the footer
-			var buffer = 50;
-			window.addEventListener('scroll', function () {
+			const buffer = 50;
+			window.addEventListener('scroll', () => {
 
 				// Total length of document
 				max = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight,
@@ -841,12 +841,12 @@
 				winHeight = window.innerHeight || (document.documentElement || document.body).clientHeight;
 				// Point of the top of the document visible on screen
 				scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
-				var footer = document.getElementById('footer');
+				const footer = document.getElementById('footer');
 				if (footer) {
 					// Height of footer
 					foot = Math.round(parseFloat(window.getComputedStyle(document.getElementById('footer')).height));
 					// check where we are in terms of scrolling and the footer
-					var stuckWin = document.querySelectorAll('.primo-scrollbar.is-stuck')[0];
+					const stuckWin = document.querySelectorAll('.primo-scrollbar.is-stuck')[0];
 					// check for undefined to avoid TypeErrors
 					if (stuckWin) {
 						if (scrollTop + winHeight >= max - foot) {
@@ -858,18 +858,18 @@
 				}
 			});
 
-		}());
-	(function () { // load libchat
-		var almaDStr = 'https://' + location.hostname + '/discovery/delivery/';
-		var div = document.createElement('div');
+		})();
+	(() => { // load libchat
+		const almaDStr = `https://${location.hostname}/discovery/delivery/`;
+		const div = document.createElement('div');
 		div.id = 'libchat_' + libchatHash;
 		document.getElementsByTagName('body')[0].appendChild(div);
-		var scr = document.createElement('script');
+		const scr = document.createElement('script');
 		scr.src = 'https://answers.library.losrios.edu/load_chat.php?hash=' + libchatHash;
-		setTimeout(function () {
+		setTimeout(() => {
 			if (location.href.indexOf(almaDStr) !== 0) { // don't include in Alma viewer
 				document.getElementsByTagName('body')[0].appendChild(scr);
 			}
 		}, 2000);
-	}());
-}());
+	})();
+})();
