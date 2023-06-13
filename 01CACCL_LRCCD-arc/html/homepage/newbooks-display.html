@@ -16,7 +16,7 @@
 					Column 5: Title (Complete) -->
 					<li layout-margin ng-repeat="book in $ctrl.bookList" ng-class="[$ctrl.itemFormat(book.Column1), $ctrl.varyFlex(book.Column3), $ctrl.checkIdentifier(book.Column3)]" ng-attr-id="{{::$ctrl.makeId(book.Column3)}}">
 						<a ng-attr-title="{{::book.Column5}}" ng-href="/discovery/fulldisplay?docid=alma{{::book.Column4}}5325&amp;context=L&amp;vid=01CACCL_LRCCD:{{::$ctrl.colAbbr}}&amp;search_scope={{::$ctrl.colAbbr}}_everything&amp;adaptor=Local Search Engine&amp;tab=everything">
-							<img loading="lazy" ng-src="{{::$ctrl.imgSrc(book.Column3);}}" alt="{{::book.Column5}}" ng-init="$ctrl.checkImg('lr_' + book.Column3);" onerror="this.src='https://via.placeholder.com/140x160';">
+							<img loading="lazy" ng-src="{{::$ctrl.imgSrc(book.Column3);}}" ng-attr-alt="{{::book.Column5}}" ng-on-load="::$ctrl.checkImg('lr_' + book.Column3);" onerror="this.src='https://via.placeholder.com/140x160';">
 							<md-icon class="lr-play-vid" md-svg-icon="av:ic_play_circle_outline_24px"></md-icon>
 							<span class="lr-newbook-title" ng-bind-html="::$ctrl.truncateTitle(book.Column5)"></span>
 						</a>
