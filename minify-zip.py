@@ -5,7 +5,7 @@ import requests
 def minify_js(code):
     url = "https://closure-compiler.appspot.com/compile"
     params = {
-        "compilation_level": "WHITESPACE_ONLY",
+        "compilation_level": "SIMPLE_OPTIMIZATIONS",
         "output_format": "text",
         "output_info": "compiled_code",
         "js_code": code
