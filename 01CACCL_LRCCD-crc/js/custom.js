@@ -546,7 +546,7 @@
 								const pickupLib = req.secondLineRight;
 								if (pickupLib) {
 									if (pickupLib === 'SCC Lockers') {
-										if (/on hold( )?shelf/i.test(requests[i].status) === true) {
+										if (/on hold( )?shelf/i.test(req.status) === true) {
 											return true;
 										}
 									}
