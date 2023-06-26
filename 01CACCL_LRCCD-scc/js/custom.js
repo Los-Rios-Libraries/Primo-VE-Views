@@ -286,7 +286,12 @@
 	app.component('prmSearchBarAfter', {
 		bindings: {parentCtrl: '<'},
 		controller: 'prmSearchBarAfterController',
-		template: '<div id="lr-onesearch" hide="" show-gt-sm=""><md-button aria-label="OneSearch" ng-href="{{::$ctrl.homePage}}" ng-click="$ctrl.scrollUp()"><img ng-src="' + custPackagePath + '/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> </md-button></div>'
+		template: 
+		`<div id="lr-onesearch" hide="" show-gt-sm="">
+			<md-button aria-label="OneSearch" ng-href="{{::$ctrl.homePage}}" ng-click="$ctrl.scrollUp()">
+				<img src="${custPackagePath}/img/onesearch-logo.png" alt="OneSearch - Los Rios Libraries"> 
+			</md-button>
+		</div>`
 		
 		});
 	app.controller('prmSearchBarAfterController', ['$window', function($window) {
@@ -333,7 +338,22 @@
 	// faq on home page. To implement, add matching directive to html in home page
 	app.component('lrHomepageFaq', {
 		controller: 'lrHomepageFaqController',
-		template: '<div id="lr-faq-block"><md-list ng-if="$ctrl.faqExist" id="lr-faq-list"><md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding><a href="{{::f.url.public}}" target="_blank">{{::f.question}} <lr-ext-link-icon></lr-ext-link-icon></a></md-list-item></md-list><p layout="row" layout-align="end start"><md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers <lr-ext-link-icon></lr-ext-link-icon></md-button></p></div>'
+		template: 
+		`<div id="lr-faq-block">
+			<md-list ng-if="$ctrl.faqExist" id="lr-faq-list">
+				<md-list-item ng-repeat="f in ::$ctrl.faqList" layout-padding>
+					<a href="{{::f.url.public}}" target="_blank">
+						{{::f.question}} 
+						<lr-ext-link-icon></lr-ext-link-icon>
+					</a>
+				</md-list-item>
+			</md-list>
+			<p layout="row" layout-align="end start">
+				<md-button external-link="" ng-href="https://answers.library.losrios.edu/{{::$ctrl.col}}" target="_blank">More Library Answers 
+					<lr-ext-link-icon></lr-ext-link-icon>
+				</md-button>
+			</p>
+		</div>`
 	});
 	app.controller('lrHomepageFaqController', ['$http', '$window', function($http, $window) {
 		const vm = this;
@@ -381,7 +401,16 @@
 	});
 	app.component('lrAlmaDNotes', {
 		bindings: {	parentCtrl: '<' },
-		template: '<div ng-if="$ctrl.showInfo();"><a href="{{::$ctrl.url}}" target="_blank"><md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> Find out more about digital textbooks <span external-link=""><lr-ext-link-icon></lr-ext-link-icon></a></a></div>',
+		template: 
+		`<div ng-if="$ctrl.showInfo();">
+			<a href="{{::$ctrl.url}}" target="_blank">
+				<md-icon md-svg-icon="action:ic_info_outline_24px" aria-label="Info"></md-icon> 
+				Find out more about digital textbooks 
+						<span external-link="">
+					<lr-ext-link-icon></lr-ext-link-icon>
+				</span>
+			</a>
+		</div>`,
 		controller: function () {
 			const vm = this;
 			vm.$onInit =  () => {
@@ -434,7 +463,10 @@
 			parentCtrl: '<'
 		},
 		controller: 'lrProblemReporterController',
-		template: '<md-button ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()"><md-icon md-svg-icon="alert:ic_error_outline_24px" aria-label="Alert"></md-icon> Report a problem</md-button>'
+		template: 
+		`<md-button ng-if="$ctrl.showProblemReporter()" ng-click="$ctrl.openReporter()">
+			<md-icon md-svg-icon="alert:ic_error_outline_24px" aria-label="Alert"></md-icon> Report a problem
+		</md-button>`
 	});
 	app.controller('lrProblemReporterController', ['$window', function ($window) {
 		const vm = this;
@@ -489,7 +521,9 @@
 			parentCtrl: '<'
 		},
 		// two different directives here
-		template: '<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes><lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>',
+		template: 
+		`<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes>
+		<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>`,
 		});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
@@ -497,7 +531,8 @@
 			parentCtrl: '<',
 		},
 		template:
-			'<lr-libkey parent-ctrl="$ctrl.parentCtrl"></lr-libkey><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>',
+			`<lr-libkey parent-ctrl="$ctrl.parentCtrl"></lr-libkey>
+			<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl" hide-xs layout-align="end center"></lr-problem-reporter>`,
 		controller: [
 			'$interval',
 				'$timeout',
@@ -549,7 +584,13 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<md-card class="default-card" style="margin-top:-9px;"><md-card-content><md-card-actions layout-align="end-center" layout="row"><lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter></md-card-actions></md-card-content></md-card>'
+		template: 
+		`<md-card class="default-card" style="margin-top:-9px;">
+			<md-card-content>
+				<md-card-actions layout-align="end-center" layout="row">
+					<lr-problem-reporter parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>
+				</md-card-actions></md-card-content>
+			</md-card>`
 	});
 	// Begin BrowZine - Primo Integration...
   	window.browzine = {
@@ -750,7 +791,12 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<div ng-if="$ctrl.showNote();">Note: one or more items listed above was requested for locker pickup and is currently being held inside the SCC Library. It will be placed in a locker when one becomes available. Please <a href="https://answers.library.losrios.edu/scc/faq/360910" target="_blank">see SCC locker info <lr-ext-link-icon></lr-ext-link-icon></a>.</div>',
+		template: 
+		`<div ng-if="$ctrl.showNote();">Note: one or more items listed above was requested for locker pickup and is currently being held inside the SCC Library. It will be placed in a locker when one becomes available. Please 
+			<a href="https://answers.library.losrios.edu/scc/faq/360910" target="_blank">see SCC locker info 
+				<lr-ext-link-icon></lr-ext-link-icon>
+			</a>.
+		</div>`,
 		controller: function() {
 			const vm = this;
 			vm.$onInit = () => {
@@ -852,7 +898,12 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		template: '<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please <a ng-href="https://answers.library.losrios.edu/{{::$ctrl.urlPath}}" target="_blank">see our FAQ <lr-ext-link-icon></lr-ext-link-icon></a>.</div>',
+		template: 
+		`<div ng-if="$ctrl.showBlurb();" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();">For information about library locker pickup, please 
+			<a ng-href="https://answers.library.losrios.edu/{{::$ctrl.urlPath}}" target="_blank">see our FAQ 
+				<lr-ext-link-icon></lr-ext-link-icon>
+			</a>.
+		</div>`,
 		controller: ['$timeout', function($timeout) {
 			const vm = this;
 			vm.$onInit = () => {
