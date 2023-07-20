@@ -1004,7 +1004,7 @@
 					for (let field of lrCrField) { // for each array member we will split by delimiter and process
 						const data = JSON.parse(field);
 						vm.creatorType = 'creator'; // default if role is not defined
-						if ((data.role) && (data.role !== 'z')) { // get role
+						if (data.role) { // get role
 							vm.creatorType = data.role;
 						}
 						const creator = {};
@@ -1016,7 +1016,7 @@
 							let currency = 'is';
 							let art = '';
 							let title = zTitle;
-							if ((data.position) && (data.position !== 'z')) {
+							if (data.position) {
 								title = data.position;
 								connector = 'at';
 								if (/^(Interim )?President/.test(title)) {
@@ -1043,7 +1043,7 @@
 							let college = 'Los Rios Community College District';
 							const crCol = [];
 							let collegePhr = '';
-							if ((data.college) && (data.college !== 'z')) {
+							if (data.college) {
 								for (let lib of libraries) { // use libraries array defined at top of this file
 									if (data.college.indexOf(lib.abbr) > -1) {
 										crCol.push(`${lib.name} College`);
@@ -1064,7 +1064,7 @@
 							creator.college = college;
 						}
 						let url = '';
-						if ((data.url) && (data.url !== 'z')) {
+						if (data.url) {
 							url = data.url;
 						}
 						creator.url = url;

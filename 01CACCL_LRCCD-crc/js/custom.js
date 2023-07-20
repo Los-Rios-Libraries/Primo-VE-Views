@@ -800,7 +800,7 @@
 							let currency = 'is';
 							let art = '';
 							let title = zTitle;
-							if ((data.position) && (data.position !== 'z')) {
+							if (data.position) {
 								title = data.position;
 								connector = 'at';
 								if (/^(Interim )?President/.test(title)) {
@@ -848,7 +848,7 @@
 							creator.college = college;
 						}
 						let url = '';
-						if ((data.url) && (data.url !== 'z')) {
+						if (data.url) {
 							url = data.url;
 						}
 						creator.url = url;
