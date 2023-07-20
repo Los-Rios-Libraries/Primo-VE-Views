@@ -1014,6 +1014,10 @@
 							const zTitle = 'affiliated';
 							let connector = 'with';
 							let currency = 'is';
+							let deceased = false;
+							if ((data.deceased) && (data.deceased === 'deceased')) {
+								deceased = true;
+							}
 							let art = '';
 							let title = zTitle;
 							if (data.position) {
@@ -1033,9 +1037,15 @@
 								}
 								if (data.currency === 'former') {
 									currency = 'is a former';
+									if (deceased === true) {
+										currency = 'was ' + art;
+									}
 									art = '';
 									if (title === zTitle) {
 										currency = 'was formerly';
+										if (deceased === true) {
+											currency = 'was';
+										}
 									}
 								}
 							}
