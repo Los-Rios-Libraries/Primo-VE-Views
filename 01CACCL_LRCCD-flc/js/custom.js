@@ -771,6 +771,52 @@
 			};
 			}]
 	});
+	app.component('lrIllLink', {
+		bindings: { parentCtrl: '<' },
+		template: 
+		`<div ng-if="$ctrl.show">
+			<md-list layout="column">
+				<md-list-item>
+					<div layout="row" flex="">
+						<div layout="row">
+							<div layout="column" flex="" flex-xs="100">
+								<a ng-href="{{::$ctrl.url}}" target="blank">Request this item via interlibrary loan
+									<lr-ext-link-icon></lr-ext-link-icon>
+								</a>
+							</div>
+						</div>
+					</div>
+				</md-list-item>
+			</md-list>
+		</div>`,
+		controller: function () {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.show = false;
+				const url = vm.parentCtrl.fullViewService.$location.$$absUrl;
+				vm.$doCheck = () => {
+					const illLink = document.querySelector(
+						'a[href*="interlibrary-loan"]'
+					);
+
+					if (illLink) {
+						vm.url = illLink.href.replace(
+							/$/,
+							'&url=' + encodeURIComponent(url)
+						);
+						const originalLink = getParents(illLink, 'md-list');
+						originalLink[0].style.display = 'none';
+						vm.show = true;
+					}
+				};
+			};
+		}
+	});
+	
+	app.component('almaHowovpAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-ill-link parent-ctrl="$ctrl.parentCtrl"></lr-ill-link>'
+	});
 	app.component('prmBriefResultAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge>'
