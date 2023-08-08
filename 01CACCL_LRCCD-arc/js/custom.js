@@ -318,7 +318,7 @@
 					for (let i = 0; i < content.length; i++) {
 						h += content[i].offsetHeight;
 					}
-					if ((h > 340) || (angular.element(document.querySelector('prm-browse-search')).length > 0)) {
+					if ((h > 340) || (document.querySelector('prm-browse-search'))) {
 						return true;
 					}
 				}
