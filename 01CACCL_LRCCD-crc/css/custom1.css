@@ -192,12 +192,12 @@ prm-opac > .tabs-as-app {order:1!important}
 /* improve contrast in link on request confirmation */
 #lr-request-success {color: #09337b;}
 /* bump up prominence of full-text and ILL links */
-prm-alma-viewit-items h5 .item-title, a[href*="interlibrary-loan"] {text-decoration:underline; font-size:22px;}
-prm-alma-viewit-items h5 .item-title:hover, prm-alma-viewit-items h5 .item-title:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none; box-shadow: none;}
+prm-alma-viewit-items .record-status-text .item-title, a[href*="interlibrary-loan"] {text-decoration:underline; font-size:22px;}
+prm-alma-viewit-items .record-status-text .item-title:hover, prm-alma-viewit-items .record-status-text .item-title:focus, a[href*="interlibrary-loan"]:hover, a[href*="interlibrary-loan"]:focus {text-decoration: none; box-shadow: none;}
 /* hide coverage statement in ViewIt */
-prm-alma-viewit-items h6.item-status {display:none;}
+prm-alma-viewit-items .item-status {display:none;}
 /* but show for journals */
-#searchWithinJournal + .full-view-section prm-alma-viewit-items h6.item-status, prm-journals-full-view prm-alma-viewit-items h6.item-status {display:block;}
+#searchWithinJournal + .full-view-section prm-alma-viewit-items .item-status, prm-journals-full-view prm-alma-viewit-items .item-status {display:block;}
 
 /* digital object adjustments*/
 /* hide Showing n of n results */
