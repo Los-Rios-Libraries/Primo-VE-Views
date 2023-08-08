@@ -1109,7 +1109,7 @@
 				// Height of window
 				winHeight = window.innerHeight || (document.documentElement || document.body).clientHeight;
 				// Point of the top of the document visible on screen
-				scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
+				scrollTop = window.scrollY || (document.documentElement || document.body.parentNode || document.body).scrollTop;
 				const footer = document.getElementById('footer');
 				if (footer) {
 					// Height of footer
