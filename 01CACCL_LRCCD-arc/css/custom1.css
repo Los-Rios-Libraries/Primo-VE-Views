@@ -265,6 +265,9 @@ lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background
 button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
+/* browse */
+prm-browse-result .md-list-item-inner {background:#fff !important; margin-bottom:8px;}
+prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shadow: 1px 2px #b9b9b9;}
 /* footer styles */
 #footer {background:#014c8d;  border-top:1px solid #ccc; color:#fff;}
 #footer a, #footer a:visited, #footer [external-link] {color:#fff;}
