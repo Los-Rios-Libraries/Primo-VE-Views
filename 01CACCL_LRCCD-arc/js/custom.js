@@ -268,6 +268,15 @@
 		};		
 	}]);
 	// ** END SCC/ARC-ONLY COMPONENT -- below this code is identical college-to-college**
+	
+	// function gets parents of given element - https://stackoverflow.com/posts/27037567/revisions
+	const getParents = (el, selector) => {
+		const parents = [];
+		while ((el = el.parentNode) && el !== document) {
+			if (!selector || el.matches(selector)) parents.push(el);
+		}
+		return parents;
+	};
 	// external link template
 	app.component('lrExtLinkIcon', {
 		template: '<span external-link=""><md-icon md-svg-icon="primo-ui:open-in-new" aria-label="Open in new tab"></md-icon></span>'
@@ -530,14 +539,6 @@
 				const vm = this;
 				vm.$onInit = () => {
 					// hide online link when digital link also exists. This works on brief results and full display, but not overlay when clicking from brief results -- seems like digest is not refreshed
-					// function gets parents of given element
-					const getParents = (el, selector) => {
-						const parents = [];
-						while ((el = el.parentNode) && el !== document) {
-							if (!selector || el.matches(selector)) parents.push(el);
-						}
-						return parents;
-					};
 					const deliveryCat = vm.parentCtrl.result.delivery.deliveryCategory;
 					let position;
 					if (
