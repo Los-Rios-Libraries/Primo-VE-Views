@@ -992,7 +992,7 @@
 				const lrCrField = vm.parentCtrl.item.pnx.display.lds09; // this is always an array and will normally have one member but there could be more
 				vm.creators = []; // we push creator objects into an array that the template iterates through
 				if (lrCrField) {
-					for (let field of lrCrField) { // for each array member we will split by delimiter and process
+					for (let field of lrCrField) { // for each array member we will read object and process
 						const data = JSON.parse(field);
 						vm.creatorType = 'creator'; // default if role is not defined
 						if (data.role) { // get role
