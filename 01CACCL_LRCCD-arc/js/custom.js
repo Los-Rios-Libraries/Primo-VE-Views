@@ -999,7 +999,7 @@
 							vm.creatorType = data.role;
 						}
 						const creator = {};
-						if ((((data.crName) && (data.crName !== 'z')) && (data.currency) && (data.currency !== 'z'))) {
+						if ((data.crName) && (data.currency)) {
 							vm.badge = true; // set property that allows the badges to show
 							creator.crName = data.crName;
 							const zTitle = 'affiliated';
