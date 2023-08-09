@@ -325,8 +325,8 @@
 				const content = document.getElementsByTagName('md-content');
 				if (content.length > 0) {
 					let h = 0;
-					for (let i = 0; i < content.length; i++) {
-						h += content[i].offsetHeight;
+					for (let section of content) {
+						h += section.offsetHeight;
 					}
 					if ((h > 340) || (document.querySelector('prm-browse-search'))) {
 						return true;
