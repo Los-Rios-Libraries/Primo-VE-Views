@@ -1178,7 +1178,7 @@
 		const almaDStr = `https://${location.hostname}/discovery/delivery/`;
 		const host = 'answers.library.losrios.edu';
 		const div = document.createElement('div');
-		div.id = 'libchat_' + libchatHash;
+		div.id = `libchat_${libchatHash}`;
 		document.getElementsByTagName('body')[0].appendChild(div);
 		const scr = document.createElement('script');
 		scr.src = `https://${host}/load_chat.php?hash=${libchatHash}`;
