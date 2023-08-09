@@ -312,7 +312,7 @@
 				return true;
 			};
 			vm.checkForContent = () => {
-				const content = angular.element(document.getElementsByTagName('md-content'));
+				const content = document.getElementsByTagName('md-content');
 				if (content.length > 0) {
 					let h = 0;
 					for (let i = 0; i < content.length; i++) {
