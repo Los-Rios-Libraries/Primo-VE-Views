@@ -940,9 +940,25 @@
 		bindings: {parentCtrl: '<'},
 		template: '<lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"locations"}\'></lr-getit-locations-note>'
 	});
+	app.component('prmLocationAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
+	});
 	app.component('prmLocationItemsAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"items"}\'></lr-getit-locations-note>'
+		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note><lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"items"}\'></lr-getit-locations-note>'
+	});
+	app.component('lrHoldingsNote', { // add notes about unusual characterstics / limitations of particular physical locations
+		bindings: {parentCtrl: '<'},
+		templateUrl: custPackagePath + '/html/getit/holdings-note.html',
+		controller: function() {
+			const vm = this;
+			vm.$onInit = () => {
+				if (vm.parentCtrl.loc) {
+					vm.locationCode = vm.parentCtrl.loc.location.subLocationCode; // used in template
+				}
+			};
+		}
 	});
 	app.component('lrGetitLocationsNote', { // provide notes for particular records for particular locations in Get It area
 		bindings: {
