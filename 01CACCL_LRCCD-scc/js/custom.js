@@ -965,7 +965,9 @@
 			const vm = this;
 			vm.$onInit = () => {
 				if (vm.parentCtrl.loc) {
-					vm.locationCode = vm.parentCtrl.loc.location.subLocationCode; // used in template
+					if (vm.parentCtrl.loc.location.availabilityStatus === 'available') {
+						vm.locationCode = vm.parentCtrl.loc.location.subLocationCode; // used in template
+					}
 				}
 			};
 		}
