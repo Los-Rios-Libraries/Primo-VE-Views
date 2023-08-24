@@ -767,7 +767,8 @@
 				const params = JSON.parse($attrs.model);
 				const record = vm.parentCtrl.item.pnx.control.sourcerecordid[0];
 				vm.showNote = (obj) => {
-					if ((obj.record === record) || (!(obj.record))) {
+					var re = new RegExp(obj.record);
+					if ((obj.record === record) ||(re.test(record) === true) || (!(obj.record))) {
 						if (params.directive === 'locations') { // this is for initial getit screen
 							const holdings = vm.parentCtrl.item.delivery.holding;
 							for (let h of holdings) {
