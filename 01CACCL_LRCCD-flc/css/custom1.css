@@ -207,8 +207,7 @@ div[translate="ui.viewit.digital_version"] + span {display:none;}
 md-list-item[aria-label^="Digital"] h3 {margin-left: -20px !important;}
 #denied-note {text-decoration:underline; color: #53738c; font-size:1.4em;}
 h4[ng-if~="item.numberOfFiles"] + p #public-note {font-size:1.4em;}
-/* hide topbar that shows logo and login */
-#almaViewerHeader prm-topbar {display:none;}
+
 /* deemphasize header */
 #almaRepresentationViewer #toolbar-title {font-size: 1em;}
 #almaRepresentationViewer #toolbar-title-text {font-weight: normal;}
