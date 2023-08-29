@@ -72,6 +72,45 @@
 			};
 		}]
 	});
+	app.component('prmGalleryItemAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability>'
+	});
+	// show availability note in collection. So far only used for SCC technology collection
+	app.component('lrCollectionsShowAvailability', {
+		bindings: { parentCtrl: '<' },
+		template: `
+		<div ng-if="::($ctrl.parentCtrl.collectionDiscoveryService.$stateParams.collectionId==='8188683380005325' && $ctrl.parentCtrl.collectionDiscoveryService._itemsViewStyle === 'grid')">
+			<span ng-class="::$ctrl.avClass" class="availability-status" style="padding-left:7px; position:relative; top:-2em;">
+			{{::$ctrl.availability}}
+			</span>
+		</div>`,
+		controller: function () {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.$doCheck = () => {
+					if (vm.parentCtrl.item) {
+						if (vm.parentCtrl.item.delivery) {
+							const availability = vm.parentCtrl.item.delivery.availability;
+							let status = 'unavailable';
+							for (let i = 0; i < availability.length; i++) {
+								if (availability[i] === 'available_in_library') {
+									vm.availability = 'Items currently available';
+									vm.avClass = 'available_in_library';
+									status = 'available';
+									break;
+								}
+							}
+							if (status === 'unavailable') {
+								vm.availability = 'No items currently available';
+								vm.avClass = 'unavailable';
+							}
+						}
+					}
+				};
+			};
+		}
+	});
 	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('lrNewbooksDisplay', {
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
@@ -1150,6 +1189,7 @@
 			};
 		}
 	});
+
 	// set cookie for things like films on demand workaround
 	setTimeout(() => {
 		const el = document.createElement('iframe');
