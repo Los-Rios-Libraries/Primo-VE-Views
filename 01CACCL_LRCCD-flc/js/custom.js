@@ -107,6 +107,7 @@
 				$window.scrollTo(0, 0);
 				return true;
 			};
+			vm.isAlmaD = location.href.indexOf('/discovery/delivery');
 			vm.checkForContent = () => {
 				const content = document.getElementsByTagName('md-content');
 				if (content.length > 0) {
