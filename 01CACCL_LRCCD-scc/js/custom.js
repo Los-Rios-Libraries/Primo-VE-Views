@@ -20,9 +20,11 @@
 		}
 		const arr=str.split('01CACCL_'+ environment + ':');
 		const arr2=arr[1].split('&');
+		const arr3 = arr2[0].split('/'); // needed for Alma viewer
+		console.log('view:', arr3[0]);
 		return {
 			env: environment,
-			view: arr2[0]
+			view: arr3[0]
 		};
 	}(location.href);
 	// use bitbucket directory for external files when in sandbox
