@@ -988,17 +988,16 @@
 			};
 		}]
 	});
-	app.component('prmLocationsAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"locations"}\'></lr-getit-locations-note>'
 	});
+	
 	app.component('prmLocationAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
 	});
 	app.component('prmLocationItemsAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note><lr-getit-locations-note parent-ctrl="$ctrl.parentCtrl" model=\'{"directive":"items"}\'></lr-getit-locations-note>'
+		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
 	});
 	app.component('lrHoldingsNote', { // add notes about unusual characterstics / limitations of particular physical locations
 		bindings: {parentCtrl: '<'},
@@ -1013,40 +1012,6 @@
 				}
 			};
 		}
-	});
-	app.component('lrGetitLocationsNote', { // provide notes for particular records for particular locations in Get It area
-		bindings: {
-			parentCtrl: '<'
-		},
-		templateUrl: custPackagePath + '/html/getit/locations-note.html',
-		controller: ['$attrs', function ($attrs) {
-			const vm = this;
-			vm.$onInit = () => {
-				const params = JSON.parse($attrs.model);
-				const record = vm.parentCtrl.item.pnx.control.sourcerecordid[0];
-				vm.showNote = (obj) => {
-					var re = new RegExp(obj.record);
-					if ((obj.record === record) ||(re.test(record) === true) || (!(obj.record))) {
-						if (params.directive === 'locations') { // this is for initial getit screen
-							const holdings = vm.parentCtrl.item.delivery.holding;
-							for (let h of holdings) {
-								if (h.libraryCode === obj.library) {
-									return true;
-								}
-							}
-						}
-						if (params.directive === 'items') {
-							if (vm.parentCtrl.loc) { // this data element only exists in prmlocationitems
-								const library = vm.parentCtrl.loc.location.libraryCode;
-								if (library == obj.library) {
-									return true;
-								}
-							}
-						}
-					}
-				};
-			};
-			}]
 	});
 	app.component('lrIllLink', {
 		bindings: { parentCtrl: '<' },
