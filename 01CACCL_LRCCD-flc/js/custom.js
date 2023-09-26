@@ -748,7 +748,7 @@
 			const vm = this;
 			vm.$onInit = () => {
 				if (vm.parentCtrl.loc) {
-					if (vm.parentCtrl.loc.location.availabilityStatus === 'available') {
+					if (/available|check_holdings/.test(vm.parentCtrl.loc.location.availabilityStatus) === true) {
 						vm.locationCode = vm.parentCtrl.loc.location.subLocationCode; // used in template
 					}
 				}
