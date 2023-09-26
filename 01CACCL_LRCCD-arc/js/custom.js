@@ -939,14 +939,67 @@
 			};
 		}]
 	});
+	app.component('prmLocationsAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="holdingsbottom"></lr-localnote>'
+	});
+
+	app.component('lrLocalnote', {
+		bindings: { parentCtrl: '<' },
+		templateUrl: custPackagePath + '/html/local-note.html',
+		controller: [
+			'$attrs',
+			function ($attrs) {
+				const vm = this;
+				vm.$onInit = () => {
+					const lrNote = vm.parentCtrl.item.pnx.display.lds01;
+					vm.notes = []; // we push notes into an array that the template iterates through
+					if (lrNote) {
+						for (let note of lrNote) {
+							const data = JSON.parse(note);
+							if (data) {
+								vm.currentView = colAbbr; // used to match view to notes that limit views
+								// template has location attribute to designate where it is placed
+								if (
+									data.displayArea &&
+									data.displayArea.toLowerCase() === $attrs.location
+								) {
+									vm.views = data.views || ''; // used for ng-if in template
+									vm.$doCheck = () => {
+										//  property used for "location-items" area is not populated when directive is initially constructed so we need $doCheck
+										if (typeof vm.parentCtrl.loc !== 'undefined') {
+											vm.currentLib = vm.parentCtrl.loc.location.libraryCode.toLowerCase(); // used in ng-hide
+										}
+									};
+									vm.notes.push(data);
+								}
+							}
+						}
+					}
+				};
+			}
+		]
+	});
+	app.component('prmServiceDetailsAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="detailsbottom"></lr-localnote>'
+	});
+	
 	app.component('prmLocationAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
 	});
 	app.component('prmLocationItemsAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
+		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note><lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="holdingsbottom"></lr-localnote>'
 	});
+	app.component('prmOpacAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="holdingstop"></lr-localnote>'
+	});
+	
+	
+	
 	app.component('lrHoldingsNote', { // add notes about unusual characterstics / limitations of particular physical locations
 		bindings: {parentCtrl: '<'},
 		templateUrl: custPackagePath + '/html/getit/holdings-note.html',
@@ -1009,7 +1062,7 @@
 	});
 	app.component('prmBriefResultAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge>'
+		template: '<lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge><lr-localnote parent-ctrl="$ctrl.parentCtrl" location="brief" ng-if="::$ctrl.parentCtrl.$location.$$url.indexOf(\'/fulldisplay\') === 0"><lr-localnote>'
 	});
 	app.component('lrLocalCreatorBadge', {
 		bindings: {
@@ -1105,6 +1158,7 @@
 			};
 		}
 	});
+
 	// set cookie for things like films on demand workaround
 	setTimeout(() => {
 		const el = document.createElement('iframe');

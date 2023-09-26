@@ -215,6 +215,9 @@ prm-search-result-availability-line-after lr-problem-reporter button {font-size:
 #action_list .section-body {background: #F2F2F2; padding-top: 0.5em;}
 /* reduce margins in various sections in full display */
 .full-view-section {margin-top:1em;}
+/* local notes under holdings */
+prm-locations-after .lr-note, prm-location-items-after .lr-note {background:#fff; padding: 1em; margin-top:-1em;}
+prm-opac-after .lr-note {padding-bottom:1em;}
 /* hide 856 links in full record */
 div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
 /* put request prompt after holdings table */
