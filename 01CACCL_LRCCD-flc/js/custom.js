@@ -65,6 +65,13 @@
 	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
 	const app = angular.module('viewCustom', ['angularLoad']);
 	
+	const getDate = (str) => {
+		const arr = str.split('-');
+		const m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
+		const exp = new Date();
+		exp.setFullYear(arr[2], m, arr[1]);
+		return exp;
+	};
 	// function gets parents of given element - https://stackoverflow.com/posts/27037567/revisions
 	const getParents = (el, selector) => {
 		const parents = [];
@@ -465,13 +472,6 @@
 			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 			vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
 			vm.daysToHide = 14; // default days that banner is hidden if user dismisses
-			const getDate = (str) => {
-				const arr = str.split('-');
-				const m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
-				const exp = new Date();
-				exp.setFullYear(arr[2], m, arr[1]);
-				return exp;
-			};
 			vm.showAnnounce = (obj) => {
 				if (vm.hide === true) { // this happens after dismiss button is pressed
 					return false;
