@@ -1,6 +1,6 @@
 <div ng-if="::($ctrl.views.indexOf($ctrl.currentView)>-1 ||$ctrl.views==='')"
     ng-hide="($ctrl.currentLib && $ctrl.views.indexOf($ctrl.currentLib)===-1)">
-    <div class="lr-note" ng-repeat="note in ::$ctrl.notes">
+    <div class="lr-note" ng-repeat="note in ::$ctrl.notes" ng-if="::$ctrl.remainingTime > 0">
         <span ng-if="::note.noteText" ng-hide="::$ctrl.library">
             <span ng-bind-html="::note.noteText"> </span>
         </span>

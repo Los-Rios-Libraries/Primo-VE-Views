@@ -1013,6 +1013,20 @@
 									data.displayArea.toLowerCase() === $attrs.location
 								) {
 									vm.views = data.views || ''; // used for ng-if in template
+									const addOneYear = (date) => {
+										date.setFullYear(date.getFullYear() + 1);
+										return date;
+									};
+									// get difference of expiration date in note for ng-if
+									const today = new Date();
+									let expiration;
+									if (data.exp) {
+										expiration = getDate(data.exp);
+									}
+									else { // if expiration date isn't set, add a year so that difference will be positive
+										expiration = addOneYear(new Date());
+									}
+									vm.remainingTime = expiration - today; // this number will be 0 if day is same, negative if exp date is in the past, otherwise positive
 									vm.$doCheck = () => {
 										//  property used for "location-items" area is not populated when directive is initially constructed so we need $doCheck
 										if (typeof vm.parentCtrl.loc !== 'undefined') {
