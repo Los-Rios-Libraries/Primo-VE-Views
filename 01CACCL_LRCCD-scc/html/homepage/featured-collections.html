@@ -1,4 +1,4 @@
-<div layout="row" id="lr-featured-collections" ng-if="::$ctrl.collections">
+<div layout="row" id="lr-featured-collections">
         <md-card class="default-card" layout="column" flex="100">
             <md-card-title>
                 <md-card-title-text>
@@ -8,7 +8,24 @@
             <md-card-content>
 			<div>
                 <ul layout="row" layout-wrap flex flex="100" class="zero-margin">
-                    <li layout-margin flex="40" flex-gt-xs="20" ng-repeat="c in ::$ctrl.collections">
+                    <li layout-margin flex="40" flex-gt-xs="20" ng-repeat="c in [
+                    {
+                        'id': '8188682970005325',
+                        'title': 'Keep Calm and Survive College'       
+                    },       
+                    {       
+                        'id':'8185652940005325',
+                        'title': 'AAPI Playwrights'
+                    },
+                    {
+                        'id': '8185113600005325',
+                        'title': 'Arab-American Authors and Poets'                
+                    },           
+                    {
+                        'id': '8184352960005325',
+                        'title': 'Create Your Own Graphic Novels'                
+                    }
+                    ]">
                         <a class="zero-margin arrow-link" title="{{::c.title}} collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId={{::c.id}}">
 							<img loading="lazy" alt="" ng-src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/{{::c.id}}">
 							<div>{{::c.title}} <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></div>

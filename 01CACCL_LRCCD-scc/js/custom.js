@@ -65,14 +65,8 @@
 	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
 	const app = angular.module('viewCustom', ['angularLoad']);
 	//** START SCC-ONLY COMPONENTS
-	app.component('lrFeaturedCollections', {
+	app.component('lrFeaturedCollections', { // see template for list of collections
 		templateUrl: custPackagePath + '/html/homepage/featured-collections.html',
-		controller: ['$attrs', function($attrs) {
-			const vm = this;
-			vm.$onInit = () => {
-				vm.collections = JSON.parse($attrs.model);
-			};
-		}]
 	});
 	app.component('prmGalleryItemAfter', {
 		bindings: {parentCtrl: '<'},
