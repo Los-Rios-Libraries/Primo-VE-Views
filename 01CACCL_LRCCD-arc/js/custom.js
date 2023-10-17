@@ -528,10 +528,10 @@
 		bindings: {
 			parentCtrl: '<'
 		},
-		// two different directives here
 		template: 
 		`<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes>
-		<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>`,
+		<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>
+		<lr-localnote layout-align="center center" layout="row" flex="" parent-ctrl="$ctrl.parentCtrl" location="viewitbottom"></lr-localnote>`,
 		});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
