@@ -60,6 +60,8 @@ div.top-nav-bar * {
     color: #8A0028;
 background-color: #E5E5E5;
 }
+  /* top bar hover for library card links */
+  prm-user-area-expandable button:hover, prm-user-area-expandable button:focus {background: #e5e5e5 !important; color: #fff !important;}
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
   background-color: #8A0028; 
