@@ -45,7 +45,7 @@ prm-topbar {
 #mainMenu a:hover, #mainMenu a:focus {background: #e5e5e5;}
 /* Change text color to dark college color for top bar*/
 div.top-nav-bar * {
-    color: #743182 !important;
+    color: #6c2991 !important;
 }
 
 /* Change background color to white for top bar*/
@@ -56,14 +56,14 @@ div.top-nav-bar * {
 /* Hover shades for top bar and advanced search with college color*/
 .md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), .md-button.button-over-dark:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):hover:not([disabled]), .md-button.button-over-dark:not(.disable-hover):hover:not([disabled]):focus:not([disabled]),prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):focus:not([disabled]):hover:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):focus:not([disabled]), prm-topbar .md-button:not(.disable-hover):hover:not([disabled]):hover:not([disabled])
 {
-    color: #743182;
+    color: #6c2991;
 background-color: #E5E5E5;
 }
   /* top bar hover for library card links */
   prm-user-area-expandable button:hover, prm-user-area-expandable button:focus {background: #e5e5e5 !important; color: #fff !important;}
 /* Change background color to dark college color for bar surrounding search bar*/
 .prm-primary-bg, prm-spinner.overlay-cover.light-on-dark:after, prm-search-bar, prm-atoz-search-bar, prm-browse-search-bar, prm-tags-search-bar, prm-newspapers-search-bar, prm-collection-gallery-header .collection-header-inner, prm-tree-nav prm-spinner .diamond {
-  background-color: #743182; 
+  background-color: #6c2991; 
   }
     /* ext link icon when button */
 	.md-button:hover lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus, .md-button:active lr-ext-link-icon [external-link], .md-button:focus lr-ext-link-icon [external-link]:focus {color:#fff;} 
@@ -82,7 +82,7 @@ prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item {backgr
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*flc*/ background: #94C7D3 !important;}
 lr-top-announcement .md-button {color:#000;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
-lr-top-announcement a:hover, lr-top-announcement a:focus {box-shadow: inset 0 -2px 0 0 #743182;}
+lr-top-announcement a:hover, lr-top-announcement a:focus {box-shadow: inset 0 -2px 0 0 #6c2991;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */
@@ -107,9 +107,9 @@ prm-main-menu.isServicePage {display:unset;}
 
 /* Change search bar magnifying glass color to secondary college color and shades for hover color. Note: Primo Studio can be helpful for this using the "positive" color option to get hover shades. But need to only copy this section after downloading package as it also changes the Available online color*/
  .md-button.button-confirm, .service-form-static-panel button.button-confirm prm-icon + span, .service-form-static-panel button.button-confirm prm-icon svg path {
-    color: #0084AC; }
+    color: #017ea4; }
     .md-button.button-confirm:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:hover:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:hover:not([disabled]), .md-button.button-confirm:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span:focus:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path:focus:not([disabled]), .md-button.button-confirm.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.hovered:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.hovered:not([disabled]), .md-button.button-confirm.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span.md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path.md-focused:not([disabled]), .md-button.button-confirm._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon + span._md-focused:not([disabled]), .service-form-static-panel button.button-confirm prm-icon svg path._md-focused:not([disabled]) {
-     color: #003646;
+     color: #1a4763;
       background-color: rgba(0, 132, 172, 0.1); }
 
 /* Change background color to white for container, etc.*/
@@ -218,7 +218,7 @@ h4[ng-if~="item.numberOfFiles"] + p #public-note {font-size:1.4em;}
 /* booking/request area */
 /* hide request heading and make request button more button-like in appearance */
 prm-request-services h5.section-title {position:absolute !important; left:-999999px;} 
-prm-service-button .button-as-link.md-button { border: 1px solid #743182; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #743182;color: #fff;}
+prm-service-button .button-as-link.md-button { border: 1px solid #6c2991; border-radius: 10px;  padding: 4px 20px; text-transform: uppercase; background-color: #6c2991;color: #fff;}
 
 /* hide terms of use selection icon */
 md-select[name="termsOfUse"] ._md-select-icon {display:none;}
@@ -245,13 +245,13 @@ button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], bu
 prm-browse-result .md-list-item-inner {background:#fff !important; margin-bottom:8px;}
 prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shadow: 1px 2px #b9b9b9;}
 /* footer styles */
-#footer {background:#0084AC;  border-top:1px solid #204963; color:#fff;}
+#footer {background:#017ea4;  border-top:1px solid #1a4763; color:#fff;}
 #footer a, #footer a:visited, #footer [external-link]  {color:#fff;}
 #footer a:hover, #footer a:focus {box-shadow:inset 0 -2px 0 0 #fff;}
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #top-footer p:first-of-type {margin-top:15px;}
-#subfooter {background:#204963;}
+#subfooter {background:#1a4763;}
 #subfooter a {color:#fff; background: transparent;}
 .lr-ft-college {min-height:50%;}
 #lr-libraries-logo {margin-bottom:20px;}
