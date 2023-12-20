@@ -77,7 +77,7 @@
 		bindings: { parentCtrl: '<' },
 		template: `
 		<div ng-if="::($ctrl.parentCtrl.collectionDiscoveryService.$stateParams.collectionId==='8188683380005325' && $ctrl.parentCtrl.collectionDiscoveryService._itemsViewStyle === 'grid')">
-			<span ng-class="::$ctrl.avClass" class="availability-status" style="padding-left:7px; position:relative; top:-2em;">
+			<span ng-class="::$ctrl.avClass" class="availability-status">
 			{{::$ctrl.availability}}
 			</span>
 		</div>`,

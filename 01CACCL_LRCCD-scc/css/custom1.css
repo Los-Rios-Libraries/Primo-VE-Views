@@ -79,6 +79,9 @@ background-color: #E5E5E5;
 /* if we don't include the next line, full display of collection items includes both thumbnails, even if one is hidden */
 prm-more-like-this-item md-card .card-image img[class*="fan-img"] {height:100px !important;}
 prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item {background:rgba(0,0,0,0.7);}
+
+/* availability statement in collections, so far only used at SCC - also see mobile */
+lr-collections-show-availability .availability-status {padding-left:7px; display:inline-block; position:relative; top:-2em;}
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*scc*/ background:#fde373 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
@@ -304,6 +307,7 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 	lr-delivery-blurb {position:static;}
 	/* digital help note */
 lr-alma-d-notes div {margin-bottom:20px;}
+lr-collections-show-availability .availability-status {top:-46px;}
 }
 
 @media only screen and (max-width: 600px) {
@@ -314,6 +318,10 @@ lr-alma-d-notes div {margin-bottom:20px;}
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
+	
+}
+@media only screen and (max-width: 480px) {
+	lr-collections-show-availability .availability-status {top:-40px;}
 }
 @media print {
 	prm-topbar, .default-toolbar,prm-collection-discovery-view-switcher, .s-lch-widget-float, prm-collection-search, prm-save-to-favorites-button, button[ng-if="$ctrl.hasNextResults"], prm-explore-footer {display:none !important;}
