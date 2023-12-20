@@ -87,14 +87,16 @@
 				vm.$doCheck = () => {
 					if (vm.parentCtrl.item) {
 						if (vm.parentCtrl.item.delivery) {
-							const availability = vm.parentCtrl.item.delivery.availability;
 							let status = 'unavailable';
-							for (let i = 0; i < availability.length; i++) {
-								if (availability[i] === 'available_in_library') {
-									vm.availability = 'Items currently available';
-									vm.avClass = 'available_in_library';
-									status = 'available';
-									break;
+							const holdingArr = vm.parentCtrl.item.delivery.holding;	
+							if (holdingArr) {
+								for (let holding of holdingArr) {
+									if ((holding.libraryCode === colAbbr.toUpperCase()) && (holding.availabilityStatus === 'available')) {
+										vm.availability = 'Items currently available';
+										vm.avClass = 'available_in_library';
+										status = 'available';
+										break;
+									} 
 								}
 							}
 							if (status === 'unavailable') {
