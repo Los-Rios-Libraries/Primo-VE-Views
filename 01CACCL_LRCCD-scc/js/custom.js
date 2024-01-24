@@ -479,37 +479,6 @@
 			};
 		}
 	});
-	// notes to attach to view it when necessary, e.g. problematic cdi behavior. will be inserted into prmAlmaViewItAfter
-	app.component('lrViewitNotes', {
-		bindings: {
-			parentCtrl: '<'
-		},
-		templateUrl: custPackagePath + '/html/full-display/viewit-notes.html',
-		controller: function() {
-			const vm = this;
-			vm.$onInit = () => {
-				vm.showNote = (source) => {
-					const services = vm.parentCtrl.item.delivery.electronicServices;
-					if (services) {
-						const linkUrl = services[0].serviceUrl;
-						const journal = vm.parentCtrl.item.pnx.addata.jtitle;
-						if (linkUrl) {
-							if (linkUrl.indexOf('search.proquest.com/docview') > -1) { // pq link in record
-								// check resource
-								if (/Los Angeles Times|Chicago Tribune|New York Times|Wall Street Journal|Washington Post/i.test(journal[0]) === true) {
-									if (journal[0].indexOf('(Online)') === -1) { // seems not to be a problem with web content
-										if (source === 'USMajorDailies') {
-											return true;
-										}
-									}
-								}
-							}
-						}
-					}
-				};
-			};			
-		} 
-	});
 	// problem reporter. this template is inserted into a few different directives
 	app.component('lrProblemReporter', {
 		bindings: {
@@ -574,8 +543,7 @@
 			parentCtrl: '<'
 		},
 		template: 
-		`<lr-viewit-notes parent-ctrl="$ctrl.parentCtrl"></lr-viewit-notes>
-		<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>
+		`<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>
 		<lr-localnote layout-align="center center" layout="row" flex="" parent-ctrl="$ctrl.parentCtrl" location="viewitbottom"></lr-localnote>`,
 		});
 	// brief results
