@@ -75,12 +75,7 @@
 	// show availability note in collection. So far only used for SCC technology collection
 	app.component('lrCollectionsShowAvailability', {
 		bindings: { parentCtrl: '<' },
-		template: `
-		<div ng-if="::($ctrl.parentCtrl.collectionDiscoveryService.$stateParams.collectionId==='8188683380005325' && $ctrl.parentCtrl.collectionDiscoveryService._itemsViewStyle === 'grid')">
-			<span ng-class="::$ctrl.avClass" class="availability-status">
-			{{::$ctrl.availability}}
-			</span>
-		</div>`,
+		templateUrl: custPackagePath + '/html/collections/availability.html',
 		controller: function () {
 			const vm = this;
 			vm.$onInit = () => {
