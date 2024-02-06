@@ -78,6 +78,12 @@ background-color: #E5E5E5;
 /* if we don't include the next line, full display of collection items includes both thumbnails, even if one is hidden */
 prm-more-like-this-item md-card .card-image img[class*="fan-img"] {height:100px !important;}
 prm-collection-gallery-header prm-collection-navigation-breadcrumbs-item {background:rgba(0,0,0,0.7);}
+
+prm-gallery-collections-list h2 {position: absolute; left:-999999px;}
+.collection-folder .item-meta {position: absolute; left: -999999px;}
+.collection-folder h3 {font-size:24px;}
+.collection-folder h3 span {display:block !important;}
+
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#fff; /*crc*/ background: #F26E21 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
