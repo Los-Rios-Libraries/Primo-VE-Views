@@ -402,6 +402,10 @@
 			
 		};
 	}]);
+	// featured collections widget for home page
+	app.component('lrFeaturedCollections', { // see template for list of collections
+		templateUrl: custPackagePath + '/html/homepage/featured-collections.html',
+	});
 	// links to info about digital objects / alma-d
 	app.component('prmAlmaViewitItemsAfter', {
 		bindings: { parentCtrl: '<'},
@@ -1160,6 +1164,7 @@
 			};
 		}
 	});
+
 	// set cookie for things like films on demand workaround
 	setTimeout(() => {
 		const el = document.createElement('iframe');

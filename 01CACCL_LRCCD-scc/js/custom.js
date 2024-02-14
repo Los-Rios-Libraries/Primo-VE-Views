@@ -65,9 +65,6 @@
 	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
 	const app = angular.module('viewCustom', ['angularLoad']);
 	//** START SCC-ONLY COMPONENTS
-	app.component('lrFeaturedCollections', { // see template for list of collections
-		templateUrl: custPackagePath + '/html/homepage/featured-collections.html',
-	});
 	app.component('prmGalleryItemAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability>'
@@ -442,6 +439,10 @@
 			
 		};
 	}]);
+	// featured collections widget for home page
+	app.component('lrFeaturedCollections', { // see template for list of collections
+		templateUrl: custPackagePath + '/html/homepage/featured-collections.html',
+	});
 	// links to info about digital objects / alma-d
 	app.component('prmAlmaViewitItemsAfter', {
 		bindings: { parentCtrl: '<'},
