@@ -127,7 +127,10 @@ prm-main-menu.isServicePage {display:unset;}
 #lr-onesearch-vid-headline {position:absolute; left:-999999px;}
 #lr-onesearch-vid-container {overflow: hidden; padding-top: 56.25% !important;position: relative;}
 #lr-onesearch-vid {border: 0; height: 100%;left: 0;position: absolute;top: 0; width: 100%;}
-
+/* featured collections */
+#lr-featured-collections img {border-radius:4px; box-shadow: 0 1px 1px rgba(0,0,0,.3),2px 1px 0 #fff,-3px 3px 10px -3px rgba(0,0,0,.3);}
+#lr-featured-collections li {list-style-type:none; display: block; overflow:hidden;}
+#lr-featured-collections img { max-height:100px;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 
