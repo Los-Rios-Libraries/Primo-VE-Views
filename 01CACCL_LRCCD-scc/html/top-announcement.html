@@ -1,12 +1,11 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-endDate: '1-20-2024',
-cookieID: 'dblinks',
-daysToHide: 32
+cookieID: 'sso-outage',
+daysToHide: 2
 });">
 	<p layout-margin layout-align="center center">
 		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Library links have changed! <a href="https://answers.library.losrios.edu/scc/faq/400177" target="_blank">Find out more.<lr-ext-link-icon></lr-ext-link-icon></a>
+		District-wide Single Sign-on outage is preventing item requests and access to many library resources.
 		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement
 			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
