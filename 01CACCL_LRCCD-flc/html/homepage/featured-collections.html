@@ -1,0 +1,38 @@
+<div layout="row" id="lr-featured-collections">
+        <md-card class="default-card" layout="column" flex="100">
+            <md-card-title>
+                <md-card-title-text>
+                    <h2 class="md-headline">Featured Collections</h2>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+			<div>
+                <ul layout="row" layout-wrap flex flex="100" class="zero-margin">
+                    <li layout-margin flex="40" flex-gt-xs="20" ng-repeat="c in [
+                    {
+                        'id': '8189463140005325',
+                        'title': 'Read for Fun'
+                    },
+                    {
+                        'id' : '8189472770005325',
+                        'title' : 'Graphic Novels'
+                    },
+                    {   
+                        'id': '8189793920005325',
+                        'title': 'Cookbooks'
+                    },
+                    {
+                        'id': '8189793940005325',
+                        'title': 'Children's Books'                
+                    }
+                    ]">
+                        <a class="zero-margin arrow-link" title="{{::c.title}} collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId={{::c.id}}">
+							<img loading="lazy" alt="" ng-src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/{{::c.id}}">
+							<div>{{::c.title}} <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></div>
+						</a>
+                    </li>
+                </ul>
+            </div>
+		</md-card-content>
+        </md-card>
+    </div>
