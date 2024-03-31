@@ -1,15 +1,22 @@
-<!-- notes pertaining to particular locations with unusual limitations or requirements. Edit text and ng-if to suit location code or codes. Class is copied from parent elements to provide proper padding -->
-<p class="md-list-item-text" layout="row" flex="" layout-wrap="" ng-if="::$ctrl.locationCode.indexOf('svraza')===0">
-    <md-icon md-svg-icon="action:ic_info_outline_24px" class="margin-right-small margin-left-small" aria-label="Information"></md-icon> 
-    <em>The RAZA Center Course Collection is available to students who are affiliated with the RAZA Center.</em>
-    <a href="https://scc.losrios.edu/student-resources/cultural-engagement-centers/raza-center" target="_blank">Learn more 
-        <lr-ext-link-icon></lr-ext-link-icon>
-    </a>
-</p>
-<p class="md-list-item-text" layout="row" flex="" layout-wrap="" ng-if="::$ctrl.locationCode.indexOf('svashe')===0">
-    <md-icon md-svg-icon="action:ic_info_outline_24px" class="margin-right-small margin-left-small" aria-label="Information"></md-icon> 
-    <em>The ASHÉ Center Course Collection is available to students who are affiliated with the ASHÉ Center.</em>
-    <a href="https://scc.losrios.edu/student-resources/cultural-engagement-centers/ashe-center" target="_blank">Learn more 
-        <lr-ext-link-icon></lr-ext-link-icon>
-    </a>
-</p>
+<!-- notes pertaining to particular locations with unusual limitations or requirements. Add objects as needed to cover particular locations. moreInfo property may be ommitted if you don't want to provide a link. -->
+<div ng-repeat="note in [
+{
+    'locCode': 'svraza',
+    'text': 'The RAZA Center Course Collection is available to students who are affiliated with the RAZA Center.',
+    'moreInfo': 'https://scc.losrios.edu/student-resources/cultural-engagement-centers/raza-center'
+},
+{
+    'locCode': 'svashe',
+    'text': 'The ASH&#201; Center Course Collection is available to students who are affiliated with the ASH&#201; Center.',
+    'moreInfo': 'https://scc.losrios.edu/student-resources/cultural-engagement-centers/ashe-center'
+}
+]">
+    <p class="md-list-item-text" layout="row" flex="" layout-wrap="" ng-if="::$ctrl.locationCode.indexOf(note.locCode)===0">
+        <md-icon md-svg-icon="action:ic_info_outline_24px" class="margin-right-small margin-left-small" aria-label="Information"></md-icon>
+        <em>{{::note.text}}</em>
+        <span ng-if="::note.moreInfo" style="margin-left:0.5rem;">
+            <a ng-href="{{::note.moreInfo}}" target="_blank">Learn more <lr-ext-link-icon></lr-ext-link-icon>
+            </a>
+        </span>
+    </p>
+</div>
