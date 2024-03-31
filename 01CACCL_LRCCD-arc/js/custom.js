@@ -1028,7 +1028,7 @@
 					);
 
 					if (illLink) {
-						vm.url = illLink.href.replace(
+						vm.url = illLink.href.replace('interlibrary-loan/?', 'interlibrary-loan/?library=' + colAbbr + '&').replace(
 							/$/,
 							'&url=' + encodeURIComponent(url)
 						);
