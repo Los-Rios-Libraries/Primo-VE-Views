@@ -309,10 +309,10 @@
 	// ** END SCC/ARC-ONLY COMPONENT -- below this code is identical college-to-college**
 	const getDate = (str) => {
 		const arr = str.split('-');
-		const m = parseInt(arr[0], 10) - 1; // allow us to put month in html as regular month
-		const exp = new Date();
-		exp.setFullYear(arr[2], m, arr[1]);
-		return exp;
+		const m = parseInt(arr[1], 10) - 1; // allow us to put month in html as regular month
+		const output = new Date();
+		output.setFullYear(arr[0], m, arr[2]);
+		return output;
 	};
 	// function gets parents of given element - https://stackoverflow.com/posts/27037567/revisions
 	const getParents = (el, selector) => {
