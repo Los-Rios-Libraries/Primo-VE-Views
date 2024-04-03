@@ -938,27 +938,6 @@
 			};
 		}
 	});
-	app.component('prmUserAreaExpandableAfter',  {
-		bindings: '<',
-		template: 
-		`<md-button ng-click="$ctrl.hideTop();" ng-if="::$ctrl.showButton">
-			<md-icon-button>
-		     	Hide this area <prm-icon icon-type="svg" svg-icon-set="primo-ui" icon-definition="close"></prm-icon>
-					</md-icon-button>
-		</md-button>`,
-		controller: function() {
-			const vm = this;
-			vm.$onInit = () => {
-				const almaDStr = `https://${location.hostname}/discovery/delivery/`;
-				if (location.href.indexOf(almaDStr) === 0) {
-					vm.showButton = true;
-				}
-				vm.hideTop = () => {
-					angular.element(document.querySelector('prm-topbar')).remove();
-				}
-			};
-		}
-	});
 
 	// set cookie for things like films on demand workaround
 	setTimeout(() => {
