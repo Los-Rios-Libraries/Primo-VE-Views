@@ -563,7 +563,7 @@
 				vm.showNote = () => {
 					const requests = vm.parentCtrl.requestsService._requestsDisplay;
 					if (requests) {
-						for (req of requests) {
+						for (let req of requests) {
 							if (req.requestType === 'holds') {
 								const pickupLib = req.secondLineRight;
 								if (pickupLib) {
