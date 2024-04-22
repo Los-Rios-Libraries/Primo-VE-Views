@@ -247,6 +247,8 @@ prm-opac {position:relative;}
 lr-delivery-blurb {position:absolute;top:0; right:0; font-size:1.3em; background: #fff; z-index:9999;}
 .lr-highlighted {background: #F9FD88; transition: background-color 0.5s linear;}
 .lr-no-highlight {background:#fff;transition: background-color 0.8s linear;}
+/* note about limited delivery options */
+lr-delivery-limited a {float:right; padding:0 10px; background: #fff;}
 /* hide "other item" and digitization requests, which should not be showing but are, march 2 2021 */
 button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 

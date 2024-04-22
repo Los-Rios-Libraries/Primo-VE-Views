@@ -5,6 +5,7 @@
 	const libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	const c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
 	const almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
+	const limitedDelivery = '';
 	const libKeyId = '3235';
 	const lkAPI = '5fa2bff1-a7f4-4dae-a28c-23c12012b54c';
 	const lkEmail = 'AdkinsA@crc.losrios.edu';
@@ -578,6 +579,42 @@
 					}
 				};
 			};			
+		}
+	});
+	app.component('prmRequestAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: '<lr-delivery-limited parent-ctrl="$ctrl.parentCtrl"></lr-delivery-limited>'
+	});
+	app.component('lrDeliveryLimited', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: `
+		<div ng-if="::(($ctrl.show) && ($ctrl.faqID!==''))">
+			<a ng-href="https://answers.library.losrios.edu/${colAbbr}/faq/{{::$ctrl.faqID}}" target="_blank">
+			<md-icon md-svg-icon="action:ic_help_24px"></md-icon> 
+			Why don&apos;t I see my preferred pickup location listed? 
+				<lr-ext-link-icon></lr-ext-link-icon>
+			</a>
+		</div>
+		`,
+		controller: function() {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.show = false;
+				vm.faqID = limitedDelivery;
+				const delivery = vm.parentCtrl.item.delivery;
+				if (delivery.deliveryCategory.indexOf('Alma-P') > -1) {
+					const locations = delivery.holding;
+					for (let loc of locations) {
+						if (/^.[ev]/.test(loc.subLocationCode) === true) {
+						vm.show = true;
+						}
+					}
+				}
+			};
 		}
 	});
 	app.component('prmSearchResultThumbnailContainerAfter', {
