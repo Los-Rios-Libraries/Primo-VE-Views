@@ -9,30 +9,33 @@
 					<li><a href="https://arclosrios.idm.oclc.org/login?url=https://search.ebscohost.com/login.aspx?authtype=ip%2Cuid&amp;profile=all" target="_blank">EBSCO Search</a></li>
 					<li><a href="https://arclosrios.idm.oclc.org/login?url=https://scholar.google.com/" target="_blank">Google Scholar</a></li>
 					<li><a href="https://arclosrios.idm.oclc.org/login?url=https://infotrac.galegroup.com/itweb?db=GVRL" target="_blank">Gale eBooks</a></li>
-					<li><a href="https://libguides.arc.losrios.edu/az/databases/?t=41778" target="_blank">Newspaper Databases</a></li>
+					<li><a href="https://libguides.arc.losrios.edu/az/databases/?t=41778" target="_blank">News Databases</a></li>
 
 				</ul>
-				<p ng-if="$ctrl.askUs">
+			</div>
+		</div>
+		<div layout="column" flex="">
+			<h2>Research Help</h2>
+			
+			<ul>
+				<li><a href="https://arc.losrios.edu/student-resources/library/research/research-tutorials">Canvas Research Tutorials</a></li>
+				<li><a href="http://libguides.arc.losrios.edu/index.php?b=s">Research Guides</a></li>
+				<li><a href="https://arc.losrios.edu/citation-help">Citation Help</a></li>
+			</ul>
+		</div>
+		<div layout="column" flex="">
+			<h2>Contact the Library</h2>
+			<p ng-if="$ctrl.askUs">
 					<md-icon md-svg-icon="action:ic_help_24px"></md-icon> Not sure where to start?
 					<a href="{{::$ctrl.askUs}}">
 						Ask Us. <lr-ext-link-icon></lr-ext-link-icon>
 					</a>
 				</p>
-			</div>
-		</div>
-		<div layout="column" flex="">
-			<h2>Get Research Help</h2>
 			<ul>
-<li>Research Help Desk: <a href="tel:916-484-8458">(916) 484-8458</a>
+			<li>Visit Us: <a href="https://arc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">ARC Library hours <lr-ext-link-icon></lr-ext-link-icon></a></li>
+				<li>Call Us: <a href="tel:916-484-8458">(916) 484-8458</a>
 				</li>
-				<li><a href="https://arc.losrios.edu/student-resources/library/contact-the-library">Ask A Librarian (email)</a></li>
-				<li><a href="https://arc.losrios.libcal.com/appointments?lid=265&g=1123">Make an Appointment</a></li>
-				<p>For questions about your library account, renewals, overdue fines, etc. contact the Circulation Desk: <a href="tel:916-484-8455">(916) 484-8455</a></p>
-			</ul>
-		</div>
-		<div layout="column" flex="">
-			<h2>Library Hours</h2>
-			<p>Check our <a href="https://arc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">ARC Library hours <lr-ext-link-icon></lr-ext-link-icon></a> for updates.</p>
+				</ul>
 		</div>
 	</div>
 	<!-- subfooter; see js file for content -->
