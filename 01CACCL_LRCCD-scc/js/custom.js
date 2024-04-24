@@ -850,10 +850,15 @@
 				const delivery = vm.parentCtrl.item.delivery;
 				if (delivery.deliveryCategory.indexOf('Alma-P') > -1) {
 					const locations = delivery.holding;
-					for (let loc of locations) {
-						if (/^.[ev]/.test(loc.subLocationCode) === true) {
-						vm.show = true;
+					let circPresent = false;
+					for (let loc of locations) { // look for locations that circulate to all locations
+						if (/^.(c|mdvd)/.test(loc.subLocationCode) === true) {
+						circPresent = true;
+						break;
 						}
+					}
+					if (circPresent === false) {
+						vm.show = true;
 					}
 				}
 			};
