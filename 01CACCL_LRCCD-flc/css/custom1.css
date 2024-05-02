@@ -1,4 +1,5 @@
 ::selection {background:#999; color:#fff;}
+em i {font-style:normal;}
 .lr-fadeout {opacity: 0; transition: opacity 0.3s linear;}
 /* hide underlining on phone links on desktop/laptop */
 a[href^="tel:"] {text-decoration: none !important; box-shadow:none !important; color:inherit;}
