@@ -11,12 +11,15 @@
     'moreInfo': 'https://scc.losrios.edu/student-resources/cultural-engagement-centers/ashe-center'
 }
 ]">
-    <p class="md-list-item-text" layout="row" flex="" layout-wrap="" ng-if="::$ctrl.locationCode.indexOf(note.locCode)===0">
-        <md-icon md-svg-icon="action:ic_info_outline_24px" class="margin-right-small margin-left-small" aria-label="Information"></md-icon>
-        <em>{{::note.text}}</em>
-        <span ng-if="::note.moreInfo" style="margin-left:0.5rem;">
+    <div ng-if="::$ctrl.locationCode.indexOf(note.locCode)===0">
+        <div class="md-list-item-text" layout="row" flex="">
+            <md-icon md-svg-icon="action:ic_info_outline_24px" layout="column" class="margin-right-small margin-left-small" aria-label="Information"></md-icon>
+            <em ng-bind-html="::note.text"></em>
+        </div>
+        <div class="md-list-item-text" ng-if="::note.moreInfo" style="margin-left:3rem; padding-top:0;">
             <a ng-href="{{::note.moreInfo}}" target="_blank">Learn more <lr-ext-link-icon></lr-ext-link-icon>
             </a>
-        </span>
-    </p>
+        </div>
+        <div ng-if="::!note.moreInfo" style="margin-bottom:1rem;"></div>
+    </div>
 </div>
