@@ -5,7 +5,7 @@
 	const libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	const c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
 	const almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
-	const limitedDelivery = '';
+	const limitedDelivery = '407703';
 	const libKeyId = '3235';
 	const lkAPI = '5fa2bff1-a7f4-4dae-a28c-23c12012b54c';
 	const lkEmail = 'AdkinsA@crc.losrios.edu';

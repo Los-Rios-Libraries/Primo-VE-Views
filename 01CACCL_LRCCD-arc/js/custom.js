@@ -5,7 +5,7 @@
 	const libchatHash = '39df8b17e49bd4efbb4461f1831118b9';
 	const c19Page = 'https://libguides.arc.losrios.edu/c.php?g=1012164';
 	const almaDHelp = 'https://answers.library.losrios.edu/arc/faq/372430';
-	const limitedDelivery = '';
+	const limitedDelivery = '407682';
 	const libKeyId = '3234';
 	const lkAPI = 'e703f647-d664-48af-bd98-c1e434b3628e';
 	const lkEmail = 'WilliaK2@arc.losrios.edu';
