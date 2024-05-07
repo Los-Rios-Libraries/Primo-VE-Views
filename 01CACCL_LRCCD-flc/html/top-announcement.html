@@ -1,13 +1,58 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
 <md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '2024-02-20',
-endDate: '2024-03-01',
-cookieID: 'new-hours',
+startDate: '2024-05-07',
+endDate: '2024-05-16',
+cookieID: 'finals',
 daysToHide: 10
 });">
 	<p layout-margin layout-align="center center">
 		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
-		You are welcome in the library all week long. <a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">Check out our extended hours.</a> 
+		Need help with your research assignment?  Visit the library during <a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">open hours</a> or <a href="https://www.library.losrios.edu/ask-us/" target="_blank">ask us online</a>.
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+		</md-button>
+	</p>
+</md-content>
+
+<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+startDate: '2024-05-17',
+endDate: '2024-06-09',
+cookieID: 'semesterEnd',
+daysToHide: 10
+});">
+	<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+		Happy summer break! The FLC and EDC libraries will be closed until June 10. Check out our <a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">summer hours</a>.
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+		</md-button>
+	</p>
+</md-content>
+
+<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+startDate: '2024-06-10',
+endDate: '2024-06-20',
+cookieID: 'summerSession',
+daysToHide: 10
+});">
+	<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+		Summer session is in! You are welcome in the library. Check out our <a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">summer hours</a>.
+		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+		</md-button>
+	</p>
+</md-content>
+
+<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+startDate: '2024-08-16',
+endDate: '2024-08-30',
+cookieID: 'fallSession',
+daysToHide: 10
+});">
+	<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+		Looking to save some money this semester? <a href="https://library.losrios.edu/textbooks/?flc" target="_blank">Check to see if the library has your textbook</a>.
 		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
 		</md-button>
