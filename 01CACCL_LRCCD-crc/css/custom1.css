@@ -130,6 +130,10 @@ prm-main-menu.isServicePage {display:unset;}
 
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
+/* link to info about subject headings */
+lr-subject-faq .layout-row {background:#fff;}
+/*  remove background in footer */
+#footer lr-subject-faq .layout-row {background:unset;}
 
 /*fix ILL link having gray around it in full display, add padding to location heading and make location items in full display white boxes, & "more" menu contrast - from update below*/
 alma-howovp div:first-child {background:#fff;}

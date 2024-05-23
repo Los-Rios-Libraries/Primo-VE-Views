@@ -5,6 +5,8 @@
 	const libchatHash = '30c067282fb40fb55e758c16d27c656d';
 	const c19Page = 'https://researchguides.flc.losrios.edu/library_closure';
 	const almaDHelp = 'https://answers.library.losrios.edu/flc/search/?t=0&adv=1&topics=Digital%20Books';
+	const subjFaqTitle = '';
+	const subjFaqID = '';
 	const limitedDelivery = '407119';
 	const libKeyId = '3236';
 	const lkAPI = 'bb1e3a4b-f384-4323-8ae8-a95c56f8e091';
@@ -690,6 +692,7 @@
 			};
 		}
 	});
+
 	// display text for delivery locations
 	app.component('prmRequestServicesAfter', {
 		bindings: {
@@ -805,9 +808,122 @@
 	});
 	app.component('prmServiceDetailsAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="detailsbottom"></lr-localnote>'
+		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="detailsbottom"></lr-subject-faq><lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="detailsbottom"></lr-localnote>'
 	});
-	
+	app.component('prmBreadcrumbsAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="facets"></lr-subject-faq>'
+	});
+	app.component('prmSearchResultToolBarAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="resultstop"></lr-subject-faq>'
+	});
+	// show a link to a FAQ explaining how subject headings work in OneSearch. This is shown when someone does a subject search or clicks a subject facet
+	app.component('lrSubjectFaq', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: `
+		<div ng-if="::($ctrl.faqLink !=='')">
+			<div ng-if="::($ctrl.subjSearch|| $ctrl.subjFacet)" ng-hide="::$ctrl.hide">
+				<div layout="row" layout-margin >
+		        	<div layout="column" layout-align="center" >
+		                <a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
+		        	</div>
+					<div layout="column" layout-align="center start" flex="25" ng-if="!$ctrl.isFooter"> 
+						<md-button>
+		              		<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close" title="Stop showing this link on subject searches" ng-click="$ctrl.close();" style="cursor:pointer;"></md-icon>
+					  </md-button>
+		        	</div>
+		    	</div>
+	    	</div>
+			<div ng-if="$ctrl.dismissed">
+				<div layout="row" layout-margin >
+					<div>
+		            	You can continue to find this link in the <a href="#footer">page footer</a>.
+					</div>
+				</div>
+			</div>
+			<div ng-if="::$ctrl.isFooter">
+				<a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
+			</div>
+		</div>
+		`,
+		controller: [
+			'$cookies',
+			'$attrs',
+			'$timeout',
+			function ($cookies, $attrs, $timeout) {
+				const vm = this;
+				vm.$onInit = () => {
+					const cookieName = `${colAbbr}_subjFAQ`; // different for each view
+					vm.faqLink = '';
+					if (subjFaqID !== '') {
+						vm.faqLink = `https://answers.library.losrios.edu/${colAbbr}/faq/${subjFaqID}`;
+						vm.subjFaqTitle = subjFaqTitle;
+					}
+					// always show in footer
+					if ($attrs.location === 'footer') {
+						vm.isFooter = true;
+					} else {
+						// show contextually when user has performed a subject search or used the subject facets. For facet, will show in "breadcrumbs" area. For subject searches, will show at top of results and below details area. No clear way to display it near subjects themselves.
+						// only show if user has not clicked dismiss button in last 30 days
+
+						if ($cookies.get(cookieName) !== 'hide') {
+							// location of objects varies in different directives
+							let root = vm.parentCtrl.$stateParams;
+							if (vm.parentCtrl.searchService) {
+								root = vm.parentCtrl.searchService.$stateParams;
+							}
+							vm.query = root.query;
+							let subjQuery = false;
+							if (vm.query.indexOf('sub,') === 0) {
+								subjQuery = true;
+							}
+							if (subjQuery && $attrs.location !== 'facets') {
+								vm.subjSearch = true;
+							}
+							const facet = root.facet;
+							if ($attrs.location === 'facets') {
+								const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
+								// return true if subject search or selected subject facet is found
+								if (subjQuery === false) {
+									if (Array.isArray(facet)) {
+										// when more than one facet is selected, it is an array, otherwise a string
+										for (let member of facet) {
+											if (re.test(member) === true) {
+												vm.subjFacet = true;
+											}
+										}
+									} else {
+										if (re.test(facet) === true) {
+											vm.subjFacet = true;
+										}
+									}
+								}
+							}
+							// if dismiss button is clicked, hide the link and set a cookie to stop showing it for 30 days. Will still show in footer
+							vm.close = () => {
+								vm.hide = true;
+								vm.dismissed = true;
+								$timeout(() => {
+									vm.dismissed = false;
+								}, 6000);
+								const d = new Date();
+								d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+								$cookies.put(`${cookieName}`, 'hide', {
+									expires: d.toUTCString(),
+									path: '/',
+									secure: true,
+									sameSite: 'Lax'
+								});
+							};
+						}
+					}
+				};
+			}
+		]
+	});
 	app.component('prmLocationAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-holdings-note parent-ctrl="$ctrl.parentCtrl"></lr-holdings-note>'
