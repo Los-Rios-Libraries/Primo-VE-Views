@@ -264,6 +264,7 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 #footer ul {padding-left: 0; list-style-type: none;}
 .lr-footer {padding:20px 20%;}
 #top-footer p:first-of-type {margin-top:15px;}
+#top-footer .layout-column {padding-right: 1rem;}
 #subfooter {background:#1a4763;}
 #subfooter a {color:#fff; background: transparent;}
 .lr-ft-college {min-height:50%;}
