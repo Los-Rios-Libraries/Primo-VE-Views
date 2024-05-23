@@ -726,7 +726,8 @@
 					$cookies.put(cookieKey, 'true', {
 						'expires': d.toUTCString(),
 						'path': '/',
-						'secure': true
+						'secure': true,
+						'sameSite': 'Lax'
 					}); // set cookie to stop showing announcement
 					vm.hide = true; // removes element so space stops showing
 				}, 300);
