@@ -108,7 +108,7 @@
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'
 	});
-	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', '$attrs', function($http, $timeout,$interval,$attrs) {
+	app.controller('lrNewbooksDisplayController', ['$http', '$timeout','$interval', '$attrs', '$window', function($http, $timeout,$interval,$attrs, $window) {
 		const vm = this;
 		vm.$onInit = () => {
 			vm.colAbbr = colAbbr;
@@ -300,6 +300,11 @@
 				if (newBooksArr[params.report].length > 0) {
 					return true;
 				}
+			};
+			vm.scroll = () => {
+				$window.scrollTo(0, 0);
+
+
 			};
 			// keep track of this array in console, for testing
 			console.log('newBooksArr: ');
