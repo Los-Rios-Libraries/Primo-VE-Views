@@ -3,7 +3,6 @@
 	/* college-specific variables */
 	const colAbbr = 'flc';
 	const libchatHash = '30c067282fb40fb55e758c16d27c656d';
-	const c19Page = 'https://researchguides.flc.losrios.edu/library_closure';
 	const almaDHelp = 'https://answers.library.losrios.edu/flc/search/?t=0&adv=1&topics=Digital%20Books';
 	const subjFaqTitle = '';
 	const subjFaqID = '';
@@ -132,7 +131,6 @@
 			};
 			vm.LRLogoSrc = `${custPackagePath}/img/Los Rios Libraries_Logo_Horizontal_BW.png`;
 			vm.libraries = libraries;
-			vm.c19Page = c19Page;
 			vm.askUs = `${districtHost}ask-us/?${colAbbr}`;
 		};		
 	}]);
@@ -533,7 +531,6 @@
 		controller: function() { // only show if there are fines
 			const vm = this;
 			vm.$onInit = () => {
-				vm.c19Page = c19Page;
 				vm.hasFines = () => {
 					// if there are no fines, this value is the number 0; if there are fines, it is a string		
 					if (typeof(vm.parentCtrl.finesCounters) === 'string') {

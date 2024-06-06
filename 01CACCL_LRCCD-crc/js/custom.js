@@ -3,7 +3,6 @@
 	/* college-specific variables */
 	const colAbbr = 'crc';
 	const libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
-	const c19Page = 'https://researchguides.crc.losrios.edu/library_closure';
 	const almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
 	const subjFaqTitle = '';
 	const subjFaqID = '';
@@ -132,7 +131,6 @@
 			};
 			vm.LRLogoSrc = `${custPackagePath}/img/Los Rios Libraries_Logo_Horizontal_BW.png`;
 			vm.libraries = libraries;
-			vm.c19Page = c19Page;
 			vm.askUs = `${districtHost}ask-us/?${colAbbr}`;
 		};		
 	}]);
@@ -444,7 +442,6 @@
 		vm.$onInit = () => {
 			vm.fade = ''; // used for adding classes when dissmissing
 			vm.hide = false;
-			vm.refPage = c19Page || ''; // this is the optionally per-college page that can be linked to in the announcement
 			vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
 			vm.daysToHide = 14; // default days that banner is hidden if user dismisses
 			vm.showAnnounce = (obj) => {
@@ -533,7 +530,6 @@
 		controller: function() { // only show if there are fines
 			const vm = this;
 			vm.$onInit = () => {
-				vm.c19Page = c19Page;
 				vm.hasFines = () => {
 					// if there are no fines, this value is the number 0; if there are fines, it is a string		
 					if (typeof(vm.parentCtrl.finesCounters) === 'string') {
