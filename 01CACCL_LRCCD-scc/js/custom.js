@@ -359,17 +359,25 @@
 				return true;
 			};
 			vm.isAlmaD = location.href.indexOf('/discovery/delivery');
-			vm.checkForContent = () => {
-				const content = document.getElementsByTagName('md-content');
-				if (content.length > 0) {
-					let h = 0;
-					for (let section of content) {
-						h += section.offsetHeight;
-					}
-					if ((h > 340) || (document.querySelector('prm-browse-search'))) {
-						return true;
-					}
+			vm.setMargin = () => { // top margin is set high in style attribute since it takes time for page to load and we want to avoid footer high up on page. Result of this function will replace it. Normally will be set to 0. In some cases will be a bit higher.
+				let margin = 0;
+				const content = angular.element(
+					document.getElementsByTagName('md-content')
+				);
+				let h = 0;
+				if (content.length) {
+					angular.forEach(content, function (val) {
+						h += val.offsetHeight;
+						if (h < 400) {
+							margin = 400 - h;
+						} else {
+							margin = 0;
+						}
+					});
+				} else {
+					margin = 800;
 				}
+				return { 'margin-top': margin + 'px' };
 			};
 			vm.LRLogoSrc = `${custPackagePath}/img/Los Rios Libraries_Logo_Horizontal_BW.png`;
 			vm.libraries = libraries;
