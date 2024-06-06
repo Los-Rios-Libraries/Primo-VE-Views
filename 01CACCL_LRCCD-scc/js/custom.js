@@ -1126,49 +1126,51 @@
 							if (vm.parentCtrl.searchService) {
 								root = vm.parentCtrl.searchService.$stateParams;
 							}
-							vm.query = root.query;
-							let subjQuery = false;
-							if (vm.query.indexOf('sub,') === 0) {
-								subjQuery = true;
-							}
-							if (subjQuery && $attrs.location !== 'facets') {
-								vm.subjSearch = true;
-							}
-							const facet = root.facet;
-							if ($attrs.location === 'facets') {
-								const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
-								// return true if subject search or selected subject facet is found
-								if (subjQuery === false) {
-									if (Array.isArray(facet)) {
-										// when more than one facet is selected, it is an array, otherwise a string
-										for (let member of facet) {
-											if (re.test(member) === true) {
+							if (root.query) {
+								vm.query = root.query;
+								let subjQuery = false;
+								if (vm.query.indexOf('sub,') === 0) {
+									subjQuery = true;
+								}
+								if (subjQuery && $attrs.location !== 'facets') {
+									vm.subjSearch = true;
+								}
+								const facet = root.facet;
+								if ($attrs.location === 'facets') {
+									const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
+									// return true if subject search or selected subject facet is found
+									if (subjQuery === false) {
+										if (Array.isArray(facet)) {
+											// when more than one facet is selected, it is an array, otherwise a string
+											for (let member of facet) {
+												if (re.test(member) === true) {
+													vm.subjFacet = true;
+												}
+											}
+										} else {
+											if (re.test(facet) === true) {
 												vm.subjFacet = true;
 											}
 										}
-									} else {
-										if (re.test(facet) === true) {
-											vm.subjFacet = true;
-										}
 									}
 								}
+								// if dismiss button is clicked, hide the link and set a cookie to stop showing it for 30 days. Will still show in footer
+								vm.close = () => {
+									vm.hide = true;
+									vm.dismissed = true;
+									$timeout(() => {
+										vm.dismissed = false;
+									}, 6000);
+									const d = new Date();
+									d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+									$cookies.put(`${cookieName}`, 'hide', {
+										expires: d.toUTCString(),
+										path: '/',
+										secure: true,
+										sameSite: 'Lax'
+									});
+								};
 							}
-							// if dismiss button is clicked, hide the link and set a cookie to stop showing it for 30 days. Will still show in footer
-							vm.close = () => {
-								vm.hide = true;
-								vm.dismissed = true;
-								$timeout(() => {
-									vm.dismissed = false;
-								}, 6000);
-								const d = new Date();
-								d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
-								$cookies.put(`${cookieName}`, 'hide', {
-									expires: d.toUTCString(),
-									path: '/',
-									secure: true,
-									sameSite: 'Lax'
-								});
-							};
 						}
 					}
 				};
