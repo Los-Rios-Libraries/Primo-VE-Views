@@ -859,7 +859,7 @@
 				const pattern =
 					/syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/; // identify image sources to replace. Some are ok already, e.g. Kanopy
 				const biggerURL = (str) => {
-					let replacement = '';
+					let replacement = str;
 					if (str.indexOf('/sc.jpg') > -1) {
 						// syndetics
 						replacement = str.replace('/sc.jpg', '/mc.jpg');
