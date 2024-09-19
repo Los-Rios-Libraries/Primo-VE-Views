@@ -4,8 +4,8 @@
 	const colAbbr = 'crc';
 	const libchatHash = 'a24b10a3580f241dc2aaf29a0b97ab2f';
 	const almaDHelp = 'https://answers.library.losrios.edu/crc/search/?t=0&adv=1&topics=Digital%20books';
-	const subjFaqTitle = '';
-	const subjFaqID = '';
+	const subjFaqTitle = 'Where do the subjects in OneSearch come from?';
+	const subjFaqID = '414779';
 	const limitedDelivery = '407703';
 	const libKeyId = '3235';
 	const lkAPI = '5fa2bff1-a7f4-4dae-a28c-23c12012b54c';

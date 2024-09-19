@@ -4,8 +4,8 @@
 	const colAbbr = 'flc';
 	const libchatHash = '30c067282fb40fb55e758c16d27c656d';
 	const almaDHelp = 'https://answers.library.losrios.edu/flc/search/?t=0&adv=1&topics=Digital%20Books';
-	const subjFaqTitle = '';
-	const subjFaqID = '';
+	const subjFaqTitle = 'Where do the subject headings in OneSearch come from?';
+	const subjFaqID = '414406';
 	const limitedDelivery = '407119';
 	const libKeyId = '3236';
 	const lkAPI = 'bb1e3a4b-f384-4323-8ae8-a95c56f8e091';
