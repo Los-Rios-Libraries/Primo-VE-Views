@@ -1024,10 +1024,6 @@
 		bindings: {parentCtrl: '<'},
 		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="detailsbottom"></lr-subject-faq><lr-localnote parent-ctrl="$ctrl.parentCtrl" layout-align="center center" layout="row" flex="" location="detailsbottom"></lr-localnote>'
 	});
-	app.component('prmBreadcrumbsAfter', {
-		bindings: {parentCtrl: '<'},
-		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="facets"></lr-subject-faq>'
-	});
 	app.component('prmSearchResultToolBarAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-subject-faq parent-ctrl="$ctrl.parentCtrl" location="resultstop"></lr-subject-faq>'
@@ -1039,12 +1035,12 @@
 		},
 		template: `
 		<div ng-if="::($ctrl.faqLink !=='')">
-			<div ng-if="::($ctrl.subjSearch|| $ctrl.subjFacet)" ng-hide="::$ctrl.hide">
+			<div ng-if="::($ctrl.subjQuery || $ctrl.subjFacet)" ng-hide="::$ctrl.hide">
 				<div layout="row" layout-margin >
-		        	<div layout="column" layout-align="center" >
+		        	<div layout="column" layout-align="center" flex="75" >
 		                <a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
 		        	</div>
-					<div layout="column" layout-align="center start" flex="25" ng-if="!$ctrl.isFooter"> 
+					<div layout="column" layout-align="center end" flex="25"> 
 						<md-button>
 		              		<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close" title="Stop showing this link on subject searches" ng-click="$ctrl.close();" style="cursor:pointer;"></md-icon>
 					  </md-button>
@@ -1058,7 +1054,7 @@
 					</div>
 				</div>
 			</div>
-			<div ng-if="::$ctrl.isFooter">
+			<div ng-if="::$ctrl.isFooter"">
 				<a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
 			</div>
 		</div>
@@ -1080,7 +1076,7 @@
 					if ($attrs.location === 'footer') {
 						vm.isFooter = true;
 					} else {
-						// show contextually when user has performed a subject search or used the subject facets. For facet, will show in "breadcrumbs" area. For subject searches, will show at top of results and below details area. No clear way to display it near subjects themselves.
+						// show contextually when user has performed a subject search or used the subject facets. Message will show at top of results and below details area. No clear way to display it near subjects themselves.
 						// only show if user has not clicked dismiss button in last 30 days
 
 						if ($cookies.get(cookieName) !== 'hide') {
@@ -1091,29 +1087,24 @@
 							}
 							if (root.query) {
 								vm.query = root.query;
-								let subjQuery = false;
+								vm.subjQuery = false;
 								if (vm.query.indexOf('sub,') === 0) {
-									subjQuery = true;
-								}
-								if (subjQuery && $attrs.location !== 'facets') {
-									vm.subjSearch = true;
+									vm.subjQuery = true;
 								}
 								const facet = root.facet;
-								if ($attrs.location === 'facets') {
-									const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
-									// return true if subject search or selected subject facet is found
-									if (subjQuery === false) {
-										if (Array.isArray(facet)) {
-											// when more than one facet is selected, it is an array, otherwise a string
-											for (let member of facet) {
-												if (re.test(member) === true) {
-													vm.subjFacet = true;
-												}
-											}
-										} else {
-											if (re.test(facet) === true) {
+								const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
+								// return true if subject search or selected subject facet is found
+								if (vm.subjQuery === false) {
+									if (Array.isArray(facet)) {
+										// when more than one facet is selected, it is an array, otherwise a string
+										for (let member of facet) {
+											if (re.test(member) === true) {
 												vm.subjFacet = true;
 											}
+										}
+									} else {
+										if (re.test(facet) === true) {
+											vm.subjFacet = true;
 										}
 									}
 								}
