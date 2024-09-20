@@ -1,4 +1,6 @@
 ::selection {background:#999; color:#fff;}
+/* hide Research Assistant widget */
+#raContainer {display:none;}
 em i {font-style:normal;}
 .lr-fadeout {opacity: 0; transition: opacity 0.3s linear;}
 /* hide underlining on phone links on desktop/laptop */
