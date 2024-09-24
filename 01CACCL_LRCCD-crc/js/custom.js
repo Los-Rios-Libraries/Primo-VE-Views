@@ -647,7 +647,7 @@
 			const vm = this;
 			vm.$onInit = () => {
 				const pattern =
-					/syndetics\.com\/|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/; // identify image sources to replace. Some are ok already, e.g. Kanopy
+					/syndetics\.com\/.*\/sc\.jpg$|(cdnsecakmi|cfvod)\.kaltura\.com|books\.google\.com/; // identify image sources to replace. Some are ok already, e.g. Kanopy
 				const biggerURL = (str) => {
 					let replacement = str;
 					if (str.indexOf('/sc.jpg') > -1) {
