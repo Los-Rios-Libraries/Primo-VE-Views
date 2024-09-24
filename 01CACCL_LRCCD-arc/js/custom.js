@@ -1037,7 +1037,7 @@
 		<div ng-if="::($ctrl.faqLink !=='')">
 			<div ng-if="::($ctrl.subjQuery || $ctrl.subjFacet)" ng-hide="::$ctrl.hide">
 				<div layout="row" layout-margin >
-		        	<div layout="column" layout-align="center" flex="75" >
+		        	<div layout="column" layout-align="center" flex="75" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();" >
 		                <a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
 		        	</div>
 					<div layout="column" layout-align="center end" flex="25"> 
@@ -1068,10 +1068,28 @@
 				vm.$onInit = () => {
 					const cookieName = `${colAbbr}_subjFAQ`; // different for each view
 					vm.faqLink = '';
+					vm.highlight = '';
 					if (subjFaqID !== '') {
 						vm.faqLink = `https://answers.library.losrios.edu/${colAbbr}/faq/${subjFaqID}`;
 						vm.subjFaqTitle = subjFaqTitle;
 					}
+					vm.fadeHighlight = () => {
+						// background animation to emphasize presence of the link. Only shows on first activation of session
+						const cName = 'lr-no-highlight';
+						if ($cookies.get(cName) !== 'true') {
+							$timeout(() => {
+								vm.highlight = 'lr-highlighted';
+							}, 100);
+							$timeout(() => {
+								vm.highlight = 'lr-no-highlight';
+								$cookies.put(cName, 'true', {
+									path: '/',
+									secure: true,
+									sameSite: 'Lax'
+								});
+							}, 5000);
+						}
+					};
 					// always show in footer
 					if ($attrs.location === 'footer') {
 						vm.isFooter = true;
