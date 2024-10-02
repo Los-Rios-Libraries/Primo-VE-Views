@@ -1035,7 +1035,7 @@
 		},
 		template: `
 		<div ng-if="::($ctrl.faqLink !=='')">
-			<div ng-if="::($ctrl.subjQuery || $ctrl.subjFacet)" ng-hide="::$ctrl.hide">
+			<div ng-if="::($ctrl.subjQuery || $ctrl.subjFacet || $ctrl.isDetails)" ng-hide="::$ctrl.hide">
 				<div layout="row" layout-margin >
 		        	<div layout="column" layout-align="center" flex="75" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();" >
 		                <a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
@@ -1050,12 +1050,9 @@
 			<div ng-if="$ctrl.dismissed">
 				<div layout="row" layout-margin >
 					<div>
-		            	You can continue to find this link in the <a href="#footer">page footer</a>.
+		            	A cookie has been set on this computer to hide this alert for {{$ctrl.days}} days.
 					</div>
 				</div>
-			</div>
-			<div ng-if="::$ctrl.isFooter"">
-				<a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
 			</div>
 		</div>
 		`,
@@ -1107,45 +1104,52 @@
 							}, 5000);
 						}
 					};
-					// always show in footer
-					if ($attrs.location === 'footer') {
-						vm.isFooter = true;
-					} else {
-						// show contextually when user has performed a subject search or used the subject facets. Message will show at top of results and below details area. No clear way to display it near subjects themselves.
-						// only show if user has not clicked dismiss button in last 30 days
-
-						if ($cookies.get(cookieName) !== 'hide') {
-							// location of objects varies in different directives
-							let root = vm.parentCtrl.$stateParams;
-							if (vm.parentCtrl.searchService) {
-								root = vm.parentCtrl.searchService.$stateParams;
-							}
-							if (root.query) {
-								vm.query = root.query;
-								vm.subjQuery = false;
-								if (vm.query.indexOf('sub,') === 0) {
-									vm.subjQuery = true;
+					vm.$doCheck = () => {
+						if (vm.parentCtrl) {
+							// always show in details
+							if ($attrs.location === 'detailsbottom') {
+								// check if item being displayed has any subjects
+								if (vm.parentCtrl.item.pnx.display.subject) {
+									vm.isDetails = true;
 								}
-								const facet = root.facet;
-								const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
-								// return true if subject search or selected subject facet is found
-								if (vm.subjQuery === false) {
-									if (Array.isArray(facet)) {
-										// when more than one facet is selected, it is an array, otherwise a string
-										for (let member of facet) {
-											if (re.test(member) === true) {
-												vm.subjFacet = true;
-											}
+							} else {
+								// show contextually when user has performed a subject search or used the subject facets. Message will show at top of results. No clear way to display it near subjects themselves.
+								// only show if user has not clicked dismiss button in last x days
+
+								if ($cookies.get(cookieName) !== 'hide') {
+									// location of objects varies in different directives
+									let root = vm.parentCtrl.$stateParams;
+									if (vm.parentCtrl.searchService) {
+										root = vm.parentCtrl.searchService.$stateParams;
+									}
+									if (root.query) {
+										vm.query = root.query;
+										vm.subjQuery = false;
+										if (vm.query.indexOf('sub,') === 0) {
+											vm.subjQuery = true;
 										}
-									} else {
-										if (re.test(facet) === true) {
-											vm.subjFacet = true;
+										const facet = root.facet;
+										const re = /^(topic|lds02),/; // regular subject facet and Spanish-language "Materia"
+										// return true if subject search or selected subject facet is found
+										if (vm.subjQuery === false) {
+											if (Array.isArray(facet)) {
+												// when more than one facet is selected, it is an array, otherwise a string
+												for (let member of facet) {
+													if (re.test(member) === true) {
+														vm.subjFacet = true;
+													}
+												}
+											} else {
+												if (re.test(facet) === true) {
+													vm.subjFacet = true;
+												}
+											}
 										}
 									}
 								}
 							}
 						}
-					}
+					};
 				};
 			}
 		]
