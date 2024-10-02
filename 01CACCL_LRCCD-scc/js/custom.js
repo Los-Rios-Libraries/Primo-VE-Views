@@ -1110,6 +1110,23 @@
 						vm.faqLink = `https://answers.library.losrios.edu/${colAbbr}/faq/${subjFaqID}`;
 						vm.subjFaqTitle = subjFaqTitle;
 					}
+					// if dismiss button is clicked, hide the link and set a cookie to stop showing it for 30 days. Will still show in footer
+					vm.close = () => {
+						vm.hide = true;
+						vm.dismissed = true;
+						$timeout(() => {
+							vm.dismissed = false;
+						}, 6000);
+						const d = new Date();
+						vm.days = 60;
+						d.setTime(d.getTime() + vm.days * 24 * 60 * 60 * 1000); // 30 days
+						$cookies.put(`${cookieName}`, 'hide', {
+							expires: d.toUTCString(),
+							path: '/',
+							secure: true,
+							sameSite: 'Lax'
+						});
+					};
 					vm.fadeHighlight = () => {
 						// background animation to emphasize presence of the link. Only shows on first activation of session
 						const cName = 'lr-no-highlight';
@@ -1163,22 +1180,6 @@
 										}
 									}
 								}
-								// if dismiss button is clicked, hide the link and set a cookie to stop showing it for 30 days. Will still show in footer
-								vm.close = () => {
-									vm.hide = true;
-									vm.dismissed = true;
-									$timeout(() => {
-										vm.dismissed = false;
-									}, 6000);
-									const d = new Date();
-									d.setTime(d.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
-									$cookies.put(`${cookieName}`, 'hide', {
-										expires: d.toUTCString(),
-										path: '/',
-										secure: true,
-										sameSite: 'Lax'
-									});
-								};
 							}
 						}
 					}
