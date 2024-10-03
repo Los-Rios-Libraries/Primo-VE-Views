@@ -132,6 +132,13 @@ prm-main-menu.isServicePage {display:unset;}
 
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
+/* ** quick links **/
+/* put quicklinks on same row as other availability links */
+prm-quick-link { order:5;  margin-left: 11rem; margin-top: -2.6rem;}
+/* hide non-PDF quicklinks */
+span[translate="fulldisplay.HTML"], span[translate="fulldisplay.HTML"] + prm-icon, .quick-links-icons[icon-definition="html-link"] {display: none;  }
+/* but leave them as-is in "links" area of full display */
+#links prm-quick-link {margin:unset;}
 /* link to info about subject headings */
 lr-subject-faq .layout-row {background:#fff;}
 /*  remove background in footer */
