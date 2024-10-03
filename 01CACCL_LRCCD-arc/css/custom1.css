@@ -158,6 +158,8 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 .lr-format-VM[id^="lr_kan"] .lr-newbook-author::before {content: "- ";}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
+/* attempt to hide inaccurate internal link icons */
+prm-icon[icon-definition="open-in-new"] + prm-icon { display: none !important;}
 /* ** quick links **/
 /* put quicklinks on same row as other availability links */
 prm-quick-link { order:5;  margin-left: 11rem; margin-top: -2.6rem;}
