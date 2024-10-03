@@ -878,20 +878,22 @@
 						});
 					};
 					vm.fadeHighlight = () => {
-						// background animation to emphasize presence of the link. Only shows on first activation of session
-						const cName = 'lr-no-highlight';
-						if ($cookies.get(cName) !== 'true') {
-							$timeout(() => {
-								vm.highlight = 'lr-highlighted';
-							}, 100);
-							$timeout(() => {
-								vm.highlight = 'lr-no-highlight';
-								$cookies.put(cName, 'true', {
-									path: '/',
-									secure: true,
-									sameSite: 'Lax'
-								});
-							}, 5000);
+						// background animation to emphasize presence of the link. Only shows on first activation of session on subject search/filter
+						if ($attrs.location === 'resultstop') {
+							const cName = 'lr-no-highlight';
+							if ($cookies.get(cName) !== 'true') {
+								$timeout(() => {
+									vm.highlight = 'lr-highlighted';
+								}, 100);
+								$timeout(() => {
+									vm.highlight = 'lr-no-highlight';
+									$cookies.put(cName, 'true', {
+										path: '/',
+										secure: true,
+										sameSite: 'Lax'
+									});
+								}, 5000);
+							}
 						}
 					};
 					vm.$doCheck = () => {
