@@ -253,9 +253,10 @@
 			<md-icon md-svg-icon="alert:ic_error_outline_24px" aria-label="Alert"></md-icon> Report a problem
 		</md-button>`
 	});
-	app.controller('lrProblemReporterController', ['$window', function ($window) {
+	app.controller('lrProblemReporterController', ['$window', '$attrs', function ($window, $attrs) {
 		const vm = this;
 		vm.$onInit = () => {
+			let queue = 'erm';
 			let itemID = '';
 			if (vm.parentCtrl.item) { // found in prmAlmaViewitAfter
 				itemID = vm.parentCtrl.item.pnx.control.recordid[0];
@@ -270,16 +271,35 @@
 				const top = (screen.height - h) / 4;
 				const page = `${districtHost + filePath}utilities/problem-reporter/`;
 				const winParams = 'toolbar=no, location=no, menubar=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left;
-				$window.open(`${page}?url=${encodeURIComponent(location.href)}&recordid=${itemID}&college=${colAbbr}&source=primo`, 'Problem reporter', winParams);
+				$window.open(`${page}?url=${encodeURIComponent(location.href)}&recordid=${itemID}&college=${colAbbr}&queue=${queue}&source=primo`, 'Problem reporter', winParams);
 			};
 			vm.showProblemReporter = () => { // wait until links load to show the reporter
 				if (vm.parentCtrl.item) { // full display
-					if (vm.parentCtrl.item.delivery.electronicServices) {
-						if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
-							return true;
+					const deliveryCat = vm.parentCtrl.item.delivery.deliveryCategory;
+					if (deliveryCat) {
+						if ($attrs.location === 'ViewIt') {
+							if (vm.parentCtrl.item.delivery.electronicServices) {
+								if (vm.parentCtrl.item.delivery.electronicServices.length > 0) { // wait for full-text links to appear
+									return true;
+								}
+							}
+						}
+						else if ($attrs.location === 'GetIt') {
+							if ((deliveryCat.includes('Alma-E') === false) && (deliveryCat.includes('Alma-D')=== false)) {
+								if (vm.parentCtrl.getItType === 'GetIt1') {  
+									// get it
+									if (vm.parentCtrl.item.delivery.holding) {
+										queue = colAbbr;
+										if (typeof(vm.parentCtrl.item.delivery.holding[0].availabilityStatement) === 'string') { // wait for object to load before showing button
+											return true;
+										}				
+									}			
+								}
+							}
 						}
 					}
-				} else if (vm.parentCtrl.result) { // brief results
+				}
+				 else if (vm.parentCtrl.result) { // brief results
 					if ((vm.parentCtrl.isFullView !== true) && (vm.parentCtrl.isOverlayFullView !== true)) { // only show this here in brief results
 						if (document.querySelector('prm-email-template') === null) { // ensure this does not show in emails generated from Primo VE
 							const availability = vm.parentCtrl.result.delivery.availability;
@@ -300,15 +320,23 @@
 		};		
 	}]);
 	// now the directive gets inserted
-	// full display
+	// full display - view it
 	app.component('prmAlmaViewitAfter', {
 		bindings: {
 			parentCtrl: '<'
 		},
 		template: 
-		`<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl"></lr-problem-reporter>
+		`<lr-problem-reporter flex layout-align="end center" parent-ctrl="$ctrl.parentCtrl" location="ViewIt"></lr-problem-reporter>
 		<lr-localnote layout-align="center center" layout="row" flex="" parent-ctrl="$ctrl.parentCtrl" location="viewitbottom"></lr-localnote>`,
 		});
+	// full display - get it
+	app.component('prmFullViewServiceContainerAfter', {
+		bindings: {
+			parentCtrl: '<'
+		},
+		template: 
+		`<lr-problem-reporter flex layout-align="end end" layout-margin parent-ctrl="$ctrl.parentCtrl" location="GetIt"></lr-problem-reporter>`,
+	});
 	// brief results
 	app.component('prmSearchResultAvailabilityLineAfter', {
 		bindings: {
