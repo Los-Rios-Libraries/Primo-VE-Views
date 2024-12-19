@@ -1237,7 +1237,6 @@
 		})();
 		(() => { // load libchat
 			const noWidgetPattern = new RegExp(`https://${location.hostname}/discovery/(delivery|researchAssistant)`);
-			console.log('regex', noWidgetPattern);
 			const host = 'answers.library.losrios.edu';
 			const div = document.createElement('div');
 			div.id = `libchat_${libchatHash}`;
