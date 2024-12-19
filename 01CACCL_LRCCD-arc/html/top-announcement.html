@@ -1,16 +1,30 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
-<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '2023-03-09',
-endDate: '2023-03-31',
-cookieID: 'requesting',
-daysToHide: 30
-});">
-	<p layout-margin layout-align="center center">
-		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		The ARC Library will be closed for 3 weeks beginning March 13, 2023. During the closure requested items can be picked up at the <a href="https://answers.library.losrios.edu/arc/faq/384900">LRC</a>. 
-		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-			Hide this announcement
-			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
-		</md-button>
-	</p>
+<md-content ng-class="$ctrl.hideBlock">
+	<!-- First block here should not be edited. It retrieves urgent system alerts from LibAnswers and will preempt any banners below-->
+		<div ng-if="$ctrl.systemAlert" ng-class="[$ctrl.fade, $ctrl.alertHidden]">
+			<p layout-margin layout-align="center center">
+				<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+				{{::$ctrl.question}}. <a ng-href="{{::$ctrl.url}}" target="_blank">More info <lr-ext-link-icon></lr-ext-link-icon></a>
+				<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+					Hide this alert
+					<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+				</md-button>
+			</p>
+		</div>
+	<!-- Edit your own below this comment -->
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2023-03-09',
+	endDate: '2023-03-31',
+	cookieID: 'requesting',
+	daysToHide: 30
+	});">
+		<p layout-margin layout-align="center center">
+			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+			The ARC Library will be closed for 3 weeks beginning March 13, 2023. During the closure requested items can be picked up at the <a href="https://answers.library.losrios.edu/arc/faq/384900">LRC</a>. 
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+				Hide this announcement
+				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
 </md-content>

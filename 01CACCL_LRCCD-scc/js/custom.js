@@ -720,13 +720,39 @@
 		controller: 'lrTopAnnouncementController',
 		templateUrl: custPackagePath + '/html/top-announcement.html' // enter content into / uncomment this template to show the announcement
 	});
-	app.controller('lrTopAnnouncementController', ['$cookies', '$timeout', function($cookies, $timeout) {
+	app.controller('lrTopAnnouncementController', ['$cookies', '$timeout', '$http', function($cookies, $timeout, $http) {
 		const vm = this;
 		vm.$onInit = () => {
 			vm.fade = ''; // used for adding classes when dissmissing
 			vm.hide = false;
+			vm.alertHidden = '';
 			vm.cookieID = 'lrHideOSAnnce' + '_' + colAbbr; // default cookieID, if not set in ng-if object
+			let lrsaCookie = '';
+			let lrsaCookieHide = 0;
 			vm.daysToHide = 14; // default days that banner is hidden if user dismisses
+			// see if there are any urgent alerts in LibAnswers
+			$http
+				.get(
+					'https://library.losrios.edu/utilities/primo-faq-getter/get-faq.php?group=urgent-alerts'
+				)
+				.then((response) => {
+					if (response.data) {
+						const faq = response.data.faqs[0];
+						if (faq) {
+							console.log(faq);
+							vm.question = faq.question;
+							vm.url = faq.url.public;
+							lrsaCookie = `lr${faq.question.slice(0, 3)}${faq.updated
+								.slice(0, 10)
+								.replace(/-/g, '')}-${colAbbr}`;
+							lrsaCookieHide = 2;
+							vm.alertHidden = 'lr-system-alert';
+							if ($cookies.get(lrsaCookie) !== 'true') {
+								vm.systemAlert = true;
+							}
+						}
+					}
+				});
 			vm.showAnnounce = (obj) => {
 				if (vm.hide === true) { // this happens after dismiss button is pressed
 					return false;
@@ -758,9 +784,16 @@
 				}
 			};
 			vm.hideAnnounce = function() {
-				const cookieKey = vm.cookieID;
+				let cookieKey = vm.cookieID;
+				if ((lrsaCookie !== '') && (vm.systemAlert === true)) {
+					cookieKey = lrsaCookie;
+				}
 				const d = new Date();
-				d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); // two weeks
+				if ((lrsaCookieHide > 0) &&  (vm.systemAlert === true)) {
+					vm.daysToHide = lrsaCookieHide;
+				} 
+				console.log(lrsaCookieHide);
+				d.setTime(d.getTime() + (vm.daysToHide * 24 * 60 * 60 * 1000)); 
 				vm.fade = 'lr-fadeout'; // allows animation via class
 				$timeout(() => {
 					$cookies.put(cookieKey, 'true', {
@@ -770,6 +803,7 @@
 						'sameSite': 'Lax'
 					}); // set cookie to stop showing announcement
 					vm.hide = true; // removes element so space stops showing
+					vm.hideBlock = 'lr-hide-block';
 				}, 300);
 				return true;
 			};

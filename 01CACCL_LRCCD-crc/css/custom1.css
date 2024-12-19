@@ -91,6 +91,8 @@ prm-gallery-collections-list h2 {position: absolute; left:-999999px;}
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#fff; /*crc*/ background: #F26E21 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
 lr-top-announcement .md-button {color:#fff;}
+/* hide second banner when LibAnswers alert is retrieved */
+lr-top-announcement .lr-system-alert ~ div {display:none;}
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */

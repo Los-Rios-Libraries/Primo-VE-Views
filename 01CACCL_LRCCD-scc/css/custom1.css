@@ -97,6 +97,10 @@ lr-collections-show-availability div {background:#fff; padding: 0 0 1em 8px;marg
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*scc*/ background:#fde373 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
 lr-top-announcement .md-button {color:#000;}
+/* hide second banner when LibAnswers alert is retrieved */
+lr-top-announcement .lr-system-alert ~ div {display:none;}
+.lr-hide-block {display:none;}
+
 	/* lighten card background */
 md-card.default-card {background:#fafafa;}
 /* other card adjustments */

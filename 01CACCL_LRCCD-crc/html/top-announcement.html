@@ -1,16 +1,30 @@
 <!-- documentation: https://answers.library.losrios.edu/lrcq/faq/343616 -->
-<md-content ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-startDate: '2024-12-12',
-endDate: '2024-12-20',
-cookieID: 'endofterm',
-daysToHide: 30
-});">
-	<p layout-margin layout-align="center center">
-		<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-		Please return all borrowed items by Thursday, December 19. <a href="https://answers.library.losrios.edu/crc/faq/320267" target="_blank">More info <lr-ext-link-icon></lr-ext-link-icon></a>
-		<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-			Hide this announcement
-			<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
-		</md-button>
-	</p>
+<md-content ng-class="$ctrl.hideBlock">
+	<!-- First block here should not be edited. It retrieves urgent system alerts from LibAnswers and will preempt any banners below-->
+		<div ng-if="$ctrl.systemAlert" ng-class="[$ctrl.fade, $ctrl.alertHidden]">
+			<p layout-margin layout-align="center center">
+				<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+				{{::$ctrl.question}}. <a ng-href="{{::$ctrl.url}}" target="_blank">More info <lr-ext-link-icon></lr-ext-link-icon></a>
+				<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+					Hide this alert
+					<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+				</md-button>
+			</p>
+		</div>
+	<!-- Edit your own below this comment -->
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2024-12-12',
+	endDate: '2024-12-20',
+	cookieID: 'endofterm',
+	daysToHide: 30
+	});">
+		<p layout-margin layout-align="center center">
+			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+			Please return all borrowed items by Thursday, December 19. <a href="https://answers.library.losrios.edu/crc/faq/320267" target="_blank">More info <lr-ext-link-icon></lr-ext-link-icon></a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+				Hide this announcement
+				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
 </md-content>
