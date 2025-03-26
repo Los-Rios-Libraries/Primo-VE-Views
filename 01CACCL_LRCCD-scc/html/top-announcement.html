@@ -13,13 +13,14 @@
 	</div>
 <!-- Edit your own below this comment -->	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	cookieID: 'requests',
-	daysToHide: 20,
-	endDate: '2025-01-05'
+	cookieID: 'ccd',
+	daysToHide: 7,
+	startDate: '2025-03-29',
+	endDate: '2025-03-31'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			The ability to request items will be restored on January 6, 2025.
+			The library will be closed for C&#233;sar Ch&#225;vez Day on Monday, March 31.
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
