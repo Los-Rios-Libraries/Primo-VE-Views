@@ -28,6 +28,21 @@
 	</div>
 	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2025-04-11',
+	endDate: '2025-04-16',
+	cookieID: 'specialEvent',
+	daysToHide: 10
+	});">
+		<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+			Main campus library hours may be impacted by a special event on Tuesday, April 15.
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 	startDate: '2025-05-14',
 	endDate: '2025-05-22',
 	cookieID: 'itemsDue',
