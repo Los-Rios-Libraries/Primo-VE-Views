@@ -67,6 +67,42 @@
 	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
 	const app = angular.module('viewCustom', ['angularLoad']);
 	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
+	app.component('prmGalleryItemAfter', {
+		bindings: {parentCtrl: '<'},
+		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability>'
+	});
+	// show availability note in collection.
+	app.component('lrCollectionsShowAvailability', {
+		bindings: { parentCtrl: '<' },
+		templateUrl: custPackagePath + '/html/collections/availability.html',
+		controller: function () {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.$doCheck = () => {
+					if (vm.parentCtrl.item) {
+						if (vm.parentCtrl.item.delivery) {
+							let status = 'unavailable';
+							const holdingArr = vm.parentCtrl.item.delivery.holding;	
+							if (holdingArr) {
+								for (let holding of holdingArr) {
+									if ((holding.libraryCode === colAbbr.toUpperCase()) && (holding.availabilityStatus === 'available')) {
+										vm.availability = 'Items currently available';
+										vm.avClass = 'available_in_library';
+										status = 'available';
+										break;
+									} 
+								}
+							}
+							if (status === 'unavailable') {
+								vm.availability = 'No items currently available';
+								vm.avClass = 'unavailable';
+							}
+						}
+					}
+				};
+			};
+		}
+	});
 	app.component('lrNewbooksDisplay', {
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'

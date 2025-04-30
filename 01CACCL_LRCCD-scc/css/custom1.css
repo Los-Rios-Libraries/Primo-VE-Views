@@ -89,8 +89,7 @@ prm-gallery-collections-list h2 {position: absolute; left:-999999px;}
 .collection-folder h3 span {display:block !important;}
 
 
-/* availability statement in collections, so far only used at SCC - also see mobile */
-/* lr-collections-show-availability .availability-status {padding-left:7px; display:inline-block; position:relative; top:-2em;} */
+/* availability statement in collections, so far only used at ARC and SCC - also see mobile */
 lr-collections-show-availability div {background:#fff; padding: 0 0 1em 8px;margin-top:-1em;}
 .is-grid-view prm-gallery-item {margin-bottom: 2rem;}
 /* announcement below search bar, if used */

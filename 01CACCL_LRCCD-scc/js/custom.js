@@ -66,12 +66,13 @@
 		];
 	const custPackagePath = `/discovery/custom/01CACCL_${viewCode.env}-${viewCode.view}`;
 	const app = angular.module('viewCustom', ['angularLoad']);
-	//** START SCC-ONLY COMPONENTS
+	
+	// ** START SCC/ARC-ONLY COMPONENTS -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('prmGalleryItemAfter', {
 		bindings: {parentCtrl: '<'},
 		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability>'
 	});
-	// show availability note in collection. So far only used for SCC technology collection
+	// show availability note in collection.
 	app.component('lrCollectionsShowAvailability', {
 		bindings: { parentCtrl: '<' },
 		templateUrl: custPackagePath + '/html/collections/availability.html',
@@ -103,7 +104,6 @@
 			};
 		}
 	});
-	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('lrNewbooksDisplay', {
 		templateUrl: custPackagePath + '/html/homepage/newbooks-display.html',
 		controller: 'lrNewbooksDisplayController'

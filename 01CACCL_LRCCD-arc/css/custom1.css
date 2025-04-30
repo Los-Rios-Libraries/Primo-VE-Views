@@ -86,6 +86,10 @@ prm-gallery-collections-list h2 {position: absolute; left:-999999px;}
 .collection-folder h3 {font-size:24px;}
 .collection-folder h3 span {display:block !important;}
 
+/* availability statement in collections, so far only used at ARC and SCC - also see mobile */
+lr-collections-show-availability div {background:#fff; padding: 0 0 1em 8px;margin-top:-1em;}
+.is-grid-view prm-gallery-item {margin-bottom: 2rem;}
+
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#000; /*arc*/ background:#F8E6E9 !important;}
 lr-top-announcement a.md-primoExplore-theme {margin:0;}
@@ -335,6 +339,9 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 	}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
+}
+@media only screen and (max-width: 480px) {
+	lr-collections-show-availability .availability-status {top:-40px;}
 }
 @media print {
 	prm-topbar, .default-toolbar,prm-collection-discovery-view-switcher, .s-lch-widget-float, prm-collection-search, prm-save-to-favorites-button, button[ng-if="$ctrl.hasNextResults"], prm-explore-footer {display:none !important;}
