@@ -13,14 +13,28 @@
 	</div>
 <!-- Edit your own below this comment -->	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	cookieID: 'ccd',
-	daysToHide: 7,
-	startDate: '2025-03-29',
-	endDate: '2025-03-31'
+	cookieID: 'return',
+	daysToHide: 8,
+	endDate: '2025-05-27'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			The library will be closed for C&#233;sar Ch&#225;vez Day on Monday, March 31.
+			Please return your library items by Thursday, May 22 at 8:00 pm. <a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">More on returns <lr-ext-link-icon></lr-ext-link-icon></a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+				Hide this announcement
+				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	cookieID: 'requests',
+	daysToHide: 8,
+	startDate: '2025-05-28'
+	endDate: '2025-06-01'
+	});">
+		<p layout-margin layout-align="center center">
+			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+			The ability to request items will be restored on June 2, 2025.
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
