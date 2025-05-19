@@ -69,7 +69,7 @@
 	// ** START SCC/ARC-ONLY COMPONENT -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('prmGalleryItemAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability>'
+		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability><lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge>'
 	});
 	// show availability note in collection.
 	app.component('lrCollectionsShowAvailability', {
@@ -1354,6 +1354,7 @@
 						if ((data.crName) && (data.currency)) {
 							vm.badge = true; // set property that allows the badges to show
 							creator.crName = data.crName;
+							creator.creatorType = data.role;
 							const zTitle = 'affiliated';
 							let connector = 'with';
 							let currency = 'is';

@@ -20,4 +20,11 @@
 			</div>
 		</div>
 	</div>
+	<div ng-if="::$ctrl.parentCtrl.searchService.$location.$$url.indexOf('/collectionDiscovery') === 0">
+		<div ng-repeat="a in $ctrl.creators" layout="row">
+			<div>
+				{{::a.crName}} - {{::a.creatorType}}
+			</div>
+		</div>
+	</div>
 </div>

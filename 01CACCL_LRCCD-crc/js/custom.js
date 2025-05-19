@@ -1108,6 +1108,7 @@
 						if ((data.crName) && (data.currency)) {
 							vm.badge = true; // set property that allows the badges to show
 							creator.crName = data.crName;
+							creator.creatorType = data.role;
 							const zTitle = 'affiliated';
 							let connector = 'with';
 							let currency = 'is';
