@@ -1136,7 +1136,7 @@
 			<div ng-if="::($ctrl.subjQuery || $ctrl.subjFacet || $ctrl.isDetails)" ng-hide="::$ctrl.hide">
 				<div layout="row" layout-margin >
 		        	<div layout="column" layout-align="center" flex="75" class="{{$ctrl.highlight}}" ng-init="$ctrl.fadeHighlight();" >
-		                <a ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
+		                <a layout-padding ng-href="{{::$ctrl.faqLink}}" target="_blank">{{$ctrl.subjFaqTitle}} <lr-ext-link-icon></lr-ext-link-icon></a>
 		        	</div>
 					<div layout="column" layout-align="center end" flex="25"> 
 						<md-button>
