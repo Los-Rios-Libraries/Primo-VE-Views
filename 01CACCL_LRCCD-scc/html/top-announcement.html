@@ -14,12 +14,13 @@
 <!-- Edit your own below this comment -->	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 	cookieID: 'return',
-	daysToHide: 8,
-	endDate: '2025-05-27'
+	daysToHide: 10,
+	startDate: '2025-07-31',
+	endDate: '2025-08-07'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			Please return your library items by Thursday, May 22 at 8:00 pm. <a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">More on returns <lr-ext-link-icon></lr-ext-link-icon></a>
+			Please return your library items by Thursday, August 7 at 6:00 pm. <a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">More on returns <lr-ext-link-icon></lr-ext-link-icon></a>
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
@@ -29,12 +30,12 @@
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 	cookieID: 'requests',
 	daysToHide: 8,
-	startDate: '2025-05-28',
-	endDate: '2025-06-01'
+	startDate: '2025-08-10',
+	endDate: '2025-08-17'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			The ability to request items will be restored on June 2, 2025.
+			The ability to request items will be restored on August 18.
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
