@@ -86,6 +86,8 @@ prm-gallery-collections-list h2 {position: absolute; left:-999999px;}
 .collection-folder .item-meta {position: absolute; left: -999999px;}
 .collection-folder h3 {font-size:24px;}
 .collection-folder h3 span {display:block !important;}
+/* links in collection description */
+.collection-info a {color:#fff; border-bottom: 4px solid rgba(256,256,256,0.8);}
 
 /* announcement below search bar, if used */
 lr-top-announcement md-content {text-align:center; font-size:1.3rem; color:#fff; /*crc*/ background: #F26E21 !important;}
