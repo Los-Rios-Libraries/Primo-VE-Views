@@ -856,6 +856,12 @@
 									else { // if expiration date isn't set, add a year so that difference will be positive
 										expiration = addOneYear(new Date());
 									}
+									if (data.noteType) {
+										vm.noteType = `lr-note-${data.noteType}`;
+									}
+									else {
+										vm.noteType = '';
+									}
 									vm.remainingTime = expiration - today; // this number will be 0 if day is same, negative if exp date is in the past, otherwise positive
 									vm.$doCheck = () => {
 										//  property used for "location-items" area is not populated when directive is initially constructed so we need $doCheck
