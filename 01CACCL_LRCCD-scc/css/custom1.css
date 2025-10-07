@@ -255,6 +255,11 @@ prm-search-result-availability-line-after lr-problem-reporter button {font-size:
 #action_list .section-body {background: #F2F2F2; padding-top: 0.5em;}
 /* reduce margins in various sections in full display */
 .full-view-section {margin-top:1em;}
+/* SCC recommended local 591 notes */
+.lr-note:has(.lr-note-sccRec) {padding:10px;margin-left:10px; margin-right:10px; margin-bottom:10px; border:2px solid #ffce00;}
+.lr-note-sccRec {margin-left:50px; margin-right:30px; text-indent:-25px;}
+.lr-note-sccRec svg {width:18px; color:#800a28;}
+.lr-note-sccRec-quote {font-style: italic;}
 /* local notes under holdings */
 prm-locations-after .lr-note, prm-location-items-after .lr-note {background:#fff; padding: 1em; margin-top:-1em;}
 prm-opac-after .lr-note {padding-bottom:1em;}
