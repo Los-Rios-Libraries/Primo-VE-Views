@@ -3,6 +3,7 @@
     <div class="lr-note" ng-repeat="note in ::$ctrl.notes" ng-if="::$ctrl.remainingTime > 0">
         <div ng-class="::$ctrl.noteType" >
             <span ng-if="::note.noteText" ng-hide="::$ctrl.library">
+                <md-icon ng-if="::note.noteType==='sccRec'" md-svg-icon="action:ic_thumb_up_24px" aria-label="Recommended title"></md-icon>
                 <span ng-bind-html="::note.noteText"> </span>
             </span>
             <a ng-if="::(note.url && note.linkText)" ng-href="{{::note.url}}" target="_blank">{{note.linkText}}
