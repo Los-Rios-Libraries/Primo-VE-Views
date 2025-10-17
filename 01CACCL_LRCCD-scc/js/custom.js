@@ -70,7 +70,7 @@
 	// ** START SCC/ARC-ONLY COMPONENTS -- NOT INCLUDED IN OTHER COLLEGE FILES **
 	app.component('prmGalleryItemAfter', {
 		bindings: {parentCtrl: '<'},
-		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability><lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge>'
+		template: '<lr-collections-show-availability parent-ctrl="$ctrl.parentCtrl"></lr-collections-show-availability><lr-local-creator-badge parent-ctrl="$ctrl.parentCtrl"></lr-local-creator-badge><lr-localnote parent-ctrl="$ctrl.parentCtrl" location="collectionresults"></lr-localnote>'
 	});
 	// show availability note in collection.
 	app.component('lrCollectionsShowAvailability', {
