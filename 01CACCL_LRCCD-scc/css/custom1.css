@@ -258,7 +258,7 @@ prm-search-result-availability-line-after lr-problem-reporter button {font-size:
 /* SCC recommended local 591 notes */
 prm-gallery-item-after:has(.lr-note-sccRec) {position:relative; top:-4em; left:10px; font-style:italic; font-size:.9em;}
 prm-gallery-item-after .lr-note-sccRec-quote, prm-gallery-item-after .lr-note-sccRec md-icon, prm-gallery-item-after .lr-note-sccRec-dash, prm-opac-after .lr-note-sccRec-recby, .is-gallery-view .lr-note-sccRec {display:none;}
-prm-gallery-item-after .lr-note-sccRec {padding-right:8px;}
+prm-gallery-item-after .lr-note-sccRec {padding-right:8px; margin-top:4px;}
 prm-opac-after .lr-note:has(.lr-note-sccRec) {padding:10px;margin-left:10px; margin-right:10px; margin-bottom:10px; border:2px solid #ffce00;}
 prm-opac-after .lr-note-sccRec {margin-left:50px; margin-right:30px; text-indent:-25px;}
 .lr-note-sccRec svg {width:18px; color:#800a28;}
