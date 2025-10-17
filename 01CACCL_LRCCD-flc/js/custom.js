@@ -840,7 +840,7 @@
 								// template has location attribute to designate where it is placed
 								if (
 									data.displayArea &&
-									data.displayArea.toLowerCase() === $attrs.location
+									data.displayArea.toLowerCase().includes($attrs.location)
 								) {
 									vm.views = data.views || ''; // used for ng-if in template
 									const addOneYear = (date) => {
