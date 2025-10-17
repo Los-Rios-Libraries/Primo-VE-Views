@@ -361,6 +361,7 @@ lr-alma-d-notes div {margin-bottom:20px;}
 	.lr-ft-college-column {margin-bottom:2em;}
 	.lr-ft-college {min-height: auto;}
 	
+	prm-opac-after .lr-note-sccRec {margin-right:2px; padding:4px; margin-left:4px; text-indent:8px;}
 }
 @media only screen and (max-width: 480px) {
 	lr-collections-show-availability .availability-status {top:-40px;}
