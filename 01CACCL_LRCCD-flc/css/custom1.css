@@ -152,8 +152,8 @@ span[translate="fulldisplay.HTML"], span[translate="fulldisplay.HTML"] + prm-ico
 #links prm-quick-link, #links.full-view-section prm-quick-link .spaced-rows {margin:unset;}
 /* link to info about subject headings */
 lr-subject-faq .layout-row {background:#fff;}
-/*  remove background in footer */
-#footer lr-subject-faq .layout-row {background:unset;}
+/* remove dismiss button for subject faq link in details area */
+prm-service-details lr-subject-faq .md-button {display: none;}
 
 /*fix ILL link having gray around it in full display, add padding to location heading and make location items in full display white boxes, & "more" menu contrast - from update below*/
 alma-howovp div:first-child {background:#fff;}
