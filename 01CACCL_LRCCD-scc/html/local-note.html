@@ -1,14 +1,13 @@
-<div ng-if="::($ctrl.views.indexOf($ctrl.currentView)>-1 ||$ctrl.views==='')"
-    ng-hide="($ctrl.views !== '' && ($ctrl.currentLib && $ctrl.views.indexOf($ctrl.currentLib)===-1))">
-    <div class="lr-note" ng-repeat="note in ::$ctrl.notes" ng-if="::$ctrl.remainingTime > 0">
-        <div ng-class="::$ctrl.noteType" >
-            <span ng-if="::note.noteText" ng-hide="::$ctrl.library">
+<div ng-repeat="note in ::$ctrl.notes" >
+    <div class="lr-note" ng-if="((note.views.indexOf($ctrl.currentView)>-1 ||note.views==='')&& (note.remainingTime > 0))">
+        <div ng-class="note.noteType" >
+            <span ng-if="::note.noteText">
                 <md-icon ng-if="::note.noteType==='sccRec'" md-svg-icon="action:ic_thumb_up_24px" aria-label="Recommended title"></md-icon>
                 <span ng-bind-html="::note.noteText"> </span>
             </span>
             <a ng-if="::(note.url && note.linkText)" ng-href="{{::note.url}}" target="_blank">{{note.linkText}}
-                <lr-ext-link-icon> <lr-ext-link-icon>
+                <lr-ext-link-icon><lr-ext-link-icon>
             </a>
-        </div>       
+        </div>
     </div>
 </div>
