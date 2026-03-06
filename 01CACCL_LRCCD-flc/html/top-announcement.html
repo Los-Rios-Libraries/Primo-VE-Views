@@ -14,21 +14,6 @@
 	<!-- Edit your own below this comment -->
 	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	startDate: '2025-08-25',
-	endDate: '2025-09-10',
-	cookieID: 'tempHours',
-	daysToHide: 10
-	});">
-		<p layout-margin layout-align="center center">
-		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
-			Main campus library hours temporarily reduced. Please check our <a href="https://flc.losrios.edu/student-resources/library/about-the-library/library-hours" target="_blank">hours page</a> before visiting.
-			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
-			</md-button>
-		</p>
-	</div>
-	
-	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
 	startDate: '2025-12-11',
 	endDate: '2025-12-19',
 	cookieID: 'itemsDue',
@@ -37,6 +22,36 @@
 		<p layout-margin layout-align="center center">
 		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
 			Library items are due back by Thursday, December 18. <a href="https://answers.library.losrios.edu/flc/faq/327551" target="_blank">Where can I return library items?</a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2025-12-19',
+	endDate: '2026-01-16',
+	cookieID: 'winterBreak',
+	daysToHide: 10
+	});">
+		<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+			The FLC and EDC libraries are closed during winter recess. See you in the new year! <a href="https://answers.library.losrios.edu/flc/faq/327551" target="_blank">Where can I return library items?</a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2026-01-20',
+	endDate: '2026-01-30',
+	cookieID: 'springWelcome',
+	daysToHide: 10
+	});">
+		<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+			Welcome back! Did you know the library has textbooks to borrow? <a href="https://www.library.losrios.edu/textbooks/?flc" target="_blank">Search for your textbook</a>
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
 			</md-button>
