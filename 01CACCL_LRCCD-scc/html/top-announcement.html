@@ -13,28 +13,14 @@
 	</div>
 <!-- Edit your own below this comment -->	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	cookieID: 'return',
-	daysToHide: 3,
-	endDate: '2025-12-18'
+	cookieID: 'spring-break',
+	daysToHide: 7,
+	startDate: '2026-03-15',
+	endDate: '2026-03-21'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			Please return your library items by Thursday, December 18 at 8:00 pm. <a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">More on returns <lr-ext-link-icon></lr-ext-link-icon></a>
-			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
-				Hide this announcement
-				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
-			</md-button>
-		</p>
-	</div>
-	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	cookieID: 'requests',
-	daysToHide: 10,
-	startDate: '2025-12-27',
-	endDate: '2026-01-04'
-	});">
-		<p layout-margin layout-align="center center">
-			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			The ability to request items will be restored on January 5.
+			Note our special <a href="https://scc.losrios.edu/student-resources/library/library-daily-hours" target="_blank">spring recess hours <lr-ext-link-icon></lr-ext-link-icon></a>.
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
