@@ -1,5 +1,5 @@
 <div ng-repeat="note in ::$ctrl.notes" >
-    <div class="lr-note" ng-if="((note.views.indexOf($ctrl.currentView)>-1 ||note.views==='')&& (note.remainingTime > 0))">
+    <div class="lr-note" ng-if="((note.views.indexOf($ctrl.currentView)>-1 || !note.views)&& (note.remainingTime > 0))">
         <div ng-class="note.noteType" >
             <span ng-if="::note.noteText">
                 <md-icon ng-if="::note.noteType.includes('sccRec')" md-svg-icon="action:ic_thumb_up_24px" aria-label="Recommended title"></md-icon>
