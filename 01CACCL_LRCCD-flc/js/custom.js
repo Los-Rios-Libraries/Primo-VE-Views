@@ -209,6 +209,12 @@
 	// featured collections widget for home page
 	app.component('lrFeaturedCollections', { // see template for list of collections
 		templateUrl: custPackagePath + '/html/homepage/featured-collections.html',
+		controller: function() {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.view = colAbbr;
+			};
+		}
 	});
 	// links to info about digital objects / alma-d
 	app.component('prmAlmaViewitItemsAfter', {

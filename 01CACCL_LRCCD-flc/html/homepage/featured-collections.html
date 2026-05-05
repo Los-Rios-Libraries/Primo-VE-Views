@@ -26,7 +26,7 @@
                         'title': 'Cookbooks'
                     }                    
                     ]">
-                        <a class="zero-margin arrow-link" title="{{::c.title}} collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:scc&amp;collectionId={{::c.id}}">
+                        <a class="zero-margin arrow-link" title="{{::c.title}} collection" href="/discovery/collectionDiscovery?vid=01CACCL_LRCCD:{{::$ctrl.view}}&amp;collectionId={{::c.id}}">
 							<img loading="lazy" alt="" ng-src="https://na05.alma.exlibrisgroup.com/view/delivery/thumbnail/01CACCL_LRCCD/{{::c.id}}">
 							<div>{{::c.title}} <prm-icon class="arrow-link md-primoExplore-theme" link-arrow="" icon-type="svg" svg-icon-set="primo-ui" icon-definition="chevron-right"></prm-icon></div>
 						</a>
