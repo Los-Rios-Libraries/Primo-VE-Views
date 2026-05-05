@@ -320,6 +320,9 @@ lr-delivery-limited a {float:right; padding:0 10px; background: #fff;}
 button[aria-label="Request Issue"], button[aria-label="Request Other Issue"], button[aria-label="General Digitization"] {display: none;}
 
 #public-note, span[ng-bind="item.authNote"] {color:#3a3a3a; font-style: normal;}
+
+/* hide bad journal label introduced spring 2026 */
+li[translate="nui.journalsearch.category.option2"] {display:none;}
 /* browse */
 prm-browse-result .md-list-item-inner {background:#fff !important; margin-bottom:8px;}
 prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shadow: 1px 2px #b9b9b9;}
