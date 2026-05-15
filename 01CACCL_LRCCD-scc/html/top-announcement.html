@@ -13,14 +13,29 @@
 	</div>
 <!-- Edit your own below this comment -->	
 	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
-	cookieID: 'spring-break',
+	cookieID: 'return-items',
 	daysToHide: 7,
-	startDate: '2026-03-15',
-	endDate: '2026-03-21'
+	startDate: '2026-05-17',
+	endDate: '2026-05-21'
 	});">
 		<p layout-margin layout-align="center center">
 			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
-			Note our special <a href="https://scc.losrios.edu/student-resources/library/library-daily-hours" target="_blank">spring recess hours <lr-ext-link-icon></lr-ext-link-icon></a>.
+			Please return your items by Thursday, May 21. <a href="https://answers.library.losrios.edu/scc/faq/316527" target="_blank">More info <lr-ext-link-icon></lr-ext-link-icon></a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+				Hide this announcement
+				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	cookieID: 'requests',
+	daysToHide: 10,
+	startDate: '2026-05-22',
+	endDate: '2026-05-31'
+	});">
+		<p layout-margin layout-align="center center">
+			<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>
+			The ability to request items will be restored on Monday, June 1.
 			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
 				Hide this announcement
 				<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
