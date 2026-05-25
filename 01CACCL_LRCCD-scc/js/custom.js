@@ -279,9 +279,7 @@
 				makeList(newBooksArr[params.report]);
 			} else {
 				// this will happen on initial page load
-				$http.get(`${districtHost + filePath}utilities/analytics/analytics-proxy.php?report=${params.reportName}`)
 					.then((response) => {
-						const arr = response.data.QueryResult.ResultXml.rowset.Row; // table
 						console.log(arr);
 						// randomize the array
 						const shuffledArr = shuffleArr(arr);
@@ -292,6 +290,11 @@
 						console.log('http get error: ');
 						console.log(response);
 					});
+					$http
+						.get(
+							`https://na-workflows.hosted.exlibrisgroup.com/60d0c170-306f-43b5-a6a4-a9d81bda2fc4/webhook/new-titles-for-primo-widget?college=${colAbbr}`
+						)
+								const arr = response.data.data;
 			}
 			vm.addBooks = () => {
 				makeList(newBooksArr[params.report]);
