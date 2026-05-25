@@ -274,27 +274,49 @@
 					return ['flex-20', 'flex-xs-40'];
 				}
 			};
-			if (typeof(newBooksArr[params.report]) !== 'undefined') {
+			const initializeArray = (arr) => {
+				// randomize the array
+				const shuffledArr = shuffleArr(arr);
+				newBooksArr[params.report] = shuffledArr; // cache randomized array of new title objects as object property value
+				makeList(newBooksArr[params.report]);
+			};
+			if (typeof newBooksArr[params.report] !== 'undefined') {
 				// this will happen if user comes back to home page from elsewhere in Primo
 				makeList(newBooksArr[params.report]);
 			} else {
-				// this will happen on initial page load
-					.then((response) => {
-						console.log(arr);
-						// randomize the array
-						const shuffledArr = shuffleArr(arr);
-						newBooksArr[params.report] = shuffledArr; // cache randomized array of new title objects as object property value
-						makeList(newBooksArr[params.report]);
-					}, (response) => { // on error, hide the card and log error to console
-						vm.bookList = false;
-						console.log('http get error: ');
-						console.log(response);
-					});
+				if ($window.sessionStorage.getItem('newBooksArr' + colAbbr)) {
+					// this will happen if user refreshes page or returns to home page after leaving Primo and session storage is not cleared
+					const arr = angular.fromJson(
+						$window.sessionStorage.getItem('newBooksArr' + colAbbr)
+					);
+					console.log('got new books array from session storage');
+					console.log(arr);
+					initializeArray(arr);
+				} else {
+					console.log('no new books array in session storage');
+					// this will happen on initial page load
 					$http
 						.get(
 							`https://na-workflows.hosted.exlibrisgroup.com/60d0c170-306f-43b5-a6a4-a9d81bda2fc4/webhook/new-titles-for-primo-widget?college=${colAbbr}`
 						)
+						.then(
+							(response) => {
 								const arr = response.data.data;
+								$window.sessionStorage.setItem(
+									'newBooksArr' + colAbbr,
+									angular.toJson(arr)
+								);
+								console.log(arr);
+								initializeArray(arr);
+							},
+							(response) => {
+								// on error, hide the card and log error to console
+								vm.bookList = false;
+								console.log('http get error: ');
+								console.log(response);
+							}
+						);
+				}
 			}
 			vm.addBooks = () => {
 				makeList(newBooksArr[params.report]);
