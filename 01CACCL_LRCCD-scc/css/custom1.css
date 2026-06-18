@@ -338,6 +338,8 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 #subfooter a:hover, #subfooter a:focus {box-shadow:inset 0 -2px 0 0 #fff;}
 .lr-ft-college {min-height:50%;}
 #lr-libraries-logo {margin-bottom:20px;}
+/* hide nde-directed material design icons */
+.material-icons {display:none;}
 
 /* chat widget */
 .s-lch-widget-float {right:80px !important;}
