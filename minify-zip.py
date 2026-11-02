@@ -1,21 +1,13 @@
 import os
 import zipfile
-import subprocess
+import rjsmin
 
 def advanced_minify_js(js_code):
     try:
-        result = subprocess.run(
-    ["uglifyjs", "--compress", "--mangle"],
-    input=js_code.encode("utf-8"),
-    stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE,
-    shell=True,  # <-- required on Windows for .cmd wrappers
-    check=True
-)
-        return result.stdout.decode("utf-8")
-    except subprocess.CalledProcessError as e:
-        print("UglifyJS error:", e.stderr.decode("utf-8"))
-        return js_code  # fallback to original code if minification fails
+        return rjsmin.jsmin(js_code)
+    except Exception as e:
+        print("Minification error:", e)
+        return js_code
 
 def zip_directory(path):
     root_dir = os.path.basename(path)
