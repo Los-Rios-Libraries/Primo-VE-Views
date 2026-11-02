@@ -221,7 +221,7 @@ prm-search-result-availability-line-after lr-problem-reporter button {font-size:
 prm-locations-after .lr-note, prm-location-items-after .lr-note {background:#fff; padding: 1em; margin-top:-1em;}
 prm-opac-after .lr-note {padding-bottom:1em;}
 /* hide 856 links in full record */
-div[ng-repeat="link in $ctrl.getLinks()"] {display:none;}
+.links-list li:not(:has(a[href^="/discovery/sourceRecord?"])) {display:none;}
 /* put request prompt after holdings table */
 prm-opac{ display: flex; flex-direction: column;}
 prm-opac > div {order:2!important}
