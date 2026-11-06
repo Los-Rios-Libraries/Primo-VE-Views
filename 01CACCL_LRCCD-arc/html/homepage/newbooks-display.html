@@ -10,7 +10,7 @@
 			<div>
 				<ul layout="row" layout-wrap>
 					<li layout-margin ng-repeat="book in $ctrl.bookList" ng-class="[$ctrl.itemFormat(book.mat_type), $ctrl.varyFlex(book.identifier), $ctrl.checkIdentifier(book.identifier)]" ng-attr-id="{{::$ctrl.makeId(book.identifier)}}">
-						<a ng-attr-title="{{::book.title}}" ng-href="/discovery/fulldisplay?docid=alma{{::book.mms_id}}5325&amp;context=L&amp;vid=01CACCL_LRCCD:{{::$ctrl.colAbbr}}&amp;search_scope={{::$ctrl.colAbbr}}_everything&amp;adaptor=Local Search Engine&amp;tab=everything" ng-click="$ctrl.scroll();">
+						<a ng-attr-title="{{::book.title}}" ng-href="/discovery/fulldisplay?docid=alma{{::book.mms_id}}5325&amp;context=L&amp;vid=01CACCL_LRCCD:{{::$ctrl.viewCode}}&amp;search_scope={{::$ctrl.colAbbr}}_everything&amp;adaptor=Local Search Engine&amp;tab=everything" ng-click="$ctrl.scroll();">
 							<img loading="lazy" ng-src="{{::$ctrl.imgSrc(book.identifier);}}" ng-attr-alt="{{::book.title}}" ng-on-load="::$ctrl.checkImg('lr_' + book.identifier);" onerror="this.src='https://via.placeholder.com/140x160';">
 							<md-icon class="lr-play-vid" md-svg-icon="av:ic_play_circle_outline_24px" aria-label="streaming video or audio"></md-icon>
 							<span class="lr-newbook-title" ng-bind-html="::$ctrl.truncateTitle(book.title)"></span>

@@ -112,6 +112,7 @@
 		const vm = this;
 		vm.$onInit = () => {
 			vm.colAbbr = colAbbr;
+			vm.viewCode = viewCode.view;
 			const idRegex = /(^(978\d{10})|(\d{9}[\dxX])$)|^(kan|loc)_/;
 			console.log($attrs.model);
 			const params = JSON.parse($attrs.model); // set in model attribute of directive. see https://stackoverflow.com/a/23612752/1903000
@@ -484,7 +485,7 @@
 		controller: function() {
 			const vm = this;
 			vm.$onInit = () => {
-				vm.view = colAbbr;
+				vm.view = viewCode.view;
 			};
 		}
 	});

@@ -212,7 +212,7 @@
 		controller: function() {
 			const vm = this;
 			vm.$onInit = () => {
-				vm.view = colAbbr;
+				vm.view = viewCode.view;
 			};
 		}
 	});
