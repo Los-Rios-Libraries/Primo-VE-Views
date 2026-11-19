@@ -738,8 +738,22 @@
 			};	
 		};
 	});
+	app.component('lrLinkToNde', {
+		// bindings: { parentCtrl: '<' },
+		template: '<div class="lr-linktonde" layout="row" layout-align="end-center"><md-button layout-column class="md-raised" ng-href="https://caccl-lrccd.primo.exlibrisgroup.com/nde/home?vid=01CACCL_LRCCD:{{ $ctrl.view }}&lang=en" target="_blank">Preview the new OneSearch <lr-ext-link-icon></lr-ext-link-icon></md-button></div>',
+		controller: function () {
+			const vm = this;
+			vm.$onInit = () => {
+				vm.view = colAbbr.toUpperCase();
+			};
+		}
+	});
+	// app.component('prmExploreMainAfter', {
+	// 	template: '<lr-link-to-nde></lr-link-to-nde>'
+	// });
 	app.component('prmBackToLibrarySearchButtonAfter', { 
 		template: '<lr-top-announcement></lr-top-announcement>'
+		// template: '<lr-top-announcement></lr-top-announcement><lr-link-to-nde></lr-link-to-nde>'
 	});
 	app.component('prmBackToSearchResultsButtonAfter', { 
 		template: '<lr-top-announcement></lr-top-announcement>'

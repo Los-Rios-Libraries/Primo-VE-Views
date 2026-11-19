@@ -333,6 +333,10 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 .s-lch-widget-float-btn {background: #fff !important;}
 
 .lr-single-column-card {margin:auto;}
+.lr-linktonde {background:#F2F2F2;  position:relative;z-index:1000; padding-right:10px;}
+.lr-linktonde a {background: #fff;  position:absolute;top:20px; text-transform:unset;}
+prm-explore-main-after .lr-linktonde {display:none;}
+
 
 @media screen and (max-width:960px) {
 	.search-wrapper {margin-left: 0;}
@@ -344,6 +348,9 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 		/* digital help note */
 lr-alma-d-notes div {margin-bottom:20px;}
 .is-grid-view prm-gallery-item {margin-bottom: 3rem;}
+prm-back-to-library-search-button-after .lr-linktonde {display:none;}
+prm-explore-main-after .lr-linktonde {display:flex; }
+.lr-linktonde a {position:static;}
 }
 
 
