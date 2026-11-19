@@ -135,7 +135,8 @@ prm-main-menu.isServicePage {display:unset;}
 #lr-onesearch-vid-headline {position:absolute; left:-999999px;}
 #lr-onesearch-vid-container {overflow: hidden; padding-top: 56.25% !important;position: relative;}
 #lr-onesearch-vid {border: 0; height: 100%;left: 0;position: absolute;top: 0; width: 100%;}
-
+/* faq box */
+#lr-faq-list a {display:flex; align-items:center;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 /* attempt to hide inaccurate internal link icons */

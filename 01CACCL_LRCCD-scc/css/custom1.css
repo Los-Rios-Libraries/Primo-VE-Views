@@ -143,6 +143,8 @@ prm-main-menu.isServicePage {display:unset;}
 #lr-onesearch-vid-headline {position:absolute; left:-999999px;}
 #lr-onesearch-vid-container {overflow: hidden; padding-top: 56.25% !important;position: relative;}
 #lr-onesearch-vid {border: 0; height: 100%;left: 0;position: absolute;top: 0; width: 100%;}
+/* faq box */
+#lr-faq-list a {display:flex; align-items:center;}
 
 /* new books on home page. as much as possible getting css from angularjs material */
 lr-newbooks-display ul {padding-left:0; margin-top:0;}
