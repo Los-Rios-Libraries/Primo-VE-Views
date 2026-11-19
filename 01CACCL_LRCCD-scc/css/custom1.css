@@ -179,6 +179,7 @@ lr-newbooks-display a {font-size:85%; text-decoration: none; font-weight: 600; o
 #lr-featured-collections li {list-style-type:none;}
 #lr-featured-collections li {display: block; overflow:hidden;}
 #lr-featured-collections img {object-position:-200px; max-height:100px;}
+#lr-featured-collections a div {max-width:90%;}
 /* change appearance of search query terms in search results */
 mark {box-shadow:none; font-weight:bold;}
 /* attempt to hide inaccurate internal link icons */
