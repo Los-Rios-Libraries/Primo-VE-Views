@@ -339,6 +339,9 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 	a[href^="tel:"]:hover, a[href^="tel:"]:focus {background:transparent; box-shadow: none; text-decoration: none;}
 	.lr-footer {padding: 20px;}
 	lr-delivery-blurb {position:static;}
+		/* digital help note */
+lr-alma-d-notes div {margin-bottom:20px;}
+.is-grid-view prm-gallery-item {margin-bottom: 3rem;}
 }
 
 

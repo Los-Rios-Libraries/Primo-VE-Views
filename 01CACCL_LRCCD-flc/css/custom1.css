@@ -308,6 +308,7 @@ prm-browse-result .md-button:hover, prm-browse-result .md-button:focus {box-shad
 	lr-delivery-blurb {position:static;}
 		/* digital help note */
 lr-alma-d-notes div {margin-bottom:20px;}
+.is-grid-view prm-gallery-item {margin-bottom: 3rem;}
 }
 
   
