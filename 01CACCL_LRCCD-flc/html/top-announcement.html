@@ -87,5 +87,36 @@
 			</md-button>
 		</p>
 	</div>
+	
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2026-12-04',
+	endDate: '2026-12-17',
+	cookieID: 'itemsDueWinter',
+	daysToHide: 10
+	});">
+		<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+			Library items are due back by Thursday, December 17. <a href="https://answers.library.losrios.edu/flc/faq/327551" target="_blank">Where can I return library items?</a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+	
+	<div ng-class="$ctrl.fade" ng-if="$ctrl.showAnnounce({
+	startDate: '2026-12-18',
+	endDate: '2027-01-16',
+	cookieID: 'winterIntersession',
+	daysToHide: 10
+	});">
+		<p layout-margin layout-align="center center">
+		<!--<md-icon md-svg-icon="action:ic_announcement_24px" aria-label="announcement"></md-icon>-->
+			The FLC and EDC libraries are closed during Winter Recess. <a href="https://answers.library.losrios.edu/flc/faq/327551" target="_blank">Where can I return library items?</a>
+			<md-button class="md-raised" ng-click="$ctrl.hideAnnounce();">
+			Hide this announcement<md-icon md-svg-icon="navigation:ic_close_24px" aria-label="Close"></md-icon>
+			</md-button>
+		</p>
+	</div>
+		
 
 </md-content>
